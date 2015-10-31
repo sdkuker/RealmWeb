@@ -5,22 +5,27 @@ requirejs.config({
         jquery: 'vendor/jquery-2.1.4',
         json2: "vendor/json2",
         marionette: 'vendor/marionette',
-        underscore: 'vendor/underscore'
+        underscore: 'vendor/underscore',
+        text: 'vendor/text',
+        tpl: 'vendor/underscore-tpl'
     },
 
     shim: {
-        backbone: {
+        'backbone': {
             deps: ['jquery', 'underscore', 'json2'],
             exports: 'Backbone'
         },
-        marionette: {
+        'marionette': {
             deps: ['backbone'],
             exports: 'Marionette'
+        },
+        'tpl': {
+            deps: ['text'],
+            exports: ['tpl']
         }
     }
 })
 
 require(["app"], function (Realm) {
     Realm.start();
-    console.log("Realm has started");
 });
