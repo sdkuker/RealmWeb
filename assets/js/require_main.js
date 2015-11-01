@@ -26,6 +26,6 @@ requirejs.config({
     }
 })
 
-require(["app"], function (Realm) {
-    Realm.start();
+require(["realmApplication"], function (RealmApplication) {
+    RealmApplication.start();
 });
