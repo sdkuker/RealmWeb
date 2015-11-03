@@ -1,11 +1,20 @@
-<p>StevieWare!!!!</p>
-
-<a href="#criticalHits" >Critical Hits</a>
-<a href="#resistanceTable" >Resistance Table</a>
-<a href="#dieRoller" >Die Roller</a>
-<a href="#herbLore" >Herb Lore</a>
-<a href="#players" >Players</a>
-<a href="#characterList" >Character List</a>
-<a href="#itemList" >Item List</a>
-<a href="#willContestList" >Will Contest List</a>
-<a href="#movementManeuvers" >Movement Maneuvers</a>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Stevieware</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#criticalHits" >Critical Hits</a></li>
+                <li><a href="#resistanceTable" >Resistance Table</a></li>
+                <li><a href="#dieRoller" >Die Roller</a></li>
+                <li><a href="#herbLore" >Herb Lore</a></li>
+                <li><a href="#players" >Players</a></li>
+                <li><a href="#characterList" >Character List</a></li>
+                <li><a href="#itemList" >Item List</a></li>
+                <li><a href="#willContestList" >Will Contest List</a></li>
+                <li><a href="#movementManeuvers" >Movement Maneuvers</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

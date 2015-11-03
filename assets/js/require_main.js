@@ -7,7 +7,10 @@ requirejs.config({
         marionette: 'vendor/marionette',
         underscore: 'vendor/underscore',
         text: 'vendor/text',
-        tpl: 'vendor/underscore-tpl'
+        tpl: 'vendor/underscore-tpl',
+        bootstrapDialog : 'vendor/bootstrap-dialog',
+        bootstrap: 'vendor/bootstrap.min',
+        typeahead: 'vendor/bootstrap3-typeahead.min'
     },
 
     shim: {
@@ -16,13 +19,17 @@ requirejs.config({
             exports: 'Backbone'
         },
         'marionette': {
-            deps: ['backbone'],
+            deps: ['backbone', 'bootstrap'],
             exports: 'Marionette'
         },
         'tpl': {
             deps: ['text'],
             exports: ['tpl']
-        }
+        },
+        'bootstrap': { deps: ['jquery'], exports: 'bootstrap' },
+        'typeahead': { deps: ['jquery', 'bootstrap'] },
+        'bootstrapDialog': { deps: ['bootstrap'] },
+
     }
 })
 
