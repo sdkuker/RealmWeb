@@ -1,4 +1,4 @@
-define(["marionette",
+define(["marionette"
 ], function (Marionette) {
 
     var RealmApplication = new Marionette.Application();

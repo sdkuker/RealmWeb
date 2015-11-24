@@ -7,7 +7,7 @@ define(['marionette',
         appRoutes: {
             'criticalHits': 'workInProgress',
             'resistanceTable': 'workInProgress',
-            'dieRoller': 'workInProgress',
+            'dieRoller': 'dieRoller',
             'herbLore': 'workInProgress',
             'players': 'workInProgress',
             'characterList': 'workInProgress',

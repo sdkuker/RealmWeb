@@ -8,9 +8,7 @@ requirejs.config({
         underscore: 'vendor/underscore',
         text: 'vendor/text',
         tpl: 'vendor/underscore-tpl',
-        bootstrapDialog : 'vendor/bootstrap-dialog',
-        bootstrap: 'vendor/bootstrap.min',
-        typeahead: 'vendor/bootstrap3-typeahead.min'
+        bootstrap: 'vendor/bootstrap'
     },
 
     shim: {
@@ -26,13 +24,11 @@ requirejs.config({
             deps: ['text'],
             exports: ['tpl']
         },
-        'bootstrap': { deps: ['jquery'], exports: 'bootstrap' },
-        'typeahead': { deps: ['jquery', 'bootstrap'] },
-        'bootstrapDialog': { deps: ['bootstrap'] },
+        'bootstrap': { deps: ['jquery'], exports: 'bootstrap' }
 
     }
 })
 
-require(["realmApplication"], function (RealmApplication) {
+require(["realmApplication", 'marionette', 'underscore'], function (RealmApplication, Marionette, Underscore) {
     RealmApplication.start();
 });
