@@ -11,9 +11,11 @@ define(['marionette',
             'click #openEndedUpButton' : 'openEndedUpButtonClicked',
             'click #gmConfiguredButton' : 'gmConfiguredButtonClicked'
         },
+        modelEvents: {'change': 'render'},
+
         normalButtonClicked : function() {
             console.log('normal button clicked');
-            this.model.set('currentRoll', '63');
+            this.model.roll();
         },
         openEndedButtonClicked : function() {
             console.log('open ended button clicked');
