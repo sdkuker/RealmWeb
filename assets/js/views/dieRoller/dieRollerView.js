@@ -14,11 +14,18 @@ define(['jquery',
         },
         modelEvents: {'change': 'render'},
 
+        numberOfDice: 1,
+
+        gmConfiguredNbrOfSides: 1,
+
         initialize : function() {
             self = this;
             $(document.body).on('change', '#nbrOfDice', function(e) {
                 self.numberOfDiceChosen();
-            })
+            });
+            $(document.body).on('change', '#gmConfigNbrSides', function(e) {
+                self.gmConfiguredNbrOfSidesChosen();
+            });
         },
 
         numberOfDiceChosen : function() {
@@ -26,11 +33,15 @@ define(['jquery',
             self.numberOfDice = $('#nbrOfDice option:selected').val();
         },
 
-        numberOfDice: 1,
+        gmConfiguredNbrOfSidesChosen : function() {
+            self = this;
+            self.gmConfiguredNbrOfSides = $('#gmConfigNbrSides option:selected').val();
+        },
 
         onRender: function() {
             self = this;
             $('#nbrOfDice').val(self.numberOfDice);
+            $('#gmConfigNbrSides').val(self.gmConfiguredNbrOfSides);
         },
 
         normalButtonClicked : function() {
@@ -38,16 +49,21 @@ define(['jquery',
             this.model.roll(self.numberOfDice);
         },
         openEndedButtonClicked : function() {
-            console.log('open ended button clicked');
+            self = this;
+            this.model.rollOpenEnded(self.numberOfDice);
         },
         openEndedDownButtonClicked : function() {
-            console.log('open ended down button clicked');
+            self = this;
+            this.model.rollOpenEndedDown(self.numberOfDice);
         },
         openEndedUpButtonClicked : function() {
-            console.log('open ended up button clicked');
+            self = this;
+            this.model.rollOpenEndedUp(self.numberOfDice);
         },
         gmConfiguredButtonClicked : function() {
-            console.log('gm configured button clicked');
+            self = this;
+            this.model.rollGmConfigured(self.numberOfDice, self.gmConfiguredNbrOfSides);
+
         }
     });
 

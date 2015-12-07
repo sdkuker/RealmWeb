@@ -10,10 +10,46 @@ define(['backbone', 'domain/die/die'],
             mostRecentRollValue: 0
         },
         roll : function(numberOfDice) {
+            this.rollType('normal', numberOfDice);
+        },
+        rollOpenEnded : function(numberOfDice) {
+            this.rollType('openEnded', numberOfDice);
+        },
+        rollOpenEndedUp : function(numberOfDice) {
+            this.rollType('openEndedUp', numberOfDice);
+        },
+        rollOpenEndedDown : function(numberOfDice) {
+            this.rollType('openEndedDown', numberOfDice);
+        },
+        rollGmConfigured : function(numberOfDice, numberOfSides) {
+            this.rollType('gmConfigured', numberOfDice, numberOfSides);
+        },
+
+        rollType : function(typeOfRoll, numberOfDice, numberOfSides) {
             this.set('mostRecentRollValue', this.get('currentRoll'));
             var totalRoll = 0;
             for (index = 0; index < numberOfDice; index++) {
-                totalRoll = totalRoll + Die.roll(100);
+                var thisRoll;
+                if (typeOfRoll == 'normal') {
+                    thisRoll = Die.roll(100);
+                } else {
+                    if (typeOfRoll == 'openEnded') {
+                        thisRoll = Die.rollOpenEnded();
+                    } else {
+                        if (typeOfRoll == 'openEndedDown') {
+                            thisRoll = Die.rollOpenEndedDown();
+                        } else {
+                            if (typeOfRoll == 'openEndedUp') {
+                                thisRoll = Die.rollOpenEndedUp();
+                            } else {
+                                if (typeOfRoll == 'gmConfigured') {
+                                    thisRoll = Die.roll(numberOfSides);
+                                }
+                            }
+                        }
+                    }
+                }
+                totalRoll = totalRoll + thisRoll;
             };
             this.set('currentRoll',  totalRoll);
             this.updateStats();
