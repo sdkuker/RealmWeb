@@ -1,6 +1,7 @@
-define(['marionette',
+define(['jquery',
+    'marionette',
     "tpl!templates/dieRoller/dieRoller.tpl",
-    "models/dieRoller/dieModel"], function (Marionette, DieRollerTemplate, DieModel) {
+    "models/dieRoller/dieModel"], function ($, Marionette, DieRollerTemplate, DieModel) {
     var DieRollerView = Marionette.ItemView.extend({
         template: DieRollerTemplate,
         model: DieModel,
@@ -13,9 +14,28 @@ define(['marionette',
         },
         modelEvents: {'change': 'render'},
 
+        initialize : function() {
+            self = this;
+            $(document.body).on('change', '#nbrOfDice', function(e) {
+                self.numberOfDiceChosen();
+            })
+        },
+
+        numberOfDiceChosen : function() {
+            self = this;
+            self.numberOfDice = $('#nbrOfDice option:selected').val();
+        },
+
+        numberOfDice: 1,
+
+        onRender: function() {
+            self = this;
+            $('#nbrOfDice').val(self.numberOfDice);
+        },
+
         normalButtonClicked : function() {
-            console.log('normal button clicked');
-            this.model.roll();
+            self = this;
+            this.model.roll(self.numberOfDice);
         },
         openEndedButtonClicked : function() {
             console.log('open ended button clicked');

@@ -9,9 +9,13 @@ define(['backbone', 'domain/die/die'],
             numberOfPreviousRollsToDisplay: 10,
             mostRecentRollValue: 0
         },
-        roll : function() {
+        roll : function(numberOfDice) {
             this.set('mostRecentRollValue', this.get('currentRoll'));
-            this.set('currentRoll',  Die.roll(6));
+            var totalRoll = 0;
+            for (index = 0; index < numberOfDice; index++) {
+                totalRoll = totalRoll + Die.roll(100);
+            };
+            this.set('currentRoll',  totalRoll);
             this.updateStats();
         },
         updateStats: function() {
