@@ -8,7 +8,8 @@ requirejs.config({
         underscore: 'vendor/underscore',
         text: 'vendor/text',
         tpl: 'vendor/underscore-tpl',
-        bootstrap: 'vendor/bootstrap'
+        bootstrap: 'vendor/bootstrap',
+        parse: 'vendor/parse-1.6.7.min'
     },
 
     shim: {
@@ -29,6 +30,6 @@ requirejs.config({
     }
 })
 
-require(["realmApplication", 'marionette', 'underscore'], function (RealmApplication, Marionette, Underscore) {
+require(["realmApplication", 'marionette', 'underscore', 'parse'], function (RealmApplication, Marionette, Underscore, Parse) {
     RealmApplication.start();
 });

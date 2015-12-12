@@ -9,12 +9,13 @@ define(['marionette',
             'resistanceTable': 'workInProgress',
             'dieRoller': 'dieRoller',
             'herbLore': 'workInProgress',
-            'players': 'workInProgress',
+            'players': 'playerList',
             'characterList': 'workInProgress',
             'itemList': 'workInProgress',
             'willContestList': 'workInProgress',
             'movementManeuvers': 'workInProgress',
-            '*path': 'workInProgress'
+            'combatEncounterList' : 'combatEncounterList',
+            '*path': 'dieRoller'
         }
     });
 
