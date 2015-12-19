@@ -1,117 +1,121 @@
-/********** PARSE API ACCESS CREDENTIALS **********/
+define(['backbone'], function (Backbone) {
 
-var application_id = "BITvZDeeYrJSDU14nuVecP4SNj2o2AWs7lM1NKGE";
-var rest_api_key = "ezp0rx4SpdXdI5UzdI2Ln1fpYMCYkFdHLpzzUrB3";
-var api_version = "1";
+        /********** PARSE API ACCESS CREDENTIALS **********/
 
-/******************* END *************************/
+        var application_id = "BITvZDeeYrJSDU14nuVecP4SNj2o2AWs7lM1NKGE";
+        var rest_api_key = "ezp0rx4SpdXdI5UzdI2Ln1fpYMCYkFdHLpzzUrB3";
+        var api_version = "1";
 
-(function() {
+        /******************* END *************************/
 
-    /*
-     Replace the toJSON method of Backbone.Model with our version
+        (function () {
 
-     This method removes the "createdAt" and "updatedAt" keys from the JSON version
-     because otherwise the PUT requests to Parse fails.
-     */
-    var original_toJSON =Backbone.Model.prototype.toJSON;
-    var ParseModel = {
-        toJSON : function(options) {
-            _parse_class_name = this.__proto__._parse_class_name;
-            data = original_toJSON.call(this,options);
-            delete data.createdAt
-            delete data.updatedAt
-            return data
-        },
+            /*
+             Replace the toJSON method of Backbone.Model with our version
 
-        idAttribute: "objectId"
-    };
-    _.extend(Backbone.Model.prototype, ParseModel);
+             This method removes the "createdAt" and "updatedAt" keys from the JSON version
+             because otherwise the PUT requests to Parse fails.
+             */
+            var original_toJSON = Backbone.Model.prototype.toJSON;
+            var ParseModel = {
+                toJSON: function (options) {
+                    _parse_class_name = this.__proto__._parse_class_name;
+                    data = original_toJSON.call(this, options);
+                    delete data.createdAt
+                    delete data.updatedAt
+                    return data
+                },
 
-    /*
-     Replace the parse method of Backbone.Collection
-     Backbone Collection expects to get a JSON array when fetching.
-     Parse returns a JSON object with key "results" and value being the array.
-     */
-    original_parse =Backbone.Collection.prototype.parse;
-    var ParseCollection = {
-        parse : function(options) {
-            _parse_class_name = this.__proto__._parse_class_name;
-            data = original_parse.call(this,options);
-            if (_parse_class_name && data.results) {
-                //do your thing
-                return data.results;
-            }
-            else {
-                //return original
-                return data;
-            }
-        }
-    };
-    _.extend(Backbone.Collection.prototype, ParseCollection);
+                idAttribute: "objectId"
+            };
+            _.extend(Backbone.Model.prototype, ParseModel);
 
-    /*
-     Method to HTTP Type Map
-     */
-    var methodMap = {
-        'create': 'POST',
-        'update': 'PUT',
-        'delete': 'DELETE',
-        'read':   'GET'
-    };
+            /*
+             Replace the parse method of Backbone.Collection
+             Backbone Collection expects to get a JSON array when fetching.
+             Parse returns a JSON object with key "results" and value being the array.
+             */
+            original_parse = Backbone.Collection.prototype.parse;
+            var ParseCollection = {
+                parse: function (options) {
+                    _parse_class_name = this.__proto__._parse_class_name;
+                    data = original_parse.call(this, options);
+                    if (_parse_class_name && data.results) {
+                        //do your thing
+                        return data.results;
+                    }
+                    else {
+                        //return original
+                        return data;
+                    }
+                }
+            };
+            _.extend(Backbone.Collection.prototype, ParseCollection);
 
-    /*
-     Override the default Backbone.sync
-     */
-    var ajaxSync = Backbone.sync;
-    Backbone.sync = function(method, model, options) {
+            /*
+             Method to HTTP Type Map
+             */
+            var methodMap = {
+                'create': 'POST',
+                'update': 'PUT',
+                'delete': 'DELETE',
+                'read': 'GET'
+            };
+
+            /*
+             Override the default Backbone.sync
+             */
+            var ajaxSync = Backbone.sync;
+            Backbone.sync = function (method, model, options) {
 
 
-        var object_id = model.models? "" : model.id; //get id if it is not a Backbone Collection
+                var object_id = model.models ? "" : model.id; //get id if it is not a Backbone Collection
 
 
-        var class_name = model.__proto__._parse_class_name;
-        if (!class_name) {
-            return ajaxSync(method, model, options) //It's a not a Parse-backed model, use default sync
-        }
+                var class_name = model.__proto__._parse_class_name;
+                if (!class_name) {
+                    return ajaxSync(method, model, options) //It's a not a Parse-backed model, use default sync
+                }
 
-        // create request parameteres
-        var type = methodMap[method];
-        options || (options = {});
-        var base_url = "https://api.parse.com/" + api_version + "/classes";
-        var url = base_url + "/" + class_name + "/";
-        if (method != "create") {
-            url = url + object_id;
-        }
+                // create request parameteres
+                var type = methodMap[method];
+                options || (options = {});
+                var base_url = "https://api.parse.com/" + api_version + "/classes";
+                var url = base_url + "/" + class_name + "/";
+                if (method != "create") {
+                    url = url + object_id;
+                }
 
-        //Setup data
-        var data ;
-        if (!options.data && model && (method == 'create' || method == 'update')) {
-            data = JSON.stringify(model.toJSON());
-        }
-        else if (options.query && method == "read") { //query for Parse.com objects
-            data = encodeURI("where=" + JSON.stringify(options.query));
-        }
+                //Setup data
+                var data;
+                if (!options.data && model && (method == 'create' || method == 'update')) {
+                    data = JSON.stringify(model.toJSON());
+                }
+                else if (options.query && method == "read") { //query for Parse.com objects
+                    data = encodeURI("where=" + JSON.stringify(options.query));
+                }
 
-        var request = {
-            //data
-            contentType: "application/json",
-            processData: false,
-            dataType: 'json',
-            data: data,
+                var request = {
+                    //data
+                    contentType: "application/json",
+                    processData: false,
+                    dataType: 'json',
+                    data: data,
 
-            //action
-            url: url,
-            type: type,
+                    //action
+                    url: url,
+                    type: type,
 
-            //authentication
-            headers: {
-                "X-Parse-Application-Id": application_id,
-                "X-Parse-REST-API-Key": rest_api_key
-            }
-        };
+                    //authentication
+                    headers: {
+                        "X-Parse-Application-Id": application_id,
+                        "X-Parse-REST-API-Key": rest_api_key
+                    }
+                };
 
-        return $.ajax(_.extend(options, request));
-    };
+                return $.ajax(_.extend(options, request));
+            };
 
-})();
+        })()
+    }
+);

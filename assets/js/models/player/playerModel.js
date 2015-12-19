@@ -3,6 +3,7 @@ define(['backbone'],
 
         var PlayerModel = Backbone.Model.extend({
             _parse_class_name : 'Player',
+            idAttribute : 'objectId',
             defaults: {
                 name: ''
             },

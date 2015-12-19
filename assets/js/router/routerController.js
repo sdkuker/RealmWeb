@@ -28,7 +28,10 @@ define(['realmApplication',
             },
             playerList: function () {
                 var aPlayerModel = new PlayerModel();
-                var playerCollection = PlayerServices.getAllPlayers();
+                aPlayerModel.set('name', 'Michelle');
+                var playerCollection = new PlayerCollection();
+                playerCollection.add(aPlayerModel);
+                //var playerCollection = PlayerServices.getAllPlayers();
                 var view = new PlayerListView({collection: playerCollection});
                 RealmApplication.regions.mainRegion.show(view);
             }
