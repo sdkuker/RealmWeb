@@ -1,8 +1,8 @@
-define(['parse'],
-    function (Parse) {
+define(['backbone'],
+    function (Backbone) {
 
-        var PlayerMode = Parse.Object.extend({
-            className: 'Player',
+        var PlayerModel = Backbone.Model.extend({
+            _parse_class_name : 'Player',
             defaults: {
                 name: ''
             },
@@ -12,8 +12,9 @@ define(['parse'],
             setName: function(aName) {
                 return this.set('name', aName);
             }
+
         });
 
-        return DieModel;
+        return PlayerModel;
 
     });
