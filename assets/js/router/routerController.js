@@ -7,10 +7,13 @@ define(['realmApplication',
         'views/player/playerView',
         'models/player/playerModel',
         'collections/player/playerCollection',
-        'services/playerServices'
+        'services/playerServices',
+        'views/player/playerListLayoutView',
+        'views/player/playerListButtonView'
     ],
     function (RealmApplication,  WorkInProgressView, DieRollerView, DieModel, CombatEncounterListView,
-              PlayerListView, PlayerView, PlayerModel, PlayerCollection, PlayerServices) {
+              PlayerListView, PlayerView, PlayerModel, PlayerCollection, PlayerServices, PlayerListLayoutView,
+              PlayerListButtonView) {
 
         RouterController = {
             workInProgress: function () {
@@ -27,13 +30,13 @@ define(['realmApplication',
                 RealmApplication.regions.mainRegion.show(view);
             },
             playerList: function () {
-                var aPlayerModel = new PlayerModel();
-                aPlayerModel.set('name', 'Michelle');
-                var playerCollection = new PlayerCollection();
-                playerCollection.add(aPlayerModel);
-                //var playerCollection = PlayerServices.getAllPlayers();
-                var view = new PlayerListView({collection: playerCollection});
-                RealmApplication.regions.mainRegion.show(view);
+                var playerListLayoutView = new PlayerListLayoutView();
+                RealmApplication.regions.mainRegion.show(playerListLayoutView);
+                var playerCollection = PlayerServices.getAllPlayers();
+                var playerListView = new PlayerListView({collection: playerCollection});
+                var playerListButtonView = new PlayerListButtonView();
+                playerListLayoutView.getRegion('playerTableRegion').show(playerListView);
+                playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
             }
         };
 
