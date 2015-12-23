@@ -35,7 +35,13 @@ define(['realmApplication'
                     playerListLayoutView.getRegion('playerTableRegion').show(playerListView);
                     playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
                 });
-            }
+            },
+            viewPlayer: function(playerModel) {
+                require(['views/player/playerView'], function (PlayerView) {
+                    var playerView = new PlayerView({model : playerModel});
+                    RealmApplication.regions.mainRegion.show(playerView);
+                });
+            },
         };
 
         return RouterController;

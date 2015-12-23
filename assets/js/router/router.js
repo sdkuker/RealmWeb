@@ -15,6 +15,7 @@ define(['marionette',
             'willContestList': 'workInProgress',
             'movementManeuvers': 'workInProgress',
             'combatEncounterList' : 'combatEncounterList',
+            'viewPlayer' : 'viewPlayer',
             '*path': 'dieRoller'
         }
     });

@@ -19,7 +19,7 @@ define(["marionette"
     RealmApplication.on("start", function () {
         console.log("Starting Realm Application");
 
-        require(["views/navigation/navigationView", 'router/router'], function (NavigationView, RealmRouter) {
+        require(["views/navigation/navigationView", 'router/router', 'router/routerEventHandler'], function (NavigationView, RealmRouter, RouterEventHandler) {
             var navView = new NavigationView();
             RealmApplication.regions.navRegion.show(navView);
 
