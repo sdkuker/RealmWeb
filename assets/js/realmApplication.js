@@ -1,5 +1,6 @@
-define(["marionette"
-], function (Marionette) {
+define(["marionette",
+    'views/modal/modalRegion'
+], function (Marionette, ModalRegion) {
 
     var RealmApplication = new Marionette.Application();
 
@@ -10,11 +11,14 @@ define(["marionette"
             regions: {
                 navRegion: "#nav-region",
                 mainRegion: "#main-region",
-                footerRegion: "#footer-region",
-                modalRegion: '#modal-region'
+                footerRegion: "#footer-region"
             }
         });
         RealmApplication.regions = new RegionContainer();
+
+        RealmApplication.addRegions({
+            modalRegion: ModalRegion
+        });
     });
 
     RealmApplication.on("start", function () {

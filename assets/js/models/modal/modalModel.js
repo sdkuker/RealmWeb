@@ -3,14 +3,14 @@ define(['backbone'],
 
         var ModalModel = Backbone.Model.extend({
             defaults: {
-                severity: '',
+                title: '',
                 message : ''
             },
-            getSeverity: function() {
-                return this.get('severity');
+            getTitle: function() {
+                return this.get('title');
             },
-            setSeverity: function(aSeverity) {
-                return this.set('severity', aSeverity);
+            setTitle: function(aTitle) {
+                return this.set('title', aTitle);
             },
             getMessage: function() {
                 return this.get('message');
