@@ -16,5 +16,9 @@ define(['realmApplication', 'router/router', 'router/routerController'
             Router.navigate('viewPlayer');
             RouterController.viewPlayer(model);
         });
+        RealmApplication.vent.bind('viewPlayerList', function () {
+            Router.navigate('playerList');
+            RouterController.playerList();
+        });
 
     });

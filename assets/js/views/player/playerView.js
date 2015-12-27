@@ -1,8 +1,9 @@
 define(['marionette',
+    'realmApplication',
     'models/player/playerModel',
     'utility/viewUtilities',
     "tpl!templates/player/playerTemplate.tpl",
-    'logger'], function (Marionette, PlayerModel, ViewUtilities, PlayerTemplate, Logger) {
+    'logger'], function (Marionette, RealmApplication, PlayerModel, ViewUtilities, PlayerTemplate, Logger) {
     var PlayerView = Marionette.ItemView.extend({
         template: PlayerTemplate,
         model: PlayerModel,
@@ -19,9 +20,11 @@ define(['marionette',
                 function(playerModel) {
                     Logger.logInfo('player model successfully saved');
                     ViewUtilities.showModalView('Informational', 'Player Saved');
+                    RealmApplication.vent.trigger('viewPlayerList');
                 },
                 function(error) {
                     Logger.logErrror("player model NOT successfully saved: " + error);
+                    ViewUtilities.showModalView('Error', 'Error Saving the Player.  See the log');
                 }
             );
         }
