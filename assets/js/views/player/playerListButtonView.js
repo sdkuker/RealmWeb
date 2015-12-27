@@ -1,9 +1,8 @@
 define(['marionette',
         'backbone',
         'realmApplication',
-        'models/player/playerModel',
     'tpl!templates/player/playerListButtonTemplate.tpl'],
-    function (Marionette, Backbone, RealmApplication, PlayerModel, PlayerListButtonTemplate) {
+    function (Marionette, Backbone, RealmApplication, PlayerListButtonTemplate) {
 
     var PlayerListButtonView = Marionette.ItemView.extend({
         template: PlayerListButtonTemplate,
@@ -13,7 +12,7 @@ define(['marionette',
             'click #deleteButton' : 'deleteButtonClicked'
         },
         addButtonClicked : function() {
-            RealmApplication.vent.trigger('playerListAddButton:clicked', new PlayerModel());
+            RealmApplication.vent.trigger('playerListAddButton:clicked');
         },
         changeButtonClicked : function() {
             RealmApplication.vent.trigger('playerListChangeButton:clicked');

@@ -2,7 +2,7 @@ define(['realmApplication', 'router/router', 'router/routerController'
     ],
     function (RealmApplication, Router, RouterController) {
 
-        RealmApplication.vent.bind('playerListAddButton:clicked', function (model) {
+        RealmApplication.vent.bind('playerListAddPlayer', function (model) {
             Router.navigate('viewPlayer');
             RouterController.viewPlayer(model);
         });

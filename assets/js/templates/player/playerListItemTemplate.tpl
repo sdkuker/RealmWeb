@@ -1,3 +1,1 @@
-<div>
-    <label><%= name %></label>
-</div>
+<td><%= name %></td>
