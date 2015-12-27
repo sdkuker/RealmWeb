@@ -10,7 +10,8 @@ define(["marionette"
             regions: {
                 navRegion: "#nav-region",
                 mainRegion: "#main-region",
-                footerRegion: "#footer-region"
+                footerRegion: "#footer-region",
+                modalRegion: '#modal-region'
             }
         });
         RealmApplication.regions = new RegionContainer();

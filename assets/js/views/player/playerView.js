@@ -1,7 +1,10 @@
 define(['marionette',
-    "tpl!../../templates/player/playerTemplate.tpl",
+    'realmApplication',
     'models/player/playerModel',
-    'logger'], function (Marionette, PlayerTemplate, PlayerModel, Logger) {
+    'models/modal/modalModel',
+    'views/modal/modalView',
+    "tpl!templates/player/playerTemplate.tpl",
+    'logger'], function (Marionette, RealmApplication, PlayerModel, ModalModel,  ModalView, PlayerTemplate, Logger) {
     var PlayerView = Marionette.ItemView.extend({
         template: PlayerTemplate,
         model: PlayerModel,
@@ -17,6 +20,10 @@ define(['marionette',
             this.model.save().then(
                 function(playerModel) {
                     Logger.logInfo('player model successfully saved');
+                    var modalModel = new ModalModel({severity: 'Informational', message : 'Player Saved'});
+                    var modalView = new ModalView({model : modalModel});
+                    RealmApplication.regions.modalRegion.show(modalView);
+
                 },
                 function(error) {
                     Logger.logErrror("player model NOT successfully saved: " + error);
