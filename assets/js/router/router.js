@@ -5,7 +5,7 @@ define(['marionette',
     var AppRouter = Marionette.AppRouter.extend({
         controller: RouterController,
         appRoutes: {
-            'criticalHits': 'workInProgress',
+            'criticalHits': 'criticalHits',
             'resistanceTable': 'workInProgress',
             'dieRoller': 'dieRoller',
             'herbLore': 'workInProgress',

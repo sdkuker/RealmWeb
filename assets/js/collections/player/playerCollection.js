@@ -1,5 +1,5 @@
-define(['backbone', 'parse', 'models/player/playerModel'],
-    function (Backbone, Parse, PlayerModel) {
+define(['backbone', 'models/player/playerModel'],
+    function (Backbone, PlayerModel) {
 
         var PlayerListCollection = Backbone.Collection.extend({
             _parse_class_name : 'Player',

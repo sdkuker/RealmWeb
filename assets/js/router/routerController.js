@@ -41,8 +41,18 @@ define(['realmApplication'
                     var playerView = new PlayerView({model : playerModel});
                     RealmApplication.regions.mainRegion.show(playerView);
                 });
-            }
-        };
+            },
+        criticalHits: function () {
+            require(['views/criticalHit/criticalHitLayoutView', 'views/criticalHit/criticalHitFilterView'],
+                function (CriticalHitLayoutView, CriticalHitFilterView) {
+                    var criticalHitLayoutView = new CriticalHitLayoutView();
+                    RealmApplication.regions.mainRegion.show(criticalHitLayoutView);
+                    var critialHitFilterView = new CriticalHitFilterView();
+                    criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);
+                });
+        },
+
+    };
 
         return RouterController;
 

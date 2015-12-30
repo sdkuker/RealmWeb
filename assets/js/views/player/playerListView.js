@@ -57,10 +57,6 @@ define(['marionette',
             $(tableRow.el).siblings().removeClass('info');
             $(tableRow.el).addClass('info');
             selectedModel = model;
-        },
-        onBeforeDestroy : function() {
-            console.log('in onDestroy on playerListView');
-            var temp = this.children;
         }
     });
 
