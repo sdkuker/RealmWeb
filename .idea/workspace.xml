@@ -26,8 +26,8 @@
       <file leaf-file-name="criticalHitFilterTemplate.tpl" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/templates/criticalHit/criticalHitFilterTemplate.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.52741516">
-              <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.33420366">
+              <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -927,8 +927,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/templates/criticalHit/criticalHitFilterTemplate.tpl">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52741516">
-          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+        <state vertical-scroll-proportion="0.33420366">
+          <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
           <folding />
         </state>
       </provider>

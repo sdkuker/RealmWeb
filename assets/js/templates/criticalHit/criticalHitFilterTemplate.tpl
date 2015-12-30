@@ -30,10 +30,6 @@
                 <select id='typeSelect' class="form-control">
                     <option>ColdExample</option>
                 </select>
-                <label for="severitySelect">Severity</label>
-                <select id='severitySelect' class="form-control">
-                    <option>A</option>
-                </select>
             </div>
         </form>
     </div>
@@ -46,16 +42,24 @@
         </form>
         <form role="form" class="form-horizontal col-sm-6">
             <div class="form-group">
-                <button id='getCriticalButton' type='button' class="btn btn-default">Get Critical</button>
-                <button id='listCritcalsButton' type='button' class="btn btn-default">List Criticals</button>
+                <label for="severitySelect">Severity</label>
+                <select id='severitySelect' class="form-control">
+                    <option>A</option>
+                </select>
             </div>
         </form>
     </div>
-    <div>
-        <form role="form" class="form-horizontal">
+    <div class="row">
+        <form role="form" class="form-horizontal col-sm-6">
             <div class="form-group">
                 <label for="attackTotal">Attack Total:</label>
                 <input type="number" id="attackTotal">
+            </div>
+        </form>
+        <form role="form" class="form-horizontal col-sm-6">
+            <div class="form-group">
+                <button id='getCriticalButton' type='button' class="btn btn-default">Get Critical</button>
+                <button id='listCritcalsButton' type='button' class="btn btn-default">List Criticals</button>
             </div>
         </form>
     </div>
