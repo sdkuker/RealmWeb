@@ -56,7 +56,7 @@
         </form>
     </div>
     <div class="row">
-        <form role="form" class="form-horizontal col-sm-6">
+        <form role="form" class="form-horizontal col-sm-5">
             <div class="form-group">
                 <label for="attackTotal">Attack Total:</label>
                 <input type="number" id="attackTotal">
