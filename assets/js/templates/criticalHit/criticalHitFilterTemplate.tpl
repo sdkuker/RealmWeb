@@ -26,10 +26,14 @@
         </form>
         <form role="form" class="form-horizontal col-sm-6">
             <div class="form-group">
-                <label for="typeButton">Type</label>
-                <button id='typeButton' type='button' class="btn btn-default">Type</button>
-                <label for="severityButton">Severity</label>
-                <button id='severityButton' type='button' class="btn btn-default">Severity</button>
+                <label for="typeSelect">Type</label>
+                <select id='typeSelect' class="form-control">
+                    <option>ColdExample</option>
+                </select>
+                <label for="severitySelect">Severity</label>
+                <select id='severitySelect' class="form-control">
+                    <option>A</option>
+                </select>
             </div>
         </form>
     </div>
