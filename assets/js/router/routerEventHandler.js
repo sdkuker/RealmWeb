@@ -13,8 +13,8 @@ define(['realmApplication', 'router/router', 'router/routerController'
         });
 
         RealmApplication.vent.bind('playerListDeleteButton:clicked', function (model) {
-            Router.navigate('viewPlayer');
-            RouterController.viewPlayer(model);
+           // Router.navigate('viewPlayer');
+           // RouterController.viewPlayer(model);
         });
         RealmApplication.vent.bind('viewPlayerList', function () {
             Router.navigate('playerList');

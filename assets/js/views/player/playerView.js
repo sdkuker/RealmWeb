@@ -27,6 +27,19 @@ define(['marionette',
                     ViewUtilities.showModalView('Error', 'Error Saving the Player.  See the log');
                 }
             );
+        },
+        deleteButtonClicked : function() {
+            this.model.destroy().then(
+                function(playerModel) {
+                    Logger.logInfo('player model successfully saved');
+                    ViewUtilities.showModalView('Informational', 'Player Saved');
+                    RealmApplication.vent.trigger('viewPlayerList');
+                },
+                function(error) {
+                    Logger.logErrror("player model NOT successfully saved: " + error);
+                    ViewUtilities.showModalView('Error', 'Error Saving the Player.  See the log');
+                }
+            );
         }
     });
 

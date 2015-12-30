@@ -41,7 +41,7 @@ define(['realmApplication'
                     var playerView = new PlayerView({model : playerModel});
                     RealmApplication.regions.mainRegion.show(playerView);
                 });
-            },
+            }
         };
 
         return RouterController;
