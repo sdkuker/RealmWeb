@@ -6,6 +6,7 @@ define(['marionette',
 
         var CriticalHitFilterView = Marionette.ItemView.extend({
             template: CriticalHitFilterTemplate,
+            criticalHits :null,
             events : {
                 //'click #addButton' : 'addButtonClicked',
                 //'click #changeButton' : 'changeButtonClicked',
@@ -19,6 +20,10 @@ define(['marionette',
             //},
             //deleteButtonClicked : function() {
             //    RealmApplication.vent.trigger('playerListDeleteButton:clicked');
+            },
+            onRender : function() {
+                this.$el.find('#severitySelect').append("<option value='A'>A</option>");
+                this.$el.find('#typeSelect').append("<option value='Cold'>Cold</option>");
             },
         });
 

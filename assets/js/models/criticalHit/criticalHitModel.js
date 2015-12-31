@@ -44,6 +44,6 @@ define(['backbone'],
 
         });
 
-        return PlayerModel;
+        return CriticalHitModel;
 
     });

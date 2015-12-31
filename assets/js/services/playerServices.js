@@ -1,7 +1,7 @@
 define(['parse',
-    'models/player/playerModel',
+        'logger',
     'collections/player/playerCollection'],
-    function (Parse, PlayerModel, PlayerCollection) {
+    function (Parse, Logger, PlayerCollection) {
 
         PlayerServices = function() {
             // all variables are private
@@ -12,13 +12,13 @@ define(['parse',
                 var myPlayerCollection = new PlayerCollection();
                 myPlayerCollection.fetch().then(
                     function(results)  {
-                        console.log('got results');
+                        Logger.logInfo('got player list from Parse');
                         for (var index = 0; index < results.length; index++){
                             myPlayerCollection.add(results[index]);
                         }
                     },
                     function(error) {
-                        console.log('got an error' + error.code + ' ' + error.message);
+                        Logger.logErrror('got error getting all players from Parse: ' + error.code + ' ' + error.message)
                     }
 
                 );

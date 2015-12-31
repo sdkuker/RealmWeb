@@ -23,9 +23,9 @@ define(['realmApplication'
                 });
             },
             playerList: function () {
-                require(['views/player/playerListView', 'views/player/playerView', 'collections/player/playerCollection',
+                require(['views/player/playerListView', 'views/player/playerView',
                     'services/playerServices','views/player/playerListLayoutView','views/player/playerListButtonView'],
-                    function (PlayerListView, PlayerView, PlayerCollection, PlayerServices, PlayerListLayoutView,
+                    function (PlayerListView, PlayerView, PlayerServices, PlayerListLayoutView,
                               PlayerListButtonView) {
                     var playerListLayoutView = new PlayerListLayoutView();
                     RealmApplication.regions.mainRegion.show(playerListLayoutView);
@@ -43,11 +43,13 @@ define(['realmApplication'
                 });
             },
         criticalHits: function () {
-            require(['views/criticalHit/criticalHitLayoutView', 'views/criticalHit/criticalHitFilterView'],
-                function (CriticalHitLayoutView, CriticalHitFilterView) {
+            require(['views/criticalHit/criticalHitLayoutView', 'views/criticalHit/criticalHitFilterView',
+                     'services/criticalHitServices',],
+                function (CriticalHitLayoutView, CriticalHitFilterView, CriticalHitServices) {
                     var criticalHitLayoutView = new CriticalHitLayoutView();
                     RealmApplication.regions.mainRegion.show(criticalHitLayoutView);
-                    var critialHitFilterView = new CriticalHitFilterView();
+                    var criticalHitCollection = CriticalHitServices.getAllCriticalHits();
+                    var critialHitFilterView = new CriticalHitFilterView({criticalHits : criticalHitCollection});
                     criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);
                 });
         },

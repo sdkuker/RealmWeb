@@ -31,7 +31,6 @@
                 <label class="control-label col-sm-2">Type</label>
                 <div class="col-sm-3">
                 <select id='typeSelect' class="form-control">
-                    <option>ColdExample</option>
                 </select>
                 </div>
             </div>
@@ -49,7 +48,6 @@
                 <label class="control-label col-sm-2">Severity</label>
                 <div class="col-sm-3">
                 <select id='severitySelect' class="form-control">
-                    <option>A</option>
                 </select>
                 </div>
             </div>
