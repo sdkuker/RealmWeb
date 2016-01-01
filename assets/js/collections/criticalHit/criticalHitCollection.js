@@ -21,6 +21,14 @@ define(['backbone', 'models/criticalHit/criticalHitModel'],
                 });
                 return groupBySet;
             },
+            getSeveritiesForType : function(aType) {
+                var groupBySet = this.groupBy(function(criticalHitModel) {
+                    if (criticalHitModel.get('type') == aType) {
+                        return criticalHitModel.get('severity');
+                    };
+                });
+                return groupBySet;
+            },
         });
 
         return PlayerListCollection;
