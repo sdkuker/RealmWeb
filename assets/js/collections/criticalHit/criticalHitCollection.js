@@ -8,7 +8,19 @@ define(['backbone', 'models/criticalHit/criticalHitModel'],
                 return criticalHit.getType() + ':' +
                         criticalHit.getSeverity() + ':' +
                         criticalHit.getRollMinimumValue();
-            }
+            },
+            getAllTypes : function() {
+                var groupBySet = this.groupBy(function(criticalHitModel) {
+                    return criticalHitModel.get('type');
+                });
+                return groupBySet;
+            },
+            getAllSeverities : function() {
+                var groupBySet = this.groupBy(function(criticalHitModel) {
+                    return criticalHitModel.get('severity');
+                });
+                return groupBySet;
+            },
         });
 
         return PlayerListCollection;

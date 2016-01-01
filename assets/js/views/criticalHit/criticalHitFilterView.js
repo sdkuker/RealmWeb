@@ -22,8 +22,15 @@ define(['marionette',
             //    RealmApplication.vent.trigger('playerListDeleteButton:clicked');
             },
             onRender : function() {
-                this.$el.find('#severitySelect').append("<option value='A'>A</option>");
-                this.$el.find('#typeSelect').append("<option value='Cold'>Cold</option>");
+                var allTypes = this.options.criticalHits.getAllTypes();
+                for(type in allTypes) {
+                    this.$el.find('#typeSelect').append("<option value='" + type + "'>" + type + "</option>");
+                };
+                var allSeverities = this.options.criticalHits.getAllSeverities();
+                for(severity in allSeverities) {
+                    this.$el.find('#severitySelect').append("<option value='" + severity + "'>" + severity + "</option>");
+                };
+
             },
         });
 
