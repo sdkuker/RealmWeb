@@ -1,7 +1,6 @@
-define(['parse',
-        'logger',
+define(['jquery', 'parse', 'logger',
     'collections/player/playerCollection'],
-    function (Parse, Logger, PlayerCollection) {
+    function ($, Parse, Logger, PlayerCollection) {
 
         PlayerServices = function() {
             // all variables are private
@@ -10,19 +9,23 @@ define(['parse',
             // putlic functions
             this.getAllPlayers = function() {
                 var myPlayerCollection = new PlayerCollection();
-                myPlayerCollection.fetch().then(
+                var deferred = $.Deferred();
+                $.when(myPlayerCollection.fetch()).then(
                     function(results)  {
                         Logger.logInfo('got player list from Parse');
                         for (var index = 0; index < results.length; index++){
                             myPlayerCollection.add(results[index]);
-                        }
+                        };
+                        deferred.resolve(myPlayerCollection);
                     },
                     function(error) {
-                        Logger.logErrror('got error getting all players from Parse: ' + error.code + ' ' + error.message)
+                        var errorString = 'got error getting all players from Parse: ' + error.code + ' ' + error.message;
+                        Logger.logErrror(errorString);
+                        deferred.reject(errorString);
                     }
 
                 );
-                return myPlayerCollection;
+                return deferred.promise();
             }
         };
 

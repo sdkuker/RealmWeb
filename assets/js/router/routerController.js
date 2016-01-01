@@ -29,11 +29,17 @@ define(['jquery', 'realmApplication'
                               PlayerListButtonView) {
                     var playerListLayoutView = new PlayerListLayoutView();
                     RealmApplication.regions.mainRegion.show(playerListLayoutView);
-                    var playerCollection = PlayerServices.getAllPlayers();
-                    var playerListView = new PlayerListView({collection: playerCollection});
-                    var playerListButtonView = new PlayerListButtonView();
-                    playerListLayoutView.getRegion('playerTableRegion').show(playerListView);
-                    playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
+                        $.when(PlayerServices.getAllPlayers()).then(
+                            function(playerCollection) {
+                                var playerListView = new PlayerListView({collection: playerCollection});
+                                var playerListButtonView = new PlayerListButtonView();
+                                playerListLayoutView.getRegion('playerTableRegion').show(playerListView);
+                                playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
+                            },
+                            function(errorString) {
+                                console.log(errorString);
+                            }
+                        )
                 });
             },
             viewPlayer: function(playerModel) {
