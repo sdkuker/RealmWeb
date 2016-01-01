@@ -1,7 +1,8 @@
-define(['parse',
+define(['jquery',
+        'parse',
         'logger',
         'collections/criticalHit/criticalHitCollection'],
-    function (Parse, Logger, CriticalHitCollection) {
+    function ($, Parse, Logger, CriticalHitCollection) {
 
         CriticalHitServices = function() {
             // all variables are private
@@ -10,19 +11,23 @@ define(['parse',
             // putlic functions
             this.getAllCriticalHits = function() {
                 var myCriticalHitCollection = new CriticalHitCollection();
-                myCriticalHitCollection.fetch().then(
+                var deferred = $.Deferred();
+                $.when(myCriticalHitCollection.fetch()).then(
                     function(results)  {
                         Logger.logInfo('got critical hit list from Parse');
                         for (var index = 0; index < results.length; index++){
                             myCriticalHitCollection.add(results[index]);
-                        }
+                        };
+                        deferred.resolve(myCriticalHitCollection);
                     },
                     function(error) {
-                        Logger.logErrror('got error getting all critical hits from Parse: ' + error.code + ' ' + error.message)
+                        var errorString = 'got error getting all critical hits from Parse: ' + error.code + ' ' + error.message;
+                        Logger.logErrror(errorString);
+                        deferred.reject(errorString);
                     }
 
                 );
-                return myCriticalHitCollection;
+                return deferred.promise();
             }
         };
 

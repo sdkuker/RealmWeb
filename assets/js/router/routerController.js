@@ -1,6 +1,6 @@
-define(['realmApplication'
+define(['jquery', 'realmApplication'
     ],
-    function (RealmApplication) {
+    function ($, RealmApplication) {
 
         RouterController = {
             workInProgress: function () {
@@ -48,9 +48,15 @@ define(['realmApplication'
                 function (CriticalHitLayoutView, CriticalHitFilterView, CriticalHitServices) {
                     var criticalHitLayoutView = new CriticalHitLayoutView();
                     RealmApplication.regions.mainRegion.show(criticalHitLayoutView);
-                    var criticalHitCollection = CriticalHitServices.getAllCriticalHits();
-                    var critialHitFilterView = new CriticalHitFilterView({criticalHits : criticalHitCollection});
-                    criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);
+                    $.when(CriticalHitServices.getAllCriticalHits()).then(
+                        function(criticalHitCollection) {
+                            var critialHitFilterView = new CriticalHitFilterView({criticalHits : criticalHitCollection});
+                            criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);
+                        },
+                        function(errorString) {
+                            console.log(errorString);
+                        }
+                    )
                 });
         },
 
