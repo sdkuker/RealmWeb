@@ -25,7 +25,9 @@ define(['backbone', 'models/criticalHit/criticalHitModel'],
                 var groupBySet = this.groupBy(function(criticalHitModel) {
                     if (criticalHitModel.get('type') == aType) {
                         return criticalHitModel.get('severity');
-                    };
+                    } else {
+                        return 'notSelectedType';
+                    }
                 });
                 return groupBySet;
             },
