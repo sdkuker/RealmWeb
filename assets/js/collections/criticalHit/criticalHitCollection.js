@@ -31,6 +31,16 @@ define(['backbone', 'models/criticalHit/criticalHitModel'],
                 });
                 return groupBySet;
             },
+            getCriticalHit : function(rollValue, type, severity) {
+                var selectedModel = this.filter(function(criticalHitModel) {
+                    var isItAMatch =  criticalHitModel.get('type') === type &&
+                            criticalHitModel.get('severity') === severity &&
+                            criticalHitModel.get('rollMinimumValue') <= rollValue &&
+                            criticalHitModel.get('rollMaximumValue') >= rollValue;
+                    return isItAMatch;
+                });
+                return selectedModel;
+            }
         });
 
         return PlayerListCollection;

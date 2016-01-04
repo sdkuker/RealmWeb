@@ -11,6 +11,8 @@ define(['marionette',
             events : {
                 'click #normalDieButton' : 'normalDieButtonClicked',
                 'click #openEndedDieButton' : 'openEndedDieButtonClicked',
+                'click #getCriticalButton' : 'getCriticalButtonClicked',
+                'click #listCritcalsButton' : 'listCriticalButtonClicked',
             },
             chosenType : null,
             chosenSeverity : null,
@@ -103,12 +105,27 @@ define(['marionette',
             attackerBonusChanged : function() {
                 self = this;
                 self.attackerBonusValue = parseInt($('#attackerBonus').val(), 10);
+                if (Number.isNaN(self.attackerBonusValue)) {
+                    self.attackerBonusValue = 0;
+                };
                 self.render();
             },
             defenderBonusChanged : function() {
                 self = this;
                 self.defenderBonusValue = parseInt($('#defenderBonus').val(), 10);
+                if (Number.isNaN(self.defenderBonusValue)) {
+                    self.defenderBonusValue = 0;
+                };
                 self.render();
+            },
+            getCriticalButtonClicked : function () {
+                var selectedCriticalHitArray = this.options.criticalHits.getCriticalHit(self.attackTotalValue, this.chosenType, this.chosenSeverity );
+                if (selectedCriticalHitArray && selectedCriticalHitArray.length > 0) {
+                    var selectedCriticalHit = selectedCriticalHitArray[0];
+                }
+            },
+            listCriticalButtonClicked : function () {
+
             }
         });
 
