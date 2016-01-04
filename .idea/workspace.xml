@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3adb2a7-14e6-4f04-b818-55fea9bb621c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitFilterView.js" afterPath="$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitFilterView.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitListView.js" afterPath="$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitListView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/player/playerListView.js" afterPath="$PROJECT_DIR$/assets/js/views/player/playerListView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="RealmWeb.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,8 +37,8 @@
       <file leaf-file-name="criticalHitListView.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitListView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49029127">
-              <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.16262136">
+              <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -132,8 +131,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="323" />
-    <option name="y" value="98" />
+    <option name="x" value="282" />
+    <option name="y" value="80" />
     <option name="width" value="1137" />
     <option name="height" value="775" />
   </component>
@@ -579,7 +578,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="323" y="98" width="1137" height="775" extended-state="0" />
+    <frame x="282" y="80" width="1137" height="775" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -614,10 +613,17 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitListView.js</url>
+          <line>22</line>
+          <option name="timeStamp" value="181" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="181" />
+      <option name="time" value="182" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -987,8 +993,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitListView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49029127">
-          <caret line="24" column="16" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.16262136">
+          <caret line="17" column="43" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="43" />
           <folding />
         </state>
       </provider>

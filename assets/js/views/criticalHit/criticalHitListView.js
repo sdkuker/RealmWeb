@@ -12,7 +12,7 @@ define(['marionette',
         childView : CriticalHitItemView,
         childViewContainer : 'ul',
         selectedModel : '',
-        numberOfHitsToDisplay : 2,
+        numberOfHitsToDisplay : 10,
         initialize : function() {
             var self = this;
             this.listenTo(RealmApplication.vent, 'criticalHitFilter:criticalHitSelected', function(selectedCriticalHitModel) {
@@ -20,7 +20,9 @@ define(['marionette',
             });
         },
         displayCriticalHit : function(aCriticalHitModel) {
-            this.collection.add(aCriticalHitModel, {at: 0});
+            var criticalHitWithoutID = aCriticalHitModel.toJSON();
+            delete criticalHitWithoutID.objectId;
+            this.collection.add(criticalHitWithoutID, {at: 0});
             if (this.collection.length > this.numberOfHitsToDisplay) {
                 this.collection.pop();
             }
