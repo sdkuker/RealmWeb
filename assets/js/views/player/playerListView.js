@@ -15,10 +15,6 @@ define(['marionette',
         selectedModel : '',
         initialize : function() {
             self = this;
-            RealmApplication.vent.bind('playerListAddButton:clicked', function() {
-                self.triggerAddPlayerFunction();
-            });
-
             this.listenTo(RealmApplication.vent, 'playerListAddButton:clicked', function() {
                 self.triggerAddPlayerFunction();
             });

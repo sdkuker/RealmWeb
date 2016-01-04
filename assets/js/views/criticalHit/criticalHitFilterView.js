@@ -122,6 +122,7 @@ define(['marionette',
                 var selectedCriticalHitArray = this.options.criticalHits.getCriticalHit(self.attackTotalValue, this.chosenType, this.chosenSeverity );
                 if (selectedCriticalHitArray && selectedCriticalHitArray.length > 0) {
                     var selectedCriticalHit = selectedCriticalHitArray[0];
+                    RealmApplication.vent.trigger('criticalHitFilter:criticalHitSelected', selectedCriticalHit);
                 }
             },
             listCriticalButtonClicked : function () {
