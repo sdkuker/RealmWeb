@@ -40,6 +40,14 @@ define(['backbone', 'models/criticalHit/criticalHitModel'],
                     return isItAMatch;
                 });
                 return selectedModel;
+            },
+            getCriticalHitList : function( type, severity) {
+                var selectedModel = this.filter(function(criticalHitModel) {
+                    var isItAMatch =  criticalHitModel.get('type') === type &&
+                        criticalHitModel.get('severity') === severity;
+                    return isItAMatch;
+                });
+                return selectedModel;
             }
         });
 

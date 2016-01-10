@@ -121,12 +121,14 @@ define(['marionette',
             getCriticalButtonClicked : function () {
                 var selectedCriticalHitArray = this.options.criticalHits.getCriticalHit(self.attackTotalValue, this.chosenType, this.chosenSeverity );
                 if (selectedCriticalHitArray && selectedCriticalHitArray.length > 0) {
-                    var selectedCriticalHit = selectedCriticalHitArray[0];
-                    RealmApplication.vent.trigger('criticalHitFilter:criticalHitSelected', selectedCriticalHit);
+                    RealmApplication.vent.trigger('criticalHitFilter:criticalHitSelected', selectedCriticalHitArray);
                 }
             },
             listCriticalButtonClicked : function () {
-
+                var selectedCriticalHitArray = this.options.criticalHits.getCriticalHitList(this.chosenType, this.chosenSeverity );
+                if (selectedCriticalHitArray && selectedCriticalHitArray.length > 0) {
+                    RealmApplication.vent.trigger('criticalHitFilter:criticalHitSelected', selectedCriticalHitArray);
+                }
             }
         });
 
