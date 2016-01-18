@@ -1,7 +1,7 @@
 define(['backbone', 'models/criticalHit/criticalHitModel'],
     function (Backbone, CriticalHitModel) {
 
-        var PlayerListCollection = Backbone.Collection.extend({
+        var CriticalHitCollection = Backbone.Collection.extend({
             _parse_class_name : 'CriticalHit',
             model: CriticalHitModel,
             comparator: function(criticalHit) {
@@ -51,6 +51,6 @@ define(['backbone', 'models/criticalHit/criticalHitModel'],
             }
         });
 
-        return PlayerListCollection;
+        return CriticalHitCollection;
 
     });

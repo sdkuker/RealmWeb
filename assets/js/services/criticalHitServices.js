@@ -1,8 +1,9 @@
 define(['jquery',
         'parse',
         'logger',
-        'collections/criticalHit/criticalHitCollection'],
-    function ($, Parse, Logger, CriticalHitCollection) {
+        'collections/criticalHit/criticalHitCollection',
+        'collections/criticalHit/criticalHitTypeCollection'],
+    function ($, Parse, Logger, CriticalHitCollection, CriticalHitTypeCollection) {
 
         CriticalHitServices = function() {
             // all variables are private
@@ -31,12 +32,12 @@ define(['jquery',
                 );
                 return deferred.promise();
 
-        };
+            };
 
             this.getAllCriticalHits = function() {
                 var myCriticalHitCollection = new CriticalHitCollection();
                 var deferred = $.Deferred();
-                $.when(myCriticalHitCollection.fetch({limit: 1000})).then(
+                $.when(myCriticalHitCollection.fetch()).then(
                     function(results)  {
                         Logger.logInfo('got critical hit list from Parse');
                         for (var index = 0; index < results.length; index++){
@@ -49,11 +50,30 @@ define(['jquery',
                         Logger.logErrror(errorString);
                         deferred.reject(errorString);
                     }
-
                 );
                 return deferred.promise();
-            }
-        };
+             };
+
+            this.getAllTypes = function() {
+                var myCriticalHitTypeCollection = new CriticalHitTypeCollection();
+                var deferred = $.Deferred();
+                $.when(myCriticalHitTypeCollection.fetch()).then(
+                    function(results)  {
+                        Logger.logInfo('got critical hit type collection from Parse');
+                        for (var index = 0; index < results.length; index++){
+                            myCriticalHitTypeCollection.add(results[index]);
+                        };
+                        deferred.resolve(myCriticalHitTypeCollection);
+                    },
+                    function(error) {
+                        var errorString = 'got error getting all critical hit types from Parse: ' + error.code + ' ' + error.message;
+                        Logger.logErrror(errorString);
+                        deferred.reject(errorString);
+                    }
+                );
+                return deferred.promise();
+                }
+            };
 
         var myCriticalHitServices = new CriticalHitServices();
 

@@ -8,6 +8,7 @@ define(['marionette',
         var CriticalHitFilterView = Marionette.ItemView.extend({
             template: CriticalHitFilterTemplate,
             criticalHits :null,
+            criticalHitTypes : null,
             events : {
                 'click #normalDieButton' : 'normalDieButtonClicked',
                 'click #openEndedDieButton' : 'openEndedDieButtonClicked',
@@ -39,10 +40,10 @@ define(['marionette',
             },
             onRender : function() {
                 var typeSelectElement = this.$el.find('#typeSelect');
-                var allTypes = this.options.criticalHits.getAllTypes();
-                for(type in allTypes) {
-                    typeSelectElement.append("<option value='" + type + "'>" + type + "</option>");
-                };
+               // var allTypes = this.options.criticalHitTypes.getAllTypes();
+                this.options.criticalHitTypes.forEach(function(myType, key, list) {
+                    typeSelectElement.append("<option value='" + myType.get('type') + "'>" + myType.get('type') + "</option>");
+                });
 
                 var selectedType = $('#typeSelect option:selected').val();
                 if (! selectedType) {
@@ -52,7 +53,7 @@ define(['marionette',
                         this.chosenType = firstSelectOption.val();
                     }
                 };
-                this.populateSeverities();
+              //  this.populateSeverities();
                 this.caclulateAttackTotal();
                 $('#attackerBonus').val(self.attackerBonusValue);
                 $('#defenderBonus').val(self.defenderBonusValue);
