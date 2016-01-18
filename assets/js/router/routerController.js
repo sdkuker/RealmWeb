@@ -58,11 +58,18 @@ define(['jquery', 'realmApplication'
                     RealmApplication.regions.mainRegion.show(criticalHitLayoutView);
                     $.when(CriticalHitWarehouse.getAllTypes()).then(
                         function(criticalHitTypeCollection) {
-                            var critialHitFilterView = new CriticalHitFilterView({criticalHitTypes : criticalHitTypeCollection});
-                            criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);
-                            var displayedHitsCollection = new CriticalHitCollection();
-                            var criticalHitListView = new CriticalHitListView({collection : displayedHitsCollection});
-                            criticalHitLayoutView.getRegion('criticalHitDisplayRegion').show(criticalHitListView);
+                            $.when(CriticalHitWarehouse.getCriticalHitsForType(criticalHitTypeCollection.at(0).get('type'))).then (
+                                function(criticalHitCollection) {
+                                    var critialHitFilterView = new CriticalHitFilterView({criticalHitTypes : criticalHitTypeCollection, criticalHits: criticalHitCollection});
+                                    criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);
+                                    var displayedHitsCollection = new CriticalHitCollection();
+                                    var criticalHitListView = new CriticalHitListView({collection : displayedHitsCollection});
+                                    criticalHitLayoutView.getRegion('criticalHitDisplayRegion').show(criticalHitListView);
+                                },
+                                function(errorString) {
+                                    console.log(errorString);
+                                }
+                            )
                         },
                         function(errorString) {
                             console.log(errorString);

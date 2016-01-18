@@ -53,7 +53,7 @@ define(['marionette',
                         this.chosenType = firstSelectOption.val();
                     }
                 };
-              //  this.populateSeverities();
+                this.populateSeverities();
                 this.caclulateAttackTotal();
                 $('#attackerBonus').val(self.attackerBonusValue);
                 $('#defenderBonus').val(self.defenderBonusValue);
