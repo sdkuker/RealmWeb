@@ -56,7 +56,7 @@ define(['jquery', 'realmApplication'
                           CriticalHitListView) {
                     var criticalHitLayoutView = new CriticalHitLayoutView();
                     RealmApplication.regions.mainRegion.show(criticalHitLayoutView);
-                    $.when(CriticalHitServices.getAllCriticalHits()).then(
+                    $.when(CriticalHitServices.getAllSeverities()).then(
                         function(criticalHitCollection) {
                             var critialHitFilterView = new CriticalHitFilterView({criticalHits : criticalHitCollection});
                             criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);

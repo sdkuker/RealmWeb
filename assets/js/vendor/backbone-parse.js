@@ -92,7 +92,10 @@ define(['backbone'], function (Backbone) {
                     data = JSON.stringify(model.toJSON());
                 }
                 else if (options.query && method == "read") { //query for Parse.com objects
-                    data = encodeURI("where=" + JSON.stringify(options.query));
+                    data = encodeURI("where=" + JSON.stringify(options.query) + "&limit=1000");
+                }
+                else if ( method == "read") { //query for Parse.com objects
+                    data = encodeURI("limit=1000");
                 }
 
                 var request = {
