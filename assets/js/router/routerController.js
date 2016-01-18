@@ -50,13 +50,13 @@ define(['jquery', 'realmApplication'
             },
         criticalHits: function () {
             require(['views/criticalHit/criticalHitLayoutView', 'views/criticalHit/criticalHitFilterView',
-                     'services/criticalHitServices', 'collections/criticalHit/criticalHitCollection',
+                     'services/criticalHitWarehouse', 'collections/criticalHit/criticalHitCollection',
                     'collections/criticalHit/criticalHitTypeCollection', 'views/criticalHit/criticalHitListView'],
-                function (CriticalHitLayoutView, CriticalHitFilterView, CriticalHitServices, CriticalHitCollection,
+                function (CriticalHitLayoutView, CriticalHitFilterView, CriticalHitWarehouse, CriticalHitCollection,
                           CriticalHitTypeCollection, CriticalHitListView) {
                     var criticalHitLayoutView = new CriticalHitLayoutView();
                     RealmApplication.regions.mainRegion.show(criticalHitLayoutView);
-                    $.when(CriticalHitServices.getAllTypes()).then(
+                    $.when(CriticalHitWarehouse.getAllTypes()).then(
                         function(criticalHitTypeCollection) {
                             var critialHitFilterView = new CriticalHitFilterView({criticalHitTypes : criticalHitTypeCollection});
                             criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);

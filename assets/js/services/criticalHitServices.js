@@ -6,25 +6,24 @@ define(['jquery',
     function ($, Parse, Logger, CriticalHitCollection, CriticalHitTypeCollection) {
 
         CriticalHitServices = function() {
-            // all variables are private
+            // private variables
             var self = this;
-
-            // putlic functions
-            this.getAllSeverities = function() {
+            // public functions
+            this.getCriticalHitsForType = function(aCriticalHitTypeString) {
                 var myCriticalHitCollection = new CriticalHitCollection();
                 var deferred = $.Deferred();
-               // var queryParms = {'type':'Acid'}; // or cold
-                var queryParms = {'$or': [{'type' : 'Acid'}, {'type' : 'Cold'}]};
+                var queryParms = {'type':aCriticalHitTypeString};
+               // var queryParms = {'$or': [{'type' : 'Acid'}, {'type' : 'Cold'}]};
                 $.when(myCriticalHitCollection.fetch({query:queryParms})).then(
                     function(results)  {
-                        Logger.logInfo('got critical hit list from Parse');
+                        Logger.logInfo('got critical hits from Parse for type: ' + aCriticalHitTypeString);
                         for (var index = 0; index < results.length; index++){
                             myCriticalHitCollection.add(results[index]);
                         };
                         deferred.resolve(myCriticalHitCollection);
                     },
                     function(error) {
-                        var errorString = 'got error getting severity critical hits from Parse: ' + error.code + ' ' + error.message;
+                        var errorString = 'got error getting severity critical hits from Parse for type: ' + aCriticalHitTypeString + ' ' + error.code + ' ' + error.message;
                         Logger.logErrror(errorString);
                         deferred.reject(errorString);
                     }
