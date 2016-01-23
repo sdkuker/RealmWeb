@@ -2,8 +2,9 @@ define(['marionette',
         'backbone',
         'realmApplication',
         "models/dieRoller/dieModel",
+        'services/criticalHitWarehouse',
         'tpl!templates/criticalHit/criticalHitFilterTemplate.tpl'],
-    function (Marionette, Backbone, RealmApplication, DieModel, CriticalHitFilterTemplate) {
+    function (Marionette, Backbone, RealmApplication, DieModel,CriticalHitWarehouse, CriticalHitFilterTemplate) {
 
         var CriticalHitFilterView = Marionette.ItemView.extend({
             template: CriticalHitFilterTemplate,
@@ -40,13 +41,14 @@ define(['marionette',
             },
             onRender : function() {
                 var typeSelectElement = this.$el.find('#typeSelect');
-               // var allTypes = this.options.criticalHitTypes.getAllTypes();
+                typeSelectElement.empty();
                 this.options.criticalHitTypes.forEach(function(myType, key, list) {
                     typeSelectElement.append("<option value='" + myType.get('type') + "'>" + myType.get('type') + "</option>");
                 });
 
-                var selectedType = $('#typeSelect option:selected').val();
-                if (! selectedType) {
+                if (this.chosenType) {
+                    typeSelectElement.find('option:' + this.chosenType).attr('selected', true);
+                } else {
                     var firstSelectOption = typeSelectElement.find('option:first');
                     if (firstSelectOption) {
                         firstSelectOption.attr('selected', true);
@@ -62,7 +64,16 @@ define(['marionette',
             typeSelected : function() {
                 self = this;
                 self.chosenType = $('#typeSelect option:selected').val();
-                self.populateSeverities();
+                $.when(CriticalHitWarehouse.getCriticalHitsForType(self.chosenType)).then (
+                    function(criticalHitCollection) {
+                        self.criticalHits = criticalHitCollection;
+                        self.populateSeverities();
+                        self.render();
+                    },
+                    function(errorString) {
+                        console.log(errorString);
+                    }
+                )
             },
             severitySelected : function() {
                 self = this;
