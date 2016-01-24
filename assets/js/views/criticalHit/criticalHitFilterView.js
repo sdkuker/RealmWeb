@@ -40,21 +40,21 @@ define(['marionette',
                 self.dieInstance = new DieModel();
             },
             onRender : function() {
+                self = this;
                 var typeSelectElement = this.$el.find('#typeSelect');
                 typeSelectElement.empty();
                 this.options.criticalHitTypes.forEach(function(myType, key, list) {
-                    typeSelectElement.append("<option value='" + myType.get('type') + "'>" + myType.get('type') + "</option>");
+                    var appendString = "<option value='" + myType.get('type') +  "'";
+                    if ((key == 0 && ! self.chosenType) || (self.chosenType && self.chosenType == myType.get('type'))) {
+                        appendString = appendString + " selected='selected'";
+                        if (! self.chosenType) {
+                            self.chosenType = myType.get('type');
+                        }
+                   };
+                   appendString = appendString + ">" + myType.get('type') + "</option>"
+                   typeSelectElement.append(appendString);
                 });
 
-                if (this.chosenType) {
-                    typeSelectElement.find('option:' + this.chosenType).attr('selected', true);
-                } else {
-                    var firstSelectOption = typeSelectElement.find('option:first');
-                    if (firstSelectOption) {
-                        firstSelectOption.attr('selected', true);
-                        this.chosenType = firstSelectOption.val();
-                    }
-                };
                 this.populateSeverities();
                 this.caclulateAttackTotal();
                 $('#attackerBonus').val(self.attackerBonusValue);
@@ -66,8 +66,7 @@ define(['marionette',
                 self.chosenType = $('#typeSelect option:selected').val();
                 $.when(CriticalHitWarehouse.getCriticalHitsForType(self.chosenType)).then (
                     function(criticalHitCollection) {
-                        self.criticalHits = criticalHitCollection;
-                        self.populateSeverities();
+                        self.options.criticalHits = criticalHitCollection;
                         self.render();
                     },
                     function(errorString) {
