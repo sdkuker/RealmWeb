@@ -24,23 +24,18 @@ define(['jquery', 'realmApplication'
             },
             playerList: function () {
                 require(['views/player/playerListView', 'views/player/playerView',
-                    'services/playerServices','views/player/playerListLayoutView','views/player/playerListButtonView'],
-                    function (PlayerListView, PlayerView, PlayerServices, PlayerListLayoutView,
-                              PlayerListButtonView) {
+                    'views/player/playerListLayoutView','views/player/playerListButtonView',
+                    'services/playerWarehouse'],
+                    function (PlayerListView, PlayerView, PlayerListLayoutView,
+                              PlayerListButtonView, PlayerWarehouse) {
                     var playerListLayoutView = new PlayerListLayoutView();
                     RealmApplication.regions.mainRegion.show(playerListLayoutView);
-                        $.when(PlayerServices.getAllPlayers()).then(
-                            function(playerCollection) {
-                                var playerListView = new PlayerListView({collection: playerCollection});
-                                var playerListButtonView = new PlayerListButtonView();
-                                playerListLayoutView.getRegion('playerTableRegion').show(playerListView);
-                                playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
-                            },
-                            function(errorString) {
-                                console.log(errorString);
-                            }
-                        )
-                });
+                    var myPlayerCollection = PlayerWarehouse.getAllPlayers();
+                    var playerListView = new PlayerListView({collection: myPlayerCollection});
+                    var playerListButtonView = new PlayerListButtonView();
+                    playerListLayoutView.getRegion('playerTableRegion').show(playerListView);
+                    playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
+                 });
             },
             viewPlayer: function(playerModel) {
                 require(['views/player/playerView'], function (PlayerView) {

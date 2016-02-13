@@ -26,7 +26,8 @@ define(['marionette',
             });
             this.listenTo(RealmApplication.vent, 'playerListPlayerSelected', function(tableRow, model) {
                 self.playerSelected(tableRow, model);
-            })
+            });
+            this.listenTo(this.collection, 'add', this.render);
         },
         triggerAddPlayerFunction : function() {
             RealmApplication.vent.trigger('playerListAddPlayer', new PlayerModel());

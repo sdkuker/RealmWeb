@@ -9,7 +9,8 @@ requirejs.config({
         text: 'vendor/text',
         tpl: 'vendor/underscore-tpl',
         bootstrap: 'vendor/bootstrap',
-        parse: 'vendor/parse-1.6.12.min',
+        firebase: 'vendor/firebase',
+        backfire: 'vendor/backbonefire',
         logger : 'utility/logger'
     },
 
@@ -26,11 +27,18 @@ requirejs.config({
             deps: ['text'],
             exports: ['tpl']
         },
+        'firebase' : {
+            exports : 'Firebase'
+        },
+        'backfire' : {
+            deps : ['backbone', 'firebase', 'underscore'],
+            exports : 'Backfire'
+        },
         'bootstrap': { deps: ['jquery'], exports: 'bootstrap' }
 
     }
 })
 
-require(["realmApplication", 'marionette', 'underscore', 'utility/parseKey', 'vendor/backbone-parse'], function (RealmApplication, Marionette, Underscore, ParseKey, BackboneParse) {
+require(["realmApplication", 'marionette', 'underscore'], function (RealmApplication, Marionette, Underscore) {
     RealmApplication.start();
 });
