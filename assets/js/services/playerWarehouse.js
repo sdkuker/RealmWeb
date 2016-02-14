@@ -13,13 +13,17 @@ define(['jquery',
 
             // public functions
             this.getAllPlayers = function() {
+                var deferred = $.Deferred();
                 var collectionKey = 'playerCollection';
                 if (cache[collectionKey]) {
-                    return (cache[collectionKey]);
+                    deferred.resolve(cache[collectionKey]);
                 } else {
                     cache[collectionKey] = new PlayerCollection();
-                    return cache[collectionKey];
+                    cache[collectionKey].on('sync',function(collection) {
+                        deferred.resolve(collection);
+                    })
                 }
+                return deferred.promise();
             };
         };
 

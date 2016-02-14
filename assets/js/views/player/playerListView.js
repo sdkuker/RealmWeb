@@ -29,6 +29,9 @@ define(['marionette',
             });
             this.listenTo(this.collection, 'add', this.render);
         },
+        onRender : function() {
+            console.log('in onRender');
+        },
         triggerAddPlayerFunction : function() {
             RealmApplication.vent.trigger('playerListAddPlayer', new PlayerModel());
         },
@@ -37,18 +40,11 @@ define(['marionette',
             RealmApplication.vent.trigger('playerListChangePlayer', model);
         },
         triggerDeletePlayerFunction : function() {
-            selectedModel.destroy().then(
-                function(playerModel) {
-                    Logger.logInfo('player model successfully deleted');
-                    ViewUtilities.showModalView('Informational', 'Player named: ' + selectedModel.get('name') + ' Deleted');
-                    selectedModel = null;
-                    RealmApplication.vent.trigger('viewPlayerList');
-                },
-                function(error) {
-                    Logger.logErrror("player model NOT successfully deleted: " + error);
-                    ViewUtilities.showModalView('Error', 'Error deleting the Player.  See the log');
-                }
-            );
+            this.collection.remove(selectedModel);
+            Logger.logInfo('player model deleted');
+            ViewUtilities.showModalView('Informational', 'Player named: ' + selectedModel.get('name') + ' Deleted');
+            selectedModel = null;
+            RealmApplication.vent.trigger('viewPlayerList');
         },
         playerSelected : function(tableRow, model) {
             $(tableRow.el).siblings().removeClass('info');

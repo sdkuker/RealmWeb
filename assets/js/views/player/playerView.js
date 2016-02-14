@@ -23,12 +23,22 @@ define(['marionette',
             // if it's a new model, add it to the collection
             if (! this.model.get('id')) {
                 Logger.logInfo('About to add a new player model to the collection');
-                PlayerWarehouse.getAllPlayers().add({name : newName});
+                $.when(PlayerWarehouse.getAllPlayers()).then(
+                    function(myPlayerCollection) {
+                        myPlayerCollection.add({name : newName});
+                        ViewUtilities.showModalView('Informational', 'Player Saved');
+                        RealmApplication.vent.trigger('viewPlayerList');
+                    }
+                ),
+                    function() {
+                        console.log('some kind of error getting players for addition of player');
+                    }
+            } else {
+                // don't have to do anything if it's modifying an existing model -
+                // firebase does that automatically
+                ViewUtilities.showModalView('Informational', 'Player Saved');
+                RealmApplication.vent.trigger('viewPlayerList');
             }
-            // don't have to do anything if it's modifying an existing model -
-            // firebase does that automatically
-            ViewUtilities.showModalView('Informational', 'Player Saved');
-            RealmApplication.vent.trigger('viewPlayerList');
 
         },
         deleteButtonClicked : function() {

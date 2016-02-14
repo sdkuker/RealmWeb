@@ -30,12 +30,18 @@ define(['jquery', 'realmApplication'
                               PlayerListButtonView, PlayerWarehouse) {
                     var playerListLayoutView = new PlayerListLayoutView();
                     RealmApplication.regions.mainRegion.show(playerListLayoutView);
-                    var myPlayerCollection = PlayerWarehouse.getAllPlayers();
-                    var playerListView = new PlayerListView({collection: myPlayerCollection});
-                    var playerListButtonView = new PlayerListButtonView();
-                    playerListLayoutView.getRegion('playerTableRegion').show(playerListView);
-                    playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
-                 });
+                    $.when(PlayerWarehouse.getAllPlayers()).then(
+                        function(myPlayerCollection) {
+                            var playerListView = new PlayerListView({collection: myPlayerCollection});
+                            var playerListButtonView = new PlayerListButtonView();
+                            playerListLayoutView.getRegion('playerTableRegion').show(playerListView);
+                            playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
+                        }
+                    ),
+                        function() {
+                            console.log('some kind of error getting players');
+                        }
+                });
             },
             viewPlayer: function(playerModel) {
                 require(['views/player/playerView'], function (PlayerView) {
