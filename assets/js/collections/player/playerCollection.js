@@ -1,9 +1,9 @@
-define(['backbone', 'firebase', 'backfire', 'models/player/playerModel'],
-    function (Backbone, Firebase, Backfire, PlayerModel) {
+define(['backbone', 'firebase', 'backfire', 'models/player/playerModel', 'services/serviceConstants'],
+    function (Backbone, Firebase, Backfire, PlayerModel, ServiceConstants) {
 
         var PlayerListCollection = Backbone.Firebase.Collection.extend({
             model: PlayerModel,
-            url: 'https://stevieware.firebaseio.com',
+            url: ServiceConstants.backFireBaseURL + '/players',
             getAll: function() {
                 return this.get('name');
             },
