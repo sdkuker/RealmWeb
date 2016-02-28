@@ -2,8 +2,6 @@ define(['backbone'],
     function (Backbone) {
 
         var CriticalHitModel = Backbone.Model.extend({
-            _parse_class_name : 'CriticalHit',
-            idAttribute : 'objectId',
             defaults: {
                 type : '',
                 severity : '',

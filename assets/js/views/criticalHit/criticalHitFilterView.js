@@ -44,14 +44,14 @@ define(['marionette',
                 var typeSelectElement = this.$el.find('#typeSelect');
                 typeSelectElement.empty();
                 this.options.criticalHitTypes.forEach(function(myType, key, list) {
-                    var appendString = "<option value='" + myType.get('type') +  "'";
-                    if ((key == 0 && ! self.chosenType) || (self.chosenType && self.chosenType == myType.get('type'))) {
+                    var appendString = "<option value='" + myType.get('id') +  "'";
+                    if ((key == 0 && ! self.chosenType) || (self.chosenType && self.chosenType == myType.get('id'))) {
                         appendString = appendString + " selected='selected'";
                         if (! self.chosenType) {
-                            self.chosenType = myType.get('type');
+                            self.chosenType = myType.get('id');
                         }
                    };
-                   appendString = appendString + ">" + myType.get('type') + "</option>"
+                   appendString = appendString + ">" + myType.get('id') + "</option>"
                    typeSelectElement.append(appendString);
                 });
 

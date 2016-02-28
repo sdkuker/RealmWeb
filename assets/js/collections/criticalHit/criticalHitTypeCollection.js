@@ -1,11 +1,11 @@
-define(['backbone', 'models/criticalHit/criticalHitTypeModel'],
-    function (Backbone, CriticalHitTypeModel) {
+define(['backbone', 'firebase', 'backfire', 'models/criticalHit/criticalHitTypeModel', 'services/serviceConstants'],
+    function (Backbone, Firebase, Backfire, CriticalHitTypeModel, ServiceConstants) {
 
-        var CriticalHitTypeCollection = Backbone.Collection.extend({
-            _parse_class_name : 'CriticalHitType',
+        var CriticalHitTypeCollection = Backbone.Firebase.Collection.extend({
             model: CriticalHitTypeModel,
+            url: ServiceConstants.backFireBaseURL + '/criticalHitTypes',
             comparator: function(criticalHitType) {
-                return criticalHitType.getType();
+                return criticalHitType.id;
             },
             getAllTypes : function() {
 

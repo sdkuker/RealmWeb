@@ -1,8 +1,15 @@
-define(['backbone', 'models/criticalHit/criticalHitModel'],
-    function (Backbone, CriticalHitModel) {
+define(['backbone', 'firebase', 'backfire', 'models/criticalHit/criticalHitModel', 'services/serviceConstants'],
+    function (Backbone, Firebase, Backfire, CriticalHitModel, ServiceConstants) {
 
-        var CriticalHitCollection = Backbone.Collection.extend({
-            _parse_class_name : 'CriticalHit',
+        var CriticalHitCollection = Backbone.Firebase.Collection.extend({
+            autoSync : false,
+            myType : null,
+            initialize: function(models, options) {
+                this.myType = encodeURI(options.type);
+            },
+            url: function() {
+                return new Firebase(ServiceConstants.backFireBaseURL + '/criticalHits/' + this.myType);
+            },
             model: CriticalHitModel,
             comparator: function(criticalHit) {
                 return criticalHit.getType() + ':' +
