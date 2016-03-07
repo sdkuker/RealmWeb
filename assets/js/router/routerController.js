@@ -49,39 +49,59 @@ define(['jquery', 'realmApplication'
                     RealmApplication.regions.mainRegion.show(playerView);
                 });
             },
-        criticalHits: function () {
-            require(['views/criticalHit/criticalHitLayoutView', 'views/criticalHit/criticalHitFilterView',
-                     'services/criticalHitWarehouse', 'collections/criticalHit/criticalHitCollection',
-                    'collections/criticalHit/criticalHitDisplayCollection', 'collections/criticalHit/criticalHitTypeCollection',
-                    'views/criticalHit/criticalHitListView', 'services/serviceConstants'],
-                function (CriticalHitLayoutView, CriticalHitFilterView, CriticalHitWarehouse, CriticalHitCollection,
-                          CriticalHitDisplayCollection, CriticalHitTypeCollection, CriticalHitListView, ServiceConstants) {
-                    var criticalHitLayoutView = new CriticalHitLayoutView();
-                    RealmApplication.regions.mainRegion.show(criticalHitLayoutView);
-                    var tempThang = ServiceConstants.backFireBaseURL + '/criticalHits/Acid';
-                    $.when(CriticalHitWarehouse.getAllTypes()).then(
-                        function(criticalHitTypeCollection) {
-                            $.when(CriticalHitWarehouse.getCriticalHitsForType(criticalHitTypeCollection.at(0).get('id'))).then (
-                                function(criticalHitCollection) {
-                                    var critialHitFilterView = new CriticalHitFilterView({criticalHitTypes : criticalHitTypeCollection, criticalHits: criticalHitCollection});
-                                    criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);
-                                    var displayedHitsCollection = new CriticalHitDisplayCollection();
-                                    var criticalHitListView = new CriticalHitListView({collection : displayedHitsCollection});
-                                    criticalHitLayoutView.getRegion('criticalHitDisplayRegion').show(criticalHitListView);
-                                },
-                                function(errorString) {
-                                    console.log(errorString);
-                                }
-                            )
-                        },
-                        function(errorString) {
-                            console.log(errorString);
-                        }
-                    )
-                });
-        },
-
-    };
+            criticalHits: function () {
+                require(['views/criticalHit/criticalHitLayoutView', 'views/criticalHit/criticalHitFilterView',
+                         'services/criticalHitWarehouse', 'collections/criticalHit/criticalHitCollection',
+                        'collections/criticalHit/criticalHitDisplayCollection', 'collections/criticalHit/criticalHitTypeCollection',
+                        'views/criticalHit/criticalHitListView', 'services/serviceConstants'],
+                    function (CriticalHitLayoutView, CriticalHitFilterView, CriticalHitWarehouse, CriticalHitCollection,
+                              CriticalHitDisplayCollection, CriticalHitTypeCollection, CriticalHitListView, ServiceConstants) {
+                        var criticalHitLayoutView = new CriticalHitLayoutView();
+                        RealmApplication.regions.mainRegion.show(criticalHitLayoutView);
+                        var tempThang = ServiceConstants.backFireBaseURL + '/criticalHits/Acid';
+                        $.when(CriticalHitWarehouse.getAllTypes()).then(
+                            function(criticalHitTypeCollection) {
+                                $.when(CriticalHitWarehouse.getCriticalHitsForType(criticalHitTypeCollection.at(0).get('id'))).then (
+                                    function(criticalHitCollection) {
+                                        var critialHitFilterView = new CriticalHitFilterView({criticalHitTypes : criticalHitTypeCollection, criticalHits: criticalHitCollection});
+                                        criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);
+                                        var displayedHitsCollection = new CriticalHitDisplayCollection();
+                                        var criticalHitListView = new CriticalHitListView({collection : displayedHitsCollection});
+                                        criticalHitLayoutView.getRegion('criticalHitDisplayRegion').show(criticalHitListView);
+                                    },
+                                    function(errorString) {
+                                        console.log(errorString);
+                                    }
+                                )
+                            },
+                            function(errorString) {
+                                console.log(errorString);
+                            }
+                        )
+                    });
+            },
+            characterList: function () {
+                require(['views/character/characterListView', 'views/character/characterView',
+                        'views/character/characterListLayoutView','views/character/characterListButtonView',
+                        'services/characterWarehouse'],
+                    function (CharacterListView, CharacterView, CharacterListLayoutView,
+                              CharacterListButtonView, CharacterrWarehouse) {
+                        var characterListLayoutView = new CharacterListLayoutView();
+                        RealmApplication.regions.mainRegion.show(characterListLayoutView);
+                        $.when(CharacterrWarehouse.getAllCharacters()).then(
+                            function(myCharacterCollection) {
+                                var characterListView = new CharacterListView({collection: myCharacterCollection});
+                                var characterListButtonView = new CharacterListButtonView();
+                                characterListLayoutView.getRegion('characterTableRegion').show(characterListView);
+                                characterListLayoutView.getRegion('buttonsRegion').show(characterListButtonView);
+                            }
+                        ),
+                            function() {
+                                console.log('some kind of error getting characters');
+                            }
+                    });
+            }
+        };
 
         return RouterController;
 
