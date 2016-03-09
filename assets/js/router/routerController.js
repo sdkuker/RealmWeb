@@ -100,7 +100,13 @@ define(['jquery', 'realmApplication'
                                 console.log('some kind of error getting characters');
                             }
                     });
-            }
+            },
+            viewCharacter: function(characterModel) {
+                require(['views/character/characterView'], function (CharacterView) {
+                    var characterView = new CharacterView({model : characterModel});
+                    RealmApplication.regions.mainRegion.show(characterView);
+                });
+            },
         };
 
         return RouterController;
