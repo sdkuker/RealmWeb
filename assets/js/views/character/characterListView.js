@@ -29,9 +29,6 @@ define(['marionette',
             });
             this.listenTo(this.collection, 'add', this.render);
         },
-        onRender : function() {
-            console.log('in onRender');
-        },
         triggerAddCharacterFunction : function() {
             RealmApplication.vent.trigger('characterListAddCharacter', new CharacterModel());
         },
