@@ -1,5 +1,5 @@
-define(['backbone'],
-    function (Backbone) {
+define(['backbone', 'services/playerWarehouse'],
+    function (Backbone, PlayerWarehouse) {
 
         var CharacterModel = Backbone.Model.extend({
             defaults: {
@@ -8,10 +8,8 @@ define(['backbone'],
                 observationSkill : 0,
                 initiative : 0,
                 initiativeModifier : 0,
+                misc : 0,
                 level : 0,
-                armorType : 0,
-                hasShield : false,
-                hasAdrenalDefense : false,
                 stalkSkill : 0,
                 senseAmbushSkill : 0,
                 alertnessSkill : 0,
@@ -46,6 +44,23 @@ define(['backbone'],
             totalDefensiveBonusMinusAdrenalDefense: function() {
                 return  this.totalDefensiveBonus() - this.get('adrenalDefense');
             },
+            getPlayerName : function() {
+                $.when(PlayerWarehouse.getPlayerWithID(this.get('playerID'))).then(
+                    function(playerModel) {
+                        if (playerModel) {
+                            return playerModel.getName();
+                        } else {
+                            return "unknown Player ";
+                        }
+                    }
+                )
+            },
+            hasAdrenalDefense : function() {
+                return this.get('adrenalDefense') > 0;
+            },
+            hasShield : function() {
+                return this.get('shieldChoice') > 0;
+            }
         });
 
         return CharacterModel;

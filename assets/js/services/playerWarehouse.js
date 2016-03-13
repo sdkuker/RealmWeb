@@ -10,11 +10,44 @@ define(['jquery',
             // all variables are private
             var self = this;
             var cache = {};
+            var collectionKey = 'playterCollection';
 
             // public functions
             this.getAllPlayers = function() {
                 var deferred = $.Deferred();
-                var collectionKey = 'playerCollection';
+                $.when(getPlayerCollection()).then(
+                    function(myPlayerCollection) {
+                        deferred.resolve(myPlayerCollection);
+                    }
+                )
+                return deferred.promise();
+            };
+
+            this.getPlayerWithID = function(playerID) {
+                var deferred = $.Deferred();
+                $.when(getPlayerCollection()). then(
+                    function(playerCollection) {
+                        deferred.resolve(playerCollection.get(playerID));
+                    }
+                )
+
+                return deferred.promise();
+            };
+
+            this.getPlayerWithName = function(playerName) {
+                var deferred = $.Deferred();
+                $.when(getPlayerCollection()). then(
+                    function(playerCollection) {
+                        deferred.resolve(playerCollection.findWhere({name: playerName}));
+                    }
+                )
+
+                return deferred.promise();
+            };
+
+            // private functions
+            getPlayerCollection = function() {
+                var deferred = $.Deferred();
                 if (cache[collectionKey]) {
                     deferred.resolve(cache[collectionKey]);
                 } else {
@@ -24,7 +57,7 @@ define(['jquery',
                     })
                 }
                 return deferred.promise();
-            };
+            }
         };
 
         var myPlayerWarehouse = new PlayerWarehouse();
