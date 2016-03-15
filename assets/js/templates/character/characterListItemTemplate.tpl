@@ -1,4 +1,4 @@
-<td><%= getPlayerName() %></td>
+<td><%- playerName %></td>
 <td><%= name %></td>
 <td><%= level %></td>
 <td><%= miscItemChoice %></td>
@@ -11,9 +11,9 @@
 <td><%= alertnessSkill %></td>
 <td><%= senseAmbushSkill %></td>
 <td><%= armorChoice %></td>
-<td><%= hasAdrenalDefense() %></td>
-<td><%= totalDefensiveBonusMinusAdrenalDefense() %></td>
-<td><%= totalDefensiveBonus() %></td>
-<td><%= hasShield() %></td>
+<td><%= hasAdrenalDefense %></td>
+<td><%= totalDefensiveBonusMinusAdrenalDefense %></td>
+<td><%= totalDefensiveBonus %></td>
+<td><%= hasShield %></td>
 <td><%= hitPoints %></td>
 <td><%= hitPointsModifier %></td>

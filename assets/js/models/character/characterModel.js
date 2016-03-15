@@ -44,7 +44,7 @@ define(['backbone', 'services/playerWarehouse'],
             totalDefensiveBonusMinusAdrenalDefense: function() {
                 return  this.totalDefensiveBonus() - this.get('adrenalDefense');
             },
-            getPlayerName : function() {
+            playerName : function() {
                 $.when(PlayerWarehouse.getPlayerWithID(this.get('playerID'))).then(
                     function(playerModel) {
                         if (playerModel) {

@@ -6,6 +6,20 @@ define(['marionette',
         tagName : 'tr',
         model : CharacterModel,
         template: CharacterListItemTemplate,
+        templateHelpers : function() {
+            var myPlayerName = this.model.playerName();
+            var myHasAdrenalDefense = this.model.hasAdrenalDefense();
+            var myTotalDefensiveBonusMinuusAdrenalDefense = this.model.totalDefensiveBonusMinusAdrenalDefense();
+            var myTotalDefensiveBonus = this.model.totalDefensiveBonus();
+            var myHasShield = this.model.hasShield();
+            return {
+                playerName : myPlayerName,
+                hasAdrenalDefense : myHasAdrenalDefense,
+                totalDefensiveBonusMinusAdrenalDefense : myTotalDefensiveBonusMinuusAdrenalDefense,
+                totalDefensiveBonus : myTotalDefensiveBonus,
+                hasShield : myHasShield
+            }
+        },
         events : {
             'click' : 'characterSelected'
         },
