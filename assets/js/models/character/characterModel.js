@@ -45,15 +45,12 @@ define(['backbone', 'services/playerWarehouse'],
                 return  this.totalDefensiveBonus() - this.get('adrenalDefense');
             },
             playerName : function() {
-                $.when(PlayerWarehouse.getPlayerWithID(this.get('playerID'))).then(
-                    function(playerModel) {
-                        if (playerModel) {
-                            return playerModel.getName();
-                        } else {
-                            return "unknown Player ";
-                        }
-                    }
-                )
+                var myPlayer = PlayerWarehouse.getPlayerWithoutWaitingWithID(this.get('playerID'));
+                if (myPlayer) {
+                    return myPlayer.getName();
+                } else {
+                    return 'unknown';
+                }
             },
             hasAdrenalDefense : function() {
                 return this.get('adrenalDefense') > 0;

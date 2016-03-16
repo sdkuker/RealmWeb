@@ -83,13 +83,14 @@ define(['jquery', 'realmApplication'
             characterList: function () {
                 require(['views/character/characterListView', 'views/character/characterView',
                         'views/character/characterListLayoutView','views/character/characterListButtonView',
-                        'services/characterWarehouse'],
+                        'services/characterWarehouse', 'services/playerWarehouse'],
                     function (CharacterListView, CharacterView, CharacterListLayoutView,
-                              CharacterListButtonView, CharacterrWarehouse) {
+                              CharacterListButtonView, CharacterrWarehouse, PlayerWarehouse) {
                         var characterListLayoutView = new CharacterListLayoutView();
                         RealmApplication.regions.mainRegion.show(characterListLayoutView);
-                        $.when(CharacterrWarehouse.getAllCharacters()).then(
-                            function(myCharacterCollection) {
+                        $.when(CharacterrWarehouse.getAllCharacters(), PlayerWarehouse.getAllPlayers()).then(
+                            function(myCharacterCollection, myPlayerCollection) {
+                                // getting the players so the character list model can get them without waiting
                                 var characterListView = new CharacterListView({collection: myCharacterCollection});
                                 var characterListButtonView = new CharacterListButtonView();
                                 characterListLayoutView.getRegion('characterTableRegion').show(characterListView);
