@@ -1,5 +1,5 @@
 <td><%- playerName %></td>
-<td><%= name %></td>
+<td><%= characterName %></td>
 <td><%= level %></td>
 <td><%= miscItemChoice %></td>
 <td><%= initiative %></td>

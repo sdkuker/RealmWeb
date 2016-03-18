@@ -12,12 +12,14 @@ define(['marionette',
             var myTotalDefensiveBonusMinuusAdrenalDefense = this.model.totalDefensiveBonusMinusAdrenalDefense();
             var myTotalDefensiveBonus = this.model.totalDefensiveBonus();
             var myHasShield = this.model.hasShield();
+            var characterName = decodeURI(this.model.get('name'));
             return {
                 playerName : myPlayerName,
                 hasAdrenalDefense : myHasAdrenalDefense,
                 totalDefensiveBonusMinusAdrenalDefense : myTotalDefensiveBonusMinuusAdrenalDefense,
                 totalDefensiveBonus : myTotalDefensiveBonus,
-                hasShield : myHasShield
+                hasShield : myHasShield,
+                characterName : characterName
             }
         },
         events : {
