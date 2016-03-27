@@ -24,7 +24,7 @@ define(['marionette',
             this.listenTo(RealmApplication.vent, 'characterListDeleteButton:clicked', function() {
                 self.triggerDeleteCharacterFunction();
             });
-            this.listenTo(RealmApplication.vent, 'characterListCharacterrSelected', function(tableRow, model) {
+            this.listenTo(RealmApplication.vent, 'characterListCharacterSelected', function(tableRow, model) {
                 self.characterSelected(tableRow, model);
             });
             this.listenTo(this.collection, 'add', this.render);

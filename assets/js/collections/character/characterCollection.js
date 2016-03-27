@@ -8,6 +8,9 @@ define(['backbone', 'firebase', 'backfire', 'models/character/characterModel', '
             model: CharacterModel,
             comparator: function(character) {
                 return character.get('name');
+            },
+            parse : function(response, options) {
+                console.log("i'm here too.");
             }
         });
 

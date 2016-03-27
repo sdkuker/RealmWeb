@@ -29,6 +29,9 @@ define(['backbone', 'services/playerWarehouse'],
                 miscItemChoice : 0,
                 adrenalDefense : 0
             },
+            parse : function(response, options) {
+                console.log('here I am');
+            },
             totalDefensiveBonus: function() {
                 return  this.get('quicknessBonus') +
                         this.get('racialModifier') +

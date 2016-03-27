@@ -26,9 +26,9 @@ define(['realmApplication', 'router/router', 'router/routerController'
             RouterController.viewCharacter(model);
         });
 
-        RealmApplication.vent.bind('characterListChangeButton:clicked', function (model) {
+        RealmApplication.vent.bind('characterListChangeCharacter', function (model) {
             Router.navigate('viewCharacter');
-            RouterController.viewPlayer(model);
+            RouterController.viewCharacter(model);
         });
 
         RealmApplication.vent.bind('characterListDeleteButton:clicked', function (model) {

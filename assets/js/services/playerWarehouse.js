@@ -52,6 +52,14 @@ define(['jquery',
                 return deferred.promise();
             };
 
+            this.getPlayerWithoutWaitingWithName = function(playerName) {
+                if (cache[collectionKey]) {
+                    return cache[collectionKey].findWhere({name: playerName});
+                } else {
+                    return 'not available';
+                }
+            };
+
             // private functions
             getPlayerCollection = function() {
                 var deferred = $.Deferred();
