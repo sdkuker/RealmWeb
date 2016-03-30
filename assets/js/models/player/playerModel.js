@@ -6,10 +6,10 @@ define(['backbone'],
                 name: ''
             },
             getName: function() {
-                return this.get('name');
+                return decodeURI(this.get('name'));
             },
             setName: function(aName) {
-                return this.set('name', aName);
+                return this.set('name', encodeURI(aName));
             }
 
         });

@@ -29,9 +29,6 @@ define(['backbone', 'services/playerWarehouse'],
                 miscItemChoice : 0,
                 adrenalDefense : 0
             },
-            parse : function(response, options) {
-                console.log('here I am');
-            },
             totalDefensiveBonus: function() {
                 return  this.get('quicknessBonus') +
                         this.get('racialModifier') +
@@ -46,6 +43,12 @@ define(['backbone', 'services/playerWarehouse'],
             },
             totalDefensiveBonusMinusAdrenalDefense: function() {
                 return  this.totalDefensiveBonus() - this.get('adrenalDefense');
+            },
+            getName: function() {
+                return decodeURI(this.get('name'));
+            },
+            setName: function(aName) {
+                return this.set('name', encodeURI(aName));
             },
             playerName : function() {
                 var myPlayer = PlayerWarehouse.getPlayerWithoutWaitingWithID(this.get('playerID'));

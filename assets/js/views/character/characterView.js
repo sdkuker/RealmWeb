@@ -23,34 +23,50 @@ define(['marionette',
                 self.playerSelected();
             });
         },
+        templateHelpers : function() {
+            var characterName = this.model.getName();
+            return {
+                characterName : characterName
+            }
+        },
         populateModel : function() {
             var self = this;
             var myPlayer = PlayerWarehouse.getPlayerWithoutWaitingWithName(self.chosenPlayer);
-            self.model.set('playerID', parseInt(myPlayer.get('id')));
-            self.model.set('name', parseInt(encodeURI($('#name').val())));
-            self.model.set('observationSkill', parseInt($('#observationSkill').val()));
-            self.model.set('initiative', parseInt($('#initiative').val()));
-            self.model.set('initiativeModifier', parseInt($('#initiativeModifier').val()));
-            self.model.set('misc', parseInt($('#misc').val()));
-            self.model.set('level', parseInt($('#level').val()));
-            self.model.set('stalkSkill', parseInt($('#stalkSkill').val()));
-            self.model.set('senseAmbushSkill', parseInt($('#senseAmbushSkill').val()));
-            self.model.set('alertnessSkill', parseInt($('#alertnessSkill').val()));
-            self.model.set('perception', parseInt($('#perception').val()));
-            self.model.set('hitPoints', parseInt($('#hitPoints').val()));
-            self.model.set('hitPointsModifier', parseInt($('#hitPointsModifier').val()));
-            self.model.set('will', parseInt($('#will').val()));
-            self.model.set('willModifier', parseInt($('#willModifier').val()));
-            self.model.set('quicknessBonus', parseInt($('#quicknessBonus').val()));
-            self.model.set('racialModifier', parseInt($('#racialModifier').val()));
-            self.model.set('armorChoice', parseInt($('#armorChoice').val()));
-            self.model.set('armorOnArmor', parseInt($('#armorOnArmor').val()));
-            self.model.set('shieldChoice', parseInt($('#shieldChoice').val()));
-            self.model.set('skillChoice1', parseInt($('#skillChoice1').val()));
-            self.model.set('skillChoice2', parseInt($('#skillChoice2').val()));
-            self.model.set('specialAbility', parseInt($('#specialAbility').val()));
-            self.model.set('miscItemChoice', parseInt($('#miscItemChoice').val()));
-            self.model.set('adrenalDefense', parseInt($('#adrenalDefense').val()));
+            self.model.set('playerID', myPlayer.get('id'));
+            self.model.setName($('#name').val());
+            self.model.set('observationSkill', self.parseAsInt($('#observationSkill').val()));
+            self.model.set('initiative', self.parseAsInt($('#initiative').val()));
+            self.model.set('initiativeModifier', self.parseAsInt($('#initiativeModifier').val()));
+            self.model.set('misc', self.parseAsInt($('#misc').val()));
+            self.model.set('level', self.parseAsInt($('#level').val()));
+            self.model.set('stalkSkill', self.parseAsInt($('#stalkSkill').val()));
+            self.model.set('senseAmbushSkill', self.parseAsInt($('#senseAmbushSkill').val()));
+            self.model.set('alertnessSkill', self.parseAsInt($('#alertnessSkill').val()));
+            self.model.set('perception', self.parseAsInt($('#perception').val()));
+            self.model.set('hitPoints', self.parseAsInt($('#hitPoints').val()));
+            self.model.set('hitPointsModifier', self.parseAsInt($('#hitPointsModifier').val()));
+            self.model.set('will', self.parseAsInt($('#will').val()));
+            self.model.set('willModifier', self.parseAsInt($('#willModifier').val()));
+            self.model.set('quicknessBonus', self.parseAsInt($('#quicknessBonus').val()));
+            self.model.set('racialModifier', self.parseAsInt($('#racialModifier').val()));
+            self.model.set('armorChoice', self.parseAsInt($('#armorChoice').val()));
+            self.model.set('armorOnArmor', self.parseAsInt($('#armorOnArmor').val()));
+            self.model.set('shieldChoice', self.parseAsInt($('#shieldChoice').val()));
+            self.model.set('skillChoice1', self.parseAsInt($('#skillChoice1').val()));
+            self.model.set('skillChoice2', self.parseAsInt($('#skillChoice2').val()));
+            self.model.set('specialAbility', self.parseAsInt($('#specialAbility').val()));
+            self.model.set('miscItemChoice', self.parseAsInt($('#miscItemChoice').val()));
+            self.model.set('adrenalDefense', self.parseAsInt($('#adrenalDefense').val()));
+        },
+        parseAsInt : function(someValue) {
+            var theReturn = 0;
+            if (someValue) {
+                if (! isNaN(someValue)) {
+                    theReturn = parseInt(someValue);
+                }
+            }
+            return theReturn;
+
         },
         createObjectWithAttributes : function() {
             var self = this;
@@ -59,29 +75,29 @@ define(['marionette',
 
             tempObject.playerID = myPlayer.get('id');
             tempObject.name = encodeURI($('#name').val());
-            tempObject.observationSkill = parseInt($('#observationSkill').val());
-            tempObject.initiative = parseInt($('#initiative').val());
-            tempObject.initiativeModifier = parseInt($('#initiativeModifier').val());
-            tempObject.misc = parseInt($('#misc').val());
-            tempObject.level = parseInt($('#level').val());
-            tempObject.stalkSkill = parseInt($('#stalkSkill').val());
-            tempObject.senseAmbushSkill = parseInt($('#senseAmbushSkill').val());
-            tempObject.alertnessSkill = parseInt($('#alertnessSkill').val());
-            tempObject.perception = parseInt($('#perception').val());
-            tempObject.hitPoints = parseInt($('#hitPoints').val());
-            tempObject.hitPointsModifier = parseInt($('#hitPointsModifier').val());
-            tempObject.will = parseInt($('#will').val());
-            tempObject.willModifier = parseInt($('#willModifier').val());
-            tempObject.quicknessBonus = parseInt($('#quicknessBonus').val());
-            tempObject.racialModifier = parseInt($('#racialModifier').val());
-            tempObject.armorChoice = parseInt($('#armorChoice').val());
-            tempObject.armorOnArmor = parseInt($('#armorOnArmor').val());
-            tempObject.shieldChoice = parseInt($('#shieldChoice').val());
-            tempObject.skillChoice1 = parseInt($('#skillChoice1').val());
-            tempObject.skillChoice2 = parseInt($('#skillChoice2').val());
-            tempObject.specialAbility = parseInt($('#specialAbility').val());
-            tempObject.miscItemChoice = parseInt($('#miscItemChoice').val());
-            tempObject.adrenalDefense = parseInt($('#adrenalDefense').val());
+            tempObject.observationSkill = self.parseAsInt($('#observationSkill').val());
+            tempObject.initiative = self.parseAsInt($('#initiative').val());
+            tempObject.initiativeModifier = self.parseAsInt($('#initiativeModifier').val());
+            tempObject.misc = self.parseAsInt($('#misc').val());
+            tempObject.level = self.parseAsInt($('#level').val());
+            tempObject.stalkSkill = self.parseAsInt($('#stalkSkill').val());
+            tempObject.senseAmbushSkill = self.parseAsInt($('#senseAmbushSkill').val());
+            tempObject.alertnessSkill = self.parseAsInt($('#alertnessSkill').val());
+            tempObject.perception = self.parseAsInt($('#perception').val());
+            tempObject.hitPoints = self.parseAsInt($('#hitPoints').val());
+            tempObject.hitPointsModifier = self.parseAsInt($('#hitPointsModifier').val());
+            tempObject.will = self.parseAsInt($('#will').val());
+            tempObject.willModifier = self.parseAsInt($('#willModifier').val());
+            tempObject.quicknessBonus = self.parseAsInt($('#quicknessBonus').val());
+            tempObject.racialModifier = self.parseAsInt($('#racialModifier').val());
+            tempObject.armorChoice = self.parseAsInt($('#armorChoice').val());
+            tempObject.armorOnArmor = self.parseAsInt($('#armorOnArmor').val());
+            tempObject.shieldChoice = self.parseAsInt($('#shieldChoice').val());
+            tempObject.skillChoice1 = self.parseAsInt($('#skillChoice1').val());
+            tempObject.skillChoice2 = self.parseAsInt($('#skillChoice2').val());
+            tempObject.specialAbility = self.parseAsInt($('#specialAbility').val());
+            tempObject.miscItemChoice = self.parseAsInt($('#miscItemChoice').val());
+            tempObject.adrenalDefense = self.parseAsInt($('#adrenalDefense').val());
 
            return tempObject;
         },
