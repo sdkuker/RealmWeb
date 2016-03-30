@@ -155,7 +155,11 @@ define(['marionette',
                         if ((key == 0 && ! self.chosenPlayer) || (self.chosenPlayer && self.chosenPlayer == myPlayer.getName())) {
                             appendString = appendString + " selected='selected'";
                             if (! self.chosenPlayer) {
-                                self.chosenPlayer = myPlayer.getName();
+                                if (self.model.playerName()) {
+                                    self.chosenPlayer = self.model.playerName();
+                                } else {
+                                    self.chosenPlayer = myPlayer.getName();
+                                }
                             }
                         };
                         appendString = appendString + ">" + myPlayer.getName() + "</option>"

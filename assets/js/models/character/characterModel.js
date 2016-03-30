@@ -55,7 +55,7 @@ define(['backbone', 'services/playerWarehouse'],
                 if (myPlayer) {
                     return myPlayer.getName();
                 } else {
-                    return 'unknown';
+                    return null;
                 }
             },
             hasAdrenalDefense : function() {
