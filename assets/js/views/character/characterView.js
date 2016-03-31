@@ -14,7 +14,8 @@ define(['marionette',
         chosenPlayer: null,
         events: {
             'click #saveButton' : 'saveButtonClicked',
-            'click #deleteButton' : 'deleteButtonClicked'
+            'click #deleteButton' : 'deleteButtonClicked',
+            'click #cancelButton' : 'cancelButtonClicked'
         },
         initialize : function() {
             var self = this;
@@ -128,17 +129,13 @@ define(['marionette',
 
         },
         deleteButtonClicked : function() {
-            this.model.destroy().then(
-                function(characterModel) {
-                    Logger.logInfo('character model successfully saved');
-                    ViewUtilities.showModalView('Informational', 'Character Saved');
-                    RealmApplication.vent.trigger('viewCharacterList');
-                },
-                function(error) {
-                    Logger.logErrror("character model NOT successfully saved: " + error);
-                    ViewUtilities.showModalView('Error', 'Error Saving the Character.  See the log');
-                }
-            );
+            this.model.destroy();
+            Logger.logInfo('character model successfully deleted');
+            ViewUtilities.showModalView('Informational', 'Character Deleted');
+            RealmApplication.vent.trigger('viewCharacterList');
+        },
+        cancelButtonClicked : function() {
+            RealmApplication.vent.trigger('viewCharacterList');
         },
         playerSelected : function() {
             self = this;

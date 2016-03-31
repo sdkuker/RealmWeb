@@ -33,20 +33,21 @@ define(['marionette',
             RealmApplication.vent.trigger('characterListAddCharacter', new CharacterModel());
         },
         triggerEditCharacterFunction : function() {
-            var model = this.collection.at($(':selected', this.$el).index());
-            RealmApplication.vent.trigger('characterListChangeCharacter', model);
+            self = this;
+            RealmApplication.vent.trigger('characterListChangeCharacter', self.selectedModel);
         },
         triggerDeleteCharacterFunction : function() {
             this.collection.remove(selectedModel);
             Logger.logInfo('character model deleted');
-            ViewUtilities.showModalView('Informational', 'Character named: ' + selectedModel.get('name') + ' Deleted');
+            ViewUtilities.showModalView('Informational', 'Character named: ' + selectedModel.getName() + ' Deleted');
             selectedModel = null;
             RealmApplication.vent.trigger('viewCharacterList');
         },
         characterSelected : function(tableRow, model) {
+            self = this;
             $(tableRow.el).siblings().removeClass('info');
             $(tableRow.el).addClass('info');
-            selectedModel = model;
+            self.selectedModel = model;
         }
     });
 
