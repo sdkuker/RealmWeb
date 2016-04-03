@@ -24,14 +24,14 @@ define(['marionette',
         },
         saveButtonClicked : function() {
             self = this;
-            var newDescription = encodeURI($('#combatEncounterDescription').val());
+            var newDescription = $('#combatEncounterDescription').val();
             this.model.setDescription(newDescription);
             // if it's a new model, add it to the collection
             if (! this.model.get('id')) {
                 Logger.logInfo('About to add a new combat encounter model to the collection');
                 $.when(CombatEncounterWarehouse.getAllCombatEncounters()).then(
                     function(myCombatEncounterCollection) {
-                        myCombatEncounterCollection.add({description : newDescription});
+                        myCombatEncounterCollection.add({description : encodeURI(newDescription)});
                         ViewUtilities.showModalView('Informational', 'Combat Encounter Saved');
                         RealmApplication.vent.trigger('viewCombatEncounterList');
                     }
