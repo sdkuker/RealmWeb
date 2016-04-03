@@ -17,9 +17,30 @@ define(['jquery', 'realmApplication'
                 });
             },
             combatEncounterList: function () {
-                require(['views/combat/combatEncounterList',], function (CombatEncounterListView) {
-                    var view = new CombatEncounterListView();
-                    RealmApplication.regions.mainRegion.show(view);
+                require(['views/combat/combatEncounterListView', 'views/combat/combatEncounterView',
+                        'views/combat/combatEncounterListLayoutView','views/combat/combatEncounterListButtonView',
+                        'services/combatEncounterWarehouse'],
+                    function (CombatEncounterListView, CombatView, CombatEncounterListLayoutView,
+                              CombatEncounterListButtonView, CombatEncounterWarehouse) {
+                        var combatEncounterListLayoutView = new CombatEncounterListLayoutView();
+                        RealmApplication.regions.mainRegion.show(combatEncounterListLayoutView);
+                        $.when(CombatEncounterWarehouse.getAllCombatEncounters()).then(
+                            function(myCombatEncounterCollection) {
+                                var combatEncounterListView = new CombatEncounterListView({collection: myCombatEncounterCollection});
+                                var combatEncounterListButtonView = new CombatEncounterListButtonView();
+                                combatEncounterListLayoutView.getRegion('combatEncountersTableRegion').show(combatEncounterListView);
+                                combatEncounterListLayoutView.getRegion('buttonsRegion').show(combatEncounterListButtonView);
+                            }
+                        ),
+                            function() {
+                                console.log('some kind of error getting combat encounters');
+                            }
+                    });
+            },
+            viewCombatEncounter: function(combatEncounterModel) {
+                require(['views/combat/combatEncounterView'], function (CombatEncounterView) {
+                    var combatEncounterView = new CombatEncounterView({model : combatEncounterModel});
+                    RealmApplication.regions.mainRegion.show(combatEncounterView);
                 });
             },
             playerList: function () {

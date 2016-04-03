@@ -40,4 +40,24 @@ define(['realmApplication', 'router/router', 'router/routerController'
             RouterController.characterList();
         });
 
+        //  combat encounters
+        RealmApplication.vent.bind('combatEncounterListAddCombatEncounter', function (model) {
+            Router.navigate('viewCombatEncounter');
+            RouterController.viewCombatEncounter(model);
+        });
+
+        RealmApplication.vent.bind('combatEncounterListChangeCombatEncounter', function (model) {
+            Router.navigate('viewCombatEncounter');
+            RouterController.viewCombatEncounter(model);
+        });
+
+        RealmApplication.vent.bind('combatEncounterListDeleteButton:clicked', function (model) {
+            // Router.navigate('viewCombatEncounter');
+            // RouterController.viewCombatEncounter(model);
+        });
+        RealmApplication.vent.bind('viewCombatEncounterList', function () {
+            Router.navigate('viewCombatEncounterList');
+            RouterController.combatEncounterList();
+        });
+
     });
