@@ -6,7 +6,7 @@ define(['marionette',
     'logger',
     'services/combatEncounterWarehouse'
 ], function (Marionette, RealmApplication, CombatEncounterModel, ViewUtilities, CombatEncounterTemplate, Logger, CombatEncounterWarehouse) {
-    var PlayerView = Marionette.ItemView.extend({
+    var CombatEncounterView = Marionette.ItemView.extend({
         template: CombatEncounterTemplate,
         model: CombatEncounterModel,
         events: {
@@ -62,6 +62,6 @@ define(['marionette',
         }
     });
 
-    return PlayerView;
+    return CombatEncounterView;
 
 });

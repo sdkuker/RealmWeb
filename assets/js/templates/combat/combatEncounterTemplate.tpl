@@ -1,6 +1,6 @@
 <div class="container">
     <div class="page-header">
-        <h1>Combat Encounter</h1>
+        <h1>Encounter - <%- encounterDescription %> </h1>
     </div>
     <form role="form">
         <div class="form-group">

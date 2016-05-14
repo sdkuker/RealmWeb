@@ -9,6 +9,7 @@ define(['marionette',
         events : {
             'click #addButton' : 'addButtonClicked',
             'click #changeButton' : 'changeButtonClicked',
+            'click #openButton' : 'openButtonClicked',
             'click #deleteButton' : 'deleteButtonClicked'
         },
         addButtonClicked : function() {
@@ -16,6 +17,9 @@ define(['marionette',
         },
         changeButtonClicked : function() {
             RealmApplication.vent.trigger('combatEncounterListChangeButton:clicked');
+        },
+        openButtonClicked : function() {
+            RealmApplication.vent.trigger('combatEncounterListOpenButton:clicked');
         },
         deleteButtonClicked : function() {
             RealmApplication.vent.trigger('combatEncounterListDeleteButton:clicked');

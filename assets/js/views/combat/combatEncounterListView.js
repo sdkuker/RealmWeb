@@ -25,6 +25,9 @@ define(['marionette',
             this.listenTo(RealmApplication.vent, 'combatEncounterListDeleteButton:clicked', function() {
                 self.triggerDeleteCombatEncounterFunction();
             });
+            this.listenTo(RealmApplication.vent, 'combatEncounterListOpenButton:clicked', function() {
+                self.triggerOpenCombatEncounterFunction();
+            });
             this.listenTo(RealmApplication.vent, 'combatEncounterListEncounterSelected', function(tableRow, model) {
                 self.combatEncounterSelected(tableRow, model);
             });
@@ -39,6 +42,10 @@ define(['marionette',
         triggerEditCombatEncounterFunction : function() {
             var model = this.collection.at($(':selected', this.$el).index());
             RealmApplication.vent.trigger('combatEncounterListChangeCombatEncounter', model);
+        },
+        triggerOpenCombatEncounterFunction : function() {
+            var model = this.collection.at($(':selected', this.$el).index());
+            RealmApplication.vent.trigger('combatEncounterListOpenCombatEncounter', model);
         },
         triggerDeleteCombatEncounterFunction : function() {
             this.collection.remove(selectedModel);

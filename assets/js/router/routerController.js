@@ -43,6 +43,12 @@ define(['jquery', 'realmApplication'
                     RealmApplication.regions.mainRegion.show(combatEncounterView);
                 });
             },
+            openCombatEncounter: function(combatEncounterModel) {
+                require(['views/combat/combatEncounterView'], function (CombatEncounterView) {
+                    var combatEncounterView = new CombatEncounterView({model : combatEncounterModel});
+                    RealmApplication.regions.mainRegion.show(combatEncounterView);
+                });
+            },
             playerList: function () {
                 require(['views/player/playerListView', 'views/player/playerView',
                     'views/player/playerListLayoutView','views/player/playerListButtonView',
@@ -79,7 +85,6 @@ define(['jquery', 'realmApplication'
                               CriticalHitDisplayCollection, CriticalHitTypeCollection, CriticalHitListView, ServiceConstants) {
                         var criticalHitLayoutView = new CriticalHitLayoutView();
                         RealmApplication.regions.mainRegion.show(criticalHitLayoutView);
-                        var tempThang = ServiceConstants.backFireBaseURL + '/criticalHits/Acid';
                         $.when(CriticalHitWarehouse.getAllTypes()).then(
                             function(criticalHitTypeCollection) {
                                 $.when(CriticalHitWarehouse.getCriticalHitsForType(criticalHitTypeCollection.at(0).get('id'))).then (
