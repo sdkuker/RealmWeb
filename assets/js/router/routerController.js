@@ -17,10 +17,10 @@ define(['jquery', 'realmApplication'
                 });
             },
             combatEncounterList: function () {
-                require(['views/combat/combatEncounterListView', 'views/combat/combatEncounterView',
+                require(['views/combat/combatEncounterListView',
                         'views/combat/combatEncounterListLayoutView','views/combat/combatEncounterListButtonView',
                         'services/combatEncounterWarehouse'],
-                    function (CombatEncounterListView, CombatView, CombatEncounterListLayoutView,
+                    function (CombatEncounterListView, CombatEncounterListLayoutView,
                               CombatEncounterListButtonView, CombatEncounterWarehouse) {
                         var combatEncounterListLayoutView = new CombatEncounterListLayoutView();
                         RealmApplication.regions.mainRegion.show(combatEncounterListLayoutView);
@@ -38,15 +38,34 @@ define(['jquery', 'realmApplication'
                     });
             },
             viewCombatEncounter: function(combatEncounterModel) {
-                require(['views/combat/combatEncounterView'], function (CombatEncounterView) {
-                    var combatEncounterView = new CombatEncounterView({model : combatEncounterModel});
-                    RealmApplication.regions.mainRegion.show(combatEncounterView);
+                require(['views/combat/combatEncounterLayoutView', 'views/combat/combatEncounnterButtonView',
+                          'views/combat/combatEncounterStatisticView'],
+                    function (CombatEncounterLayoutView, CombatEncounterButtonView,
+                              CombatEncounterStatisticView) {
+                        var combatEncounterLayoutView = new CombatEncounterLayoutView();
+                        var combatEncounterButtonView = new CombatEncounterButtonView();
+                       // var combatEncounterRoundView = new CombatEncounterView({model : combatEncounterModel});
+                        RealmApplication.regions.mainRegion.show(combatEncounterLayoutView);
+                        combatEncounterLayoutView.geteRegion('roundsButtonsRegion').show(combatEncounterButtonView);
                 });
             },
             openCombatEncounter: function(combatEncounterModel) {
-                require(['views/combat/combatEncounterView'], function (CombatEncounterView) {
-                    var combatEncounterView = new CombatEncounterView({model : combatEncounterModel});
-                    RealmApplication.regions.mainRegion.show(combatEncounterView);
+                require(['views/combat/combatEncounterLayoutView', 'views/combat/combatEncounterRoundView',
+                         'views/combat/combatEncounterButtonView', 'services/combatRoundWarehouse'],
+                    function (CombatEncounterLayoutView, CombatEncounterRoundsView, CombatEncounterButtonView,
+                        CombatRoundWarehouse) {
+                        var combatEncounterLayoutView = new CombatEncounterLayoutView();
+                        RealmApplication.regions.mainRegion.show(combatEncounterLayoutView);
+                        $.when(CombatRoundWarehouse.getCombatRoundsForEncounter(combatEncounterModel)).then(
+                            function(myCombatEncounterCollection) {
+                                 var combatEncounterButtonView = new CombatEncounterButtonView();
+                                combatEncounterLayoutView.getRegion('roundsButtonsRegion').show(combatEncounterButtonView);
+                                //var CombatEncounterRoundsView = new CombatEncounterRoundsView({model : combatEncounterModel});
+                            }
+                        ),
+                            function() {
+                                console.log('some kind of error getting combat encounters');
+                            }
                 });
             },
             playerList: function () {

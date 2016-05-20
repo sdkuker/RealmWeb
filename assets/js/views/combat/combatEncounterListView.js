@@ -33,9 +33,6 @@ define(['marionette',
             });
             this.listenTo(this.collection, 'add', this.render);
         },
-        onRender : function() {
-            console.log('in onRender');
-        },
         triggerAddCombatEncounterFunction : function() {
             RealmApplication.vent.trigger('combatEncounterListAddCombatEncounter', new CombatEncounterModel());
         },

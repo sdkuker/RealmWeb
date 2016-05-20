@@ -1,7 +1,7 @@
 define(['jquery',
         'logger',
         'collections/combat/combatRoundCollection'],
-    function ($, Logger, CombatEncounterCollection) {
+    function ($, Logger, CombatRoundCollection) {
 
         // I am the first stop for getting combat rounds.  If I don't have them, I'll get them from Firebase
         // and put them in my cache.  If I have them in my cache, I'll return them.
@@ -60,7 +60,7 @@ define(['jquery',
                 if (cache[myKey]) {
                     deferred.resolve(cache[myKey]);
                 } else {
-                    cache[myKey] = new CombatRoundCollection();
+                    cache[myKey] = new CombatRoundCollection({}, {encounterID : encounter.get('id')});
                     cache[myKey].on('sync',function(collection) {
                         deferred.resolve(collection);
                     })
