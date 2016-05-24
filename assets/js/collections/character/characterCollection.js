@@ -1,9 +1,10 @@
-define(['backbone', 'firebase', 'backfire', 'models/character/characterModel', 'services/serviceConstants'],
-    function (Backbone, Firebase, Backfire, CharacterModel, ServiceConstants) {
+define(['backbone', 'backfire', 'models/character/characterModel', 'services/serviceConstants'],
+    function (Backbone, Backfire, CharacterModel, ServiceConstants) {
 
         var CharacterCollection = Backbone.Firebase.Collection.extend({
             url: function() {
-                return new Firebase(ServiceConstants.backFireBaseURL + '/characters/');
+               // return new Firebase(ServiceConstants.backFireBaseURL + '/characters/');
+                return firebase.database().ref('/characters/');
             },
             model: CharacterModel,
             comparator: function(character) {

@@ -1,9 +1,10 @@
-define(['backbone', 'firebase', 'backfire', 'models/player/playerModel', 'services/serviceConstants'],
-    function (Backbone, Firebase, Backfire, PlayerModel, ServiceConstants) {
+define(['backbone', 'backfire', 'models/player/playerModel', 'services/serviceConstants'],
+    function (Backbone, Backfire, PlayerModel, ServiceConstants) {
 
         var PlayerListCollection = Backbone.Firebase.Collection.extend({
             model: PlayerModel,
-            url: ServiceConstants.backFireBaseURL + '/players',
+          //  url: ServiceConstants.backFireBaseURL + '/players',
+            url: firebase.database().ref('/players'),
             getAll: function() {
                 return this.get('name');
             },

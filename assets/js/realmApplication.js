@@ -19,6 +19,16 @@ define(["marionette",
         RealmApplication.addRegions({
             modalRegion: ModalRegion
         });
+
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCnQbVXRg5L0xUSQeCc8OIo3VHU7PEir4M",
+            authDomain: "stevieware.firebaseapp.com",
+            databaseURL: "https://stevieware.firebaseio.com",
+            storageBucket: "",
+        };
+
+        firebase.initializeApp(config);
     });
 
     RealmApplication.on("start", function () {
