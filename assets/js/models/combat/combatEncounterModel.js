@@ -4,6 +4,7 @@ define(['backbone'],
         var CombatEncounterModel = Backbone.Model.extend({
             defaults: {
                 description : '',
+                openRound: 0,
             },
             getDescription: function() {
                 return decodeURI(this.get('description'));

@@ -58,7 +58,7 @@ define(['jquery', 'realmApplication'
                         RealmApplication.regions.mainRegion.show(combatEncounterLayoutView);
                         $.when(CombatRoundWarehouse.getCombatRoundsForEncounter(combatEncounterModel)).then(
                             function(myCombatEncounterCollection) {
-                                 var combatEncounterButtonView = new CombatEncounterButtonView();
+                                 var combatEncounterButtonView = new CombatEncounterButtonView({model : combatEncounterModel});
                                 combatEncounterLayoutView.getRegion('roundsButtonsRegion').show(combatEncounterButtonView);
                                 //var CombatEncounterRoundsView = new CombatEncounterRoundsView({model : combatEncounterModel});
                             }

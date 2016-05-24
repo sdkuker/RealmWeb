@@ -1,11 +1,13 @@
 define(['marionette',
         'backbone',
         'realmApplication',
+        'models/combat/combatEncounterModel',
         'tpl!templates/combat/combatEncounterButtonTemplate.tpl'],
-    function (Marionette, Backbone, RealmApplication, CombatEncounterButtonTemplate) {
+    function (Marionette, Backbone, RealmApplication, CombatEncounterModel, CombatEncounterButtonTemplate) {
 
         var CombatEncounterButtonView = Marionette.ItemView.extend({
             template: CombatEncounterButtonTemplate,
+            model: CombatEncounterModel,
             events : {
                 'click #nextRoundButton' : 'nextRoundButtonClicked',
                 'click #criticalHitsButton' : 'criticalHitsButtonClicked'
