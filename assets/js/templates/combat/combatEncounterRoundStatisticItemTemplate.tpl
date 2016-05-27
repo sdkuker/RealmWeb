@@ -1,0 +1,10 @@
+<td><%= characterID %></td>
+<td><%= initiative %></td>
+<td><%= alertness %></td>
+<td><%= observation %></td>
+<td><%= roundsStillStunned %></td>
+<td><%= negativeModifier %></td>
+<td><%= hitsAtStartOfRound %></td>
+<td><%= hitsTakenDuringRound %></td>
+<td><%= bleeding %></td>
+<td><%= regeneration %></td>

@@ -15,7 +15,6 @@ define(['backbone'],
                 regeneration : 0,
                 hitsAtStartOfRound : 0,
                 hitsTakenDuringRound : 0,
-                hitsTakenDuringRound : 0,
                 characterTotalHitPointsAtStartOfRound : 0,
 
             },

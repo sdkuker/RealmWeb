@@ -39,7 +39,7 @@ define(['jquery', 'realmApplication'
             },
             viewCombatEncounter: function(combatEncounterModel) {
                 require(['views/combat/combatEncounterLayoutView', 'views/combat/combatEncounnterButtonView',
-                          'views/combat/combatEncounterStatisticView'],
+                          '../views/combat/combatEncounterRoundStatisticsItemView'],
                     function (CombatEncounterLayoutView, CombatEncounterButtonView,
                               CombatEncounterStatisticView) {
                         var combatEncounterLayoutView = new CombatEncounterLayoutView();
@@ -50,17 +50,18 @@ define(['jquery', 'realmApplication'
                 });
             },
             openCombatEncounter: function(combatEncounterModel) {
-                require(['views/combat/combatEncounterLayoutView', 'views/combat/combatEncounterRoundView',
+                require(['views/combat/combatEncounterLayoutView', 'views/combat/combatEncounterRoundStatisticsListView',
                          'views/combat/combatEncounterButtonView', 'services/combatRoundWarehouse'],
-                    function (CombatEncounterLayoutView, CombatEncounterRoundsView, CombatEncounterButtonView,
+                    function (CombatEncounterLayoutView, CombatEncounterRoundStatisticsListView, CombatEncounterButtonView,
                         CombatRoundWarehouse) {
                         var combatEncounterLayoutView = new CombatEncounterLayoutView();
                         RealmApplication.regions.mainRegion.show(combatEncounterLayoutView);
                         $.when(CombatRoundWarehouse.getCombatRoundsForEncounter(combatEncounterModel)).then(
                             function(myCombatEncounterCollection) {
-                                 var combatEncounterButtonView = new CombatEncounterButtonView({model : combatEncounterModel});
+                                var combatEncounterButtonView = new CombatEncounterButtonView({model : combatEncounterModel});
                                 combatEncounterLayoutView.getRegion('roundsButtonsRegion').show(combatEncounterButtonView);
-                                //var CombatEncounterRoundsView = new CombatEncounterRoundsView({model : combatEncounterModel});
+                                var combatEncounterRoundStatisticsListView = new CombatEncounterRoundStatisticsListView({collection : myCombatEncounterCollection});
+                                combatEncounterLayoutView.getRegion('roundsTableRegion').show(combatEncounterRoundStatisticsListView);
                             }
                         ),
                             function() {
