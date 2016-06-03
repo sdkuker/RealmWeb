@@ -38,15 +38,15 @@ define(['jquery', 'realmApplication'
                     });
             },
             viewCombatEncounter: function(combatEncounterModel) {
-                require(['views/combat/combatEncounterLayoutView', 'views/combat/combatEncounnterButtonView',
-                          '../views/combat/combatEncounterRoundStatisticsItemView'],
+                require(['views/combat/combatEncounterLayoutView', 'views/combat/combatEncounterButtonView',
+                         'views/combat/combatEncounterRoundStatisticsItemView'],
                     function (CombatEncounterLayoutView, CombatEncounterButtonView,
                               CombatEncounterStatisticView) {
                         var combatEncounterLayoutView = new CombatEncounterLayoutView();
                         var combatEncounterButtonView = new CombatEncounterButtonView();
                        // var combatEncounterRoundView = new CombatEncounterView({model : combatEncounterModel});
                         RealmApplication.regions.mainRegion.show(combatEncounterLayoutView);
-                        combatEncounterLayoutView.geteRegion('roundsButtonsRegion').show(combatEncounterButtonView);
+                        combatEncounterLayoutView.getRegion('roundsButtonsRegion').show(combatEncounterButtonView);
                 });
             },
             openCombatEncounter: function(combatEncounterModel) {
