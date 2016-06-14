@@ -11,6 +11,10 @@ define(['backbone'],
             },
             setDescription: function(aDescription) {
                 return this.set('description', encodeURI(aDescription));
+            },
+            hasAnyRounds : function() {
+                var self = this;
+                return self.openRound > 0;
             }
         });
 

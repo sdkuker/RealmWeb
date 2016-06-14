@@ -1,7 +1,8 @@
 define(['jquery',
         'logger',
-        'collections/combat/combatRoundCollection'],
-    function ($, Logger, CombatRoundCollection) {
+        'collections/combat/combatRoundCollection',
+        'services/combatRoundFactory'],
+    function ($, Logger, CombatRoundCollection, CombatRoundFactory) {
 
         // I am the first stop for getting combat rounds.  If I don't have them, I'll get them from Firebase
         // and put them in my cache.  If I have them in my cache, I'll return them.
@@ -13,21 +14,20 @@ define(['jquery',
             var collectionKey = 'combatRoundCollection';
 
             // public functions
-            this.getAllCombatRounds = function() {
-                var deferred = $.Deferred();
-                $.when(getCombatRoundCollection()).then(
-                    function(myCombatRoundCollection) {
-                        deferred.resolve(myCombatRoundCollection);
-                    }
-                )
-                return deferred.promise();
-            };
 
             this.getCombatRoundsForEncounter = function(combatEncounter) {
                 var deferred = $.Deferred();
                 $.when(getCombatRoundCollectionForEncounter(combatEncounter)). then(
                     function(myCombatRoundCollection) {
-                        deferred.resolve(myCombatRoundCollection);
+                        if (! combatEncounter.hasAnyRounds() ) {
+                            $.when(CombatRoundFactory.createNextCombatRound(combatEncounter, myCombatRoundCollection)). then(
+                                function() {
+                                    deferred.resolve(myCombatRoundCollection);
+                                }
+                            )
+                        } else {
+                            deferred.resolve(myCombatRoundCollection);  
+                        }
                     }
                 )
 
@@ -67,19 +67,7 @@ define(['jquery',
                 }
                 return deferred.promise();
             };
-
-            getCombatRoundCollection = function() {
-                var deferred = $.Deferred();
-                if (cache[collectionKey]) {
-                    deferred.resolve(cache[collectionKey]);
-                } else {
-                    cache[collectionKey] = new CombatRoundCollection();
-                    cache[collectionKey].on('sync',function(collection) {
-                        deferred.resolve(collection);
-                    })
-                }
-                return deferred.promise();
-            };
+            
         };
 
         var myCombatRoundWarehouse = new CombatRoundWarehouse();

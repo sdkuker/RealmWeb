@@ -2,8 +2,9 @@ define(['backbone'],
     function (Backbone) {
 
         var CharacterCombatRoundStatisticModel = Backbone.Model.extend({
+            // encounterRoundID is these two IDs separated by a dash
             defaults: {
-                roundID : '',
+                encounterRoundID : '',
                 characterID : '',
                 initiative : 0,
                 alertness : 0,
