@@ -17,7 +17,6 @@ define(['backbone'],
                 hitsAtStartOfRound : 0,
                 hitsTakenDuringRound : 0,
                 characterTotalHitPointsAtStartOfRound : 0,
-
             },
 
         });

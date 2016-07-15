@@ -8,6 +8,9 @@ define(['marionette',
         var CombatEncounterButtonView = Marionette.ItemView.extend({
             template: CombatEncounterButtonTemplate,
             model: CombatEncounterModel,
+            initialize : function(options) {
+                self = this;
+            },
             events : {
                 'click #nextRoundButton' : 'nextRoundButtonClicked',
                 'click #criticalHitsButton' : 'criticalHitsButtonClicked'

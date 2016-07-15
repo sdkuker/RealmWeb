@@ -51,17 +51,20 @@ define(['jquery', 'realmApplication'
             },
             openCombatEncounter: function(combatEncounterModel) {
                 require(['views/combat/combatEncounterLayoutView', 'views/combat/combatEncounterRoundStatisticsListView',
-                         'views/combat/combatEncounterButtonView', 'services/combatRoundWarehouse'],
+                         'views/combat/combatEncounterButtonView', 'services/combatRoundWarehouse',
+                         'services/characterCombatRoundStatisticWarehouse'],
                     function (CombatEncounterLayoutView, CombatEncounterRoundStatisticsListView, CombatEncounterButtonView,
-                        CombatRoundWarehouse) {
-                        var combatEncounterLayoutView = new CombatEncounterLayoutView();
-                        RealmApplication.regions.mainRegion.show(combatEncounterLayoutView);
+                        CombatRoundWarehouse, CombatStatisticWarehouse) {
+                        var combatEncounterLayoutView = new CombatEncounterLayoutView({encounter : combatEncounterModel});
+                    //    RealmApplication.regions.mainRegion.show(combatEncounterLayoutView);
                         $.when(CombatRoundWarehouse.getCombatRoundsForEncounter(combatEncounterModel)).then(
-                            function(myCombatEncounterCollection) {
-                                var combatEncounterButtonView = new CombatEncounterButtonView({model : combatEncounterModel});
-                                combatEncounterLayoutView.getRegion('roundsButtonsRegion').show(combatEncounterButtonView);
-                                var combatEncounterRoundStatisticsListView = new CombatEncounterRoundStatisticsListView({collection : myCombatEncounterCollection});
-                                combatEncounterLayoutView.getRegion('roundsTableRegion').show(combatEncounterRoundStatisticsListView);
+                            function(myEncounterRoundsCollection) {
+                                RealmApplication.regions.mainRegion.show(combatEncounterLayoutView);
+                                // var combatEncounterButtonView = new CombatEncounterButtonView({model : combatEncounterModel});
+                                // combatEncounterLayoutView.getRegion('roundsButtonsRegion').show(combatEncounterButtonView);
+                                // // don't pass an encounter collection to the statisticsListView - get the statistics for the round - default to the open round
+                                // var combatEncounterRoundStatisticsListView = new CombatEncounterRoundStatisticsListView({collection : myCombatEncounterCollection});
+                                //combatEncounterLayoutView.getRegion('roundsTableRegion').show(combatEncounterRoundStatisticsListView);
                             }
                         ),
                             function() {

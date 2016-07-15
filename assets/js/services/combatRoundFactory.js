@@ -36,11 +36,12 @@ define(['jquery',
             this.addCombatRound = function(newCombatRound) {
                 var deferred = $.Deferred();
                 $.when(getAllCombatRounds()).then (
-                    function(allRoundsCollection) {
-                        allRoundsCollection.add(newCombatRound);
+                    function(myAllRoundsCollection) {
+                        myAllRoundsCollection.add(newCombatRound);
                         deferred.resolve();
                     }
                 )
+                return deferred.promise();
             }
 
             // private functions
@@ -48,14 +49,16 @@ define(['jquery',
                 
                 var deferred = $.Deferred();
                 
-                // first create the round
+                // create the round
                 $.when(self.addCombatRound({encounterID : combatEncounter.get('id'), roundNumber : 1})).then (
+
                     collectionOfExistingCombatRounds.on('add', function(event) {
-                        // Now create the statistics
-                        console.log(event);
-                        return deferred.promise(event);
+                        if (event.get('roundNumber') == 1) {
+                            deferred.resolve(event);
+                        }
                     })
                 )
+                return deferred.promise();
             };
 
             getAllCombatRounds = function() {
