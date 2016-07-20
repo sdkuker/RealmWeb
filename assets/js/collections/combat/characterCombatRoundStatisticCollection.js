@@ -12,12 +12,15 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/characterCombatRoundS
                 if (options) {
                     this.myEncounterID = encodeURI(options.encounterID);
                     this.myRoundID = encodeURI(options.roundID);
-                    this.myEncounterRoundID = this.myEncounterID + '-' + this.myRoundID;
+                    this.myEncounterRoundID = this.formatEncounterRoundID(this.myEncounterID, this.myRoundID);
                 };
+            },
+            formatEncounterRoundID: function(encounterID, roundID) {
+                return encodeURI(encounterID) + '-' + roundID;
             },
             url: function() {
                 if (this.myEncounterRoundID) {
-                    return new Firebase(ServiceConstants.backFireBaseURL + '/combatRoundStatistics').orderByChild('encounterRoundID').equalTo(this.encounterRoundID);
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/combatRoundStatistics').orderByChild('encounterRoundID').equalTo(this.myEncounterRoundID);
                 } else {
                     return new Firebase(ServiceConstants.backFireBaseURL + '/combatRoundStatistics');
                 }
@@ -27,7 +30,7 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/characterCombatRoundS
             },
             hasAnyStatistics : function() {
                 var self = this;
-                return self.length > 0;
+                return self.length > 1;
             }
         });
 

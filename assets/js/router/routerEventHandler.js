@@ -55,9 +55,9 @@ define(['realmApplication', 'router/router', 'router/routerController'
             // Router.navigate('viewCombatEncounter');
             // RouterController.viewCombatEncounter(model);
         });
-        RealmApplication.vent.bind('viewCombatEncounterList', function () {
+        RealmApplication.vent.bind('viewCombatEncounterList', function (model) {
             Router.navigate('viewCombatEncounterList');
-            RouterController.combatEncounterList();
+            RouterController.combatEncounterList(model);
         });
         RealmApplication.vent.bind('combatEncounterListOpenCombatEncounter', function (model) {
             Router.navigate('openCombatEncounter');

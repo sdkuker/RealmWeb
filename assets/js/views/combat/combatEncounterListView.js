@@ -15,7 +15,7 @@ define(['marionette',
         childViewContainer : 'tbody',
         selectedModel : '',
         initialize : function() {
-            self = this;
+            var self = this;
             this.listenTo(RealmApplication.vent, 'combatEncounterListAddButton:clicked', function() {
                 self.triggerAddCombatEncounterFunction();
             });

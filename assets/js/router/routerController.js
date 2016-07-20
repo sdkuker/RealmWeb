@@ -50,26 +50,14 @@ define(['jquery', 'realmApplication'
                 });
             },
             openCombatEncounter: function(combatEncounterModel) {
-                require(['views/combat/combatEncounterLayoutView', 'views/combat/combatEncounterRoundStatisticsListView',
-                         'views/combat/combatEncounterButtonView', 'services/combatRoundWarehouse',
-                         'services/characterCombatRoundStatisticWarehouse'],
-                    function (CombatEncounterLayoutView, CombatEncounterRoundStatisticsListView, CombatEncounterButtonView,
-                        CombatRoundWarehouse, CombatStatisticWarehouse) {
+                require(['views/combat/combatEncounterLayoutView'],
+                    function (CombatEncounterLayoutView) {
                         var combatEncounterLayoutView = new CombatEncounterLayoutView({encounter : combatEncounterModel});
-                    //    RealmApplication.regions.mainRegion.show(combatEncounterLayoutView);
-                        $.when(CombatRoundWarehouse.getCombatRoundsForEncounter(combatEncounterModel)).then(
-                            function(myEncounterRoundsCollection) {
-                                RealmApplication.regions.mainRegion.show(combatEncounterLayoutView);
-                                // var combatEncounterButtonView = new CombatEncounterButtonView({model : combatEncounterModel});
-                                // combatEncounterLayoutView.getRegion('roundsButtonsRegion').show(combatEncounterButtonView);
-                                // // don't pass an encounter collection to the statisticsListView - get the statistics for the round - default to the open round
-                                // var combatEncounterRoundStatisticsListView = new CombatEncounterRoundStatisticsListView({collection : myCombatEncounterCollection});
-                                //combatEncounterLayoutView.getRegion('roundsTableRegion').show(combatEncounterRoundStatisticsListView);
-                            }
-                        ),
+                        $.when(combatEncounterLayoutView.prepareToShowRound('open')).then(
                             function() {
-                                console.log('some kind of error getting combat encounters');
-                            }
+                                RealmApplication.regions.mainRegion.show(combatEncounterLayoutView);
+                             }
+                        )
                 });
             },
             playerList: function () {

@@ -54,6 +54,7 @@ define(['jquery',
 
                     collectionOfExistingCombatRounds.on('add', function(event) {
                         if (event.get('roundNumber') == 1) {
+                            combatEncounter.set('openRound', 1);
                             deferred.resolve(event);
                         }
                     })
