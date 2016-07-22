@@ -14,7 +14,7 @@ define(['backbone'],
             },
             hasAnyRounds : function() {
                 var self = this;
-                return self.openRound > 0;
+                return self.get('openRound') > 0;
             }
         });
 
