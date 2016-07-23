@@ -37,12 +37,12 @@ define(['marionette',
             RealmApplication.vent.trigger('combatEncounterListAddCombatEncounter', new CombatEncounterModel());
         },
         triggerEditCombatEncounterFunction : function() {
-            var model = this.collection.at($(':selected', this.$el).index());
-            RealmApplication.vent.trigger('combatEncounterListChangeCombatEncounter', model);
+            //var model = this.collection.at($(':selected', this.$el).index());
+            RealmApplication.vent.trigger('combatEncounterListChangeCombatEncounter', selectedModel);
         },
         triggerOpenCombatEncounterFunction : function() {
-            var model = this.collection.at($(':selected', this.$el).index());
-            RealmApplication.vent.trigger('combatEncounterListOpenCombatEncounter', model);
+           // var model = this.collection.at($(':selected', this.$el).index());
+            RealmApplication.vent.trigger('combatEncounterListOpenCombatEncounter', selectedModel);
         },
         triggerDeleteCombatEncounterFunction : function() {
             this.collection.remove(selectedModel);

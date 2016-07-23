@@ -42,22 +42,22 @@ define(['realmApplication', 'router/router', 'router/routerController'
 
         //  combat encounters
         RealmApplication.vent.bind('combatEncounterListAddCombatEncounter', function (model) {
-            Router.navigate('viewCombatEncounter');
-            RouterController.viewCombatEncounter(model);
+            Router.navigate('addChangeCombatEncounter');
+            RouterController.addChangeCombatEncounter(model);
         });
 
         RealmApplication.vent.bind('combatEncounterListChangeCombatEncounter', function (model) {
-            Router.navigate('viewCombatEncounter');
-            RouterController.viewCombatEncounter(model);
+            Router.navigate('addChangeCombatEncounter');
+            RouterController.addChangeCombatEncounter(model);
         });
 
         RealmApplication.vent.bind('combatEncounterListDeleteButton:clicked', function (model) {
             // Router.navigate('viewCombatEncounter');
             // RouterController.viewCombatEncounter(model);
         });
-        RealmApplication.vent.bind('viewCombatEncounterList', function (model) {
+        RealmApplication.vent.bind('viewCombatEncounterList', function () {
             Router.navigate('viewCombatEncounterList');
-            RouterController.combatEncounterList(model);
+            RouterController.combatEncounterList();
         });
         RealmApplication.vent.bind('combatEncounterListOpenCombatEncounter', function (model) {
             Router.navigate('openCombatEncounter');
