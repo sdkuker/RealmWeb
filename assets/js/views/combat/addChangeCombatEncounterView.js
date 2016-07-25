@@ -16,6 +16,9 @@ define(['marionette',
         initialize : function() {
             this.listenTo(this.model, 'change', this.render);
         },
+        onShow : function() {
+            this.$el.find('#encounterDescription').focus();
+        },
         saveButtonClicked : function() {
             self = this;
             var newDescription = $('#encounterDescription').val();
@@ -26,7 +29,7 @@ define(['marionette',
                 $.when(CombatEncounterWarehouse.getAllCombatEncounters()).then(
                     function(myCombatEncounterCollection) {
                         myCombatEncounterCollection.add({description : newDescription});
-                        ViewUtilities.showModalView('Informational', 'Combat Encounter Saved');
+                       // ViewUtilities.showModalView('Informational', 'Combat Encounter Saved');
                         RealmApplication.vent.trigger('viewCombatEncounterList');
                     }
                 ),
@@ -36,7 +39,7 @@ define(['marionette',
             } else {
                 // don't have to do anything if it's modifying an existing model -
                 // firebase does that automatically
-                ViewUtilities.showModalView('Informational', 'Combat Encounter Saved');
+               // ViewUtilities.showModalView('Informational', 'Combat Encounter Saved');
                 RealmApplication.vent.trigger('viewCombatEncounterList');
             }
 
@@ -45,7 +48,7 @@ define(['marionette',
             this.model.destroy().then(
                 function(combatEncounterModel) {
                     Logger.logInfo('Combat encounter model successfully deleted');
-                    ViewUtilities.showModalView('Informational', 'Combat Encounter Deleted');
+                   // ViewUtilities.showModalView('Informational', 'Combat Encounter Deleted');
                     RealmApplication.vent.trigger('viewCombatEncounterList');
                 },
                 function(error) {

@@ -4,7 +4,6 @@ define(['backbone'],
         var CombatRound = Backbone.Model.extend({
             defaults: {
                 encounterID : '',
-                status: 'open',
                 roundNumber : 0
             },
 

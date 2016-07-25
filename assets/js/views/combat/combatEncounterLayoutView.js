@@ -12,6 +12,12 @@ define(['marionette',
                 roundsTableRegion : '#roundsTableRegion',
                 roundsButtonsRegion : '#roundsButtonsRegion'
             },
+            templateHelpers : function() {
+                var encounterDescription = this.encounter.getDescription();
+                return {
+                    encounterDescription : encounterDescription
+                }
+            },
             encounter : null,
             encounterRounds : null,
             roundToShow : null,

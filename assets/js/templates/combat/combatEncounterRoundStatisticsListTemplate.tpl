@@ -1,6 +1,6 @@
-<caption>Character Statistics</caption>
+<caption><strong>Character Statistics</strong></caption>
 <thead>
-<tr>d
+<tr>
     <th>Name-ID</th>
     <th>Initiative</th>
     <th>Alertness</th>

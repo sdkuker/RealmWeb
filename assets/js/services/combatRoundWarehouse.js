@@ -60,9 +60,10 @@ define(['jquery',
                 if (cache[myKey]) {
                     deferred.resolve(cache[myKey]);
                 } else {
-                    cache[myKey] = new CombatRoundCollection({}, {encounterID : encounter.get('id')});
-                    cache[myKey].on('sync',function(collection) {
-                        deferred.resolve(collection);
+                    var myCollection = new CombatRoundCollection({}, {encounterID : encounter.get('id')});
+                    myCollection.on('sync',function(collection) {
+                        cache[myKey] = collection;
+                        deferred.resolve(cache[myKey]);
                     })
                 }
                 return deferred.promise();

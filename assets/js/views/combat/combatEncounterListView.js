@@ -47,7 +47,7 @@ define(['marionette',
         triggerDeleteCombatEncounterFunction : function() {
             this.collection.remove(selectedModel);
             Logger.logInfo('combat encounter model deleted');
-            ViewUtilities.showModalView('Informational', 'Combat enounter with description: ' + selectedModel.getDescription() + ' Deleted');
+           // ViewUtilities.showModalView('Informational', 'Combat enounter with description: ' + selectedModel.getDescription() + ' Deleted');
             selectedModel = null;
             RealmApplication.vent.trigger('viewCombatEncounterList');
         },

@@ -8,7 +8,7 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/characterCombatRoundS
             myEncounterRoundID : null,
             initialize: function(models, options) {
                 // return all the rounds if no encounter id was specified
-                // you cannot  a round to a collection generated with a query
+                // you cannot  add round to a collection generated with a query
                 if (options) {
                     this.myEncounterID = encodeURI(options.encounterID);
                     this.myRoundID = encodeURI(options.roundID);
