@@ -4,8 +4,11 @@ define(['marionette',
     'utility/viewUtilities',
     'models/combat/combatEncounterModel',
     "tpl!templates/combat/combatEncounterListTemplate.tpl",
-    'views/combat/combatEncounterListItemView'], function (Marionette, RealmApplication, Logger, ViewUtilities,
-                   CombatEncounterModel, CombatEncounterListTemplate, CombatEncounterView) {
+    'views/combat/combatEncounterListItemView',
+    'services/combatRoundWarehouse'],
+    function (Marionette, RealmApplication, Logger, ViewUtilities,
+                CombatEncounterModel, CombatEncounterListTemplate, CombatEncounterView,
+                CombatRoundWarehouse) {
     var CombatEncounterListView = Marionette.CompositeView.extend({
         tagName : 'table',
         id : 'combatEncounterTable',
@@ -45,16 +48,22 @@ define(['marionette',
             RealmApplication.vent.trigger('combatEncounterListOpenCombatEncounter', selectedModel);
         },
         triggerDeleteCombatEncounterFunction : function() {
-            this.collection.remove(selectedModel);
-            Logger.logInfo('combat encounter model deleted');
-           // ViewUtilities.showModalView('Informational', 'Combat enounter with description: ' + selectedModel.getDescription() + ' Deleted');
-            selectedModel = null;
-            RealmApplication.vent.trigger('viewCombatEncounterList');
+            var self = this;
+            $.when(CombatRoundWarehouse.deleteCombatRoundsForEncounter(selectedModel)).then(
+                function() {
+                    self.collection.remove(selectedModel);
+                    Logger.logInfo('combat encounter model deleted');
+                    // ViewUtilities.showModalView('Informational', 'Combat enounter with description: ' + selectedModel.getDescription() + ' Deleted');
+                    selectedModel = null;
+                    RealmApplication.vent.trigger('viewCombatEncounterList');
+                }
+            )
         },
         combatEncounterSelected : function(tableRow, model) {
             $(tableRow.el).siblings().removeClass('info');
             $(tableRow.el).addClass('info');
             selectedModel = model;
+            RealmApplication.vent.trigger('combatEnconterList:encounterSelected');
         }
     });
 

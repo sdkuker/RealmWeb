@@ -42,6 +42,19 @@ define(['jquery',
                     }
                 )
                 return deferred.promise();
+            };
+
+            // deletes the round.  Removing from the 'all' collection - should also appear in any
+            // encounter specific collections that the round belongs to.
+            this.removeCombatRound = function(combatRoundToBeRemoved) {
+                var deferred = $.Deferred();
+                $.when(getAllCombatRounds()).then (
+                    function(myAllRoundsCollection) {
+                        myAllRoundsCollection.remove(combatRoundToBeRemoved);
+                        deferred.resolve();
+                    }
+                )
+                return deferred.promise();
             }
 
             // private functions

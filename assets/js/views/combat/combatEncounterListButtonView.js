@@ -12,6 +12,22 @@ define(['marionette',
             'click #openButton' : 'openButtonClicked',
             'click #deleteButton' : 'deleteButtonClicked'
         },
+        initialize: function() {
+            var self = this;
+            RealmApplication.vent.bind('combatEnconterList:encounterSelected', function () {
+                self.encounterSelected = true;
+                self.render();
+            });
+        },
+        onRender : function() {
+            self = this;
+            if (self.encounterSelected) {
+                $('#changeButton').removeAttr('disabled');
+                $('#openButton').removeAttr('disabled');
+                $('#deleteButton').removeAttr('disabled');
+            }
+        },
+        encounterSelected : false,
         addButtonClicked : function() {
             RealmApplication.vent.trigger('combatEncounterListAddButton:clicked');
         },

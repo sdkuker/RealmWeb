@@ -34,6 +34,28 @@ define(['jquery',
                 return deferred.promise();
             };
 
+            this.deleteCombatRoundsForEncounter = function(combatEncounter) {
+                var deferred = $.Deferred();
+                $.when(getCombatRoundCollectionForEncounter(combatEncounter)).then(
+                    function(myCombatRoundCollection) {
+                        myCombatRoundCollection.each(function(roundModel, index) {
+                            if (roundModel.get('id') != undefined) {
+                                $.when(CombatRoundFactory.removeCombatRound(roundModel)).then(
+                                    function() {
+                                        if (index >= myCombatRoundCollection.size()) {
+                                            deferred.resolve();
+                                        }
+                                    }
+                                )
+                            }
+                            deferred.resolve();
+                        })
+                    }
+                )
+
+                return deferred.promise();
+            };
+
             this.getCombatRoundWithID = function(combatRoundID) {
                 var deferred = $.Deferred();
                 $.when(getCombatRoundCollection()). then(
