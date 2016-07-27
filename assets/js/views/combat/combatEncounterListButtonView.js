@@ -12,12 +12,12 @@ define(['marionette',
             'click #openButton' : 'openButtonClicked',
             'click #deleteButton' : 'deleteButtonClicked'
         },
-        initialize: function() {
-            var self = this;
-            RealmApplication.vent.bind('combatEnconterList:encounterSelected', function () {
-                self.encounterSelected = true;
-                self.render();
-            });
+        initialize: function(options) {
+            this.listenTo(options.listView, 'encounterSelected', this.modelSelected);
+        },
+        modelSelected : function() {
+            self.encounterSelected = true;
+            self.render();
         },
         onRender : function() {
             self = this;

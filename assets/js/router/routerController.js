@@ -27,7 +27,7 @@ define(['jquery', 'realmApplication'
                         $.when(CombatEncounterWarehouse.getAllCombatEncounters()).then(
                             function(myCombatEncounterCollection) {
                                 var combatEncounterListView = new CombatEncounterListView({collection: myCombatEncounterCollection});
-                                var combatEncounterListButtonView = new CombatEncounterListButtonView();
+                                var combatEncounterListButtonView = new CombatEncounterListButtonView({listView: combatEncounterListView});
                                 combatEncounterListLayoutView.getRegion('combatEncountersTableRegion').show(combatEncounterListView);
                                 combatEncounterListLayoutView.getRegion('buttonsRegion').show(combatEncounterListButtonView);
                             }
