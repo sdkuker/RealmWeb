@@ -58,7 +58,7 @@ define(['jquery',
                 if (cache[myKey]) {
                     deferred.resolve(cache[myKey]);
                 } else {
-                    cache[myKey] = new CombatRoundStatisticCollection({}, {roundID : round.get('id'), encounterID : round.get('encounterID')});
+                    cache[myKey] = new CombatRoundStatisticCollection(null, {roundID : round.get('id'), encounterID : round.get('encounterID')});
                     cache[myKey].on('sync',function(collection) {
                         deferred.resolve(collection);
                     })

@@ -98,7 +98,7 @@ define(['jquery',
                 if (cache[myKey]) {
                     deferred.resolve(cache[myKey]);
                 } else {
-                    var myCollection = new CombatRoundCollection({}, {encounterID : encounter.get('id')});
+                    var myCollection = new CombatRoundCollection(null, {encounterID : encounter.get('id')});
                     myCollection.on('sync',function(collection) {
                         cache[myKey] = collection;
                         deferred.resolve(cache[myKey]);
