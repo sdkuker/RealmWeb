@@ -37,8 +37,10 @@ define(['jquery',
                 var deferred = $.Deferred();
                 $.when(getAllCombatRounds()).then (
                     function(myAllRoundsCollection) {
+                        myAllRoundsCollection.on('add', function(addedCombatRound) {
+                            deferred.resolve(addedCombatRound);
+                        })
                         myAllRoundsCollection.add(newCombatRound);
-                        deferred.resolve();
                     }
                 )
                 return deferred.promise();
@@ -48,14 +50,19 @@ define(['jquery',
             // encounter specific collections that the round belongs to.
             this.removeCombatRound = function(combatRoundToBeRemoved) {
                 var deferred = $.Deferred();
-                $.when(getAllCombatRounds()).then (
-                    function(myAllRoundsCollection) {
-                        myAllRoundsCollection.remove(combatRoundToBeRemoved);
-                        deferred.resolve();
-                    }
-                )
+                if (combatRoundToBeRemoved.get('id')) {
+                    $.when(getAllCombatRounds()).then (
+                        function(myAllRoundsCollection) {
+                            myAllRoundsCollection.remove(combatRoundToBeRemoved);
+                            deferred.resolve();
+                        }
+                    )
+                } else {
+                    deferred.resolve();
+                }
+
                 return deferred.promise();
-            }
+            };
 
             // private functions
             createFirstRound = function(combatEncounter, collectionOfExistingCombatRounds) {
@@ -64,13 +71,10 @@ define(['jquery',
                 
                 // create the round
                 $.when(self.addCombatRound({encounterID : combatEncounter.get('id'), roundNumber : 1})).then (
-
-                    collectionOfExistingCombatRounds.on('add', function(event) {
-                        if (event.get('roundNumber') == 1) {
-                            combatEncounter.set('openRound', 1);
-                            deferred.resolve(event);
-                        }
-                    })
+                    function(newCombatRound) {
+                        combatEncounter.set('openRound', 1);
+                        deferred.resolve(newCombatRound);
+                    }
                 )
                 return deferred.promise();
             };

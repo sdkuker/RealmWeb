@@ -1,8 +1,9 @@
 define(['jquery',
         'logger',
         'collections/combat/combatRoundCollection',
-        'services/combatRoundFactory'],
-    function ($, Logger, CombatRoundCollection, CombatRoundFactory) {
+        'services/combatRoundFactory',
+        'services/characterCombatRoundStatisticWarehouse'],
+    function ($, Logger, CombatRoundCollection, CombatRoundFactory, CombatRoundStatisticWarehouse) {
 
         // I am the first stop for getting combat rounds.  If I don't have them, I'll get them from Firebase
         // and put them in my cache.  If I have them in my cache, I'll return them.
@@ -36,22 +37,37 @@ define(['jquery',
 
             this.deleteCombatRoundsForEncounter = function(combatEncounter) {
                 var deferred = $.Deferred();
+                var self = this;
                 $.when(getCombatRoundCollectionForEncounter(combatEncounter)).then(
                     function(myCombatRoundCollection) {
-                        myCombatRoundCollection.each(function(roundModel, index) {
-                            if (roundModel.get('id') != undefined) {
-                                $.when(CombatRoundFactory.removeCombatRound(roundModel)).then(
-                                    function() {
-                                        if (index >= myCombatRoundCollection.size()) {
-                                            deferred.resolve();
-                                        }
-                                    }
-                                )
-                            }
-                            deferred.resolve();
-                        })
+                        var arrayOfRoundDeferred = [];
+                        myCombatRoundCollection.each(function(combatRound, index) {
+                            arrayOfRoundDeferred.push(self.deleteRoundAndStatisticsForRound(combatRound));
+                        });
+                       $.when.apply($, arrayOfRoundDeferred).then(function() {
+                           deferred.resolve();
+                       });
                     }
                 )
+
+                return deferred.promise();
+            };
+
+            this.deleteRoundAndStatisticsForRound = function(combatRound) {
+                var deferred = $.Deferred();
+                if (combatRound && combatRound.get('id') != undefined) {
+                    $.when(CombatRoundStatisticWarehouse.removeCombatRoundStatisticsForRound(combatRound)).then(
+                        function() {
+                            $.when(CombatRoundFactory.removeCombatRound(combatRound)).then(
+                                function() {
+                                    deferred.resolve();
+                                }
+                            )
+                        }
+                    )
+                } else {
+                    deferred.resolve();
+                }
 
                 return deferred.promise();
             };

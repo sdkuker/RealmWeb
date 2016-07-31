@@ -34,6 +34,23 @@ define(['jquery',
                 return deferred.promise();
             };
 
+            this.removeCombatRoundStatisticsForRound = function(combatRound) {
+                var deferred = $.Deferred();
+                $.when(getCombatRoundStatisticCollectionForRound(combatRound)).then(
+                    function(myStatisticsCollection) {
+                        var arrayOfRoundDeferred = [];
+                        myStatisticsCollection.each(function(statisticsModel, index) {
+                            arrayOfRoundDeferred.push(CombatRoundStatisticFactory.removeStatistic(statisticsModel));
+                        });
+                        $.when.apply($, arrayOfRoundDeferred).then(function() {
+                            deferred.resolve();
+                        });
+                    }
+                )
+
+                return deferred.promise();
+            };
+
             // private functions
             getCombatRoundStatisticCollectionForRound = function(round) {
                 var myKey = collectionKey + 'round:' + round.get('id');

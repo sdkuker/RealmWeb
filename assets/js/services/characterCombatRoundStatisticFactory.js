@@ -45,6 +45,23 @@ define(['jquery',
                     }
                 )
                 return deferred.promise();
+            };
+
+            // deletes the stastic.  Removing from the 'all' collection - should also appear in any
+            // specific collections that the statistic belongs to.
+            this.removeStatistic = function(aStatisticToBeRemoved) {
+                var deferred = $.Deferred();
+                if (aStatisticToBeRemoved.get('id')) {
+                    $.when(getAllStatistics()).then (
+                        function(myAllStatisticsCollection) {
+                            myAllStatisticsCollection.remove(aStatisticToBeRemoved);
+                            deferred.resolve();
+                        }
+                    )
+                } else {
+                    deferred.resolve();
+                }
+                return deferred.promise();
             }
 
             // private functions
