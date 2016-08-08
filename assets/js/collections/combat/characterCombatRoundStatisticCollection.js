@@ -30,7 +30,7 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/characterCombatRoundS
             },
             hasAnyStatistics : function() {
                 var self = this;
-                return self.length > 1;
+                return self.length > 0;
             }
         });
 

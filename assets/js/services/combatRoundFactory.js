@@ -79,6 +79,21 @@ define(['jquery',
                 return deferred.promise();
             };
 
+            createSubsequentRound = function(combatEncounter, collectionOfExistingCombatRounds) {
+
+                var deferred = $.Deferred();
+
+                // create the round
+                var newRoundNumber = combatEncounter.get('openRound') + 1;
+                $.when(self.addCombatRound({encounterID : combatEncounter.get('id'), roundNumber : newRoundNumber})).then (
+                    function(newCombatRound) {
+                        combatEncounter.set('openRound', newRoundNumber);
+                        deferred.resolve(newCombatRound);
+                    }
+                )
+                return deferred.promise();
+            };
+
             getAllCombatRounds = function() {
                 var deferred = $.Deferred();
                 $.when(getCombatRoundCollection()).then(
