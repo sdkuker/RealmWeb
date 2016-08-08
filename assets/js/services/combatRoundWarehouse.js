@@ -21,14 +21,29 @@ define(['jquery',
                 $.when(getCombatRoundCollectionForEncounter(combatEncounter)). then(
                     function(myCombatRoundCollection) {
                         if (! combatEncounter.hasAnyRounds() ) {
-                            $.when(CombatRoundFactory.createNextCombatRound(combatEncounter, myCombatRoundCollection)). then(
-                                function() {
-                                    deferred.resolve(myCombatRoundCollection);
+                            $.when(self.createNextCombatRoundsForEncounter(combatEncounter)). then(
+                                function(newCombatRoundCollection) {
+                                    deferred.resolve(newCombatRoundCollection);
                                 }
                             )
                         } else {
                             deferred.resolve(myCombatRoundCollection);  
                         }
+                    }
+                )
+
+                return deferred.promise();
+            };
+
+            this.createNextCombatRoundsForEncounter = function(combatEncounter) {
+                var deferred = $.Deferred();
+                $.when(getCombatRoundCollectionForEncounter(combatEncounter)). then(
+                    function(myCombatRoundCollection) {
+                        $.when(CombatRoundFactory.createNextCombatRound(combatEncounter, myCombatRoundCollection)). then(
+                            function() {
+                                deferred.resolve(myCombatRoundCollection);
+                            }
+                        )
                     }
                 )
 
