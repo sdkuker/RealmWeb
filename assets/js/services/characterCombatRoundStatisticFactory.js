@@ -18,7 +18,7 @@ define(['jquery',
             // meaning they have to be objects that have been retrived from Firebase
             this.createStatisticsForRound = function(round, collectionOfExistingStatisticsForRound) {
                 var deferred = $.Deferred();
-                if (collectionOfExistingStatisticsForRound.hasAnyStatistics()) {
+                if (round.get('roundNumber') > 1) {
                     $.when(createSubsequentRoundStatistics(round, collectionOfExistingStatisticsForRound)).then (
                         function() {
                             deferred.resolve(collectionOfExistingStatisticsForRound);
@@ -98,6 +98,41 @@ define(['jquery',
 
                 return deferred.promise();
             };
+
+            createSubsequentRoundStatistics = function(round, collectionOfExistingStatisticsForRound) {
+
+                var deferred = $.Deferred();
+
+                $.when(getAllCharacters()).then(
+                    function(myCharactersCollection) {
+                        // you'll loop through all the characters, but for now, just dummy one up.
+                        var testStatistic = {};
+
+                        testStatistic.encounterRoundID = collectionOfExistingStatisticsForRound.formatEncounterRoundID(round.get('encounterID'), round.get('id'));
+                        testStatistic.characterID = round.get('roundNumber') * 10  + 5;
+                        testStatistic.initiative = round.get('roundNumber') * 10  + 1;
+                        testStatistic.alertness = round.get('roundNumber') * 10  + 2;
+                        testStatistic.observation = round.get('roundNumber') * 10  + 3;
+                        testStatistic.totalHits = round.get('roundNumber') * 10  + 4;
+                        testStatistic.bleeding = round.get('roundNumber') * 10  + 5;
+                        testStatistic.roundsStillStunned = round.get('roundNumber') * 10  + 6;
+                        testStatistic.negativeModifier = round.get('roundNumber') * 10  + 7;
+                        testStatistic.regeneration = round.get('roundNumber') * 10  + 8;
+                        testStatistic.hitsAtStartOfRound = round.get('roundNumber') * 10  + 9;
+                        testStatistic.hitsTakenDuringRound = round.get('roundNumber') * 10  + 10;
+                        testStatistic.characterTotalHitPointsAtStartOfRound = round.get('roundNumber');
+
+                        $.when(self.addStatistic(testStatistic)).then (
+                            function(myStatistic) {
+                                deferred.resolve(myStatistic);
+                            }
+                        )
+                    }
+                )
+
+                return deferred.promise();
+            };
+
 
             getAllStatistics = function() {
                 var deferred = $.Deferred();

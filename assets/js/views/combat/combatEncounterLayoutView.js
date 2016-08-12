@@ -23,31 +23,18 @@ define(['marionette',
             roundToShow : null,
             roundIdentifierToShow : 0,
             roundStatistics : null,
-            statisticsView : null,
             buttonsView : null,
             initialize : function(options) {
                 self = this;
                 self.encounter = options.encounter;
-                self.buttonsView = new ButtonView({model : this.encounter});
-            },
-            onShow: function() {
-                var self = this;
-                if (self.statisticsView) {
-                    self.statisticsView.collection.reset(self.roundStatistics.models);
-                } else {
-                    self.statisticsView = new StatisticsView({collection: self.roundStatistics});
-                }
-
-                this.listenTo(self.buttonsView, 'combatEncounterNextRoundButton:clicked', this.createAndDisplayNextRound);
-                this.showChildView('roundsTableRegion', self.statisticsView);
-                this.showChildView('roundsButtonsRegion', self.buttonsView);
-
             },
             onRender: function() {
                 var self = this;
-                if (self.statisticsView && self.statisticsView.collection) {
-                    self.statisticsView.collection.reset(self.roundStatistics.models);
-                }
+                var statisticsView = new StatisticsView({collection: self.roundStatistics});
+                var buttonsView = new ButtonView({model : this.encounter});
+                this.listenTo(buttonsView, 'combatEncounterNextRoundButton:clicked', this.createAndDisplayNextRound);
+                this.showChildView('roundsTableRegion', statisticsView);
+                this.showChildView('roundsButtonsRegion', buttonsView);
             },
             createAndDisplayNextRound : function() {
                 var self = this;
