@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a3adb2a7-14e6-4f04-b818-55fea9bb621c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js" afterPath="$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/templates/combat/combatEncounterLayoutTemplate.tpl" afterPath="$PROJECT_DIR$/assets/js/templates/combat/combatEncounterLayoutTemplate.tpl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/templates/combat/combatEncounterRoundStatisticsListTemplate.tpl" afterPath="$PROJECT_DIR$/assets/js/templates/combat/combatEncounterRoundStatisticsListTemplate.tpl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/collections/combat/characterCombatRoundStatisticCollection.js" afterPath="$PROJECT_DIR$/assets/js/collections/combat/characterCombatRoundStatisticCollection.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/templates/combat/combatEncounterRoundStatisticsListTemplate.tpl" afterPath="$PROJECT_DIR$/assets/js/templates/combat/combatEncounterRoundStatisticsListTemplate.tpl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/templates/combat/combatEncounterLayoutTemplate.tpl" afterPath="$PROJECT_DIR$/assets/js/templates/combat/combatEncounterLayoutTemplate.tpl" />
     </list>
     <ignored path="RealmWeb.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,11 +26,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="combatRoundWarehouse.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="combatRoundWarehouse.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/services/combatRoundWarehouse.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+            <state relative-caret-position="225">
+              <caret line="37" column="51" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="combatEncounterButtonView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterButtonView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="combatEncounterLayoutView.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routerController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/router/routerController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="137">
+              <caret line="50" column="57" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -39,18 +69,8 @@
       <file leaf-file-name="characterCombatRoundStatisticFactory.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/services/characterCombatRoundStatisticFactory.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="characterCombatRoundStatisticCollection.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/collections/combat/characterCombatRoundStatisticCollection.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="401">
-              <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
+            <state relative-caret-position="141">
+              <caret line="42" column="24" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -59,8 +79,8 @@
       <file leaf-file-name="combatRoundFactory.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/services/combatRoundFactory.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="35" column="31" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="31" />
+            <state relative-caret-position="231">
+              <caret line="89" column="24" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -111,7 +131,6 @@
         <option value="$PROJECT_DIR$/assets/js/templates/combat/combatEncounterRoundStatisticItemTemplate.tpl" />
         <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsItemView.js" />
         <option value="$PROJECT_DIR$/assets/js/collections/combat/combatRoundCollection.js" />
-        <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterButtonView.js" />
         <option value="$PROJECT_DIR$/assets/js/models/combat/characterCombatRoundStatisticModel.js" />
         <option value="$PROJECT_DIR$/assets/js/models/combat/combatEncounterModel.js" />
         <option value="$PROJECT_DIR$/assets/js/templates/combat/addCombatEncounterTemplate.tpl" />
@@ -123,7 +142,6 @@
         <option value="$PROJECT_DIR$/assets/js/models/combat/combatRoundModel.js" />
         <option value="$PROJECT_DIR$/assets/js/views/combat/addChangeCombatEncounterView.js" />
         <option value="$PROJECT_DIR$/assets/js/templates/combat/combatEncounterListButtonTemplate.tpl" />
-        <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js" />
         <option value="$PROJECT_DIR$/assets/js/router/routerController.js" />
         <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterListButtonView.js" />
         <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterListView.js" />
@@ -132,6 +150,8 @@
         <option value="$PROJECT_DIR$/assets/js/services/combatRoundWarehouse.js" />
         <option value="$PROJECT_DIR$/assets/js/services/combatRoundFactory.js" />
         <option value="$PROJECT_DIR$/assets/js/collections/combat/characterCombatRoundStatisticCollection.js" />
+        <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterButtonView.js" />
+        <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js" />
       </list>
     </option>
   </component>
@@ -142,10 +162,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="103" />
-    <option name="y" value="103" />
-    <option name="width" value="1247" />
-    <option name="height" value="730" />
+    <option name="x" value="129" />
+    <option name="y" value="67" />
+    <option name="width" value="1273" />
+    <option name="height" value="758" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -172,6 +192,21 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="RealmWeb">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -312,69 +347,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collections" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collections" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="combat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="RealmWeb">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -521,27 +493,28 @@
       <workItem from="1470002500148" duration="3055000" />
       <workItem from="1470005694233" duration="1350000" />
       <workItem from="1470615646261" duration="34000" />
-      <workItem from="1470615697855" duration="2670000" />
+      <workItem from="1470615697855" duration="3278000" />
+      <workItem from="1470970609072" duration="4073000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118184000" />
+    <option name="totallyTimeSpent" value="122865000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="103" y="103" width="1247" height="730" extended-state="0" />
+    <frame x="129" y="67" width="1273" height="758" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32871124" sideWeight="0.49078342" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32108626" sideWeight="0.49078342" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3338558" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27177176" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24956217" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2691358" sideWeight="0.5092166" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27742946" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3228228" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -632,38 +605,52 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/assets/js/services/combatRoundFactory.js</url>
           <line>89</line>
-          <properties />
           <option name="timeStamp" value="570" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/assets/js/services/combatRoundFactory.js</url>
           <line>83</line>
-          <properties />
           <option name="timeStamp" value="571" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/js/services/combatRoundWarehouse.js</url>
-          <line>22</line>
-          <properties />
-          <option name="timeStamp" value="572" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/assets/js/services/characterCombatRoundStatisticFactory.js</url>
           <line>42</line>
-          <properties />
           <option name="timeStamp" value="573" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/assets/js/services/characterCombatRoundStatisticFactory.js</url>
           <line>20</line>
-          <properties />
           <option name="timeStamp" value="574" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js</url>
+          <line>52</line>
+          <properties />
+          <option name="timeStamp" value="577" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js</url>
+          <line>57</line>
+          <properties />
+          <option name="timeStamp" value="578" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js</url>
+          <line>47</line>
+          <properties />
+          <option name="timeStamp" value="580" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js</url>
+          <line>55</line>
+          <properties />
+          <option name="timeStamp" value="581" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="575" />
+      <option name="time" value="582" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -824,13 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterButtonView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/templates/combat/combatEncounterListButtonTemplate.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -850,13 +830,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterListButtonView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="40" column="80" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="80" />
         </state>
       </provider>
     </entry>
@@ -909,20 +882,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/router/routerController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="28" column="62" selection-start-line="28" selection-start-column="62" selection-end-line="28" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsListView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsItemView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -951,13 +910,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/views/combat/addChangeCombatEncounterView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
@@ -969,15 +921,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="9" column="16" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/services/combatRoundFactory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="35" column="31" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1013,26 +956,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/services/characterCombatRoundStatisticFactory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/collections/combat/characterCombatRoundStatisticCollection.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
           <caret line="32" column="38" selection-start-line="32" selection-start-column="38" selection-end-line="32" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/services/combatRoundWarehouse.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+        <state relative-caret-position="225">
+          <caret line="37" column="51" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsListView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterListButtonView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="15" column="73" selection-start-line="15" selection-start-column="73" selection-end-line="15" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/router/routerController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="50" column="57" selection-start-line="50" selection-start-column="57" selection-end-line="50" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterButtonView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/services/combatRoundFactory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="89" column="24" selection-start-line="89" selection-start-column="24" selection-end-line="89" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/services/characterCombatRoundStatisticFactory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="42" column="24" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
           <folding />
         </state>
       </provider>

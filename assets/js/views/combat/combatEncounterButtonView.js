@@ -16,7 +16,7 @@ define(['marionette',
                 'click #criticalHitsButton' : 'criticalHitsButtonClicked'
             },
             nextRoundButtonClicked : function() {
-                RealmApplication.vent.trigger('combatEncounterNextRoundButton:clicked');
+                this.trigger('combatEncounterNextRoundButton:clicked');
             },
             criticalHitsButtonClicked : function() {
                 RealmApplication.vent.trigger('criticalHitsButton:clicked');

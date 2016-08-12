@@ -23,14 +23,44 @@ define(['marionette',
             roundToShow : null,
             roundIdentifierToShow : 0,
             roundStatistics : null,
+            statisticsView : null,
+            buttonsView : null,
             initialize : function(options) {
                 self = this;
                 self.encounter = options.encounter;
+                self.buttonsView = new ButtonView({model : this.encounter});
             },
             onShow: function() {
                 var self = this;
-                this.showChildView('roundsTableRegion', new StatisticsView({collection: self.roundStatistics}));
-                this.showChildView('roundsButtonsRegion', new ButtonView({model : this.encounter}));
+                if (self.statisticsView) {
+                    self.statisticsView.collection.reset(self.roundStatistics.models);
+                } else {
+                    self.statisticsView = new StatisticsView({collection: self.roundStatistics});
+                }
+
+                this.listenTo(self.buttonsView, 'combatEncounterNextRoundButton:clicked', this.createAndDisplayNextRound);
+                this.showChildView('roundsTableRegion', self.statisticsView);
+                this.showChildView('roundsButtonsRegion', self.buttonsView);
+
+            },
+            onRender: function() {
+                var self = this;
+                if (self.statisticsView && self.statisticsView.collection) {
+                    self.statisticsView.collection.reset(self.roundStatistics.models);
+                }
+            },
+            createAndDisplayNextRound : function() {
+                var self = this;
+                $.when( CombatRoundWarehouse.createNextCombatRoundsForEncounter(self.encounter)).then (
+                    function(combatRoundCollection) {
+                        $.when(self.prepareToShowRound(self.encounter.get('openRound'))).then (
+                            function() {
+                                self.render();
+                            }
+                        )
+
+                    }
+                )
 
             },
             prepareToShowRound : function(roundIdentifier) {
