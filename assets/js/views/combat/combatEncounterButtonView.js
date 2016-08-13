@@ -10,12 +10,18 @@ define(['marionette',
             model: CombatEncounterModel,
             initialize : function(options) {
                 self = this;
-                self.displayedRound = options.model.get('openRound');
+                if (options.roundIdentifierToShow = 'open') {
+                    self.displayedRoundNumber = options.model.get('openRound');
+                } else {
+                    self.displayedRoundNumber = options.roundIdentifierToShow;
+                }
+
             },
-            displayedRound : null,
+            displayedRoundNumber : null,
             events : {
                 'click #nextRoundButton' : 'nextRoundButtonClicked',
-                'click #criticalHitsButton' : 'criticalHitsButtonClicked'
+                'click #criticalHitsButton' : 'criticalHitsButtonClicked',
+                'change #displayedRoundNumber' : 'displayedRoundNumberSelected',
             },
             onRender : function() {
                 var self = this;
@@ -27,17 +33,19 @@ define(['marionette',
             criticalHitsButtonClicked : function() {
                 RealmApplication.vent.trigger('criticalHitsButton:clicked');
             },
+            displayedRoundNumberSelected : function(event) {
+                var self = this;
+                self.displayedRoundNumber = $('#displayedRoundNumber option:selected').val();
+                this.trigger('combatEncounterRoundNumberToDisplay:selected', self.displayedRoundNumber);
+            },
             populateRounds : function() {
                 var self = this;
-                var displayedRoundsSelectElement = this.$el.find('#displayedRound');
-                displayedRoundsSelectElement.empty();
-                var roundsSelectElement = null;
+                var displayedRoundNumberSelectElement = this.$el.find('#displayedRoundNumber');
+                displayedRoundNumberSelectElement.empty();
                 for(index = 1; index <= this.model.get('openRound'); index ++) {
-                    displayedRoundsSelectElement.append("<option value='" + index + "'>" + index + "</option>");
+                    displayedRoundNumberSelectElement.append("<option value='" + index + "'>" + index + "</option>");
                 };
-               // var openSelectOption = displayedRoundsSelectElement.find('option:first');
-                //displayedRoundsSelectElement.attr('selected', true);
-                $('#displayedRound', this.$el ).val(self.displayedRound);
+                $('#displayedRoundNumber', this.$el ).val(self.displayedRoundNumber);
 
             },
         });
