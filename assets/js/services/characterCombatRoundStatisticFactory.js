@@ -68,35 +68,44 @@ define(['jquery',
             createInitialRoundStatistics = function(round, collectionOfExistingStatisticsForRound) {
 
                 var deferred = $.Deferred();
+                var encounterRoundID = collectionOfExistingStatisticsForRound.formatEncounterRoundID(round.get('encounterID'), round.get('id'));
 
                 $.when(getAllCharacters()).then(
                     function(myCharactersCollection) {
-                        // you'll loop through all the characters, but for now, just dummy one up.
-                        var testStatistic = {};
-
-                        testStatistic.encounterRoundID = collectionOfExistingStatisticsForRound.formatEncounterRoundID(round.get('encounterID'), round.get('id'));
-                        testStatistic.characterID = '5';
-                        testStatistic.initiative = 1;
-                        testStatistic.alertness = 2;
-                        testStatistic.observation = 3;
-                        testStatistic.totalHits = 4;
-                        testStatistic.bleeding = 5;
-                        testStatistic.roundsStillStunned = 6;
-                        testStatistic.negativeModifier = 7;
-                        testStatistic.regeneration = 8;
-                        testStatistic.hitsAtStartOfRound = 9;
-                        testStatistic.hitsTakenDuringRound = 10;
-                        testStatistic.characterTotalHitPointsAtStartOfRound = 0;
-
-                        $.when(self.addStatistic(testStatistic)).then (
-                            function(myStatistic) {
-                                deferred.resolve(myStatistic);
-                            }
-                        )
+                        var arrayOfAddStatisticsDeferred = [];
+                        myCharactersCollection.each(function(character, index) {
+                            var myCharacterStatisticObject = createStatisticsObjectForCharacter(character, encounterRoundID);
+                            arrayOfAddStatisticsDeferred.push(self.addStatistic(myCharacterStatisticObject));
+                        });
+                        $.when.apply($, arrayOfAddStatisticsDeferred).then(function() {
+                            deferred.resolve();
+                        });
                     }
                 )
 
                 return deferred.promise();
+            };
+
+            createStatisticsObjectForCharacter = function(aCharacter, encounterRoundID) {
+
+                var characterStatisticsObject = {};
+
+                //TODO check this with what's in java
+                characterStatisticsObject.encounterRoundID = encounterRoundID;
+                characterStatisticsObject.characterID = aCharacter.get('id');
+                characterStatisticsObject.initiative = aCharacter.get('initiative');
+                characterStatisticsObject.alertness = aCharacter.get('alertnessSkill');
+                characterStatisticsObject.observation = aCharacter.get('observationSkill');
+                characterStatisticsObject.totalHits = aCharacter.get('hitPoints');
+                characterStatisticsObject.bleeding = 1000;
+                characterStatisticsObject.roundsStillStunned = 1000;
+                characterStatisticsObject.negativeModifier = 1000;
+                characterStatisticsObject.regeneration = 1000;
+                characterStatisticsObject.hitsAtStartOfRound = 1000;
+                characterStatisticsObject.hitsTakenDuringRound = 1000;
+                characterStatisticsObject.characterTotalHitPointsAtStartOfRound = 1000;
+
+                return characterStatisticsObject;
             };
 
             createSubsequentRoundStatistics = function(round, collectionOfExistingStatisticsForRound) {
