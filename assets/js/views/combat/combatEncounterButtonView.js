@@ -10,7 +10,7 @@ define(['marionette',
             model: CombatEncounterModel,
             initialize : function(options) {
                 self = this;
-                if (options.roundIdentifierToShow = 'open') {
+                if (options.roundIdentifierToShow == 'open') {
                     self.displayedRoundNumber = options.model.get('openRound');
                 } else {
                     self.displayedRoundNumber = options.roundIdentifierToShow;

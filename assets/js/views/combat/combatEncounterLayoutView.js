@@ -39,9 +39,12 @@ define(['marionette',
             },
             displayRoundNumber : function(roundNumberToDisplay) {
                 var self = this;
-                self.roundIdentifierToShow = roundNumberToDisplay
-                self.prepareToShowRound(self.roundIdentifierToShow);
-                self.render();
+                self.roundIdentifierToShow = roundNumberToDisplay;
+                $.when(self.prepareToShowRound(self.roundIdentifierToShow)).then(
+                    function() {
+                        self.render();
+                    }
+                )
             },
             createAndDisplayNextRound : function() {
                 var self = this;
