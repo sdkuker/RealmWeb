@@ -6,14 +6,12 @@ define(['marionette',
         tagName : 'tr',
         model : StatisticsModel,
         template: StatisticsItemTemplate,
-        // templateHelpers : function() {
-        //     var myPlayerName = this.model.playerName();
-        //     var characterName = decodeURI(this.model.get('name'));
-        //     return {
-        //         playerName : myPlayerName,
-        //         characterName : characterName
-        //     }
-        // },
+        templateHelpers : function() {
+            var myCharactersName = decodeURI(this.model.get('characterName'));
+            return {
+                myCharactersName : myCharactersName
+            }
+        },
         events : {
             'click' : 'combatRoundStatisticSelected'
         },

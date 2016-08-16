@@ -6,6 +6,7 @@ define(['backbone'],
             defaults: {
                 encounterRoundID : '',
                 characterID : '',
+                characterName : '',
                 initiative : 0,
                 alertness : 0,
                 observation : 0,
@@ -16,7 +17,7 @@ define(['backbone'],
                 regeneration : 0,
                 hitsAtStartOfRound : 0,
                 hitsTakenDuringRound : 0,
-                characterTotalHitPointsAtStartOfRound : 0,
+                characterTotalHitPointsAtStartOfRound : 0
             }
 
         });

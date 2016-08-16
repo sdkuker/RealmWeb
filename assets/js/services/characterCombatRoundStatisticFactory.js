@@ -93,6 +93,7 @@ define(['jquery',
                 //TODO check this with what's in java
                 characterStatisticsObject.encounterRoundID = encounterRoundID;
                 characterStatisticsObject.characterID = aCharacter.get('id');
+                characterStatisticsObject.characterName = aCharacter.get('name');
                 characterStatisticsObject.initiative = aCharacter.get('initiative');
                 characterStatisticsObject.alertness = aCharacter.get('alertnessSkill');
                 characterStatisticsObject.observation = aCharacter.get('observationSkill');

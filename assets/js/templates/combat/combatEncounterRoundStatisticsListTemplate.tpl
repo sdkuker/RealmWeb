@@ -1,7 +1,7 @@
 <caption><strong>Character Statistics</strong></caption>
 <thead>
 <tr>
-    <th>Name-ID</th>
+    <th>Name</th>
     <th>Initiative</th>
     <th>Alertness</th>
     <th>Observation</th>

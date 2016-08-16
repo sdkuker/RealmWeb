@@ -1,4 +1,4 @@
-<td><%= characterID %></td>
+<td><%- myCharactersName %></td>
 <td><%= initiative %></td>
 <td><%= alertness %></td>
 <td><%= observation %></td>
