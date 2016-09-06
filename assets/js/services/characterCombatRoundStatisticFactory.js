@@ -74,7 +74,7 @@ define(['jquery',
                     function(myCharactersCollection) {
                         var arrayOfAddStatisticsDeferred = [];
                         myCharactersCollection.each(function(character, index) {
-                            var myCharacterStatisticObject = createStatisticsObjectForCharacter(character, encounterRoundID);
+                            var myCharacterStatisticObject = createInitialRoundStatisticsObjectForCharacter(character, encounterRoundID);
                             arrayOfAddStatisticsDeferred.push(self.addStatistic(myCharacterStatisticObject));
                         });
                         $.when.apply($, arrayOfAddStatisticsDeferred).then(function() {
@@ -86,25 +86,24 @@ define(['jquery',
                 return deferred.promise();
             };
 
-            createStatisticsObjectForCharacter = function(aCharacter, encounterRoundID) {
+            createInitialRoundStatisticsObjectForCharacter = function(aCharacter, encounterRoundID) {
 
                 var characterStatisticsObject = {};
 
-                //TODO check this with what's in java
                 characterStatisticsObject.encounterRoundID = encounterRoundID;
                 characterStatisticsObject.characterID = aCharacter.get('id');
                 characterStatisticsObject.characterName = aCharacter.get('name');
                 characterStatisticsObject.initiative = aCharacter.get('initiative');
                 characterStatisticsObject.alertness = aCharacter.get('alertnessSkill');
                 characterStatisticsObject.observation = aCharacter.get('observationSkill');
-                characterStatisticsObject.totalHits = aCharacter.get('hitPoints');
-                characterStatisticsObject.bleeding = 1000;
-                characterStatisticsObject.roundsStillStunned = 1000;
-                characterStatisticsObject.negativeModifier = 1000;
-                characterStatisticsObject.regeneration = 1000;
-                characterStatisticsObject.hitsAtStartOfRound = 1000;
-                characterStatisticsObject.hitsTakenDuringRound = 1000;
-                characterStatisticsObject.characterTotalHitPointsAtStartOfRound = 1000;
+                characterStatisticsObject.totalHits = aCharacter.totalHitPoints();
+                characterStatisticsObject.bleeding = 0;
+                characterStatisticsObject.roundsStillStunned = 0;
+                characterStatisticsObject.negativeModifier = 0;
+                characterStatisticsObject.regeneration = 0;
+                characterStatisticsObject.hitsAtStartOfRound = aCharacter.totalHitPoints();
+                characterStatisticsObject.hitsTakenDuringRound = 0;
+                characterStatisticsObject.characterTotalHitPointsAtStartOfRound = aCharacter.totalHitPoints();
 
                 return characterStatisticsObject;
             };
@@ -143,6 +142,15 @@ define(['jquery',
                 return deferred.promise();
             };
 
+            getHitsforCharacterAtEndOfRound = function(aCombatRoundStatistic, aCharacter) {
+                var calculatedHitsAtEndOfRound = aCombatRoundStatistic.get('hitsAtStartOfRound') - aCombatRoundStatistic.get('hitsTakenDuringRound') -
+                    aCombatRoundStatistic.get('bleeding') + aCombatRoundStatistic.get('regeneration');
+                if (aCharacter) {
+                    return Math.min(calculatedHitsAtEndOfRound, aCharacter.totalHitPoints());
+                } else {
+                    return calculatedHitsAtEndOfRound;
+                }
+            }
 
             getAllStatistics = function() {
                 var deferred = $.Deferred();

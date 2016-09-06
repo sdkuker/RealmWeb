@@ -18,6 +18,12 @@ define(['backbone'],
                 hitsAtStartOfRound : 0,
                 hitsTakenDuringRound : 0,
                 characterTotalHitPointsAtStartOfRound : 0
+            },
+            setNegativeModifier : function(negModifierValue) {
+                if (negModifierValue > 0) {
+                    this.set({negativeModifier: negModifierValue * -1});
+                } else
+                    this.set({negativeModifier : negModifierValue});
             }
 
         });

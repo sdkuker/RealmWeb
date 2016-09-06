@@ -29,6 +29,9 @@ define(['backbone', 'services/playerWarehouse'],
                 miscItemChoice : 0,
                 adrenalDefense : 0
             },
+            totalHitPoints : function() {
+                return this.get('hitPoints') + this.get('hitPointsModifier');
+            },
             totalDefensiveBonus: function() {
                 return  this.get('quicknessBonus') +
                         this.get('racialModifier') +
