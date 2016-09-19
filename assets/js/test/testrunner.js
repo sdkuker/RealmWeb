@@ -41,7 +41,7 @@ require.config({
 });
 
 // Add test suites as necessary...(you don't need to declare them as function args...they register themselves with Mocha on load)
-define(['./assets/js/test/combatRoundAttributeDeterminer-tests.js'],
+define(['./assets/js/test/combatRoundAttributeDeterminer-tests.js', './assets/js/test/domain-die-tests.js'],
     function() {
         mocha.run();
     });
