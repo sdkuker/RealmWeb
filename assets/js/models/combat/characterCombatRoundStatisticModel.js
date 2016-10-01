@@ -31,8 +31,8 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 var theReturn = {};
 
                 var changesToCharacterTotalHits = aCharacterModel.totalHitPoints() - this.get('characterTotalHitPointsAtStartOfRound');
-                theReturn.characterID = aCharacterModel.get('characterID');
-                theReturn.characterName = aCharacterModel.get('characterName');
+                theReturn.characterID = aCharacterModel.get('id');
+                theReturn.characterName = this.get('characterName');
                 theReturn.initiative = CombatRoundAttributeDeterminer.determineBaseCombatInitiative(aCharacterModel);
                 theReturn.characterTotalHitPointsAtStartOfRound = aCharacterModel.totalHitPoints();
                 theReturn.totalHits = this.get('totalHits') + changesToCharacterTotalHits;
