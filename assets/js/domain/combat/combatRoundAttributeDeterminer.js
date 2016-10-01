@@ -1,11 +1,6 @@
-define(['jquery',
-        'domain/die/die',
-        'models/character/characterModel',
-        'models/combat/characterCombatRoundStatisticModel',
-        'collections/combat/characterCombatRoundStatisticCollection',
-        'services/characterWarehouse',
-        'collections/character/characterCollection',],
-    function ($, Die, CharacterModel, StatisticModel, StatisticCollection, CharacterWarehouse, CharacterCollection) {
+define(['jquery'
+],
+    function ($) {
 
         CombatRoundAttributeDeterminer = function() {
             // all variables are private
@@ -16,7 +11,7 @@ define(['jquery',
             // public functions
 
             // base initiative before any random die rolls are added to it.
-            this.determineBaseCombatInitiatieve = function(aCharacterModel) {
+            this.determineBaseCombatInitiative = function(aCharacterModel) {
                 if (aCharacterModel) {
                     return aCharacterModel.get('initiative') + aCharacterModel.get('initiativeModifier');
                 }

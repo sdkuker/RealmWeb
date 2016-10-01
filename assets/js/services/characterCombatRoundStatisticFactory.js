@@ -117,6 +117,9 @@ define(['jquery',
                         // you'll loop through all the characters, but for now, just dummy one up.
                         var testStatistic = {};
 
+                        //this is just a test thang
+   //                     var aRound = collectionOfExistingStatisticsForRound[0].cloneForCombat(myCharactersCollection[0]);
+
                         testStatistic.encounterRoundID = collectionOfExistingStatisticsForRound.formatEncounterRoundID(round.get('encounterID'), round.get('id'));
                         testStatistic.characterID = round.get('roundNumber') * 10  + 5;
                         testStatistic.initiative = round.get('roundNumber') * 10  + 1;

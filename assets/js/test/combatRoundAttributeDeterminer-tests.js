@@ -16,13 +16,13 @@ define(['jquery', 'domain/combat/combatRoundAttributeDeterminer', 'models/charac
             it('Only initiative positive', function() {
                 var myCharacter = new CharacterModel();
                 myCharacter.set('initiative', 5);
-                assert.isOk(AttributeDeterminer.determineBaseCombatInitiatieve(myCharacter) === 5);
+                assert.isOk(AttributeDeterminer.determineBaseCombatInitiative(myCharacter) === 5);
             });
             it('Initiative and initiativeModifier positive', function() {
                 var myCharacter = new CharacterModel();
                 myCharacter.set('initiative', 5);
                 myCharacter.set('initiativeModifier', 7);
-                assert.isOk(AttributeDeterminer.determineBaseCombatInitiatieve(myCharacter) === 12);
+                assert.isOk(AttributeDeterminer.determineBaseCombatInitiative(myCharacter) === 12);
             });
         });
 
