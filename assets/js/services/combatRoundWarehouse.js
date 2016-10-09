@@ -18,7 +18,7 @@ define(['jquery',
 
             this.getCombatRoundsForEncounter = function(combatEncounter) {
                 var deferred = $.Deferred();
-                $.when(getCombatRoundCollectionForEncounter(combatEncounter)). then(
+                $.when(getCombatRoundCollectionForEncounter(combatEncounter.get('id'))). then(
                     function(myCombatRoundCollection) {
                         if (! combatEncounter.hasAnyRounds() ) {
                             $.when(self.createNextCombatRoundsForEncounter(combatEncounter)). then(
@@ -35,9 +35,29 @@ define(['jquery',
                 return deferred.promise();
             };
 
+            // return the round previous to the input argument - i.e. return round 1 if round 2 is sent in
+            this.getPreviousCombatRound = function(combatRound) {
+                var deferred = $.Deferred();
+
+                $.when(getCombatRoundCollectionForEncounter(combatRound.get('encounterID'))). then(
+                    function(myCombatRoundCollection) {
+                        var previousRoundNumber = combatRound.get('roundNumber') - 1;
+                        var previousRound = myCombatRoundCollection.findWhere({roundNumber: previousRoundNumber});
+                        if (previousRound) {
+                            deferred.resolve(previousRound);
+                        } else {
+                            deferred.reject('No previous round found');
+                        }
+                    }
+                )
+
+                return deferred.promise();
+
+            };
+
             this.createNextCombatRoundsForEncounter = function(combatEncounter) {
                 var deferred = $.Deferred();
-                $.when(getCombatRoundCollectionForEncounter(combatEncounter)). then(
+                $.when(getCombatRoundCollectionForEncounter(combatEncounter.get('id'))). then(
                     function(myCombatRoundCollection) {
                         $.when(CombatRoundFactory.createNextCombatRound(combatEncounter, myCombatRoundCollection)). then(
                             function() {
@@ -53,7 +73,7 @@ define(['jquery',
             this.deleteCombatRoundsForEncounter = function(combatEncounter) {
                 var deferred = $.Deferred();
                 var self = this;
-                $.when(getCombatRoundCollectionForEncounter(combatEncounter)).then(
+                $.when(getCombatRoundCollectionForEncounter(combatEncounter.get('id'))).then(
                     function(myCombatRoundCollection) {
                         var arrayOfRoundDeferred = [];
                         myCombatRoundCollection.each(function(combatRound, index) {
@@ -107,13 +127,14 @@ define(['jquery',
             };
 
             // private functions
-            getCombatRoundCollectionForEncounter = function(encounter) {
-                var myKey = collectionKey + 'encounter:' + encounter.get('id');
+            getCombatRoundCollectionForEncounter = function(anEncounterID) {
+               // var myKey = collectionKey + 'encounter:' + encounter.get('id');
+                var myKey = collectionKey + 'encounter:' + anEncounterID;
                 var deferred = $.Deferred();
                 if (cache[myKey]) {
                     deferred.resolve(cache[myKey]);
                 } else {
-                    var myCollection = new CombatRoundCollection(null, {encounterID : encounter.get('id')});
+                    var myCollection = new CombatRoundCollection(null, {encounterID : anEncounterID});
                     myCollection.on('sync',function(collection) {
                         cache[myKey] = collection;
                         deferred.resolve(cache[myKey]);

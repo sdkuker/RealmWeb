@@ -3,7 +3,7 @@ define(['jquery',
         'models/combat/characterCombatRoundStatisticModel',
         'collections/combat/characterCombatRoundStatisticCollection',
         'services/characterWarehouse',
-        'collections/character/characterCollection',],
+        'collections/character/characterCollection'],
     function ($, Logger, StatisticModel, StatisticCollection, CharacterWarehouse, CharacterCollection) {
 
         CombatRoundStatisticFactory = function() {
@@ -43,7 +43,7 @@ define(['jquery',
                         myAllStatisticsCollection.add(newStatistic);
                         deferred.resolve();
                     }
-                )
+                );
                 return deferred.promise();
             };
 
@@ -62,7 +62,7 @@ define(['jquery',
                     deferred.resolve();
                 }
                 return deferred.promise();
-            }
+            };
 
             // private functions
             createInitialRoundStatistics = function(round, collectionOfExistingStatisticsForRound) {
@@ -81,7 +81,7 @@ define(['jquery',
                             deferred.resolve();
                         });
                     }
-                )
+                );
 
                 return deferred.promise();
             };
@@ -110,39 +110,37 @@ define(['jquery',
 
             createSubsequentRoundStatistics = function(round, collectionOfExistingStatisticsForRound) {
 
-                var deferred = $.Deferred();
+                require(['services/combatRoundWarehouse',
+                        'services/characterCombatRoundStatisticWarehouse'],
+                    function(CombatRoundWarehouse, CombatRoundStatisticWarehouse) {
 
-                $.when(getAllCharacters()).then(
-                    function(myCharactersCollection) {
-                        // you'll loop through all the characters, but for now, just dummy one up.
-                        var testStatistic = {};
+                            var deferred = $.Deferred();
+                            var addStatisticDeferreds = [];
 
-                        //this is just a test thang
-   //                     var aRound = collectionOfExistingStatisticsForRound[0].cloneForCombat(myCharactersCollection[0]);
-
-                        testStatistic.encounterRoundID = collectionOfExistingStatisticsForRound.formatEncounterRoundID(round.get('encounterID'), round.get('id'));
-                        testStatistic.characterID = round.get('roundNumber') * 10  + 5;
-                        testStatistic.initiative = round.get('roundNumber') * 10  + 1;
-                        testStatistic.alertness = round.get('roundNumber') * 10  + 2;
-                        testStatistic.observation = round.get('roundNumber') * 10  + 3;
-                        testStatistic.totalHits = round.get('roundNumber') * 10  + 4;
-                        testStatistic.bleeding = round.get('roundNumber') * 10  + 5;
-                        testStatistic.roundsStillStunned = round.get('roundNumber') * 10  + 6;
-                        testStatistic.negativeModifier = round.get('roundNumber') * 10  + 7;
-                        testStatistic.regeneration = round.get('roundNumber') * 10  + 8;
-                        testStatistic.hitsAtStartOfRound = round.get('roundNumber') * 10  + 9;
-                        testStatistic.hitsTakenDuringRound = round.get('roundNumber') * 10  + 10;
-                        testStatistic.characterTotalHitPointsAtStartOfRound = round.get('roundNumber');
-
-                        $.when(self.addStatistic(testStatistic)).then (
-                            function(myStatistic) {
-                                deferred.resolve(myStatistic);
-                            }
-                        )
-                    }
-                )
-
-                return deferred.promise();
+                            $.when(CombatRoundWarehouse.getPreviousCombatRound(round)).then(
+                                function(previousCombatRound) {
+                                    $.when(CombatRoundStatisticWarehouse.getCombatRoundStatisticsForRound(previousCombatRound)).then (
+                                        function(previousRoundCombatStatisticsCollection) {
+                                            $.when(getAllCharacters()).then (
+                                                function(allCharactersCollection) {
+                                                    previousRoundCombatStatisticsCollection.each(function(statistic, index, list) {
+                                                        var myCharacter = allCharactersCollection.findWhere({id: statistic.get('characterID')});
+                                                        var newStatisticObject = statistic.cloneForCombat(myCharacter);
+                                                        newStatisticObject.encounterRoundID = collectionOfExistingStatisticsForRound.
+                                                        formatEncounterRoundID(round.get('encounterID'), round.get('id'));
+                                                        addStatisticDeferreds.push(self.addStatistic(newStatisticObject));
+                                                    });
+                                                    $.when.apply($, addStatisticDeferreds).then(function() {
+                                                        deferred.resolve();
+                                                    });
+                                                }
+                                            )
+                                        }
+                                    );
+                                }
+                            );
+                            return deferred.promise();
+                    });
             };
 
             getHitsforCharacterAtEndOfRound = function(aCombatRoundStatistic, aCharacter) {
@@ -153,7 +151,7 @@ define(['jquery',
                 } else {
                     return calculatedHitsAtEndOfRound;
                 }
-            }
+            };
 
             getAllStatistics = function() {
                 var deferred = $.Deferred();
@@ -161,7 +159,7 @@ define(['jquery',
                     function(myStatisticsCollection) {
                         deferred.resolve(myStatisticsCollection);
                     }
-                )
+                );
                 return deferred.promise();
             };
 
@@ -183,7 +181,7 @@ define(['jquery',
                     function(myCharactersCollection) {
                         deferred.resolve(myCharactersCollection);
                     }
-                )
+                );
                 return deferred.promise();
             };
 
