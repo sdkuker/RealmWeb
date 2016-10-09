@@ -44,7 +44,7 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 theReturn.alertness = this.get('alertness');
                 theReturn.observation = this.get('observation');
 
-                //TODO stil need to do something about the critial hits sufferred
+                //TODO still need to do something about the critial hits sufferred
 
                 return theReturn;
             },

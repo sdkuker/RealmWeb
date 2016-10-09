@@ -23,14 +23,19 @@ define(["marionette",
 
     RealmApplication.on("start", function () {
 
-        require(["views/navigation/navigationView", 'router/router', 'router/routerEventHandler'], function (NavigationView, RealmRouter, RouterEventHandler) {
-            var navView = new NavigationView();
-            RealmApplication.regions.navRegion.show(navView);
+        require(["views/navigation/navigationView", 'router/router', 'router/routerEventHandler', 'services/characterWarehouse'],
+            function (NavigationView, RealmRouter, RouterEventHandler, CharacterWarehouse) {
 
-            var appRouter = RealmRouter;
-            if (Backbone.history) {
-                Backbone.history.start();
-            };
+                //prefetch characters for combat view later
+                CharacterWarehouse.getAllCharacters();
+
+                var navView = new NavigationView();
+                RealmApplication.regions.navRegion.show(navView);
+
+                var appRouter = RealmRouter;
+                if (Backbone.history) {
+                    Backbone.history.start();
+                };
         });
 
     });

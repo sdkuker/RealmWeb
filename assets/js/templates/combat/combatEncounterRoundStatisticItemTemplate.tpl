@@ -8,3 +8,4 @@
 <td><%= hitsTakenDuringRound %></td>
 <td><%= bleeding %></td>
 <td><%= regeneration %></td>
+<td><%= hitsRemaining %></td>

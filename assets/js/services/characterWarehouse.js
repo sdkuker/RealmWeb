@@ -10,16 +10,22 @@ define(['jquery',
             // all variables are private
             var self = this;
             var cache = {};
+            var allCharactersCollectionKey = 'allCharactersCollection';
 
             // public functions
+
+            this.getCharacterWithoutWaiting = function(characterID) {
+                var myCharacter = cache[allCharactersCollectionKey].findWhere({id : characterID});
+                return myCharacter;
+            };
+
             this.getAllCharacters = function() {
                 var deferred = $.Deferred();
-                var collectionKey = 'characterCollection';
-                if (cache[collectionKey]) {
+                if (cache[allCharactersCollectionKey]) {
                     deferred.resolve(cache[collectionKey]);
                 } else {
-                    cache[collectionKey] = new CharacterCollection();
-                    cache[collectionKey].on('sync',function(collection) {
+                    cache[allCharactersCollectionKey] = new CharacterCollection();
+                    cache[allCharactersCollectionKey].on('sync',function(collection) {
                         deferred.resolve(collection);
                     })
                 }
