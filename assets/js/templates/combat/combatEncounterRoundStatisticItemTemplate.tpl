@@ -2,10 +2,10 @@
 <td><%= initiative %></td>
 <td><%= alertness %></td>
 <td><%= observation %></td>
-<td><%= roundsStillStunned %></td>
-<td><%= negativeModifier %></td>
+<td contenteditable='true'><%= roundsStillStunned %></td>
+<td contenteditable='true'><%= negativeModifier %></td>
 <td><%= hitsAtStartOfRound %></td>
-<td><%= hitsTakenDuringRound %></td>
-<td><%= bleeding %></td>
-<td><%= regeneration %></td>
+<td contenteditable='true'><%= hitsTakenDuringRound %></td>
+<td contenteditable='true'><%= bleeding %></td>
+<td contenteditable='true'><%= regeneration %></td>
 <td><%= hitsRemaining %></td>

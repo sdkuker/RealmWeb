@@ -18,7 +18,8 @@ define(['marionette',
                     }
             },
             events : {
-                'click' : 'combatRoundStatisticSelected'
+                'click' : 'combatRoundStatisticSelected',
+                'input' : ''
             },
             combatRoundStatisticSelected : function(event) {
                 RealmApplication.vent.trigger('combatRoundStatisticSelected', this, this.model);
