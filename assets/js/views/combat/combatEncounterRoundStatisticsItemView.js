@@ -18,11 +18,10 @@ define(['marionette',
                     }
             },
             events : {
-                'click' : 'combatRoundStatisticSelected',
-                'input' : ''
+                'input' : 'tableCellUpdated'
             },
-            combatRoundStatisticSelected : function(event) {
-                RealmApplication.vent.trigger('combatRoundStatisticSelected', this, this.model);
+            tableCellUpdated : function(event) {
+                console.log('a table cell was updated to value: ' + event.target.innerHTML + ' for element: ' + event.target.getAttribute('headers'));
             }
     });
 

@@ -22,7 +22,7 @@ define(['jquery',
             this.getAllCharacters = function() {
                 var deferred = $.Deferred();
                 if (cache[allCharactersCollectionKey]) {
-                    deferred.resolve(cache[collectionKey]);
+                    deferred.resolve(cache[allCharactersCollectionKey]);
                 } else {
                     cache[allCharactersCollectionKey] = new CharacterCollection();
                     cache[allCharactersCollectionKey].on('sync',function(collection) {

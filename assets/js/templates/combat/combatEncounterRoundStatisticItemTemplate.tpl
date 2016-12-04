@@ -1,11 +1,11 @@
-<td><%- myCharactersName %></td>
-<td><%= initiative %></td>
-<td><%= alertness %></td>
-<td><%= observation %></td>
-<td contenteditable='true'><%= roundsStillStunned %></td>
-<td contenteditable='true'><%= negativeModifier %></td>
-<td><%= hitsAtStartOfRound %></td>
-<td contenteditable='true'><%= hitsTakenDuringRound %></td>
-<td contenteditable='true'><%= bleeding %></td>
-<td contenteditable='true'><%= regeneration %></td>
-<td><%= hitsRemaining %></td>
+<td headers="name"><%- myCharactersName %></td>
+<td headers="initiative"><%= initiative %></td>
+<td headers="alertness"><%= alertness %></td>
+<td headers="observation"><%= observation %></td>
+<td headers="roundsStunned" contenteditable='true'><%= roundsStillStunned %></td>
+<td headers="negativeModifier" contenteditable='true'><%= negativeModifier %></td>
+<td headers="hitsStarting"><%= hitsAtStartOfRound %></td>
+<td headers="hitsTakenThisRound" contenteditable='true'><%= hitsTakenDuringRound %></td>
+<td headers="bleeding" contenteditable='true'><%= bleeding %></td>
+<td headers="regeneration" contenteditable='true'><%= regeneration %></td>
+<td headers="hitsRemaining"><%= hitsRemaining %></td>
