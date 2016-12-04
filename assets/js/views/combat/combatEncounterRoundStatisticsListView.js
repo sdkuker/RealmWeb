@@ -18,6 +18,8 @@ define(['marionette',
         initialize : function() {
             self = this;
             this.listenTo(this.collection, 'add', this.render);
+            this.listenTo(this.collection, 'remove', this.render);
+            this.listenTo(this.collection, 'changed', this.render);
         }
     });
 

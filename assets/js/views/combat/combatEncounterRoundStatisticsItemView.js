@@ -21,7 +21,34 @@ define(['marionette',
                 'input' : 'tableCellUpdated'
             },
             tableCellUpdated : function(event) {
-                console.log('a table cell was updated to value: ' + event.target.innerHTML + ' for element: ' + event.target.getAttribute('headers'));
+
+                var targetID = event.target.getAttribute('headers');
+                var targetValue = parseInt(event.target.innerHTML);
+                if (isNaN(targetValue)) {
+                    targetValue = 0;
+                }
+                var modelAttributeName = '';
+                console.log('a table cell was updated to value: ' + targetValue + ' for element: ' + targetID);
+
+                switch (targetID) {
+                    case 'roundsStunned':
+                        modelAttributeName = 'roundsStillStunned';
+                        break;
+                    case 'negativeModifier':
+                        modelAttributeName = 'negativeModifier';
+                        break;
+                    case 'hitsTakenThisRound':
+                        modelAttributeName = 'hitsTakenDuringRound';
+                        break;
+                    case 'bleeding':
+                        modelAttributeName = 'bleeding';
+                        break;
+                    case 'regeneration':
+                        modelAttributeName = 'regeneration';
+                        break;
+                }
+                this.model.set(modelAttributeName, targetValue);
+                this.render();
             }
     });
 
