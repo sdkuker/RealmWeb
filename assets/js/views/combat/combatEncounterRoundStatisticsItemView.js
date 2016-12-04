@@ -20,6 +20,7 @@ define(['marionette',
             events : {
                 'input' : 'tableCellUpdated'
             },
+            cellBeingEdited : null,
             tableCellUpdated : function(event) {
 
                 var targetID = event.target.getAttribute('headers');
@@ -28,6 +29,7 @@ define(['marionette',
                     targetValue = 0;
                 }
                 var modelAttributeName = '';
+
                 console.log('a table cell was updated to value: ' + targetValue + ' for element: ' + targetID);
 
                 switch (targetID) {
@@ -47,8 +49,15 @@ define(['marionette',
                         modelAttributeName = 'regeneration';
                         break;
                 }
+                this.cellBeingEdited = targetID;
                 this.model.set(modelAttributeName, targetValue);
                 this.render();
+            },
+            onRender : function() {
+                console.log('in onRender');
+                if (this.cellBeingEdited) {
+                    $(this.$el).find("[headers='" + this.cellBeingEdited + "']").focus();
+                }
             }
     });
 
