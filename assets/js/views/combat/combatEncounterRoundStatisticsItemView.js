@@ -28,6 +28,7 @@ define(['marionette',
                 if (isNaN(targetValue)) {
                     targetValue = 0;
                 }
+                this.cellBeingEdited = targetID;
                 var modelAttributeName = '';
 
                 console.log('a table cell was updated to value: ' + targetValue + ' for element: ' + targetID);
@@ -49,7 +50,6 @@ define(['marionette',
                         modelAttributeName = 'regeneration';
                         break;
                 }
-                this.cellBeingEdited = targetID;
                 this.model.set(modelAttributeName, targetValue);
                 this.render();
             },
@@ -57,6 +57,7 @@ define(['marionette',
                 console.log('in onRender');
                 if (this.cellBeingEdited) {
                     $(this.$el).find("[headers='" + this.cellBeingEdited + "']").focus();
+
                 }
             }
     });
