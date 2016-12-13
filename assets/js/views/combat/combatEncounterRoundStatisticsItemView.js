@@ -39,7 +39,7 @@ define(['marionette',
                     this.cellBeingEdited = targetID;
                     var modelAttributeName = '';
 
-                    console.log('a table cell was updated to value: ' + targetValue + ' for element: ' + targetID);
+                   // console.log('a table cell was updated to value: ' + targetValue + ' for element: ' + targetID);
 
                     switch (targetID) {
                         case 'roundsStunned':
@@ -64,7 +64,6 @@ define(['marionette',
                 }, 800);
             },
             onRender : function() {
-                console.log('in onRender');
                 if (this.cellBeingEdited) {
                     $(this.$el).find("[headers='" + this.cellBeingEdited + "']").focus();
 
