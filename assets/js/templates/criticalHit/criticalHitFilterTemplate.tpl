@@ -4,14 +4,14 @@
     </div>
     <div class="row">
         <form role="form" class="form-horizontal">
-            <div class="form-group col-sm-4">
+            <div class="form-group col-lg-4">
                 <label class="control-label" for="normalDieButton">Die:</label>
                 <button id='normalDieButton' type='button' class="btn btn-default">Normal</button>
                 <button id='openEndedDieButton' type='button' class="btn btn-default">Open Ended</button>
             </div>
         </form>
         <form role="form" class="form-horizontal">
-            <div class="form-group col-sm-offset-2 col-sm-2">
+            <div class="form-group col-lg-offset-2 col-lg-2">
                 <div class="checkbox">
                     <label class="control-label">
                         <input type="checkbox" value="">Add to Combat?</input>
@@ -21,8 +21,8 @@
         </form>
         <form role="form" class="form-horizontal">
             <div class="form-group">
-                <label class="control-label col-sm-1" for="defenderSelect">Defender</label>
-                <div class="col-sm-3">
+                <label class="control-label col-lg-1" for="defenderSelect">Defender</label>
+                <div class="col-lg-3">
                     <select id='defenderSelect' class="form-control">
                     </select>
                 </div>
@@ -30,16 +30,16 @@
         </form>
     </div>
     <div class="row">
-        <form role="form" class="form-horizontal col-sm-4">
-            <div class="form-group">
-                <label for="attackerBonus">Attacker Bonus:</label>
-                <input type="number" id="attackerBonus">
+        <form role="form">
+            <div class="form-group form-horizontal">
+                <label class="col-lg-2" for="attackerBonus">Attacker Bonus:</label>
+                <input class="col-lg-2" type="number" id="attackerBonus">
             </div>
         </form>
-        <form role="form" class="form-horizontal">
-            <div class="form-group">
-                <label class="control-label col-sm-2">Type</label>
-                <div class="col-sm-3">
+        <form role="form" class="col-lg-offset-3">
+            <div class="form-group form-horizontal">
+                <label class="control-label col-lg-2">Type</label>
+                <div class="col-lg-3">
                     <select id='typeSelect' class="form-control">
                     </select>
                 </div>
@@ -47,16 +47,16 @@
         </form>
     </div>
     <div class="row">
-        <form role="form" class="form-horizontal col-sm-4">
-            <div class="form-group">
-                <label for="defenderBonus">Defender Bonus:</label>
-                <input type="number" id="defenderBonus">
+        <form role="form">
+            <div class="form-group form-horizontal">
+                <label class="col-lg-2" for="defenderBonus">Defender Bonus:</label>
+                <input class="col-lg-2" type="number" id="defenderBonus">
             </div>
         </form>
-        <form role="form" class="form-horizontal">
-            <div class="form-group">
-                <label class="control-label col-sm-2">Severity</label>
-                <div class="col-sm-3">
+        <form role="form" class="col-lg-offset-3">
+            <div class="form-group form-horizontal">
+                <label class="control-label col-lg-2">Severity</label>
+                <div class="col-lg-3">
                     <select id='severitySelect' class="form-control">
                     </select>
                 </div>
@@ -64,16 +64,18 @@
         </form>
     </div>
     <div class="row">
-        <form role="form" class="form-horizontal col-sm-5">
-            <div class="form-group">
-                <label for="attackTotal">Attack Total:</label>
-                <input type="number" id="attackTotal">
+        <form role="form">
+            <div class="form-group form-horizontal">
+                <label class="col-lg-2" for="attackTotal">Attack Total:</label>
+                <input class="col-lg-2" type="number" id="attackTotal">
             </div>
         </form>
-        <form role="form" class="form-horizontal col-sm-6">
-            <div class="form-group">
-                <button id='getCriticalButton' type='button' class="btn btn-default">Get Critical</button>
-                <button id='listCritcalsButton' type='button' class="btn btn-default">List Criticals</button>
+    </div>
+    <div class="row">
+        <form role="form">
+            <div class="form-group form-horizontal">
+                <button class="col-lg-offset-3 col-lg-2" id='getCriticalButton' type='button' class="btn btn-default">Get Critical</button>
+                <button class="col-lg-offset-1 col-lg-2" id='listCritcalsButton' type='button' class="btn btn-default">List Criticals</button>
             </div>
         </form>
     </div>
