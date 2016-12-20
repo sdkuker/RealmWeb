@@ -3,18 +3,28 @@
         <h1>Filters</h1>
     </div>
     <div class="row">
-        <form role="form" class="form-horizontal col-sm-4">
-            <div class="form-group">
-                <label for="normalDieButton">Die:</label>
+        <form role="form" class="form-horizontal">
+            <div class="form-group col-sm-4">
+                <label class="control-label" for="normalDieButton">Die:</label>
                 <button id='normalDieButton' type='button' class="btn btn-default">Normal</button>
                 <button id='openEndedDieButton' type='button' class="btn btn-default">Open Ended</button>
             </div>
         </form>
         <form role="form" class="form-horizontal">
+            <div class="form-group col-sm-offset-1 col-sm-2">
+                <div class="checkbox">
+                    <label class="control-label">
+                        <input type="checkbox" value="">Add to Combat?</input>
+                    </label>
+                </div>
+            </div>
+        </form>
+        <form role="form" class="form-horizontal">
             <div class="form-group">
-                <label class="control-label col-sm-2">Defender:</label>
-                <div class="col-sm-3">
-                <input type="text" id="defender">
+                <label class="control-label col-sm-1" for="defenderSelect">Defender</label>
+                <div class="col-sm-2">
+                    <select id='defenderSelect' class="form-control">
+                    </select>
                 </div>
             </div>
         </form>
@@ -30,8 +40,8 @@
             <div class="form-group">
                 <label class="control-label col-sm-2">Type</label>
                 <div class="col-sm-3">
-                <select id='typeSelect' class="form-control">
-                </select>
+                    <select id='typeSelect' class="form-control">
+                    </select>
                 </div>
             </div>
         </form>
@@ -47,8 +57,8 @@
             <div class="form-group">
                 <label class="control-label col-sm-2">Severity</label>
                 <div class="col-sm-3">
-                <select id='severitySelect' class="form-control">
-                </select>
+                    <select id='severitySelect' class="form-control">
+                    </select>
                 </div>
             </div>
         </form>
