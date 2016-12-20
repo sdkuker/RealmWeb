@@ -3,8 +3,8 @@
         <h1>Filters</h1>
     </div>
     <div class="row">
-        <form role="form" class="form-horizontal">
-            <div class="form-group col-lg-4">
+        <form role="form">
+            <div class="form-horizontal form-group col-lg-4">
                 <label class="control-label" for="normalDieButton">Die:</label>
                 <button id='normalDieButton' type='button' class="btn btn-default">Normal</button>
                 <button id='openEndedDieButton' type='button' class="btn btn-default">Open Ended</button>
