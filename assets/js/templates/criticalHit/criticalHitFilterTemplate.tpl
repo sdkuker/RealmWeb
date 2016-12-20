@@ -11,7 +11,7 @@
             </div>
         </form>
         <form role="form" class="form-horizontal">
-            <div class="form-group col-sm-offset-1 col-sm-2">
+            <div class="form-group col-sm-offset-2 col-sm-2">
                 <div class="checkbox">
                     <label class="control-label">
                         <input type="checkbox" value="">Add to Combat?</input>
@@ -22,7 +22,7 @@
         <form role="form" class="form-horizontal">
             <div class="form-group">
                 <label class="control-label col-sm-1" for="defenderSelect">Defender</label>
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <select id='defenderSelect' class="form-control">
                     </select>
                 </div>
