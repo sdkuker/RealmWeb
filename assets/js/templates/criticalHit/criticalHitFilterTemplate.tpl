@@ -14,7 +14,7 @@
             <div class="form-group col-lg-offset-2 col-lg-2">
                 <div class="checkbox">
                     <label class="control-label">
-                        <input type="checkbox" value="">Add to Combat?</input>
+                        <input id='addToCombatCheckbox' type="checkbox" value="">Add to Combat?</input>
                     </label>
                 </div>
             </div>
@@ -74,8 +74,8 @@
     <div class="row">
         <form role="form">
             <div class="form-group form-horizontal">
-                <button class="col-lg-offset-3 col-lg-2" id='getCriticalButton' type='button' class="btn btn-default">Get Critical</button>
-                <button class="col-lg-offset-1 col-lg-2" id='listCritcalsButton' type='button' class="btn btn-default">List Criticals</button>
+                <button class="col-lg-offset-3 col-lg-2 btn btn-default" id='getCriticalButton' type='button'>Get Critical</button>
+                <button class="col-lg-offset-1 col-lg-2 btn btn-default" id='listCritcalsButton' type='button'>List Criticals</button>
             </div>
         </form>
     </div>

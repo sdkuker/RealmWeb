@@ -15,6 +15,7 @@ define(['marionette',
                 'click #openEndedDieButton' : 'openEndedDieButtonClicked',
                 'click #getCriticalButton' : 'getCriticalButtonClicked',
                 'click #listCritcalsButton' : 'listCriticalButtonClicked',
+                'click #addToCombatCheckbox' : 'addToCombatCheckboxClicked',
             },
             chosenType : null,
             chosenSeverity : null,
@@ -23,6 +24,8 @@ define(['marionette',
             defenderBonusValue : 0,
             attackTotalValue : 0,
             dieInstance : null,
+            defenderID : null,
+            defenderCheckboxStatus : null,
             initialize : function() {
                 self = this;
                 $(document.body).on('change', '#typeSelect', function(e) {
@@ -54,7 +57,12 @@ define(['marionette',
                    appendString = appendString + ">" + myType.get('id') + "</option>"
                    typeSelectElement.append(appendString);
                 });
-
+                if (self.defenderCheckboxStatus) {
+                    $('#addToCombatCheckbox').prop('checked', true);
+                } else {
+                    $('#addToCombatCheckbox').prop('checked', false);
+                }
+                this.populateDefenders();
                 this.populateSeverities();
                 this.caclulateAttackTotal();
                 $('#attackerBonus').val(self.attackerBonusValue);
@@ -77,6 +85,11 @@ define(['marionette',
             severitySelected : function() {
                 self = this;
                 self.chosenSeverity = $('#severitySelect option:selected').val();
+            },
+            populateDefenders : function() {
+          //      if ($('#addToCombatCheckbox').checked) {
+            //        console.log('here too...');
+              //  }
             },
             populateSeverities : function() {
                 var severitySelectElement = this.$el.find('#severitySelect');
@@ -140,6 +153,16 @@ define(['marionette',
                 if (selectedCriticalHitArray && selectedCriticalHitArray.length > 0) {
                     RealmApplication.vent.trigger('criticalHitFilter:criticalHitSelected', selectedCriticalHitArray);
                 }
+            },
+            addToCombatCheckboxClicked : function() {
+                self = this;
+
+                if ($('#addToCombatCheckbox').is(':checked')) {
+                    self.defenderCheckboxStatus = true;
+                } else {
+                    self.defenderCheckboxStatus = false;
+                }
+                self.render();
             }
         });
 
