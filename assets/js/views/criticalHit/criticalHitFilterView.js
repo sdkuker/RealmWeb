@@ -8,14 +8,11 @@ define(['marionette',
 
         var CriticalHitFilterView = Marionette.ItemView.extend({
             template: CriticalHitFilterTemplate,
-            criticalHits :null,
-            criticalHitTypes : null,
             events : {
                 'click #normalDieButton' : 'normalDieButtonClicked',
                 'click #openEndedDieButton' : 'openEndedDieButtonClicked',
                 'click #getCriticalButton' : 'getCriticalButtonClicked',
-                'click #listCritcalsButton' : 'listCriticalButtonClicked',
-                'click #addToCombatCheckbox' : 'addToCombatCheckboxClicked',
+                'click #listCritcalsButton' : 'listCriticalButtonClicked'
             },
             chosenType : null,
             chosenSeverity : null,
@@ -24,8 +21,8 @@ define(['marionette',
             defenderBonusValue : 0,
             attackTotalValue : 0,
             dieInstance : null,
-            defenderID : null,
-            defenderCheckboxStatus : null,
+            chosenCombatEncounter: null,
+            chosenDefender : null,
             initialize : function() {
                 self = this;
                 $(document.body).on('change', '#typeSelect', function(e) {
@@ -39,6 +36,12 @@ define(['marionette',
                 });
                 $(document.body).on('change', '#defenderBonus', function(e) {
                     self.defenderBonusChanged();
+                });
+                $(document.body).on('change', '#combatEncounterSelect', function(e) {
+                    self.combatEncounterSelected();
+                });
+                $(document.body).on('change', '#defenderSelect', function(e) {
+                    self.defenderSelected();
                 });
                 self.dieInstance = new DieModel();
             },
@@ -57,14 +60,11 @@ define(['marionette',
                    appendString = appendString + ">" + myType.get('id') + "</option>"
                    typeSelectElement.append(appendString);
                 });
-                if (self.defenderCheckboxStatus) {
-                    $('#addToCombatCheckbox').prop('checked', true);
-                } else {
-                    $('#addToCombatCheckbox').prop('checked', false);
-                }
+                this.populateCombatEncounters();
                 this.populateDefenders();
                 this.populateSeverities();
                 this.caclulateAttackTotal();
+                $('#rollResult').val(self.dieRollValue);
                 $('#attackerBonus').val(self.attackerBonusValue);
                 $('#defenderBonus').val(self.defenderBonusValue);
                 $('#attackTotal').val(self.attackTotalValue);
@@ -86,10 +86,24 @@ define(['marionette',
                 self = this;
                 self.chosenSeverity = $('#severitySelect option:selected').val();
             },
+            populateCombatEncounters : function() {
+                self = this;
+                var encounterSelectElement = this.$el.find('#combatEncounterSelect');
+                encounterSelectElement.empty();
+                this.options.combatEncounters.forEach(function(myEncounter, key, list) {
+                    var appendString = "<option value='" + myEncounter.get('id') +  "'";
+                    if ((key == 0 && ! self.chosenCombatEncounter) || (self.chosenCombatEncounter && self.chosenCombatEncounter == myEncounter.get('id'))) {
+                        appendString = appendString + " selected='selected'";
+                        if (! self.chosenCombatEncounter) {
+                            self.chosenCombatEncounter = myEncounter.get('id');
+                        }
+                    };
+                    appendString = appendString + ">" + myEncounter.get('description') + "</option>"
+                    encounterSelectElement.append(appendString);
+                });
+            },
             populateDefenders : function() {
-          //      if ($('#addToCombatCheckbox').checked) {
-            //        console.log('here too...');
-              //  }
+
             },
             populateSeverities : function() {
                 var severitySelectElement = this.$el.find('#severitySelect');
@@ -153,16 +167,6 @@ define(['marionette',
                 if (selectedCriticalHitArray && selectedCriticalHitArray.length > 0) {
                     RealmApplication.vent.trigger('criticalHitFilter:criticalHitSelected', selectedCriticalHitArray);
                 }
-            },
-            addToCombatCheckboxClicked : function() {
-                self = this;
-
-                if ($('#addToCombatCheckbox').is(':checked')) {
-                    self.defenderCheckboxStatus = true;
-                } else {
-                    self.defenderCheckboxStatus = false;
-                }
-                self.render();
             }
         });
 

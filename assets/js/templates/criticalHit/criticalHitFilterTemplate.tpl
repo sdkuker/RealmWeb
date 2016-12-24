@@ -15,7 +15,7 @@
         <form role="form">
             <div class="form-group form-horizontal">
                 <label class="col-md-2" for="rollResult">Roll Result:</label>
-                <input class="col-md-2" type="number" id="rollResult">
+                <input class="col-md-2" type="number" id="rollResult" readonly>
             </div>
         </form>
         <form role="form" class="col-md-offset-3">

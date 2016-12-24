@@ -86,20 +86,30 @@ define(['jquery', 'realmApplication'
                 require(['views/criticalHit/criticalHitLayoutView', 'views/criticalHit/criticalHitFilterView',
                          'services/criticalHitWarehouse', 'collections/criticalHit/criticalHitCollection',
                         'collections/criticalHit/criticalHitDisplayCollection', 'collections/criticalHit/criticalHitTypeCollection',
-                        'views/criticalHit/criticalHitListView', 'services/serviceConstants'],
+                        'views/criticalHit/criticalHitListView', 'services/serviceConstants', 'services/combatEncounterWarehouse'],
                     function (CriticalHitLayoutView, CriticalHitFilterView, CriticalHitWarehouse, CriticalHitCollection,
-                              CriticalHitDisplayCollection, CriticalHitTypeCollection, CriticalHitListView, ServiceConstants) {
+                              CriticalHitDisplayCollection, CriticalHitTypeCollection, CriticalHitListView, ServiceConstants,
+                              CombatEncounterWarehouse) {
                         var criticalHitLayoutView = new CriticalHitLayoutView();
                         RealmApplication.regions.mainRegion.show(criticalHitLayoutView);
                         $.when(CriticalHitWarehouse.getAllTypes()).then(
                             function(criticalHitTypeCollection) {
                                 $.when(CriticalHitWarehouse.getCriticalHitsForType(criticalHitTypeCollection.at(0).get('id'))).then (
                                     function(criticalHitCollection) {
-                                        var critialHitFilterView = new CriticalHitFilterView({criticalHitTypes : criticalHitTypeCollection, criticalHits: criticalHitCollection});
-                                        criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);
-                                        var displayedHitsCollection = new CriticalHitDisplayCollection();
-                                        var criticalHitListView = new CriticalHitListView({collection : displayedHitsCollection});
-                                        criticalHitLayoutView.getRegion('criticalHitDisplayRegion').show(criticalHitListView);
+                                        $.when(CombatEncounterWarehouse.getAllCombatEncounters()).then(
+                                            function(combatEncounterCollection) {
+                                                var viewParms = {criticalHitTypes : criticalHitTypeCollection, criticalHits: criticalHitCollection, combatEncounters: combatEncounterCollection};
+                                                var critialHitFilterView = new CriticalHitFilterView(viewParms);
+                                                criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);
+                                                var displayedHitsCollection = new CriticalHitDisplayCollection();
+                                                var criticalHitListView = new CriticalHitListView({collection : displayedHitsCollection});
+                                                criticalHitLayoutView.getRegion('criticalHitDisplayRegion').show(criticalHitListView);
+
+                                            },
+                                            function(errorString) {
+                                                console.log(errorString);
+                                            }
+                                        )
                                     },
                                     function(errorString) {
                                         console.log(errorString);
