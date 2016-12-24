@@ -75,12 +75,17 @@ define(['marionette',
                 $.when(CriticalHitWarehouse.getCriticalHitsForType(self.chosenType)).then (
                     function(criticalHitCollection) {
                         self.options.criticalHits = criticalHitCollection;
+                        self.chosenSeverity = null;
                         self.render();
                     },
                     function(errorString) {
                         console.log(errorString);
                     }
                 )
+            },
+            combatEncounterSelected : function() {
+                self = this;
+                self.chosenCombatEncounter = $('#combatEncounterSelect option:selected').val();
             },
             severitySelected : function() {
                 self = this;
@@ -90,6 +95,13 @@ define(['marionette',
                 self = this;
                 var encounterSelectElement = this.$el.find('#combatEncounterSelect');
                 encounterSelectElement.empty();
+                var noCombatOption = "<option value='noCombat'";
+                if (self.chosenCombatEncounter == null || self.chosenCombatEncounter == 'noCombat') {
+                    noCombatOption = noCombatOption + " selected='selected'";
+                    self.chosenCombatEncounter = 'noCombat';
+                };
+                noCombatOption = noCombatOption + ">Exclude from Combat</option>";
+                encounterSelectElement.append(noCombatOption);
                 this.options.combatEncounters.forEach(function(myEncounter, key, list) {
                     var appendString = "<option value='" + myEncounter.get('id') +  "'";
                     if ((key == 0 && ! self.chosenCombatEncounter) || (self.chosenCombatEncounter && self.chosenCombatEncounter == myEncounter.get('id'))) {
@@ -114,14 +126,23 @@ define(['marionette',
                 } else {
                     allSeverities = this.options.criticalHits.getAllSeverities();
                 };
+                var optionSelected = false;
                 for(severity in allSeverities) {
                     if (severity && severity != 'notSelectedType') {
-                        severitySelectElement.append("<option value='" + severity + "'>" + severity + "</option>");
+                        var optionString = "<option value='" + severity + "'";
+                        if (severity == this.chosenSeverity) {
+                            optionString = optionString + " selected='selected'";
+                            optionSelected = true;
+                        }
+                        optionString = optionString + ">" + severity + "</option>";
+                        severitySelectElement.append(optionString);
                     };
                 };
-                var firstSeveritySelectOption = severitySelectElement.find('option:first');
-                firstSeveritySelectOption.attr('selected', true);
-                this.chosenSeverity = firstSeveritySelectOption.val();
+                if (! optionSelected) {
+                    var firstSeveritySelectOption = severitySelectElement.find('option:first');
+                    firstSeveritySelectOption.attr('selected', true);
+                    this.chosenSeverity = firstSeveritySelectOption.val();
+                }
 
             },
             normalDieButtonClicked : function() {
