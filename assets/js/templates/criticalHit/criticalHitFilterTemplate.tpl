@@ -6,8 +6,8 @@
         <form role="form">
             <div class="form-horizontal form-group col-md-4">
                 <label class="control-label" for="normalDieButton">Die:</label>
-                <button id='normalDieButton' type='button' class="btn btn-default">Normal</button>
-                <button id='openEndedDieButton' type='button' class="btn btn-default">Open Ended</button>
+                <button id='normalDieButton' type='button' class="col-md-offset-1 btn btn-default">Normal</button>
+                <button id='openEndedDieButton' type='button' class="col-md-offset-1 btn btn-default">Open Ended</button>
             </div>
         </form>
     </div>

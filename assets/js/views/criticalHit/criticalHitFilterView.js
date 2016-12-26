@@ -3,8 +3,11 @@ define(['marionette',
         'realmApplication',
         "models/dieRoller/dieModel",
         'services/criticalHitWarehouse',
+        'services/combatRoundWarehouse',
+        'services/characterCombatRoundStatisticWarehouse',
         'tpl!templates/criticalHit/criticalHitFilterTemplate.tpl'],
-    function (Marionette, Backbone, RealmApplication, DieModel,CriticalHitWarehouse, CriticalHitFilterTemplate) {
+    function (Marionette, Backbone, RealmApplication, DieModel,CriticalHitWarehouse,
+              CombatRoundWarehouse, CombatRoundStatisticWarehouse, CriticalHitFilterTemplate) {
 
         var CriticalHitFilterView = Marionette.ItemView.extend({
             template: CriticalHitFilterTemplate,
@@ -21,8 +24,10 @@ define(['marionette',
             defenderBonusValue : 0,
             attackTotalValue : 0,
             dieInstance : null,
-            chosenCombatEncounter: null,
-            chosenDefender : null,
+            chosenCombatEncounterID : null,
+            chosenCombatEncounter : null,
+            openCombatRoundForEncounter : null,
+            chosenDefenderID : null,
             initialize : function() {
                 self = this;
                 $(document.body).on('change', '#typeSelect', function(e) {
@@ -85,37 +90,79 @@ define(['marionette',
             },
             combatEncounterSelected : function() {
                 self = this;
-                self.chosenCombatEncounter = $('#combatEncounterSelect option:selected').val();
+                self.chosenCombatEncounterID = $('#combatEncounterSelect option:selected').val();
+                self.chosenCombatEncounter = self.getCombatEncounterWithID(self.chosenCombatEncounterID);
+                self.render();
             },
             severitySelected : function() {
                 self = this;
                 self.chosenSeverity = $('#severitySelect option:selected').val();
             },
-            populateCombatEncounters : function() {
+            defenderSelected : function() {
                 self = this;
+                self.chosenDefenderID = $('#defenderSelect option:selected').val();
+            },
+            populateCombatEncounters : function() {
+                var self = this;
                 var encounterSelectElement = this.$el.find('#combatEncounterSelect');
                 encounterSelectElement.empty();
                 var noCombatOption = "<option value='noCombat'";
-                if (self.chosenCombatEncounter == null || self.chosenCombatEncounter == 'noCombat') {
+                if (self.chosenCombatEncounterID == null || self.chosenCombatEncounterID == 'noCombat') {
                     noCombatOption = noCombatOption + " selected='selected'";
-                    self.chosenCombatEncounter = 'noCombat';
+                    self.chosenCombatEncounterID = 'noCombat';
                 };
                 noCombatOption = noCombatOption + ">Exclude from Combat</option>";
                 encounterSelectElement.append(noCombatOption);
                 this.options.combatEncounters.forEach(function(myEncounter, key, list) {
                     var appendString = "<option value='" + myEncounter.get('id') +  "'";
-                    if ((key == 0 && ! self.chosenCombatEncounter) || (self.chosenCombatEncounter && self.chosenCombatEncounter == myEncounter.get('id'))) {
+                    if ((key == 0 && ! self.chosenCombatEncounterID) || (self.chosenCombatEncounterID && self.chosenCombatEncounterID == myEncounter.get('id'))) {
                         appendString = appendString + " selected='selected'";
-                        if (! self.chosenCombatEncounter) {
-                            self.chosenCombatEncounter = myEncounter.get('id');
+                        if (! self.chosenCombatEncounterID) {
+                            self.chosenCombatEncounterID = myEncounter.get('id');
                         }
                     };
-                    appendString = appendString + ">" + myEncounter.get('description') + "</option>"
+                    appendString = appendString + ">" + myEncounter.get('description') + "</option>";
                     encounterSelectElement.append(appendString);
                 });
             },
+            getCombatEncounterWithID : function(combatEncounterID) {
+                var self = this;
+                var selectedEncounter = null;
+                selectedEncounter = this.options.combatEncounters.findWhere({id: combatEncounterID});
+                return selectedEncounter;
+            },
             populateDefenders : function() {
-
+                var self = this;
+                var defenderSelectElement = this.$el.find('#defenderSelect');
+                defenderSelectElement.empty();
+                if (self.chosenCombatEncounterID && self.chosenCombatEncounterID != 'noCombat') {
+                    $.when(CombatRoundWarehouse.getOpenRoundForEncounter(self.chosenCombatEncounter)).then (
+                        function(openCombatRound) {
+                            self.openCombatRoundForEncounter = openCombatRound;
+                            $.when(CombatRoundStatisticWarehouse.getCombatRoundStatisticsForRound(openCombatRound)).then(
+                                function(combatRoundStatisticsCollection) {
+                                    combatRoundStatisticsCollection.forEach(function(aStatistic, key, list){
+                                        var optionString = "<option value='" + aStatistic.get('characterID') + "'";
+                                        if ((key == 0 && ! self.chosenDefenderID) || (self.chosenDefenderID && self.chosenDefenderID == aStatistic.get('characterID'))) {
+                                            optionString = optionString + " selected='selected'";
+                                            if (! self.chosenDefenderID) {
+                                                self.chosenDefenderID = aStatistic.get('characterID');
+                                            }
+                                        };
+                                        optionString = optionString + ">" + decodeURI(aStatistic.get('characterName')) + "</option";
+                                        defenderSelectElement.append(optionString);
+                                    });
+                                },
+                                function(errorString) {
+                                    console.log(errorString);
+                                }
+                            )
+                        },
+                        function(errorString) {
+                            console.log(errorString);
+                        }
+                    )
+                }
             },
             populateSeverities : function() {
                 var severitySelectElement = this.$el.find('#severitySelect');
