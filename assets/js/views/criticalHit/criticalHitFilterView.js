@@ -96,6 +96,7 @@ define(['marionette',
                 self.chosenCombatEncounterID = $('#combatEncounterSelect option:selected').val();
                 self.chosenCombatEncounter = self.getCombatEncounterWithID(self.chosenCombatEncounterID);
                 self.render();
+                self.displayCombatCriticalHits((true));
             },
             severitySelected : function() {
                 self = this;
@@ -104,6 +105,7 @@ define(['marionette',
             defenderSelected : function() {
                 self = this;
                 self.chosenDefenderID = $('#defenderSelect option:selected').val();
+                self.displayCombatCriticalHits();
             },
             populateCombatEncounters : function() {
                 var self = this;
@@ -159,6 +161,7 @@ define(['marionette',
                                         optionString = optionString + ">" + decodeURI(aStatistic.get('characterName')) + "</option";
                                         defenderSelectElement.append(optionString);
                                     });
+                                    self.displayCombatCriticalHits();
                                 },
                                 function(errorString) {
                                     console.log(errorString);
@@ -243,14 +246,7 @@ define(['marionette',
                         $.when(CombatRoundCriticalHitWarehouse.addCombatRoundCriticalHit(self.chosenCombatEncounterID,
                             openRoundID, openRoundNumber, self.chosenDefenderID, criticalHitID, criticalHitDescription)).then (
                             function(newCombatRoundCriticalHit) {
-                                $.when(CombatRoundCriticalHitWarehouse.getCombatRoundCriticalHitsForCharacterForEncounter(self.chosenDefenderID, self.chosenCombatEncounterID)).then(
-                                    function(arrayOfCombatRoundCriticalHits) {
-                                        RealmApplication.vent.trigger('criticalHitFilter:combatCriticalHitSelected', arrayOfCombatRoundCriticalHits);
-                                    },
-                                    function(errorString) {
-                                        console.log(errorString);
-                                    }
-                                )
+                                self.displayCombatCriticalHits();
                             },
                             function(errorString) {
                                 console.log(errorString);
@@ -259,6 +255,18 @@ define(['marionette',
                     } else {
                         RealmApplication.vent.trigger('criticalHitFilter:criticalHitSelected', selectedCriticalHitArray);
                     }
+                }
+            },
+            displayCombatCriticalHits : function(overrideCombatMode) {
+                if (self.inCombatMode() || overrideCombatMode) {
+                    $.when(CombatRoundCriticalHitWarehouse.getCombatRoundCriticalHitsForCharacterForEncounter(self.chosenDefenderID, self.chosenCombatEncounterID)).then(
+                        function (arrayOfCombatRoundCriticalHits) {
+                            RealmApplication.vent.trigger('criticalHitFilter:combatCriticalHitSelected', arrayOfCombatRoundCriticalHits);
+                        },
+                        function (errorString) {
+                            console.log(errorString);
+                        }
+                    )
                 }
             },
             listCriticalButtonClicked : function () {

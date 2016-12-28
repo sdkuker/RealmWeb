@@ -1,2 +1,2 @@
-<h2>Critical Hits Made</h2>
+<h2>Critical Hits</h2>
 <ul></ul>

@@ -2,6 +2,6 @@
 <% if (description) { %>
     <li><%= description %></li>
 <%    } else {%>
-        <li><%= criticalHitDescription  %></li>
+        <li>Round <%= combatRoundNumber  %>  - <%= criticalHitDescription  %></li>
  <%   }  %>
 
