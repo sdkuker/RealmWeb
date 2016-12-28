@@ -30,6 +30,6 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/combatRoundCriticalHi
             }
         });
 
-        return CombatRoundCollection;
+        return CombatRoundCriticalHitCollection;
 
     });

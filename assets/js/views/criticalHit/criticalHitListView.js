@@ -16,8 +16,8 @@ define(['marionette',
         lastHitsDisplayedWasList : false,
         initialize : function() {
             var self = this;
-            this.listenTo(RealmApplication.vent, 'criticalHitFilter:criticalHitSelected', function(selectedCriticalHitModel) {
-                self.displayCriticalHit(selectedCriticalHitModel);
+            this.listenTo(RealmApplication.vent, 'criticalHitFilter:criticalHitSelected', function(selectedCriticalHitModelArray) {
+                self.displayCriticalHit(selectedCriticalHitModelArray);
             });
         },
         displayCriticalHit : function(aCriticalHitModelArray) {

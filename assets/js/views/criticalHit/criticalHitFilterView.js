@@ -5,9 +5,11 @@ define(['marionette',
         'services/criticalHitWarehouse',
         'services/combatRoundWarehouse',
         'services/characterCombatRoundStatisticWarehouse',
+        'services/combatRoundCriticalHitWarehouse',
         'tpl!templates/criticalHit/criticalHitFilterTemplate.tpl'],
     function (Marionette, Backbone, RealmApplication, DieModel,CriticalHitWarehouse,
-              CombatRoundWarehouse, CombatRoundStatisticWarehouse, CriticalHitFilterTemplate) {
+              CombatRoundWarehouse, CombatRoundStatisticWarehouse, CombatRoundCriticalHitWarehouse,
+              CriticalHitFilterTemplate) {
 
         var CriticalHitFilterView = Marionette.ItemView.extend({
             template: CriticalHitFilterTemplate,
@@ -28,6 +30,7 @@ define(['marionette',
             chosenCombatEncounter : null,
             openCombatRoundForEncounter : null,
             chosenDefenderID : null,
+            noCombatID : 'noCombatID',
             initialize : function() {
                 self = this;
                 $(document.body).on('change', '#typeSelect', function(e) {
@@ -106,10 +109,10 @@ define(['marionette',
                 var self = this;
                 var encounterSelectElement = this.$el.find('#combatEncounterSelect');
                 encounterSelectElement.empty();
-                var noCombatOption = "<option value='noCombat'";
-                if (self.chosenCombatEncounterID == null || self.chosenCombatEncounterID == 'noCombat') {
+                var noCombatOption = "<option value='" + self.noCombatID + "'";
+                if (self.chosenCombatEncounterID == null || self.chosenCombatEncounterID == self.noCombatID) {
                     noCombatOption = noCombatOption + " selected='selected'";
-                    self.chosenCombatEncounterID = 'noCombat';
+                    self.chosenCombatEncounterID = self.noCombatID;
                 };
                 noCombatOption = noCombatOption + ">Exclude from Combat</option>";
                 encounterSelectElement.append(noCombatOption);
@@ -131,11 +134,15 @@ define(['marionette',
                 selectedEncounter = this.options.combatEncounters.findWhere({id: combatEncounterID});
                 return selectedEncounter;
             },
+            inCombatMode : function() {
+                var self = this;
+                return self.chosenCombatEncounterID && self.chosenCombatEncounterID != self.noCombatID;
+            },
             populateDefenders : function() {
                 var self = this;
                 var defenderSelectElement = this.$el.find('#defenderSelect');
                 defenderSelectElement.empty();
-                if (self.chosenCombatEncounterID && self.chosenCombatEncounterID != 'noCombat') {
+                if (self.inCombatMode()) {
                     $.when(CombatRoundWarehouse.getOpenRoundForEncounter(self.chosenCombatEncounter)).then (
                         function(openCombatRound) {
                             self.openCombatRoundForEncounter = openCombatRound;
@@ -225,9 +232,26 @@ define(['marionette',
                 self.render();
             },
             getCriticalButtonClicked : function () {
-                var selectedCriticalHitArray = this.options.criticalHits.getCriticalHit(self.attackTotalValue, this.chosenType, this.chosenSeverity );
+                var selectedCriticalHitArray = this.options.criticalHits.getCriticalHit(self.attackTotalValue,
+                    this.chosenType, this.chosenSeverity );
                 if (selectedCriticalHitArray && selectedCriticalHitArray.length > 0) {
-                    RealmApplication.vent.trigger('criticalHitFilter:criticalHitSelected', selectedCriticalHitArray);
+                    if (self.inCombatMode()) {
+                        var openRoundID = self.openCombatRoundForEncounter.get('id');
+                        var openRoundNumber = self.openCombatRoundForEncounter.get('roundNumber');
+                        var criticalHitID = selectedCriticalHitArray[0].get('id');
+                        var criticalHitDescription = selectedCriticalHitArray[0].getDescription();
+                        $.when(CombatRoundCriticalHitWarehouse.addCombatRoundCriticalHit(self.chosenCombatEncounterID,
+                            openRoundID, openRoundNumber, self.chosenDefenderID, criticalHitID, criticalHitDescription)).then (
+                            function(openCombatRound) {
+                                RealmApplication.vent.trigger('criticalHitFilter:combatCriticalHitSelected', selectedCriticalHitArray);
+                            },
+                            function(errorString) {
+                                console.log(errorString);
+                            }
+                        )
+                    } else {
+                        RealmApplication.vent.trigger('criticalHitFilter:criticalHitSelected', selectedCriticalHitArray);
+                    }
                 }
             },
             listCriticalButtonClicked : function () {

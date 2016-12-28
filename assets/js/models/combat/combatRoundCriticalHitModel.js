@@ -3,9 +3,13 @@ define(['backbone'],
 
         var CombatRoundCriticalHit = Backbone.Model.extend({
             defaults: {
+                combatEncounterID : '',
                 combatRoundID : '',
+                combatRoundNumber : '',
                 criticalHitID : '',
-                characterID : ''
+                characterID : '',
+                criticalHitDescription : '',
+                timeOfHit : ''
             }
         });
 
