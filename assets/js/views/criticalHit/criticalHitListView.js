@@ -19,6 +19,9 @@ define(['marionette',
             this.listenTo(RealmApplication.vent, 'criticalHitFilter:criticalHitSelected', function(selectedCriticalHitModelArray) {
                 self.displayCriticalHit(selectedCriticalHitModelArray);
             });
+            this.listenTo(RealmApplication.vent, 'criticalHitFilter:combatCriticalHitSelected', function(selectedCombatRoundCriticalHitModelArray) {
+                self.displayCombatRoundCriticalHit(selectedCombatRoundCriticalHitModelArray);
+            });
         },
         displayCriticalHit : function(aCriticalHitModelArray) {
             if (aCriticalHitModelArray) {
@@ -36,6 +39,17 @@ define(['marionette',
                     }
                 };
                 this.lastHitsDisplayedWasList = displayingAList;
+            }
+        },
+        displayCombatRoundCriticalHit : function(combatRoundCriticalHitModelArray) {
+            if (combatRoundCriticalHitModelArray) {
+                this.collection.reset();
+                for (index = 0; index < combatRoundCriticalHitModelArray.length; index++) {
+                    var criticalHitWithoutID = combatRoundCriticalHitModelArray[index].toJSON();
+                    delete criticalHitWithoutID.objectId;
+                    this.collection.add(criticalHitWithoutID, {at: 0});
+                }
+
             }
         }
     });
