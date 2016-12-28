@@ -24,6 +24,22 @@ define(['jquery',
                 return deferred.promise();
             };
 
+            this.getCombatRoundCriticalHitsForCharacterForEncounter = function(aCharacterID, anEncounterID) {
+                var deferred = $.Deferred();
+
+                $.when(getCombatRoundCriticalHitCollection()).then(
+                    function(myCombatRoundCriticalHitCollection) {
+                        var selectedModelArray = myCombatRoundCriticalHitCollection.filter(function(combatRoundCriticalHitModel) {
+                            var isItAMatch =  combatRoundCriticalHitModel.get('combatEncounterID') === anEncounterID &&
+                                combatRoundCriticalHitModel.get('characterID') === aCharacterID;
+                            return isItAMatch;
+                        });
+                        deferred.resolve(selectedModelArray);
+                    }
+                )
+                return deferred.promise();
+            };
+
             this.getCombatRoundCriticalHitsForRound = function(combatRoundID) {
                 var deferred = $.Deferred();
                 $.when(getCombatRoundCriticalHitCollection()). then(

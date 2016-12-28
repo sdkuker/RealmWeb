@@ -242,8 +242,15 @@ define(['marionette',
                         var criticalHitDescription = selectedCriticalHitArray[0].getDescription();
                         $.when(CombatRoundCriticalHitWarehouse.addCombatRoundCriticalHit(self.chosenCombatEncounterID,
                             openRoundID, openRoundNumber, self.chosenDefenderID, criticalHitID, criticalHitDescription)).then (
-                            function(openCombatRound) {
-                                RealmApplication.vent.trigger('criticalHitFilter:combatCriticalHitSelected', selectedCriticalHitArray);
+                            function(newCombatRoundCriticalHit) {
+                                $.when(CombatRoundCriticalHitWarehouse.getCombatRoundCriticalHitsForCharacterForEncounter(self.chosenDefenderID, self.chosenCombatEncounterID)).then(
+                                    function(arrayOfCombatRoundCriticalHits) {
+                                        RealmApplication.vent.trigger('criticalHitFilter:combatCriticalHitSelected', selectedCriticalHitArray);
+                                    },
+                                    function(errorString) {
+                                        console.log(errorString);
+                                    }
+                                )
                             },
                             function(errorString) {
                                 console.log(errorString);
