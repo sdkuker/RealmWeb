@@ -76,6 +76,11 @@ define(['marionette',
                 $('#attackerBonus').val(self.attackerBonusValue);
                 $('#defenderBonus').val(self.defenderBonusValue);
                 $('#attackTotal').val(self.attackTotalValue);
+                if (self.inCombatMode()) {
+                    $('#listCritcalsButton').prop('disabled', true);
+                } else {
+                    $('#listCritcalsButton').prop('disabled', false);
+                }
             },
             typeSelected : function() {
                 self = this;
