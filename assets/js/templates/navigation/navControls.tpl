@@ -4,7 +4,7 @@
             <a class="navbar-brand" href="#">Stevieware</a>
         </div>
         <div>
-            <ul class="nav navbar-nav">
+            <ul id='main-nav-ul' class="nav navbar-nav">
                 <li class="active"><a href="#dieRoller" >Die Roller</a></li>
                 <li><a href="#criticalHits" >Critical Hits</a></li>
                 <li><a href="#players" >Players</a></li>
