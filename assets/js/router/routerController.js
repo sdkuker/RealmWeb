@@ -82,7 +82,7 @@ define(['jquery', 'realmApplication'
                     RealmApplication.regions.mainRegion.show(playerView);
                 });
             },
-            criticalHits: function () {
+            criticalHits: function (combatEncounterID, characterID) {
                 require(['views/criticalHit/criticalHitLayoutView', 'views/criticalHit/criticalHitFilterView',
                          'services/criticalHitWarehouse', 'collections/criticalHit/criticalHitCollection',
                         'collections/criticalHit/criticalHitDisplayCollection', 'collections/criticalHit/criticalHitTypeCollection',
@@ -99,12 +99,18 @@ define(['jquery', 'realmApplication'
                                         $.when(CombatEncounterWarehouse.getAllCombatEncounters()).then(
                                             function(combatEncounterCollection) {
                                                 var viewParms = {criticalHitTypes : criticalHitTypeCollection, criticalHits: criticalHitCollection, combatEncounters: combatEncounterCollection};
+                                                if (combatEncounterID && characterID) {
+                                                    viewParms.combatEncounterID = combatEncounterID;
+                                                    viewParms.characterID = characterID;
+                                                }
                                                 var critialHitFilterView = new CriticalHitFilterView(viewParms);
                                                 criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(critialHitFilterView);
                                                 var displayedHitsCollection = new CriticalHitDisplayCollection();
                                                 var criticalHitListView = new CriticalHitListView({collection : displayedHitsCollection});
                                                 criticalHitLayoutView.getRegion('criticalHitDisplayRegion').show(criticalHitListView);
-
+                                                if (combatEncounterID) {
+                                                    criticalHitFilterView.combatEncounterSelected();
+                                                }
                                             },
                                             function(errorString) {
                                                 console.log(errorString);

@@ -38,16 +38,21 @@ define(['jquery',
             // return the open round for the input encounter.  Return null if there is no open round.
             this.getOpenRoundForEncounter = function(combatEncounter) {
                 var deferred = $.Deferred();
-                $.when(getCombatRoundCollectionForEncounter(combatEncounter.get('id'))). then(
-                    function(myCombatRoundCollection) {
-                        var openRound = myCombatRoundCollection.findWhere({roundNumber: combatEncounter.get('openRound')});
-                        if (openRound) {
-                            deferred.resolve(openRound);
-                        } else {
-                            deferred.reject('No open round found');
+                if (combatEncounter) {
+                    $.when(getCombatRoundCollectionForEncounter(combatEncounter.get('id'))). then(
+                        function(myCombatRoundCollection) {
+                            var openRound = myCombatRoundCollection.findWhere({roundNumber: combatEncounter.get('openRound')});
+                            if (openRound) {
+                                deferred.resolve(openRound);
+                            } else {
+                                deferred.reject('No open round found');
+                            }
                         }
-                    }
-                )
+                    )
+                } else {
+                    deferred.reject('No combat encounter was provided');
+                }
+
 
                 return deferred.promise();
 

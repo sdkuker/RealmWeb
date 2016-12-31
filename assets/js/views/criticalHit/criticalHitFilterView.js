@@ -52,6 +52,11 @@ define(['marionette',
                     self.defenderSelected();
                 });
                 self.dieInstance = new DieModel();
+                if (this.options.combatEncounterID) {
+                    self.chosenCombatEncounterID = this.options.combatEncounterID;
+                    self.chosenCombatEncounter = self.getCombatEncounterWithID(self.chosenCombatEncounterID);
+                    self.chosenDefenderID = this.options.characterID;
+                };
             },
             onRender : function() {
                 self = this;
