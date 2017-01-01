@@ -152,9 +152,12 @@ define(['marionette',
             },
             populateDefenders : function() {
                 var self = this;
-                var defenderSelectElement = this.$el.find('#defenderSelect');
-                defenderSelectElement.empty();
+                var deferred = $.Deferred();
+
                 if (self.inCombatMode()) {
+                    var self = this;
+                    var defenderSelectElement = this.$el.find('#defenderSelect');
+                    defenderSelectElement.empty();
                     $.when(CombatRoundWarehouse.getOpenRoundForEncounter(self.chosenCombatEncounter)).then (
                         function(openCombatRound) {
                             self.openCombatRoundForEncounter = openCombatRound;
@@ -171,7 +174,14 @@ define(['marionette',
                                         optionString = optionString + ">" + decodeURI(aStatistic.get('characterName')) + "</option";
                                         defenderSelectElement.append(optionString);
                                     });
-                                    self.displayCombatCriticalHits();
+                                    $.when(self.displayCombatCriticalHits()).then(
+                                        function() {
+                                            deferred.resolve();
+                                        }
+                                    ),
+                                        function(errorString) {
+                                            console.log(errorString);
+                                        }
                                 },
                                 function(errorString) {
                                     console.log(errorString);
@@ -182,7 +192,12 @@ define(['marionette',
                             console.log(errorString);
                         }
                     )
-                }
+
+                } else {
+                    deferred.resolve();
+                };
+
+                return deferred.promise();
             },
             populateSeverities : function() {
                 var severitySelectElement = this.$el.find('#severitySelect');
@@ -256,7 +271,10 @@ define(['marionette',
                         $.when(CombatRoundCriticalHitWarehouse.addCombatRoundCriticalHit(self.chosenCombatEncounterID,
                             openRoundID, openRoundNumber, self.chosenDefenderID, criticalHitID, criticalHitDescription)).then (
                             function(newCombatRoundCriticalHit) {
-                                self.displayCombatCriticalHits();
+                                $.when(self.displayCombatCriticalHits()).then(
+                                    function() {
+                                    }
+                                )
                             },
                             function(errorString) {
                                 console.log(errorString);
@@ -268,16 +286,23 @@ define(['marionette',
                 }
             },
             displayCombatCriticalHits : function(overrideCombatMode) {
+
+                var deferred = $.Deferred();
+
                 if (self.inCombatMode() || overrideCombatMode) {
                     $.when(CombatRoundCriticalHitWarehouse.getCombatRoundCriticalHitsForCharacterForEncounter(self.chosenDefenderID, self.chosenCombatEncounterID)).then(
                         function (arrayOfCombatRoundCriticalHits) {
+                            deferred.resolve();
                             RealmApplication.vent.trigger('criticalHitFilter:combatCriticalHitSelected', arrayOfCombatRoundCriticalHits);
                         },
                         function (errorString) {
                             console.log(errorString);
+                            deferred.reject();
                         }
                     )
                 }
+                return deferred.promise();
+
             },
             listCriticalButtonClicked : function () {
                 var selectedCriticalHitArray = this.options.criticalHits.getCriticalHitList(this.chosenType, this.chosenSeverity );

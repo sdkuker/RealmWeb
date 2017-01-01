@@ -108,9 +108,9 @@ define(['jquery', 'realmApplication'
                                                 var displayedHitsCollection = new CriticalHitDisplayCollection();
                                                 var criticalHitListView = new CriticalHitListView({collection : displayedHitsCollection});
                                                 criticalHitLayoutView.getRegion('criticalHitDisplayRegion').show(criticalHitListView);
-                                                if (combatEncounterID) {
-                                                    criticalHitFilterView.combatEncounterSelected();
-                                                };
+                                              //  if (combatEncounterID) {
+                                             //       criticalHitFilterView.combatEncounterSelected();
+                                           //     };
                                                 RealmApplication.vent.trigger('navigationEvent', 'criticalHits');
                                             },
                                             function(errorString) {
