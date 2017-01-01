@@ -104,9 +104,9 @@ define(['jquery', 'realmApplication'
                                                     viewParms.characterID = characterID;
                                                 }
                                                 var criticalHitFilterView = new CriticalHitFilterView(viewParms);
-                                                criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(criticalHitFilterView);
                                                 var displayedHitsCollection = new CriticalHitDisplayCollection();
                                                 var criticalHitListView = new CriticalHitListView({collection : displayedHitsCollection});
+                                                criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(criticalHitFilterView);
                                                 criticalHitLayoutView.getRegion('criticalHitDisplayRegion').show(criticalHitListView);
                                               //  if (combatEncounterID) {
                                              //       criticalHitFilterView.combatEncounterSelected();
