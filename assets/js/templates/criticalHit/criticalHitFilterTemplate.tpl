@@ -82,8 +82,9 @@
     <div class="row">
         <form role="form">
             <div class="form-group form-horizontal">
-                <button class="col-md-offset-3 col-md-2 btn btn-default" id='getCriticalButton' type='button'>Get Critical</button>
+                <button class="col-md-offset-1 col-md-2 btn btn-default" id='getCriticalButton' type='button'>Get Critical</button>
                 <button class="col-md-offset-1 col-md-2 btn btn-default" id='listCritcalsButton' type='button'>List Criticals</button>
+                <button class="col-md-offset-1 col-md-2 btn btn-default" id='navToCombatButton' type='button'>Go To Combat</button>
             </div>
         </form>
     </div>

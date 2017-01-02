@@ -17,7 +17,8 @@ define(['marionette',
                 'click #normalDieButton' : 'normalDieButtonClicked',
                 'click #openEndedDieButton' : 'openEndedDieButtonClicked',
                 'click #getCriticalButton' : 'getCriticalButtonClicked',
-                'click #listCritcalsButton' : 'listCriticalButtonClicked'
+                'click #listCritcalsButton' : 'listCriticalButtonClicked',
+                'click #navToCombatButton' : 'navToCombatButtonClicked'
             },
             chosenType : null,
             chosenSeverity : null,
@@ -82,9 +83,11 @@ define(['marionette',
                 $('#defenderBonus').val(self.defenderBonusValue);
                 $('#attackTotal').val(self.attackTotalValue);
                 if (self.inCombatMode()) {
-                    $('#listCritcalsButton').prop('disabled', true);
+                    $('#listCritcalsButton', this.$el).prop('disabled', true);
+                    $('#navToCombatButton', this.$el).prop('disabled', false);
                 } else {
-                    $('#listCritcalsButton').prop('disabled', false);
+                    $('#listCritcalsButton', this.$el).prop('disabled', false);
+                    $('#navToCombatButton', this.$el).prop('disabled', true);
                 }
             },
             typeSelected : function() {
@@ -309,6 +312,10 @@ define(['marionette',
                 if (selectedCriticalHitArray && selectedCriticalHitArray.length > 0) {
                     RealmApplication.vent.trigger('criticalHitFilter:criticalHitSelected', selectedCriticalHitArray);
                 }
+            },
+            navToCombatButtonClicked : function () {
+                RealmApplication.vent.trigger('combatEncounterListOpenCombatEncounter', this.chosenCombatEncounter);
+                RealmApplication.vent.trigger('navigationEvent', 'combatEncounterList');
             }
         });
 

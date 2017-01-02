@@ -18,10 +18,23 @@ define(['realmApplication', 'marionette',
             console.log(navTargetViewName);
             var listElement = $('#main-nav-ul');
             var activeListItems = listElement.find('.active');
-           if (activeListItems && activeListItems.text() != 'Critical Hits') {
-               activeListItems.removeClass('active');
-              $('li:contains("Critical Hits")').addClass('active');
-           }
+            if (navTargetViewName) {
+                if (navTargetViewName == 'criticalHits') {
+                    if (activeListItems && activeListItems.text() != 'Critical Hits') {
+                        activeListItems.removeClass('active');
+                        $('li:contains("Critical Hits")').addClass('active');
+                    }
+                } else {
+                    if (navTargetViewName == 'combatEncounterList') {
+                        if (activeListItems && activeListItems.text() != 'Combat') {
+                            activeListItems.removeClass('active');
+                            $('li:contains("Combat")').addClass('active');
+                        }
+                    }
+                }
+            }
+
+
         }
     });
 
