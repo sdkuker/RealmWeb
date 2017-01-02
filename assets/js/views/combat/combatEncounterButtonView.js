@@ -21,7 +21,7 @@ define(['marionette',
             events : {
                 'click #nextRoundButton' : 'nextRoundButtonClicked',
                 'click #criticalHitsButton' : 'criticalHitsButtonClicked',
-                'change #displayedRoundNumber' : 'displayedRoundNumberSelected',
+                'change #displayedRoundNumber' : 'displayedRoundNumberSelected'
             },
             onRender : function() {
                 var self = this;
@@ -31,7 +31,8 @@ define(['marionette',
                 this.trigger('combatEncounterNextRoundButton:clicked');
             },
             criticalHitsButtonClicked : function() {
-                RealmApplication.vent.trigger('criticalHitsButton:clicked');
+                var self = this;
+                RealmApplication.vent.trigger('combatCriticalHitsForEncounterDefender', self.model.get('id'));
             },
             displayedRoundNumberSelected : function(event) {
                 var self = this;

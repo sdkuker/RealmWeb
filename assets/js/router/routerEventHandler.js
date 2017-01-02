@@ -64,7 +64,11 @@ define(['realmApplication', 'router/router', 'router/routerController'
             RouterController.openCombatEncounter(model);
         });
         RealmApplication.vent.bind('combatCriticalHitsForEncounterDefender', function (anEncounterID, aCharacterID) {
-            Router.navigate('criticalHits/' + anEncounterID + '/' + aCharacterID);
+            var navString = 'criticalHits/' + anEncounterID;
+            if (aCharacterID) {
+                navString = navString + '/' + aCharacterID;
+            }
+            Router.navigate(navString);
             RouterController.criticalHits(anEncounterID, aCharacterID);
         });
     });

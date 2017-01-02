@@ -6,6 +6,7 @@ define(['marionette',
         controller: RouterController,
         appRoutes: {
             'criticalHits': 'criticalHits',
+            'criticalHits/:combatEncounterID' : 'criticalHits',
             'criticalHits/:combatEncounterID/:characterID' : 'criticalHits',
             'resistanceTable': 'workInProgress',
             'dieRoller': 'dieRoller',

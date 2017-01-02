@@ -99,10 +99,12 @@ define(['jquery', 'realmApplication'
                                         $.when(CombatEncounterWarehouse.getAllCombatEncounters()).then(
                                             function(combatEncounterCollection) {
                                                 var viewParms = {criticalHitTypes : criticalHitTypeCollection, criticalHits: criticalHitCollection, combatEncounters: combatEncounterCollection};
-                                                if (combatEncounterID && characterID) {
+                                                if (combatEncounterID) {
                                                     viewParms.combatEncounterID = combatEncounterID;
+                                                };
+                                                if (characterID) {
                                                     viewParms.characterID = characterID;
-                                                }
+                                                };
                                                 var criticalHitFilterView = new CriticalHitFilterView(viewParms);
                                                 var displayedHitsCollection = new CriticalHitDisplayCollection();
                                                 var criticalHitListView = new CriticalHitListView({collection : displayedHitsCollection});
