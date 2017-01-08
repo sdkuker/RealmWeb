@@ -37,10 +37,10 @@ define(['marionette',
             RealmApplication.vent.trigger('characterListChangeCharacter', self.selectedModel);
         },
         triggerDeleteCharacterFunction : function() {
-            this.collection.remove(selectedModel);
+            this.collection.remove(self.selectedModel);
             Logger.logInfo('character model deleted');
-            ViewUtilities.showModalView('Informational', 'Character named: ' + selectedModel.getName() + ' Deleted');
-            selectedModel = null;
+            ViewUtilities.showModalView('Informational', 'Character named: ' + self.selectedModel.getName() + ' Deleted');
+            self.selectedModel = null;
             RealmApplication.vent.trigger('viewCharacterList');
         },
         characterSelected : function(tableRow, model) {
