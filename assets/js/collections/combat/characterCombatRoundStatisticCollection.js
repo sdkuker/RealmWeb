@@ -1,5 +1,5 @@
-define(['backbone', 'firebase', 'backfire', 'models/combat/characterCombatRoundStatisticModel', 'services/serviceConstants'],
-    function (Backbone, Firebase, Backfire, CharacterCombatRoundStatisticModel, ServiceConstants) {
+define(['backbone', 'firebase', 'backfire', 'models/combat/characterCombatRoundStatisticModel', 'services/serviceConstants', 'config'],
+    function (Backbone, Firebase, Backfire, CharacterCombatRoundStatisticModel, ServiceConstants, Config) {
 
         var CharacterCombatRoundStatisticCollection = Backbone.Firebase.Collection.extend({
             model: CharacterCombatRoundStatisticModel,
@@ -20,9 +20,9 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/characterCombatRoundS
             },
             url: function() {
                 if (this.myEncounterRoundID) {
-                    return new Firebase(ServiceConstants.backFireBaseURL + '/combatRoundStatistics').orderByChild('encounterRoundID').equalTo(this.myEncounterRoundID);
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/combatRoundStatistics').orderByChild('encounterRoundID').equalTo(this.myEncounterRoundID);
                 } else {
-                    return new Firebase(ServiceConstants.backFireBaseURL + '/combatRoundStatistics');
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/combatRoundStatistics');
                 }
             },
             comparator: function(combatRoundStatistic) {

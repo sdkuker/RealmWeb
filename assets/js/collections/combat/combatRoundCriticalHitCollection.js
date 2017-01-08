@@ -1,5 +1,5 @@
-define(['backbone', 'firebase', 'backfire', 'models/combat/combatRoundCriticalHitModel', 'services/serviceConstants'],
-    function (Backbone, Firebase, Backfire, CombatRoundCriticalHitModel, ServiceConstants) {
+define(['backbone', 'firebase', 'backfire', 'models/combat/combatRoundCriticalHitModel', 'services/serviceConstants', 'config'],
+    function (Backbone, Firebase, Backfire, CombatRoundCriticalHitModel, ServiceConstants, Config) {
 
         var CombatRoundCriticalHitCollection = Backbone.Firebase.Collection.extend({
             model: CombatRoundCriticalHitModel,
@@ -17,10 +17,10 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/combatRoundCriticalHi
             },
             url: function() {
                 if (this.myEncounterID) {
-                    return new Firebase(ServiceConstants.backFireBaseURL +
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment +
                         '/combatRoundCriticalHits').orderByChild('combatRoundID').equalTo(this.myRoundID);
                 } else {
-                    return new Firebase(ServiceConstants.backFireBaseURL + '/combatRoundCriticalHits');
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/combatRoundCriticalHits');
                 }
 
             },
