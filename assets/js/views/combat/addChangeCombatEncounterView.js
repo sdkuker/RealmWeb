@@ -2,7 +2,7 @@ define(['marionette',
     'realmApplication',
     'models/combat/combatEncounterModel',
     'utility/viewUtilities',
-    "tpl!templates/combat/addChangecombatEncounterTemplate.tpl",
+    "tpl!templates/combat/addChangeCombatEncounterTemplate.tpl",
     'logger',
     'services/combatEncounterWarehouse'
 ], function (Marionette, RealmApplication, CombatEncounterModel, ViewUtilities, AddChangeCombatEncounterTemplate, Logger, CombatEncounterWarehouse) {
