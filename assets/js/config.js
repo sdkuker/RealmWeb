@@ -2,7 +2,7 @@ define([],
     function () {
 
         var Config = {
-            environment : 'test'
+            environment : 'prod'
         }
 
         return Config;
