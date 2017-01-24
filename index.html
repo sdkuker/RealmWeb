@@ -13,91 +13,16 @@
     <script src="./assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyCnQbVXRg5L0xUSQeCc8OIo3VHU7PEir4M",
-            authDomain: "stevieware.firebaseapp.com",
-            databaseURL: "https://stevieware.firebaseio.com",
-            storageBucket: "project-5301189612815518460.appspot.com",
-            messagingSenderId: "949261816871"
-        };
-        firebase.initializeApp(config);
-    </script>
 
     <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css"/>
 
-    <script type="text/javascript">
-
-        var handleSignedInUser = function (user) {
-            currentUid = user.uid;
-            $('#user-signed-in').removeClass('hidden');
-            document.getElementById('user-signed-in').style.display = 'block';
-            document.getElementById('user-signed-out').style.display = 'none';
-            document.getElementById('name').textContent = user.displayName;
-            document.getElementById('email').textContent = user.email;
-            if (user.photoURL) {
-                document.getElementById('photo').src = user.photoURL;
-                document.getElementById('photo').style.display = 'block';
-            } else {
-                document.getElementById('photo').style.display = 'none';
-            }
-        };
-
-        // FirebaseUI config.
-        var uiConfig = {
-            signInSuccessUrl: '#dieRoller',
-            signInOptions: [
-                // Leave the lines as is for the providers you want to offer your users.
-                firebase.auth.FacebookAuthProvider.PROVIDER_ID
-            ],
-            callbacks: {
-                'signInSuccess': function (user, credential, redirectUrl) {
-                    handleSignedInUser(user);
-                    // do not redirect
-                    return false;
-                }
-            }
-        };
-
-        // Initialize the FirebaseUI Widget using Firebase.
-        var ui = new firebaseui.auth.AuthUI(firebase.auth());
-        // The start method will wait until the DOM is loaded.
-        ui.start('#firebaseui-auth-container', uiConfig);
-    </script>
 </head>
 
 <body>
 
-<div id="firebaseui-auth-container"></div>
-<div id="user-signed-in" class="hidden">
-    <div id="user-info">
-        <div id="photo-container">
-            <img id="photo"></img>
-        </div>
-        <div id="name"></div>
-        <div id="email"></div>
-        <div class="clearfix"></div>
-    </div>
-    <p>
-        <button id="sign-out">Sign Out</button>
-    </p>
-</div>
-<div id="user-signed-out" class="hidden">
-    <h4>You are signed out.</h4>
-    <p>
-        <button id="sign-in-with-redirect">Sign In with Redirect</button>
-        <button id="sign-in-with-popup">Sign In with Popup</button>
-    </p>
-    <div id="firebaseui-spa">
-        <h5>Single Page Application mode:</h5>
-        <div id="firebaseui-container"></div>
-    </div>
-</div>
-</div>
-
 <div id='app-container'>
+    <div id="auth-region"></div>
     <div id="nav-region"></div>
     <div id="main-region" class="container"></div>
     <div id="footer-region"></div>
