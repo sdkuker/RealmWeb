@@ -29,21 +29,22 @@ define(['marionette',
                         signInOptions: [
                             firebase.auth.FacebookAuthProvider.PROVIDER_ID
                         ],
-                        callbacks: {
-                            'signInSuccess': function (user, credential, redirectUrl) {
-                                self.handleSignedInUser(user);
-                                // do not redirect
-                                return false;
-                            }
-                        }
+                        // callbacks: {
+                        //     'signInSuccess': function (user, credential, redirectUrl) {
+                        //         self.handleSignedInUser(user);
+                        //         // do not redirect
+                        //         return false;
+                        //     }
+                        // }
                     };
 
                     // Initialize the FirebaseUI Widget using Firebase.
                     steviewareAuthUI = new firebaseui.auth.AuthUI(firebase.auth());
-                    var authContainer = self.$el.find('#firebaseAuthContainer')[0];
-                    // The start method will wait until the DOM is loaded.
-                    steviewareAuthUI.start(authContainer, uiConfig);
                 }
+                var authContainer = self.$el.find('#firebaseAuthContainer')[0];
+                // The start method will wait until the DOM is loaded.
+                steviewareAuthUI.start(authContainer, uiConfig);
+
             },
             handleSignedInUser: function(user) {
                 var self = this;
