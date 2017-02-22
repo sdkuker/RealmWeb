@@ -5,7 +5,7 @@ define(['marionette',
     'logger',
     'services/playerWarehouse'
 ], function (Marionette, RealmApplication, AuthenticationUserModel, AuthenticationSignedInTemplate, Logger, PlayerWarehouse) {
-    var PlayerView = Marionette.ItemView.extend({
+    var AuthenticationSignedInView = Marionette.ItemView.extend({
         template: AuthenticationSignedInTemplate,
         firebaseUIUser : null,
         model : AuthenticationUserModel,
@@ -14,10 +14,15 @@ define(['marionette',
         },
         signOutButtonClicked : function() {
             self = this;
-            // add the signout stuff here
+            firebase.auth().signOut().then(function() {
+                RealmApplication.vent.trigger('authenticationSignedInView:userSignedOutSuccessfully');
+            }, function(error) {
+                console.log('error in signout');
+            });
+
         }
     });
 
-    return PlayerView;
+    return AuthenticationSignedInView;
 
 });
