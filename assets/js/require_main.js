@@ -13,7 +13,7 @@ requirejs.config({
         backfire: 'vendor/backbonefire',
         logger : 'utility/logger'
     },
-
+    //waitSeconds : 0,
     shim: {
         'backbone': {
             deps: ['jquery', 'underscore', 'json2'],
