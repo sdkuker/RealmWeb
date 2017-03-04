@@ -15,21 +15,14 @@ define(['marionette',
                 steviewareAuthUI = null;
                 steviewareAuthLayoutView = this;
                 RealmApplication.vent.bind('authenticationSignedInView:userSignedOutSuccessfully', function() {
-                    self.handleUserSignedOut(self);
+                    self.handleUserSignedOutAndNotify(self);
                 });
                 firebase.auth().onAuthStateChanged(self.handleAuthStateChangedEvent);
             },
             uiConfig : {
                 signInOptions: [
                     firebase.auth.FacebookAuthProvider.PROVIDER_ID
-                ],
-                // callbacks: {
-                //     'signInSuccess': function (user, credential, redirectUrl) {
-                //         self.handleSignedInUser(user);
-                //         // do not redirect
-                //         return false;
-                //     }
-                // }
+                ]
             },
             signedInView : new AuthenticationSignedInView({model: new AuthenticationUserModel()}),
             userSignedIn : false,
@@ -48,7 +41,9 @@ define(['marionette',
                 self.getRegion('userStateRegion').show(self.signedInView);
                 require(['utility/firebaseAuthUIUtilities'], function(AuthUIUtilities) {
                     AuthUIUtilities.getAuthUI().reset();
-                })
+                    AuthUIUtilities.setUser(user);
+                });
+                RealmApplication.vent.trigger('userSignedIn');
             },
             handleUserSignedOut : function(layoutView) {
                 require(['utility/firebaseAuthUIUtilities'], function(AuthUIUtilities) {
@@ -58,7 +53,13 @@ define(['marionette',
                     var authContainer = $('#firebaseAuthContainer')[0];
                     // The start method will wait until the DOM is loaded.
                     AuthUIUtilities.getAuthUI().start(authContainer, layoutView.uiConfig);
-                })
+                    AuthUIUtilities.setUser(null);
+                });
+            },
+            handleUserSignedOutAndNotify : function(layoutView) {
+                var self = this;
+                self.handleUserSignedOut(layoutView);
+                RealmApplication.vent.trigger('userSignedOut');
             },
             handleAuthStateChangedEvent: function(user) {
                 if (user) {

@@ -1,8 +1,9 @@
-define(['jquery', 'realmApplication'
+define(['jquery', 'realmApplication', 'utility/viewUtilities'
     ],
-    function ($, RealmApplication) {
+    function ($, RealmApplication, ViewUtilities) {
 
         RouterController = {
+
             workInProgress: function () {
                 require(['views/workInProgressView'], function (WorkInProgressView) {
                     var view = new WorkInProgressView();
@@ -14,6 +15,7 @@ define(['jquery', 'realmApplication'
                     var dieModel = new DieModel();
                     var view = new DieRollerView({model: dieModel});
                     RealmApplication.regions.mainRegion.show(view);
+                    ViewUtilities.currentNavSelection = 'dieRoller';
                 });
             },
             combatEncounterList: function () {
@@ -30,6 +32,7 @@ define(['jquery', 'realmApplication'
                                 var combatEncounterListButtonView = new CombatEncounterListButtonView({listView: combatEncounterListView});
                                 combatEncounterListLayoutView.getRegion('combatEncountersTableRegion').show(combatEncounterListView);
                                 combatEncounterListLayoutView.getRegion('buttonsRegion').show(combatEncounterListButtonView);
+                                ViewUtilities.currentNavSelection = 'combatEncounterList';
                             }
                         ),
                             function() {
@@ -69,6 +72,7 @@ define(['jquery', 'realmApplication'
                             var playerListButtonView = new PlayerListButtonView();
                             playerListLayoutView.getRegion('playerTableRegion').show(playerListView);
                             playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
+                            ViewUtilities.currentNavSelection = 'players';
                         }
                     ),
                         function() {
@@ -110,10 +114,8 @@ define(['jquery', 'realmApplication'
                                                 var criticalHitListView = new CriticalHitListView({collection : displayedHitsCollection});
                                                 criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(criticalHitFilterView);
                                                 criticalHitLayoutView.getRegion('criticalHitDisplayRegion').show(criticalHitListView);
-                                              //  if (combatEncounterID) {
-                                             //       criticalHitFilterView.combatEncounterSelected();
-                                           //     };
                                                 RealmApplication.vent.trigger('navigationEvent', 'criticalHits');
+                                                ViewUtilities.currentNavSelection = 'criticalHits';
                                             },
                                             function(errorString) {
                                                 console.log(errorString);
@@ -134,23 +136,32 @@ define(['jquery', 'realmApplication'
             characterList: function () {
                 require(['views/character/characterListView', 'views/character/characterView',
                         'views/character/characterListLayoutView','views/character/characterListButtonView',
-                        'services/characterWarehouse', 'services/playerWarehouse'],
+                        'services/characterWarehouse', 'services/playerWarehouse', 'utility/firebaseAuthUIUtilities',
+                        ],
                     function (CharacterListView, CharacterView, CharacterListLayoutView,
-                              CharacterListButtonView, CharacterrWarehouse, PlayerWarehouse) {
-                        var characterListLayoutView = new CharacterListLayoutView();
-                        RealmApplication.regions.mainRegion.show(characterListLayoutView);
-                        $.when(CharacterrWarehouse.getAllCharacters(), PlayerWarehouse.getAllPlayers()).then(
-                            function(myCharacterCollection, myPlayerCollection) {
-                                // getting the players so the character list model can get them without waiting
-                                var characterListView = new CharacterListView({collection: myCharacterCollection});
-                                var characterListButtonView = new CharacterListButtonView();
-                                characterListLayoutView.getRegion('characterTableRegion').show(characterListView);
-                                characterListLayoutView.getRegion('buttonsRegion').show(characterListButtonView);
-                            }
-                        ),
-                            function() {
-                                console.log('some kind of error getting characters');
-                            }
+                              CharacterListButtonView, CharacterrWarehouse, PlayerWarehouse, AuthUIUtilities) {
+                        if (AuthUIUtilities.isUserLoggedIn()) {
+                            var characterListLayoutView = new CharacterListLayoutView();
+                            RealmApplication.regions.mainRegion.show(characterListLayoutView);
+                            $.when(CharacterrWarehouse.getAllCharacters(), PlayerWarehouse.getAllPlayers()).then(
+                                function(myCharacterCollection, myPlayerCollection) {
+                                    // getting the players so the character list model can get them without waiting
+                                    var characterListView = new CharacterListView({collection: myCharacterCollection});
+                                    var characterListButtonView = new CharacterListButtonView();
+                                    characterListLayoutView.getRegion('characterTableRegion').show(characterListView);
+                                    characterListLayoutView.getRegion('buttonsRegion').show(characterListButtonView);
+                                    ViewUtilities.currentNavSelection = 'characterList';
+                                }
+                            ),
+                                function() {
+                                    console.log('some kind of error getting characters');
+                                }
+                        } else {
+                            ViewUtilities.resetActiveNavSelection();
+                            ViewUtilities.showModalView('Required', 'You must login before you can view the list of characters');
+
+                        }
+
                     });
             },
             viewCharacter: function(characterModel) {

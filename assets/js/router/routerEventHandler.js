@@ -71,4 +71,10 @@ define(['realmApplication', 'router/router', 'router/routerController'
             Router.navigate(navString);
             RouterController.criticalHits(anEncounterID, aCharacterID);
         });
+        RealmApplication.vent.bind('userSignedOut', function () {
+            Router.navigate('dieRoller');
+            RouterController.dieRoller();
+            RouterController.currentNavSelection = 'dieRoller';
+            RouterController.resetActiveNavSelection();
+        });
     });

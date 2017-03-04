@@ -4,7 +4,7 @@ define(['backbone', 'services/playerWarehouse'],
         var FirebaseUIAuthenticationUserModel = Backbone.Model.extend({
             defaults: {
                 name : null,
-                phote : null
+                photo : null
             },
 
         });
