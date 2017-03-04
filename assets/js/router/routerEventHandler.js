@@ -1,6 +1,6 @@
-define(['realmApplication', 'router/router', 'router/routerController'
+define(['realmApplication', 'router/router', 'router/routerController', 'utility/viewUtilities'
     ],
-    function (RealmApplication, Router, RouterController) {
+    function (RealmApplication, Router, RouterController, ViewUtilities) {
 
         RealmApplication.vent.bind('playerListAddPlayer', function (model) {
             Router.navigate('viewPlayer');
@@ -74,7 +74,7 @@ define(['realmApplication', 'router/router', 'router/routerController'
         RealmApplication.vent.bind('userSignedOut', function () {
             Router.navigate('dieRoller');
             RouterController.dieRoller();
-            RouterController.currentNavSelection = 'dieRoller';
-            RouterController.resetActiveNavSelection();
+            ViewUtilities.currentNavSelection = 'dieRoller';
+            ViewUtilities.resetActiveNavSelection();
         });
     });
