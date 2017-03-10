@@ -14,7 +14,7 @@ define(['realmApplication',
             this.resetActiveNavSelection = function() {
                 if (self.currentNavSelection) {
                     $('#main-nav-ul').children().removeClass('active');
-                    $('#' + this.currentNavSelection).addClass('active');
+                    $('#' + self.currentNavSelection).addClass('active');
                 }
             };
             this.showModalView = function(aTitle, aMessage) {

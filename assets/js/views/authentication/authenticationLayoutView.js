@@ -29,12 +29,13 @@ define(['marionette',
             onRender: function() {
                 var self = this;
                 if (! self.userSignedIn) {
-                    self.handleUserSignedOut(self);
+                    self.handleUserNotSignedIn(self);
                 }
 
             },
             handleSignedInUser: function(user) {
                 var self = this;
+                self.userSignedIn = true;
                 self.signedInView.firebaseUIUser = user;
                 self.signedInView.model.set('name', user.displayName);
                 self.signedInView.model.set('photo', user.photoURL);
@@ -45,7 +46,7 @@ define(['marionette',
                 });
                 RealmApplication.vent.trigger('userSignedIn');
             },
-            handleUserSignedOut : function(layoutView) {
+            handleUserNotSignedIn : function(layoutView) {
                 require(['utility/firebaseAuthUIUtilities'], function(AuthUIUtilities) {
                     layoutView.userSignedIn = false;
                     layoutView.getRegion('userStateRegion').reset();
@@ -58,7 +59,7 @@ define(['marionette',
             },
             handleUserSignedOutAndNotify : function(layoutView) {
                 var self = this;
-                self.handleUserSignedOut(layoutView);
+                self.handleUserNotSignedIn(layoutView);
                 RealmApplication.vent.trigger('userSignedOut');
             },
             handleAuthStateChangedEvent: function(user) {
