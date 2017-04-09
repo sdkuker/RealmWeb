@@ -4,6 +4,13 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
 
         RouterController = {
 
+            login: function () {
+                require(['views/login/loginBackgroundView'], function (LoginBackgroundView) {
+                    var view = new LoginBackgroundView();
+                    RealmApplication.regions.mainRegion.show(view);
+                    ViewUtilities.showModalView('Required', 'Gotta login baby :)', 'login');
+                });
+            },
             workInProgress: function () {
                 require(['views/workInProgressView'], function (WorkInProgressView) {
                     var view = new WorkInProgressView();

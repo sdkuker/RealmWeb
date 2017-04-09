@@ -20,7 +20,8 @@ define(['marionette',
             'combatEncounterList' : 'combatEncounterList',
             'addChangeCombatEncounter' : 'addChangeCombatEncounter',
             'viewPlayer' : 'viewPlayer',
-            '*path': 'dieRoller'
+            'login' : 'login',
+            '*path': 'login'
         }
     });
 

@@ -17,8 +17,8 @@ define(['realmApplication',
                     $('#' + self.currentNavSelection).addClass('active');
                 }
             };
-            this.showModalView = function(aTitle, aMessage) {
-                var modalModel = new ModalModel({title: aTitle, message : aMessage});
+            this.showModalView = function(aTitle, aMessage, myMode) {
+                var modalModel = new ModalModel({title: aTitle, message : aMessage, mode: myMode});
                 var modalView = new ModalView({model : modalModel});
                 RealmApplication.modalRegion.show(modalView);
             }

@@ -2,6 +2,12 @@ define(['realmApplication', 'router/router', 'router/routerController', 'utility
     ],
     function (RealmApplication, Router, RouterController, ViewUtilities) {
 
+        RealmApplication.vent.bind('loginSuccessful', function () {
+            Router.navigate('dieRoller');
+            RouterController.dieRoller();
+            ViewUtilities.currentNavSelection = 'dieRoller';
+            ViewUtilities.resetActiveNavSelection();
+        });
         RealmApplication.vent.bind('playerListAddPlayer', function (model) {
             Router.navigate('viewPlayer');
             RouterController.viewPlayer(model);

@@ -6,8 +6,6 @@ define([
     return  Marionette.Region.extend({
         el: '#modal-region',
         onShow: function(view){
-            this.listenTo(view, "modal:close", this.closeDialog);
-
             var self = this;
             this.$el.modal({
                 backdrop: true,
@@ -16,10 +14,13 @@ define([
             });
         },
 
-        closeDialog: function(){
+        closeDialog: function(myMode){
             this.stopListening();
             //this.close();
             this.$el.modal('hide');
+            if (myMode == 'login') {
+                this.trigger('loginSuccessful');
+            }
         }
     });
 
