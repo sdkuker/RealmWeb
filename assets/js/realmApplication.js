@@ -39,8 +39,8 @@ define(["marionette",
                 };
                 firebase.initializeApp(config);
 
-                var authLayoutView = new AuthentiationLayoutView();
-                RealmApplication.regions.authRegion.show(authLayoutView);
+                // var authLayoutView = new AuthentiationLayoutView();
+                // RealmApplication.regions.authRegion.show(authLayoutView);
 
                 var navView = new NavigationView();
                 RealmApplication.regions.navRegion.show(navView);

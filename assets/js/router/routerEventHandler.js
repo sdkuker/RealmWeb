@@ -2,7 +2,11 @@ define(['realmApplication', 'router/router', 'router/routerController', 'utility
     ],
     function (RealmApplication, Router, RouterController, ViewUtilities) {
 
-        RealmApplication.vent.bind('loginSuccessful', function () {
+        RealmApplication.vent.bind('authenticationSignedInView:userSignedOutSuccessfully', function() {
+            RouterController.hideSigninRegionAndDisplayLoginModal();
+        });
+        RealmApplication.vent.bind('userIsSignedIn', function (authenticationUserModel) {
+            RouterController.displayLoggedInUser(authenticationUserModel);
             Router.navigate('dieRoller');
             RouterController.dieRoller();
             ViewUtilities.currentNavSelection = 'dieRoller';

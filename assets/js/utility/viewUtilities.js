@@ -1,7 +1,8 @@
 define(['realmApplication',
         'models/modal/modalModel',
-        'views/modal/modalView',],
-    function (RealmApplication, ModalModel, ModalView) {
+        'views/modal/modalView',
+        'views/modal/modalLoginView'],
+    function (RealmApplication, ModalModel, ModalView, ModalLoginView) {
 
         var Utility = function() {
             // private fields
@@ -17,10 +18,15 @@ define(['realmApplication',
                     $('#' + self.currentNavSelection).addClass('active');
                 }
             };
-            this.showModalView = function(aTitle, aMessage, myMode) {
-                var modalModel = new ModalModel({title: aTitle, message : aMessage, mode: myMode});
+            this.showModalView = function(aTitle, aMessage) {
+                var modalModel = new ModalModel({title: aTitle, message : aMessage});
                 var modalView = new ModalView({model : modalModel});
                 RealmApplication.modalRegion.show(modalView);
+            };
+            this.showLoginModalView = function() {
+                var modalModel = new ModalModel();
+                var modalLoginView = new ModalLoginView({model : modalModel});
+                RealmApplication.modalRegion.show(modalLoginView);
             }
         }
 

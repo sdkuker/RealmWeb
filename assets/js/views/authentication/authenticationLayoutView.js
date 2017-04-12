@@ -17,7 +17,6 @@ define(['marionette',
                 RealmApplication.vent.bind('authenticationSignedInView:userSignedOutSuccessfully', function() {
                     self.handleUserSignedOutAndNotify(self);
                 });
-                firebase.auth().onAuthStateChanged(self.handleAuthStateChangedEvent);
             },
             uiConfig : {
                 signInOptions: [
@@ -26,13 +25,6 @@ define(['marionette',
             },
             signedInView : new AuthenticationSignedInView({model: new AuthenticationUserModel()}),
             userSignedIn : false,
-            onRender: function() {
-                var self = this;
-                if (! self.userSignedIn) {
-                    self.handleUserNotSignedIn(self);
-                }
-
-            },
             handleSignedInUser: function(user) {
                 var self = this;
                 self.userSignedIn = true;

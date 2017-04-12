@@ -8,8 +8,18 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                 require(['views/login/loginBackgroundView'], function (LoginBackgroundView) {
                     var view = new LoginBackgroundView();
                     RealmApplication.regions.mainRegion.show(view);
-                    ViewUtilities.showModalView('Required', 'Gotta login baby :)', 'login');
+                    ViewUtilities.showLoginModalView();
                 });
+            },
+            displayLoggedInUser: function(authenticationUserModel) {
+                require(['views/authentication/authenticationSignedInView'], function (AuthenticationSignedInView) {
+                    var view = new AuthenticationSignedInView({model: authenticationUserModel});
+                    RealmApplication.regions.authRegion.show(view);
+                });
+            },
+            hideSigninRegionAndDisplayLoginModal: function() {
+                RealmApplication.regions.authRegion.reset();
+                this.login();
             },
             workInProgress: function () {
                 require(['views/workInProgressView'], function (WorkInProgressView) {
