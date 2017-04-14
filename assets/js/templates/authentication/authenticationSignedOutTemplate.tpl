@@ -1,6 +1,3 @@
 <div id="user-signed-out">
-    <h4>You are signed out.</h4>
-    <p>
-        <button id="signInButton">Sign In</button>
-    </p>
+    <h4>You have successfully signed out of Stevieware.  To sign in again, please close this browser tab and launch Stevieware again!</h4>
 </div>

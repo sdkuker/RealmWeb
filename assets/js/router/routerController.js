@@ -21,6 +21,16 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                 RealmApplication.regions.authRegion.reset();
                 this.login();
             },
+            hideSigninRegionAndDisplaySignedOutView: function() {
+                require(['views/authentication/authenticationSignedOutBackgroundView',
+                    'models/authentication/firebaseUIAuthenticationUserModel'],
+                    function (AuthenticationSignedOutBackgroundView, AuthenticationUserModel) {
+                    RealmApplication.regions.authRegion.reset();
+                    ViewUtilities.disableAllNavSelections();
+                    var view = new AuthenticationSignedOutBackgroundView({model: new AuthenticationUserModel()});
+                    RealmApplication.regions.mainRegion.show(view);
+                });
+            },
             workInProgress: function () {
                 require(['views/workInProgressView'], function (WorkInProgressView) {
                     var view = new WorkInProgressView();

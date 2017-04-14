@@ -18,6 +18,13 @@ define(['realmApplication',
                     $('#' + self.currentNavSelection).addClass('active');
                 }
             };
+            this.disableAllNavSelections = function() {
+                $('#main-nav-ul').children().removeClass('active');
+                $('#main-nav-ul').children().addClass('disabled');
+                $('#main-nav-ul').children().on('click', function(e) {
+                    e.preventDefault();
+                })
+            };
             this.showModalView = function(aTitle, aMessage) {
                 var modalModel = new ModalModel({title: aTitle, message : aMessage});
                 var modalView = new ModalView({model : modalModel});
