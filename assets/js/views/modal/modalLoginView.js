@@ -1,9 +1,10 @@
 define(['realmApplication', 'marionette',  'models/authentication/firebaseUIAuthenticationUserModel',
-    "tpl!templates/modal/modalLoginTemplate.tpl"], function (RealmApplication, Marionette, AuthenticationUserModel,
-                                                             ModalLoginTemplate) {
+    "tpl!templates/modal/modalLoginTemplate.tpl", "utility/viewUtilities"],
+    function (RealmApplication, Marionette, AuthenticationUserModel, ModalLoginTemplate, ViewUtilities) {
     var ModalView = Marionette.ItemView.extend({
         template: ModalLoginTemplate,
         authenticationUserModel: null,
+        loginInProgressCookeName : "loginInProgress",
         initialize : function() {
             var self = this;
             modalLoginView = this;
@@ -16,6 +17,7 @@ define(['realmApplication', 'marionette',  'models/authentication/firebaseUIAuth
                     return false;
                 }
             },
+          //  signInSuccessUrl: 'loggedIn.html',
             signInOptions: [
                 firebase.auth.FacebookAuthProvider.PROVIDER_ID
             ]
@@ -23,7 +25,6 @@ define(['realmApplication', 'marionette',  'models/authentication/firebaseUIAuth
         events: {
             'click .close': function(e) {
                 e.preventDefault();
-                RealmApplication.vent.trigger('loginSuccessful');
             }
         },
         onRender: function() {

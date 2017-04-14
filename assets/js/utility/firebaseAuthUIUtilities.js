@@ -17,7 +17,7 @@ define([],
         };
         this.isUserLoggedIn = function() {
             return user != null;
-        }
+        };
 
     }
 
