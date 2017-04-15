@@ -29,6 +29,10 @@ define(['realmApplication',
                 return playerLoggedIn;
             };
 
+            this.setPlayerLoggedIn = function(aPlayerModel) {
+                self.playerLoggedIn = aPlayerModel;
+            }
+
             this.getPlayerWithID = function(playerID) {
                 var deferred = $.Deferred();
                 $.when(getPlayerCollection()). then(
@@ -79,11 +83,6 @@ define(['realmApplication',
                 }
                 return deferred.promise();
             };
-
-            RealmApplication.vent.bind('userIsSignedIn', function (playerModel) {
-
-                console.log('hi');
-            });
 
         };
 

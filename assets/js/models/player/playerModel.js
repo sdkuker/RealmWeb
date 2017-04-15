@@ -22,8 +22,8 @@ define(['backbone'],
             getPhoto : function() {
                 return this.get('photo');
             },
-            setPhote : function(photoURL) {
-                return this.set('phote', photoURL);
+            setPhoto : function(photoURL) {
+                return this.set('photo', photoURL);
             }
 
         });

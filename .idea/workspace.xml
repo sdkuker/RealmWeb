@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3adb2a7-14e6-4f04-b818-55fea9bb621c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/models/authentication/firebaseUIAuthenticationUserModel.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/js/views/authentication/authenticationLayoutView.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/collections/player/playerCollection.js" afterPath="$PROJECT_DIR$/assets/js/collections/player/playerCollection.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/models/player/playerModel.js" afterPath="$PROJECT_DIR$/assets/js/models/player/playerModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/realmApplication.js" afterPath="$PROJECT_DIR$/assets/js/realmApplication.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/router/routerController.js" afterPath="$PROJECT_DIR$/assets/js/router/routerController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/router/routerEventHandler.js" afterPath="$PROJECT_DIR$/assets/js/router/routerEventHandler.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/services/playerWarehouse.js" afterPath="$PROJECT_DIR$/assets/js/services/playerWarehouse.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedInView.js" afterPath="$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedInView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedOutBackgroundView.js" afterPath="$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedOutBackgroundView.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/modal/modalLoginView.js" afterPath="$PROJECT_DIR$/assets/js/views/modal/modalLoginView.js" />
     </list>
     <ignored path="RealmWeb.iws" />
@@ -33,61 +25,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="modalLoginView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/views/modal/modalLoginView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="139">
+              <caret line="39" column="12" lean-forward="false" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="routerEventHandler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/router/routerEventHandler.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="9" column="60" lean-forward="false" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
+              <caret line="9" column="48" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="48" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="modalLoginView.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/views/modal/modalLoginView.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="42" column="12" lean-forward="false" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="authenticationSignedInView.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedInView.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routerController.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routerController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/router/routerController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+            <state relative-caret-position="147">
+              <caret line="16" column="71" lean-forward="false" selection-start-line="16" selection-start-column="71" selection-end-line="16" selection-end-column="71" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="authenticationSignedOutBackgroundView.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedOutBackgroundView.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="playerWarehouse.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="playerWarehouse.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/services/playerWarehouse.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="84" column="16" lean-forward="false" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
+            <state relative-caret-position="327">
+              <caret line="32" column="16" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -96,8 +68,8 @@
       <file leaf-file-name="playerModel.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/models/player/playerModel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="21" column="35" lean-forward="true" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+            <state relative-caret-position="252">
+              <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -114,7 +86,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>authenticationsi</find>
       <find>authenticationsig</find>
       <find>authenticationsigne</find>
       <find>authenticationsigned</find>
@@ -124,7 +95,6 @@
       <find>authenticationsignedinvi</find>
       <find>authenticationsignedinvie</find>
       <find>authenticationsignedinview</find>
-      <find>displayLoggedInUser</find>
       <find>a</find>
       <find>au</find>
       <find>auth</find>
@@ -144,6 +114,8 @@
       <find>authenticationusermod</find>
       <find>authenticationusermode</find>
       <find>authenticationusermodel</find>
+      <find>userIsSignedIn</find>
+      <find>displayLoggedInUser</find>
     </findStrings>
     <replaceStrings>
       <replace>-md-</replace>
@@ -200,14 +172,14 @@
         <option value="$PROJECT_DIR$/assets/js/views/authentication/authenticationLoggedOutBackgroundView.js" />
         <option value="$PROJECT_DIR$/assets/js/utility/viewUtilities.js" />
         <option value="$PROJECT_DIR$/assets/js/collections/player/playerCollection.js" />
-        <option value="$PROJECT_DIR$/assets/js/models/player/playerModel.js" />
         <option value="$PROJECT_DIR$/assets/js/realmApplication.js" />
         <option value="$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedInView.js" />
         <option value="$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedOutBackgroundView.js" />
-        <option value="$PROJECT_DIR$/assets/js/views/modal/modalLoginView.js" />
-        <option value="$PROJECT_DIR$/assets/js/router/routerController.js" />
-        <option value="$PROJECT_DIR$/assets/js/services/playerWarehouse.js" />
         <option value="$PROJECT_DIR$/assets/js/router/routerEventHandler.js" />
+        <option value="$PROJECT_DIR$/assets/js/services/playerWarehouse.js" />
+        <option value="$PROJECT_DIR$/assets/js/router/routerController.js" />
+        <option value="$PROJECT_DIR$/assets/js/models/player/playerModel.js" />
+        <option value="$PROJECT_DIR$/assets/js/views/modal/modalLoginView.js" />
       </list>
     </option>
   </component>
@@ -218,8 +190,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="43" />
-    <option name="y" value="190" />
+    <option name="x" value="124" />
+    <option name="y" value="154" />
     <option name="width" value="1301" />
     <option name="height" value="667" />
   </component>
@@ -408,28 +380,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="authentication" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utility" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -807,15 +757,15 @@
       <workItem from="1490047649323" duration="7231000" />
       <workItem from="1491748382396" duration="3324000" />
       <workItem from="1492203120424" duration="40000" />
-      <workItem from="1492203177965" duration="8095000" />
+      <workItem from="1492203177965" duration="8894000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="412040000" />
+    <option name="totallyTimeSpent" value="412839000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="43" y="190" width="1301" height="667" extended-state="0" />
+    <frame x="124" y="154" width="1301" height="667" extended-state="0" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.278125" sideWeight="0.49078342" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -924,7 +874,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/assets/js/router/routerController.js</url>
-          <line>186</line>
+          <line>188</line>
           <option name="timeStamp" value="816" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -934,33 +884,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/assets/js/services/playerWarehouse.js</url>
-          <line>84</line>
+          <line>32</line>
           <properties />
-          <option name="timeStamp" value="874" />
+          <option name="timeStamp" value="882" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/assets/js/views/modal/modalLoginView.js</url>
-          <line>56</line>
+          <line>38</line>
           <properties />
-          <option name="timeStamp" value="878" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/js/views/modal/modalLoginView.js</url>
-          <line>42</line>
-          <properties />
-          <option name="timeStamp" value="879" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/js/router/routerController.js</url>
-          <line>15</line>
-          <properties />
-          <option name="timeStamp" value="881" />
+          <option name="timeStamp" value="883" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="882" />
+      <option name="time" value="884" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1290,10 +1228,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/router/routerEventHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="48" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/models/player/playerModel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="21" column="35" lean-forward="true" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+        <state relative-caret-position="252">
+          <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="36" />
           <folding />
         </state>
       </provider>
@@ -1306,34 +1252,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/router/routerEventHandler.js">
+    <entry file="file://$PROJECT_DIR$/assets/js/router/routerController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="60" lean-forward="false" selection-start-line="9" selection-start-column="60" selection-end-line="9" selection-end-column="60" />
+        <state relative-caret-position="147">
+          <caret line="16" column="71" lean-forward="false" selection-start-line="16" selection-start-column="71" selection-end-line="16" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/views/modal/modalLoginView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="42" column="12" lean-forward="false" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
+        <state relative-caret-position="139">
+          <caret line="39" column="12" lean-forward="false" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/services/playerWarehouse.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="84" column="16" lean-forward="false" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/router/routerController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="15" column="31" lean-forward="false" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+        <state relative-caret-position="327">
+          <caret line="32" column="16" lean-forward="false" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
           <folding />
         </state>
       </provider>

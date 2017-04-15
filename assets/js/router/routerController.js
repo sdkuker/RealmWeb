@@ -12,9 +12,11 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                 });
             },
             displayLoggedInUser: function(playerModel) {
-                require(['views/authentication/authenticationSignedInView'], function (AuthenticationSignedInView) {
-                    var view = new AuthenticationSignedInView({model: playerModel});
-                    RealmApplication.regions.authRegion.show(view);
+                require(['views/authentication/authenticationSignedInView', 'services/playerWarehouse'],
+                    function (AuthenticationSignedInView, PlayerWarehouse) {
+                        PlayerWarehouse.setPlayerLoggedIn(playerModel);
+                        var view = new AuthenticationSignedInView({model: playerModel});
+                        RealmApplication.regions.authRegion.show(view);
                 });
             },
             hideSigninRegionAndDisplayLoginModal: function() {
