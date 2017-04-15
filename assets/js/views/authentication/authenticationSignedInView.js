@@ -1,13 +1,13 @@
 define(['marionette',
     'realmApplication',
-    'models/authentication/firebaseUIAuthenticationUserModel',
+    'models/player/playerModel',
     "tpl!templates/authentication/authenticationSignedInTemplate.tpl",
     'logger'
-], function (Marionette, RealmApplication, AuthenticationUserModel, AuthenticationSignedInTemplate, Logger) {
+], function (Marionette, RealmApplication, PlayerModel, AuthenticationSignedInTemplate, Logger) {
     var AuthenticationSignedInView = Marionette.ItemView.extend({
         template: AuthenticationSignedInTemplate,
         firebaseUIUser : null,
-        model : AuthenticationUserModel,
+        model : PlayerModel,
         events: {
             'click #signOutButton' : 'signOutButtonClicked'
         },

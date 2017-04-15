@@ -4,7 +4,8 @@ define(['backbone'],
         var PlayerModel = Backbone.Model.extend({
             defaults: {
                 name: '',
-                uid : ''
+                uid : '',
+                photo : ''
             },
             getName: function() {
                 return decodeURI(this.get('name'));
@@ -13,10 +14,16 @@ define(['backbone'],
                 return this.set('name', encodeURI(aName));
             },
             getUid : function() {
-                return uid;
+                return this.get('uid');
             },
             setUid : function(aUid) {
                 return this.set('uid', aUid);
+            },
+            getPhoto : function() {
+                return this.get('photo');
+            },
+            setPhote : function(photoURL) {
+                return this.set('phote', photoURL);
             }
 
         });

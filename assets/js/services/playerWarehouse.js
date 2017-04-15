@@ -1,7 +1,8 @@
-define(['jquery',
+define(['realmApplication',
+        'jquery',
         'logger',
         'collections/player/playerCollection'],
-    function ($, Logger, PlayerCollection) {
+    function (RealmApplication, $, Logger, PlayerCollection) {
 
         // I am the first stop for getting players.  If I don't have them, I'll get them from Firebase
         // and put them in my cache.  If I have them in my cache, I'll return them.
@@ -11,6 +12,7 @@ define(['jquery',
             var self = this;
             var cache = {};
             var collectionKey = 'playterCollection';
+            var playerLoggedIn = null;
 
             // public functions
             this.getAllPlayers = function() {
@@ -21,6 +23,10 @@ define(['jquery',
                     }
                 )
                 return deferred.promise();
+            };
+
+            this.getPlayerLoggedIn = function() {
+                return playerLoggedIn;
             };
 
             this.getPlayerWithID = function(playerID) {
@@ -72,7 +78,13 @@ define(['jquery',
                     })
                 }
                 return deferred.promise();
-            }
+            };
+
+            RealmApplication.vent.bind('userIsSignedIn', function (playerModel) {
+
+                console.log('hi');
+            });
+
         };
 
         var myPlayerWarehouse = new PlayerWarehouse();

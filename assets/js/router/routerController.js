@@ -11,9 +11,9 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                     ViewUtilities.showLoginModalView();
                 });
             },
-            displayLoggedInUser: function(authenticationUserModel) {
+            displayLoggedInUser: function(playerModel) {
                 require(['views/authentication/authenticationSignedInView'], function (AuthenticationSignedInView) {
-                    var view = new AuthenticationSignedInView({model: authenticationUserModel});
+                    var view = new AuthenticationSignedInView({model: playerModel});
                     RealmApplication.regions.authRegion.show(view);
                 });
             },
@@ -23,11 +23,11 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
             },
             hideSigninRegionAndDisplaySignedOutView: function() {
                 require(['views/authentication/authenticationSignedOutBackgroundView',
-                    'models/authentication/firebaseUIAuthenticationUserModel'],
-                    function (AuthenticationSignedOutBackgroundView, AuthenticationUserModel) {
+                    'services/playerWarehouse'],
+                    function (AuthenticationSignedOutBackgroundView, PlayerWarehouse) {
                     RealmApplication.regions.authRegion.reset();
                     ViewUtilities.disableAllNavSelections();
-                    var view = new AuthenticationSignedOutBackgroundView({model: new AuthenticationUserModel()});
+                    var view = new AuthenticationSignedOutBackgroundView({model: PlayerWarehouse.getPlayerLoggedIn()});
                     RealmApplication.regions.mainRegion.show(view);
                 });
             },

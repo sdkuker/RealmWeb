@@ -1,14 +1,14 @@
-define(['realmApplication', 'marionette',  'models/authentication/firebaseUIAuthenticationUserModel',
-    "tpl!templates/modal/modalLoginTemplate.tpl", "utility/viewUtilities"],
-    function (RealmApplication, Marionette, AuthenticationUserModel, ModalLoginTemplate, ViewUtilities) {
+define(['realmApplication', 'marionette',  'models/player/playerModel',
+    "tpl!templates/modal/modalLoginTemplate.tpl", "utility/viewUtilities", "services/playerWarehouse"],
+    function (RealmApplication, Marionette, PlayerModel, ModalLoginTemplate, ViewUtilities, PlayerWarehouse) {
     var ModalView = Marionette.ItemView.extend({
         template: ModalLoginTemplate,
-        authenticationUserModel: null,
+        playerModel: null,
         loginInProgressCookeName : "loginInProgress",
         initialize : function() {
             var self = this;
             modalLoginView = this;
-            self.authenticationUserModel = new AuthenticationUserModel();
+            self.playerModel = new PlayerModel();
             firebase.auth().onAuthStateChanged(self.handleAuthStateChangedEvent);
         },
         uiConfig : {
@@ -34,13 +34,13 @@ define(['realmApplication', 'marionette',  'models/authentication/firebaseUIAuth
         handleSignedInUser : function(aUser) {
             //$('#loginModal').modal("hide");
             $("[data-dismiss=modal]").trigger({ type: "click" });
-            modalLoginView.authenticationUserModel.set('name', aUser.displayName);
-            modalLoginView.authenticationUserModel.set('photo', aUser.photoURL);
+            modalLoginView.playerModel.set('name', aUser.displayName);
+            modalLoginView.playerModel.set('photo', aUser.photoURL);
             require(['utility/firebaseAuthUIUtilities'], function(AuthUIUtilities) {
                 AuthUIUtilities.getAuthUI().reset();
                 AuthUIUtilities.setUser(aUser);
             });
-            RealmApplication.vent.trigger('userIsSignedIn', modalLoginView.authenticationUserModel);
+            RealmApplication.vent.trigger('userIsSignedIn', modalLoginView.playerModel);
         },
         handleUserNotSignedIn : function(loginView) {
             require(['utility/firebaseAuthUIUtilities'], function(AuthUIUtilities) {

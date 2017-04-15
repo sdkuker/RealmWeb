@@ -3,7 +3,7 @@ define(['backbone', 'firebase', 'backfire', 'models/player/playerModel', 'servic
 
         var PlayerListCollection = Backbone.Firebase.Collection.extend({
             model: PlayerModel,
-            url: ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/players',
+            url: ServiceConstants.backFireBaseURL + '/players',
             getAll: function() {
                 return this.get('name');
             },

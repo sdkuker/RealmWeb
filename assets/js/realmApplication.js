@@ -24,8 +24,8 @@ define(["marionette",
 
     RealmApplication.on("start", function () {
 
-        require(["views/navigation/navigationView", 'views/authentication/authenticationLayoutView', 'router/router', 'router/routerEventHandler', 'services/characterWarehouse'],
-            function (NavigationView, AuthentiationLayoutView, RealmRouter, RouterEventHandler, CharacterWarehouse) {
+        require(["views/navigation/navigationView", 'router/router', 'router/routerEventHandler', 'services/characterWarehouse'],
+            function (NavigationView, RealmRouter, RouterEventHandler, CharacterWarehouse) {
 
                 //prefetch characters for combat view later
                 CharacterWarehouse.getAllCharacters();
@@ -38,9 +38,6 @@ define(["marionette",
                     messagingSenderId: "949261816871"
                 };
                 firebase.initializeApp(config);
-
-                // var authLayoutView = new AuthentiationLayoutView();
-                // RealmApplication.regions.authRegion.show(authLayoutView);
 
                 var navView = new NavigationView();
                 RealmApplication.regions.navRegion.show(navView);
