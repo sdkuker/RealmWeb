@@ -30,8 +30,29 @@ define(['realmApplication',
             };
 
             this.setPlayerLoggedIn = function(aPlayerModel) {
-                self.playerLoggedIn = aPlayerModel;
-            }
+                var deferred = $.Deferred();
+
+                $.when(this.getPlayerWithID(aPlayerModel.get('id'))).then(
+                    function(existingPlayer) {
+                        if (existingPlayer) {
+                            self.playerLoggedIn = existingPlayer;
+                            deferred.resolve(self.playerLoggedIn);
+                        } else {
+                            $.when(getPlayerCollection()).then(
+                                function(allPlayersCollection) {
+                                    var newPlayerObject = {name : aPlayerModel.get('name'),
+                                        id : aPlayerModel.get('id'), photo : aPlayerModel.get('photo')};
+                                    allPlayersCollection.add(newPlayerObject);
+                                    deferred.resolve();
+                                }
+                            )
+                        }
+                    }
+                )
+
+                return deferred.promise();
+
+            };
 
             this.getPlayerWithID = function(playerID) {
                 var deferred = $.Deferred();
