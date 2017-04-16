@@ -5,7 +5,8 @@ define(['backbone'],
             defaults: {
                 name: '',
                 id : '',
-                photo : ''
+                photo : '',
+                administrator : false
             },
             getName: function() {
                 return decodeURI(this.get('name'));

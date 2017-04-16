@@ -100,7 +100,10 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                             var playerListView = new PlayerListView({collection: myPlayerCollection});
                             var playerListButtonView = new PlayerListButtonView();
                             playerListLayoutView.getRegion('playerTableRegion').show(playerListView);
-                            playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
+                            // TODO: you can delete all the button here - since you moved to using authenticate users
+                            // as players.  You did this in mid-April 2017.  Dump the buttons region and views
+                            // in a bit as soon as you're sure you don't want them.
+                           // playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
                             ViewUtilities.currentNavSelection = 'players';
                         }
                     ),
