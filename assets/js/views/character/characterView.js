@@ -145,22 +145,26 @@ define(['marionette',
             self = this;
             var playerSelectElement = this.$el.find('#playerSelect');
             playerSelectElement.empty();
+            var playerLoggedIn = PlayerWarehouse.getPlayerLoggedIn();
             $.when(PlayerWarehouse.getAllPlayers()).then(
                 function(playerCollection) {
                     playerCollection.forEach(function(myPlayer, key, list) {
-                        var appendString = "<option value='" + myPlayer.getName() +  "'";
-                        if ((key == 0 && ! self.chosenPlayer) || (self.chosenPlayer && self.chosenPlayer == myPlayer.getName())) {
-                            appendString = appendString + " selected='selected'";
-                            if (! self.chosenPlayer) {
-                                if (self.model.playerName()) {
-                                    self.chosenPlayer = self.model.playerName();
-                                } else {
-                                    self.chosenPlayer = myPlayer.getName();
+                        if (playerLoggedIn.get('administrator') || myPlayer.get('id') == playerLoggedIn.get('id')) {
+                            var appendString = "<option value='" + myPlayer.getName() +  "'";
+                            if ((key == 0 && ! self.chosenPlayer) || (self.chosenPlayer && self.chosenPlayer == myPlayer.getName())) {
+                                appendString = appendString + " selected='selected'";
+                                if (! self.chosenPlayer) {
+                                    if (self.model.playerName()) {
+                                        self.chosenPlayer = self.model.playerName();
+                                    } else {
+                                        self.chosenPlayer = myPlayer.getName();
+                                    }
                                 }
-                            }
-                        };
-                        appendString = appendString + ">" + myPlayer.getName() + "</option>"
-                        playerSelectElement.append(appendString);
+                            };
+                            appendString = appendString + ">" + myPlayer.getName() + "</option>"
+                            playerSelectElement.append(appendString);
+                        }
+
                     });
                 }
             )

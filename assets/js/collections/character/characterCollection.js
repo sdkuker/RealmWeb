@@ -7,7 +7,8 @@ define(['backbone', 'firebase', 'backfire', 'models/character/characterModel',
                 if (PlayerWarehouse && PlayerWarehouse.getPlayerLoggedIn() && PlayerWarehouse.getPlayerLoggedIn().get('administrator')) {
                     return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/characters/');
                 } else {
-                    return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/characters/');
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment +
+                        '/characters?orderBy=\"playerID\"&equalTo=' + PlayerWarehouse.getPlayerLoggedIn().get('id'));
                 }
 
             },
