@@ -5,6 +5,7 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
             // encounterRoundID is these two IDs separated by a dash
             defaults: {
                 encounterRoundID : '',
+                playerID : '',
                 characterID : '',
                 characterName : '',
                 initiative : 0,
@@ -31,6 +32,7 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 var theReturn = {};
 
                 var changesToCharacterTotalHits = aCharacterModel.totalHitPoints() - this.get('characterTotalHitPointsAtStartOfRound');
+                theReturn.playerID = aCharacterModel.get('playerID');
                 theReturn.characterID = aCharacterModel.get('id');
                 theReturn.characterName = this.get('characterName');
                 theReturn.initiative = CombatRoundAttributeDeterminer.determineBaseCombatInitiative(aCharacterModel);

@@ -26,7 +26,7 @@ define(['realmApplication',
             };
 
             this.getPlayerLoggedIn = function() {
-                return playerLoggedIn;
+                return self.playerLoggedIn;
             };
 
             this.setPlayerLoggedIn = function(aPlayerModel) {

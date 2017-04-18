@@ -15,7 +15,6 @@ define(['realmApplication', 'marionette',
             });
         },
         activateListItemFor : function(navTargetViewName) {
-            console.log(navTargetViewName);
             var listElement = $('#main-nav-ul');
             var activeListItems = listElement.find('.active');
             if (navTargetViewName) {

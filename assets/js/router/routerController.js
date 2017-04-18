@@ -50,23 +50,29 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
             combatEncounterList: function () {
                 require(['views/combat/combatEncounterListView',
                         'views/combat/combatEncounterListLayoutView','views/combat/combatEncounterListButtonView',
-                        'services/combatEncounterWarehouse'],
+                        'services/combatEncounterWarehouse', 'services/characterWarehouse'],
                     function (CombatEncounterListView, CombatEncounterListLayoutView,
-                              CombatEncounterListButtonView, CombatEncounterWarehouse) {
+                              CombatEncounterListButtonView, CombatEncounterWarehouse, CharacterWarehouse) {
                         var combatEncounterListLayoutView = new CombatEncounterListLayoutView();
                         RealmApplication.regions.mainRegion.show(combatEncounterListLayoutView);
-                        $.when(CombatEncounterWarehouse.getAllCombatEncounters()).then(
-                            function(myCombatEncounterCollection) {
-                                var combatEncounterListView = new CombatEncounterListView({collection: myCombatEncounterCollection});
-                                var combatEncounterListButtonView = new CombatEncounterListButtonView({listView: combatEncounterListView});
-                                combatEncounterListLayoutView.getRegion('combatEncountersTableRegion').show(combatEncounterListView);
-                                combatEncounterListLayoutView.getRegion('buttonsRegion').show(combatEncounterListButtonView);
-                                ViewUtilities.currentNavSelection = 'combatEncounterList';
+                        $.when(CharacterWarehouse.getAllCharacters()). then (
+                            function(myCharacterList) {
+                                // need to prepopulate the character list for combat.  Now do the combat stuff.
+                                $.when(CombatEncounterWarehouse.getAllCombatEncounters()).then(
+                                    function(myCombatEncounterCollection) {
+                                        var combatEncounterListView = new CombatEncounterListView({collection: myCombatEncounterCollection});
+                                        var combatEncounterListButtonView = new CombatEncounterListButtonView({listView: combatEncounterListView});
+                                        combatEncounterListLayoutView.getRegion('combatEncountersTableRegion').show(combatEncounterListView);
+                                        combatEncounterListLayoutView.getRegion('buttonsRegion').show(combatEncounterListButtonView);
+                                        ViewUtilities.currentNavSelection = 'combatEncounterList';
+                                    }
+                                ),
+                                    function() {
+                                        console.log('some kind of error getting combat encounters');
+                                    }
                             }
-                        ),
-                            function() {
-                                console.log('some kind of error getting combat encounters');
-                            }
+                        )
+
                     });
             },
             addChangeCombatEncounter: function(combatEncounterModel) {

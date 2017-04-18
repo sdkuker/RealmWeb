@@ -28,7 +28,7 @@ define(["marionette",
             function (NavigationView, RealmRouter, RouterEventHandler, CharacterWarehouse) {
 
                 //prefetch characters for combat view later
-                CharacterWarehouse.getAllCharacters();
+               // CharacterWarehouse.getAllCharacters();
 
                 var config = {
                     apiKey: "AIzaSyCnQbVXRg5L0xUSQeCc8OIo3VHU7PEir4M",

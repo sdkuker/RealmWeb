@@ -91,6 +91,7 @@ define(['jquery',
                 var characterStatisticsObject = {};
 
                 characterStatisticsObject.encounterRoundID = encounterRoundID;
+                characterStatisticsObject.playerID = aCharacter.get('playerID');
                 characterStatisticsObject.characterID = aCharacter.get('id');
                 characterStatisticsObject.characterName = aCharacter.get('name');
                 characterStatisticsObject.initiative = aCharacter.get('initiative');

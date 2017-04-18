@@ -1,9 +1,15 @@
-define(['backbone', 'firebase', 'backfire', 'models/character/characterModel', 'services/serviceConstants', 'config'],
-    function (Backbone, Firebase, Backfire, CharacterModel, ServiceConstants, Config) {
+define(['backbone', 'firebase', 'backfire', 'models/character/characterModel',
+        'services/serviceConstants', 'config', 'services/playerWarehouse'],
+    function (Backbone, Firebase, Backfire, CharacterModel, ServiceConstants, Config, PlayerWarehouse) {
 
         var CharacterCollection = Backbone.Firebase.Collection.extend({
             url: function() {
-                return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/characters/');
+                if (PlayerWarehouse && PlayerWarehouse.getPlayerLoggedIn() && PlayerWarehouse.getPlayerLoggedIn().get('administrator')) {
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/characters/');
+                } else {
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/characters/');
+                }
+
             },
             model: CharacterModel,
             comparator: function(character) {
