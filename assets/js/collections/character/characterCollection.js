@@ -3,13 +3,25 @@ define(['backbone', 'firebase', 'backfire', 'models/character/characterModel',
     function (Backbone, Firebase, Backfire, CharacterModel, ServiceConstants, Config, PlayerWarehouse) {
 
         var CharacterCollection = Backbone.Firebase.Collection.extend({
+            mode : null,
+            initialize : function(options) {
+                if (options && options.mode)
+                {
+                    this.mode = options.mode;
+                }
+            },
             url: function() {
-                if (PlayerWarehouse && PlayerWarehouse.getPlayerLoggedIn() && PlayerWarehouse.getPlayerLoggedIn().get('administrator')) {
+                if (this.mode && this.mode == "all") {
                     return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/characters/');
                 } else {
-                    return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment +
-                        '/characters?orderBy=\"playerID\"&equalTo=' + PlayerWarehouse.getPlayerLoggedIn().get('id'));
+                    if (PlayerWarehouse && PlayerWarehouse.getPlayerLoggedIn() && PlayerWarehouse.getPlayerLoggedIn().get('administrator')) {
+                        return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/characters/');
+                    } else {
+                        return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/characters/')
+                            .orderByChild("playerID").equalTo(PlayerWarehouse.getPlayerLoggedIn().get('id'));
+                    }
                 }
+
 
             },
             model: CharacterModel,

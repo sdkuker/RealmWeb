@@ -11,6 +11,7 @@ define(['jquery',
             var self = this;
             var cache = {};
             var allCharactersCollectionKey = 'allCharactersCollection';
+            var absolutelyAllTheCharactersCollectionKey = 'absolutelyAllTheCharactersCollectionKey';
 
             // public functions
 
@@ -19,6 +20,18 @@ define(['jquery',
                 return myCharacter;
             };
 
+            this.addCharacter = function(characterAttributes) {
+                var deferred = $.Deferred();
+
+                $.when(getAbsolutelyAllTheCharacters()).then(
+                    function(myCharacterCollection) {
+                        myCharacterCollection.add(characterAttributes);
+                        deferred.resolve();
+                    }
+                )
+                return deferred.promise();
+            }
+
             this.getAllCharacters = function() {
                 var deferred = $.Deferred();
                 if (cache[allCharactersCollectionKey]) {
@@ -26,6 +39,21 @@ define(['jquery',
                 } else {
                     cache[allCharactersCollectionKey] = new CharacterCollection();
                     cache[allCharactersCollectionKey].on('sync',function(collection) {
+                        deferred.resolve(collection);
+                    })
+                }
+                return deferred.promise();
+            };
+
+            // private functions
+
+            getAbsolutelyAllTheCharacters = function() {
+                var deferred = $.Deferred();
+                if (cache[absolutelyAllTheCharactersCollectionKey]) {
+                    deferred.resolve(cache[absolutelyAllTheCharactersCollectionKey]);
+                } else {
+                    cache[absolutelyAllTheCharactersCollectionKey] = new CharacterCollection({'mode' : 'all'});
+                    cache[absolutelyAllTheCharactersCollectionKey].on('sync',function(collection) {
                         deferred.resolve(collection);
                     })
                 }

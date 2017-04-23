@@ -32,7 +32,7 @@ define(['marionette',
         },
         populateModel : function() {
             var self = this;
-            var myPlayer = PlayerWarehouse.getPlayerWithoutWaitingWithName(self.chosenPlayer);
+            var myPlayer = PlayerWarehouse.getPlayerWithoutWaitingWithName(self.getChosenPlayer());
             self.model.set('playerID', myPlayer.get('id'));
             self.model.setName($('#name').val());
             self.model.set('observationSkill', self.parseAsInt($('#observationSkill').val()));
@@ -72,7 +72,7 @@ define(['marionette',
         createObjectWithAttributes : function() {
             var self = this;
             var tempObject = {};
-            var myPlayer = PlayerWarehouse.getPlayerWithoutWaitingWithName(self.chosenPlayer);
+            var myPlayer = PlayerWarehouse.getPlayerWithoutWaitingWithName(self.getChosenPlayer());
 
             tempObject.playerID = myPlayer.get('id');
             tempObject.name = encodeURI($('#name').val());
@@ -109,9 +109,8 @@ define(['marionette',
             if (! self.model.get('id')) {
                 Logger.logInfo('About to add a new character model to the collection');
                 var tempObject = self.createObjectWithAttributes();
-                $.when(CharacterWarehouse.getAllCharacters()).then(
-                    function(myCharacterCollection) {
-                        myCharacterCollection.add(tempObject);
+                $.when(CharacterWarehouse.addCharacter(tempObject)).then(
+                    function() {
                         ViewUtilities.showModalView('Informational', 'Character Saved');
                         RealmApplication.vent.trigger('viewCharacterList');
                     }
@@ -141,6 +140,14 @@ define(['marionette',
             self = this;
             self.chosenPlayer = $('#playerSelect option:selected').val();
         },
+        getChosenPlayer : function() {
+            if (self.chosenPlayer) {
+                return self.chosenPlayer;
+            } else {
+                self.chosenPlayer = $('#playerSelect option:selected').val();
+                return self.chosenPlayer;
+            }
+        },
         onRender : function() {
             self = this;
             var playerSelectElement = this.$el.find('#playerSelect');
@@ -151,9 +158,9 @@ define(['marionette',
                     playerCollection.forEach(function(myPlayer, key, list) {
                         if (playerLoggedIn.get('administrator') || myPlayer.get('id') == playerLoggedIn.get('id')) {
                             var appendString = "<option value='" + myPlayer.getName() +  "'";
-                            if ((key == 0 && ! self.chosenPlayer) || (self.chosenPlayer && self.chosenPlayer == myPlayer.getName())) {
+                            if ((key == 0 && ! self.getChosenPlayer()) || (self.getChosenPlayer() && self.getChosenPlayer() == myPlayer.getName())) {
                                 appendString = appendString + " selected='selected'";
-                                if (! self.chosenPlayer) {
+                                if (! self.getChosenPlayer()) {
                                     if (self.model.playerName()) {
                                         self.chosenPlayer = self.model.playerName();
                                     } else {
