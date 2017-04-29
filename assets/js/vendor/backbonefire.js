@@ -30,8 +30,14 @@
      */
     Backbone.Firebase._determineAutoSync = function(model, options) {
         var proto = Object.getPrototypeOf(model);
+        var myAutoSync = null;
+        if (model.hasOwnProperty('autoSync')) {
+            myAutoSync = model.autoSync;
+        } else {
+            myAutoSync = proto.hasOwnProperty('autoSync') ? proto.autoSync : true;
+        }
         return _.extend({
-                autoSync: proto.hasOwnProperty('autoSync') ? proto.autoSync : true
+                autoSync: myAutoSync
             },
             this,
             options

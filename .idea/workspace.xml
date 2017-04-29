@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3adb2a7-14e6-4f04-b818-55fea9bb621c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/combat/combatEncounterListButtonView.js" afterPath="$PROJECT_DIR$/assets/js/views/combat/combatEncounterListButtonView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/collections/combat/characterCombatRoundStatisticCollection.js" afterPath="$PROJECT_DIR$/assets/js/collections/combat/characterCombatRoundStatisticCollection.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/router/routerController.js" afterPath="$PROJECT_DIR$/assets/js/router/routerController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/services/characterCombatRoundStatisticWarehouse.js" afterPath="$PROJECT_DIR$/assets/js/services/characterCombatRoundStatisticWarehouse.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/templates/authentication/authenticationSignedInTemplate.tpl" afterPath="$PROJECT_DIR$/assets/js/templates/authentication/authenticationSignedInTemplate.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/vendor/backbonefire.js" afterPath="$PROJECT_DIR$/assets/js/vendor/backbonefire.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedInView.js" afterPath="$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedInView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/combat/combatEncounterButtonView.js" afterPath="$PROJECT_DIR$/assets/js/views/combat/combatEncounterButtonView.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js" afterPath="$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js" />
     </list>
     <ignored path="RealmWeb.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -22,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="characterCollection.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/collections/character/characterCollection.js">
+      <file leaf-file-name="combatEncounterButtonView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterButtonView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+            <state relative-caret-position="295">
+              <caret line="29" column="76" lean-forward="false" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="76" />
               <folding />
             </state>
           </provider>
@@ -35,38 +43,38 @@
       <file leaf-file-name="playerWarehouse.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/services/playerWarehouse.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="27" column="34" lean-forward="false" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="34" />
+            <state relative-caret-position="175">
+              <caret line="37" column="28" lean-forward="false" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="characterWarehouse.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/services/characterWarehouse.js">
+      <file leaf-file-name="routerController.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/js/router/routerController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="28" column="41" lean-forward="false" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+            <state relative-caret-position="70">
+              <caret line="18" column="43" lean-forward="false" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="combatEncounterListButtonView.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterListButtonView.js">
+      <file leaf-file-name="authenticationSignedInView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedInView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="36" column="32" lean-forward="false" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+            <state relative-caret-position="255">
+              <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="playerModel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/models/player/playerModel.js">
+      <file leaf-file-name="authenticationSignedInTemplate.tpl" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/templates/authentication/authenticationSignedInTemplate.tpl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="29" />
+            <state relative-caret-position="150">
+              <caret line="10" column="64" lean-forward="false" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -83,36 +91,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>authentic</find>
-      <find>authentica</find>
-      <find>authenticatio</find>
-      <find>authentication</find>
-      <find>authenticationu</find>
-      <find>authenticationus</find>
-      <find>authenticationuser</find>
-      <find>authenticationuserm</find>
-      <find>authenticationusermo</find>
-      <find>authenticationusermod</find>
-      <find>authenticationusermode</find>
-      <find>authenticationusermodel</find>
-      <find>displayLoggedInUser</find>
-      <find>playerlist</find>
-      <find>userIsSignedIn</find>
-      <find>h</find>
-      <find>hre</find>
-      <find>href</find>
-      <find>createInitialRoundStatistics</find>
-      <find>getAllCharacters</find>
-      <find>combat</find>
-      <find>p</find>
-      <find>pla</find>
-      <find>playerI</find>
-      <find>playerID</find>
-      <find>createObjectWithAttributes</find>
-      <find>playerSelected</find>
-      <find>totalHitPoints</find>
-      <find>chosenPlayer</find>
-      <find>CharacterCollection</find>
+      <find>admi</find>
+      <find>admin</find>
+      <find>admini</find>
+      <find>adminis</find>
+      <find>administ</find>
+      <find>administr</find>
+      <find>administra</find>
+      <find>administrat</find>
+      <find>administrato</find>
+      <find>administrator</find>
+      <find>$el</find>
+      <find>$e</find>
+      <find>$</find>
+      <find>t</find>
+      <find>tem</find>
+      <find>temp</find>
+      <find>templat</find>
+      <find>template</find>
+      <find>templatehelp</find>
+      <find>templatehelpe</find>
+      <find>templatehelper</find>
+      <find>setPlayerLoggedIn</find>
+      <find>on\.regions\.mainRegion\.show\(combatEncounterListLayoutView\)\;\n</find>
+      <find>s</find>
+      <find>set</find>
+      <find>setp</find>
+      <find>setpl</find>
+      <find>setpla</find>
+      <find>setplay</find>
+      <find>setplayer</find>
     </findStrings>
     <replaceStrings>
       <replace>-md-</replace>
@@ -126,11 +134,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/assets/js/views/character/characterListView.js" />
-        <option value="$PROJECT_DIR$/assets/js/collections/combat/combatRoundCollection.js" />
-        <option value="$PROJECT_DIR$/assets/js/collections/combat/characterCombatRoundStatisticCollection.js" />
-        <option value="$PROJECT_DIR$/assets/js/collections/combat/combatRoundCriticalHitCollection.js" />
-        <option value="$PROJECT_DIR$/assets/js/config-test.js" />
         <option value="$PROJECT_DIR$/assets/js/config-prod.js" />
         <option value="$PROJECT_DIR$/assets/js/views/player/playerListLayoutView.js" />
         <option value="$PROJECT_DIR$/assets/js/views/combat/addChangeCombatEncounterView.js" />
@@ -141,7 +144,6 @@
         <option value="$PROJECT_DIR$/assets/js/templates/authentication/authenticationLayoutTemplate.tpl" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/assets/js/models/authentication/firebaseUIAutenticationUserModel.js" />
-        <option value="$PROJECT_DIR$/assets/js/templates/authentication/authenticationSignedInTemplate.tpl" />
         <option value="$PROJECT_DIR$/assets/js/require_main.js" />
         <option value="$PROJECT_DIR$/assets/js/models/authentication/firebaseUIAuthenticationUserModel.js" />
         <option value="$PROJECT_DIR$/assets/js/templates/navigation/navControls.tpl" />
@@ -160,7 +162,6 @@
         <option value="$PROJECT_DIR$/assets/js/utility/viewUtilities.js" />
         <option value="$PROJECT_DIR$/assets/js/collections/player/playerCollection.js" />
         <option value="$PROJECT_DIR$/assets/js/realmApplication.js" />
-        <option value="$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedInView.js" />
         <option value="$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedOutBackgroundView.js" />
         <option value="$PROJECT_DIR$/assets/js/router/routerEventHandler.js" />
         <option value="$PROJECT_DIR$/assets/js/views/modal/modalLoginView.js" />
@@ -172,11 +173,18 @@
         <option value="$PROJECT_DIR$/assets/js/models/combat/characterCombatRoundStatisticModel.js" />
         <option value="$PROJECT_DIR$/assets/js/views/navigation/navigationView.js" />
         <option value="$PROJECT_DIR$/assets/js/services/playerWarehouse.js" />
-        <option value="$PROJECT_DIR$/assets/js/router/routerController.js" />
         <option value="$PROJECT_DIR$/assets/js/services/characterWarehouse.js" />
         <option value="$PROJECT_DIR$/assets/js/views/character/characterView.js" />
         <option value="$PROJECT_DIR$/assets/js/collections/character/characterCollection.js" />
         <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterListButtonView.js" />
+        <option value="$PROJECT_DIR$/assets/js/services/characterCombatRoundStatisticWarehouse.js" />
+        <option value="$PROJECT_DIR$/assets/js/collections/combat/characterCombatRoundStatisticCollection.js" />
+        <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js" />
+        <option value="$PROJECT_DIR$/assets/js/vendor/backbonefire.js" />
+        <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterButtonView.js" />
+        <option value="$PROJECT_DIR$/assets/js/templates/authentication/authenticationSignedInTemplate.tpl" />
+        <option value="$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedInView.js" />
+        <option value="$PROJECT_DIR$/assets/js/router/routerController.js" />
       </list>
     </option>
   </component>
@@ -187,10 +195,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="121" />
-    <option name="y" value="32" />
-    <option name="width" value="1299" />
-    <option name="height" value="664" />
+    <option name="x" value="125" />
+    <option name="y" value="62" />
+    <option name="width" value="1288" />
+    <option name="height" value="719" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -321,6 +329,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="authentication" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealmWeb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealmWeb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -347,7 +381,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="combat" />
+              <option name="myItemId" value="authentication" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -391,28 +425,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="router" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -461,85 +473,59 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="collections" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="player" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealmWeb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealmWeb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collections" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealmWeb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RealmWeb" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collections" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="combat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="character" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collections" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="player" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collections" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -803,18 +789,17 @@
       <workItem from="1491748382396" duration="3324000" />
       <workItem from="1492203120424" duration="40000" />
       <workItem from="1492203177965" duration="17892000" />
-      <workItem from="1492477647265" duration="12554000" />
+      <workItem from="1492477647265" duration="26761000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="434391000" />
+    <option name="totallyTimeSpent" value="448598000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="121" y="32" width="1299" height="664" extended-state="0" />
-    <editor active="true" />
+    <frame x="125" y="62" width="1288" height="719" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27856025" sideWeight="0.49078342" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28097868" sideWeight="0.49078342" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31861803" sideWeight="0.50282484" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23652174" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -823,7 +808,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24265842" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2691358" sideWeight="0.5092166" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26573426" sideWeight="0.49717513" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2599681" sideWeight="0.49717513" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -876,23 +861,8 @@
           <option name="timeStamp" value="343" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsItemView.js</url>
-          <line>38</line>
-          <option name="timeStamp" value="663" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsItemView.js</url>
-          <line>31</line>
-          <option name="timeStamp" value="664" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsItemView.js</url>
-          <line>28</line>
-          <option name="timeStamp" value="665" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/assets/js/router/routerController.js</url>
-          <line>197</line>
+          <line>200</line>
           <option name="timeStamp" value="816" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
@@ -913,78 +883,39 @@
           <properties />
           <option name="timeStamp" value="901" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterButtonView.js</url>
+          <line>29</line>
+          <properties />
+          <option name="timeStamp" value="927" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/js/services/playerWarehouse.js</url>
+          <line>32</line>
+          <properties />
+          <option name="timeStamp" value="930" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/js/services/playerWarehouse.js</url>
+          <line>37</line>
+          <properties />
+          <option name="timeStamp" value="931" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/js/router/routerController.js</url>
+          <line>18</line>
+          <properties />
+          <option name="timeStamp" value="932" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="906" />
+      <option name="time" value="933" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/js/views/workInProgressView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/require_main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="15" column="6" lean-forward="false" selection-start-line="15" selection-start-column="6" selection-end-line="15" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/templates/login/logInBackground.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/login/loginBackgroundView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/models/modal/modalModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="24" column="19" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/vendor/jquery-2.1.4.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="4121" column="4" lean-forward="false" selection-start-line="4121" selection-start-column="4" selection-end-line="4121" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/modal/modalRegion.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/templates/modal/modalTemplate.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="10" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/templates/modal/modalLoginTemplate.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/templates/authentication/authenticationLayoutTemplate.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1065,14 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/vendor/firebase.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="42" column="206" lean-forward="false" selection-start-line="42" selection-start-column="206" selection-end-line="42" selection-end-column="206" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/models/authentication/firebaseUIAuthenticationUserModel.js" />
     <entry file="file://$PROJECT_DIR$/assets/js/views/authentication/authenticationLayoutView.js" />
     <entry file="file://$PROJECT_DIR$/assets/js/realmApplication.js">
@@ -1084,13 +1007,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedOutBackgroundView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedInView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
@@ -1110,6 +1026,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="35">
           <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1117,6 +1034,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1124,6 +1042,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="29" lean-forward="false" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1131,6 +1050,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1138,6 +1058,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="6" lean-forward="true" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1159,6 +1080,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" column="65" lean-forward="true" selection-start-line="27" selection-start-column="24" selection-end-line="27" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1178,33 +1100,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/services/characterCombatRoundStatisticFactory.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="128" column="105" lean-forward="false" selection-start-line="128" selection-start-column="91" selection-end-line="128" selection-end-column="105" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/models/combat/characterCombatRoundStatisticModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="34" column="66" lean-forward="false" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/views/navigation/navigationView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="16" column="59" lean-forward="false" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/services/characterCombatRoundStatisticWarehouse.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-694">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1216,26 +1116,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/router/routerController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="60" column="32" lean-forward="false" selection-start-line="60" selection-start-column="32" selection-end-line="71" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/views/character/characterView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
           <caret line="72" column="5" lean-forward="false" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/collections/character/characterCollection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1256,18 +1140,122 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/services/characterWarehouse.js">
+    <entry file="file://$PROJECT_DIR$/assets/js/collections/character/characterCollection.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="28" column="41" lean-forward="false" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+        <state relative-caret-position="159">
+          <caret line="16" column="141" lean-forward="true" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="141" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/services/playerWarehouse.js">
+    <entry file="file://$PROJECT_DIR$/assets/js/services/characterCombatRoundStatisticFactory.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="27" column="34" lean-forward="false" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="34" />
+        <state relative-caret-position="-2200">
+          <caret line="6" column="60" lean-forward="false" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/vendor/firebase.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="51" column="181" lean-forward="false" selection-start-line="51" selection-start-column="181" selection-end-line="51" selection-end-column="181" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsListView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="9" column="46" lean-forward="false" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/models/combat/characterCombatRoundStatisticModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="55" column="16" lean-forward="false" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/services/characterWarehouse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="18" column="68" lean-forward="false" selection-start-line="18" selection-start-column="68" selection-end-line="18" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/vendor/backbone.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="760" column="4" lean-forward="false" selection-start-line="760" selection-start-column="4" selection-end-line="760" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/vendor/backbonefire.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="38" column="8" lean-forward="false" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsItemView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="28" column="16" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/services/characterCombatRoundStatisticWarehouse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="30" column="28" lean-forward="false" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/templates/combat/combatEncounterButtonTemplate.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="35" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="69" column="45" lean-forward="false" selection-start-line="69" selection-start-column="45" selection-end-line="69" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterListButtonView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-193">
+          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/collections/combat/characterCombatRoundStatisticCollection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="17" column="68" lean-forward="true" selection-start-line="17" selection-start-column="68" selection-end-line="17" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/templates/authentication/authenticationSignedInTemplate.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="64" lean-forward="false" selection-start-line="10" selection-start-column="54" selection-end-line="10" selection-end-column="64" />
           <folding />
         </state>
       </provider>
@@ -1280,10 +1268,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterListButtonView.js">
+    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterButtonView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="36" column="32" lean-forward="false" selection-start-line="36" selection-start-column="32" selection-end-line="36" selection-end-column="32" />
+        <state relative-caret-position="295">
+          <caret line="29" column="76" lean-forward="false" selection-start-line="29" selection-start-column="63" selection-end-line="29" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/authentication/authenticationSignedInView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="8" lean-forward="false" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/services/playerWarehouse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="37" column="28" lean-forward="false" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/router/routerController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="18" column="43" lean-forward="false" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
           <folding />
         </state>
       </provider>

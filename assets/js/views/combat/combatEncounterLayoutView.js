@@ -3,7 +3,7 @@ define(['marionette',
         'views/combat/combatEncounterButtonView',
         'tpl!templates/combat/combatEncounterLayoutTemplate.tpl',
         'services/combatRoundWarehouse', 'services/characterCombatRoundStatisticWarehouse'],
-    function (Marionette, StatisticsView, ButtonView, CombatEncounterLayoutTemplate, CombatRoundWarehouse,
+    function (Marionette, StatisticsListView, ButtonView, CombatEncounterLayoutTemplate, CombatRoundWarehouse,
               ComatRoundStatisticsWarehouse) {
 
         var CombatEncounterLayoutiew = Marionette.LayoutView.extend({
@@ -30,11 +30,11 @@ define(['marionette',
             },
             onRender: function() {
                 var self = this;
-                var statisticsView = new StatisticsView({collection: self.roundStatistics});
+                var listView = new StatisticsListView({collection: self.roundStatistics});
                 var buttonsView = new ButtonView({model : this.encounter, roundIdentifierToShow : this.roundIdentifierToShow});
                 this.listenTo(buttonsView, 'combatEncounterNextRoundButton:clicked', this.createAndDisplayNextRound);
                 this.listenTo(buttonsView, 'combatEncounterRoundNumberToDisplay:selected', this.displayRoundNumber);
-                this.showChildView('roundsTableRegion', statisticsView);
+                this.showChildView('roundsTableRegion', listView);
                 this.showChildView('roundsButtonsRegion', buttonsView);
             },
             displayRoundNumber : function(roundNumberToDisplay) {

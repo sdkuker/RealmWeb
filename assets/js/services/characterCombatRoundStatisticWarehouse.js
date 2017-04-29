@@ -1,8 +1,9 @@
 define(['jquery',
         'logger',
         'collections/combat/characterCombatRoundStatisticCollection',
-        'services/characterCombatRoundStatisticFactory'],
-    function ($, Logger, CombatRoundStatisticCollection, CombatRoundStatisticFactory) {
+        'services/characterCombatRoundStatisticFactory',
+        'services/playerWarehouse'],
+    function ($, Logger, CombatRoundStatisticCollection, CombatRoundStatisticFactory, PlayerWarehouse) {
 
         // I am the first stop for getting combat rounds statistics.  If I don't have them, I'll get them from Firebase
         // and put them in my cache.  If I have them in my cache, I'll return them.
@@ -17,17 +18,19 @@ define(['jquery',
 
             this.getCombatRoundStatisticsForRound = function(combatRound) {
                 var deferred = $.Deferred();
-                $.when(getCombatRoundStatisticCollectionForRound(combatRound)). then(
+                //TODO test this - log in with non admin user
+
+                $.when(getAllCombatRoundStatisticsForRound(combatRound)). then(
                     function(myCombatRoundStatisticCollection) {
-                        if (! myCombatRoundStatisticCollection.hasAnyStatistics() ) {
-                            $.when(CombatRoundStatisticFactory.createStatisticsForRound(combatRound, myCombatRoundStatisticCollection)). then(
-                                function() {
-                                    deferred.resolve(myCombatRoundStatisticCollection);
-                                }
-                            )
-                        } else {
+                        if (PlayerWarehouse.getPlayerLoggedIn() && PlayerWarehouse.getPlayerLoggedIn().get('administrator')) {
                             deferred.resolve(myCombatRoundStatisticCollection);
+                        } else {
+                            //means you're not an admin and therefore can not create stats - use non-syncing collection
+                            //containing only the statistics for the logged in person.
+                            var myStatsCollection = myCombatRoundStatisticCollection.forPlayer(PlayerWarehouse.getPlayerLoggedIn());
+                            deferred.resolve(myStatsCollection);
                         }
+
                     }
                 )
 
@@ -63,6 +66,25 @@ define(['jquery',
                         deferred.resolve(collection);
                     })
                 }
+                return deferred.promise();
+            };
+
+            getAllCombatRoundStatisticsForRound = function(combatRound) {
+                var deferred = $.Deferred();
+                $.when(getCombatRoundStatisticCollectionForRound(combatRound)). then(
+                    function(myCombatRoundStatisticCollection) {
+                        if (! myCombatRoundStatisticCollection.hasAnyStatistics() ) {
+                            $.when(CombatRoundStatisticFactory.createStatisticsForRound(combatRound, myCombatRoundStatisticCollection)). then(
+                                function() {
+                                    deferred.resolve(myCombatRoundStatisticCollection);
+                                }
+                            )
+                        } else {
+                            deferred.resolve(myCombatRoundStatisticCollection);
+                        }
+                    }
+                )
+
                 return deferred.promise();
             };
 

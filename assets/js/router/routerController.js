@@ -14,9 +14,12 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
             displayLoggedInUser: function(playerModel) {
                 require(['views/authentication/authenticationSignedInView', 'services/playerWarehouse'],
                     function (AuthenticationSignedInView, PlayerWarehouse) {
-                        PlayerWarehouse.setPlayerLoggedIn(playerModel);
-                        var view = new AuthenticationSignedInView({model: playerModel});
-                        RealmApplication.regions.authRegion.show(view);
+                        $.when(PlayerWarehouse.setPlayerLoggedIn(playerModel)).then (
+                            function(playerLoggedIn) {
+                                var view = new AuthenticationSignedInView({model: playerLoggedIn});
+                                RealmApplication.regions.authRegion.show(view);
+                            }
+                        )
                 });
             },
             hideSigninRegionAndDisplayLoginModal: function() {

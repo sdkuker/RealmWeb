@@ -2,8 +2,10 @@ define(['marionette',
         'backbone',
         'realmApplication',
         'models/combat/combatEncounterModel',
+        'services/playerWarehouse',
         'tpl!templates/combat/combatEncounterButtonTemplate.tpl'],
-    function (Marionette, Backbone, RealmApplication, CombatEncounterModel, CombatEncounterButtonTemplate) {
+    function (Marionette, Backbone, RealmApplication, CombatEncounterModel, PlayerWarehouse,
+              CombatEncounterButtonTemplate) {
 
         var CombatEncounterButtonView = Marionette.ItemView.extend({
             template: CombatEncounterButtonTemplate,
@@ -25,6 +27,9 @@ define(['marionette',
             },
             onRender : function() {
                 var self = this;
+                if (! PlayerWarehouse.getPlayerLoggedIn().get('administrator')) {
+                    $('#nextRoundButton', this.el).prop('disabled', true);
+                }
                 self.populateRounds();
             },
             nextRoundButtonClicked : function() {

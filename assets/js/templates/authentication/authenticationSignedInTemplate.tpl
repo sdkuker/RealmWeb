@@ -8,6 +8,7 @@
                     </div>
                     <div class="media-body">
                         <h4 class="media-heading"><%- name %></h4>
+                        <h4 class="media-heading"><%- playerType %></h4>
                        <p><button id="signOutButton">Sign Out</button></p>
                     </div>
                 </div>

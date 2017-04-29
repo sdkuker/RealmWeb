@@ -11,6 +11,11 @@ define(['marionette',
         events: {
             'click #signOutButton' : 'signOutButtonClicked'
         },
+        templateHelpers : function() {
+            return {
+                playerType : this.model.get('administrator') ? 'Administrator' : ' '
+            }
+        },
         signOutButtonClicked : function() {
             self = this;
             firebase.auth().signOut().then(function() {
