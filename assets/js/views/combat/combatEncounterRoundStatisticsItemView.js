@@ -8,13 +8,19 @@ define(['marionette',
             tagName : 'tr',
             model : StatisticsModel,
             template: StatisticsItemTemplate,
+            isOpenRound : false,
+            initialize : function(options) {
+                this.isOpenRound = options.isOpenRound;
+            },
             templateHelpers : function() {
                     var myCharactersName = decodeURI(this.model.get('characterName'));
                     var myCharacter = CharacterWarehouse.getCharacterWithoutWaiting(this.model.get('characterID'));
                     var hitsRemaining = this.model.getHitsAtEndOfRound(myCharacter);
+                    var allowEditing = this.isOpenRound;
                     return {
                         myCharactersName : myCharactersName,
-                        hitsRemaining : hitsRemaining
+                        hitsRemaining : hitsRemaining,
+                        allowEditing : allowEditing
                     }
             },
             events : {
@@ -64,9 +70,9 @@ define(['marionette',
                 }, 800);
             },
             onRender : function() {
+                var self = this;
                 if (this.cellBeingEdited) {
                     $(this.$el).find("[headers='" + this.cellBeingEdited + "']").focus();
-
                 }
             }
     });

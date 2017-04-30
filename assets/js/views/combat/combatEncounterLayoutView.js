@@ -30,7 +30,7 @@ define(['marionette',
             },
             onRender: function() {
                 var self = this;
-                var listView = new StatisticsListView({collection: self.roundStatistics});
+                var listView = new StatisticsListView({model : this.encounter, roundNumber: self.roundIdentifierToShow, collection: self.roundStatistics});
                 var buttonsView = new ButtonView({model : this.encounter, roundIdentifierToShow : this.roundIdentifierToShow});
                 this.listenTo(buttonsView, 'combatEncounterNextRoundButton:clicked', this.createAndDisplayNextRound);
                 this.listenTo(buttonsView, 'combatEncounterRoundNumberToDisplay:selected', this.displayRoundNumber);
