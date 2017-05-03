@@ -174,6 +174,13 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                         )
                     });
             },
+            criticalHitMaintenance : function() {
+                require(['views/criticalHitsMaintenance/criticalHitMaintenanceLayoutView'],
+                    function(CriticalHitMaintenanceLayoutView) {
+                        var layoutView = new CriticalHitMaintenanceLayoutView();
+                        RealmApplication.regions.mainRegion.show(layoutView);
+                    })
+            },
             characterList: function () {
                 require(['views/character/characterListView', 'views/character/characterView',
                         'views/character/characterListLayoutView','views/character/characterListButtonView',

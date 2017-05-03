@@ -19,7 +19,8 @@ define(['realmApplication', 'marionette',  'models/player/playerModel',
             },
           //  signInSuccessUrl: 'loggedIn.html',
             signInOptions: [
-                firebase.auth.FacebookAuthProvider.PROVIDER_ID
+                firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+                firebase.auth.EmailAuthProvider.PROVIDER_ID
             ]
         },
         events: {

@@ -6,7 +6,15 @@
         <div>
             <ul id='main-nav-ul' class="nav navbar-nav">
                 <li id='dieRoller' class="active"><a href="#dieRoller" >Die Roller</a></li>
-                <li id='criticalHits'><a href="#criticalHits" >Critical Hits</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Critical Hits
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li id='criticalHits'><a href="#criticalHits" >Critical Hits</a></li>
+                        <li id='criticalHitMaintenance'><a href="#criticalHitMaintenance" >Critical Hit Maintenance</a></li>
+                    </ul>
+                </li>
                 <li id='players'><a href="#players" >Players</a></li>
                 <li id='characterList'><a href="#characterList" >Character List</a></li>
                 <li id='combatEncounterList'><a href="#combatEncounterList" >Combat</a></li>
