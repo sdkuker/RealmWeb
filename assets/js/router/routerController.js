@@ -175,10 +175,20 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                     });
             },
             criticalHitMaintenance : function() {
-                require(['views/criticalHitsMaintenance/criticalHitMaintenanceLayoutView'],
-                    function(CriticalHitMaintenanceLayoutView) {
+                require(['views/criticalHitsMaintenance/criticalHitMaintenanceLayoutView',
+                         'views/criticalHitsMaintenance/criticalHitMaintenanceTypeView',
+                         'services/criticalHitWarehouse'],
+                    function(CriticalHitMaintenanceLayoutView, CriticalHitMaintenanceTypeView, CriticalHitWarehouse) {
                         var layoutView = new CriticalHitMaintenanceLayoutView();
                         RealmApplication.regions.mainRegion.show(layoutView);
+                        $.when(CriticalHitWarehouse.getAllTypes()).then(
+                            function(criticalHitTypeCollection) {
+                                var viewParms = {criticalHitTypes : criticalHitTypeCollection};
+                                var typesView = new CriticalHitMaintenanceTypeView(viewParms);
+                                layoutView.getRegion('criticalHitTypesMaintenanceRegion').show(typesView);
+                            }
+                        )
+
                     })
             },
             characterList: function () {
