@@ -11,7 +11,7 @@
         <button class="btn btn-default col-md-1" id='deleteTypeButton' type='button'>Delete</button>
         <label class="control-label col-md-offset-1 col-md-1">New:</label>
         <input class="col-md-2" type="string" id="newType">
-        <button class="btn btn-default col-md-1 col-md-offset-1" id='addType' type='button'>Add</button>
+        <button class="btn btn-default col-md-1 col-md-offset-1" id='addTypeButton' type='button'>Add</button>
         <label class="col-md-2"> </label>
     </div>
 </div>

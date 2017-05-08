@@ -39,6 +39,19 @@ define(['jquery',
                     })
                 }
                 return deferred.promise();
+            };
+
+            this.addType = function(typeAttributes) {
+                var deferred = $.Deferred();
+
+                $.when(self.getAllTypes()).then (
+                    function(allTypesCollection) {
+                        allTypesCollection.add(typeAttributes);
+
+                    }
+                )
+
+                return deferred.promise();
             }
         };
 

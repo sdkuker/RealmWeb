@@ -1,16 +1,17 @@
 define(['marionette',
         'backbone',
         'realmApplication',
+        'utility/viewUtilities',
         'services/criticalHitWarehouse',
         'tpl!templates/criticalHitMaintenance/criticalHitMaintenanceTypeTemplate.tpl'],
-    function (Marionette, Backbone, RealmApplication,CriticalHitWarehouse,
+    function (Marionette, Backbone, RealmApplication, ViewUtilities, CriticalHitWarehouse,
               CriticalHitMaintenanceTypeTemplate) {
 
         var CriticalHitMaintenanceTypeView = Marionette.ItemView.extend({
             template: CriticalHitMaintenanceTypeTemplate,
             events : {
-                'click #addCriticalButton' : 'addCriticalButtonClicked',
-                'click #deleteCriticalButton' : 'deleteCriticalButtonClicked'
+                'click #addTypeButton' : 'addCriticalButtonClicked',
+                'click #deleteTypelButton' : 'deleteCriticalButtonClicked'
             },
             chosenType : null,
             initialize : function() {
@@ -18,6 +19,7 @@ define(['marionette',
                 $(document.body).on('change', '#typeSelect', function(e) {
                     self.typeSelected();
                 });
+                self.listenTo(self.options.criticalHitTypes, 'add', self.render);
             },
             onRender : function() {
                 self = this;
@@ -34,6 +36,15 @@ define(['marionette',
                     appendString = appendString + ">" + myType.get('id') + "</option>"
                     typeSelectElement.append(appendString);
                 });
+                if (self.chosenType) {
+                    if (self.options.criticalHits && self.options.criticalHits.length > 0) {
+                        $('#deleteTypeButton', this.$el).prop('disabled', false);
+                    } else {
+                        $('#deleteTypeButton', this.$el).prop('disabled', true);
+                    }
+                } else {
+                    $('#deleteTypeButton', this.$el).prop('disabled', true);
+                }
             },
             typeSelected : function() {
                 self = this;
@@ -41,7 +52,6 @@ define(['marionette',
                 $.when(CriticalHitWarehouse.getCriticalHitsForType(self.chosenType)).then (
                     function(criticalHitCollection) {
                         self.options.criticalHits = criticalHitCollection;
-                        self.chosenSeverity = null;
                         self.render();
                     },
                     function(errorString) {
@@ -49,9 +59,13 @@ define(['marionette',
                     }
                 )
             },
-            addCriticalButtonClicked : function() {
-                self = this;
-                //TODO do this
+            addCriticalButtonClicked : function(event ) {
+                var newTypeName = $('#newType').val();
+                if (newTypeName) {
+                    CriticalHitWarehouse.addType({id: newTypeName});
+                } else {
+                    ViewUtilities.showModalView('Error', 'You must specify the type name before clicking Add');
+                }
                 self.render();
             },
             deleteCriticalButtonClicked : function() {
