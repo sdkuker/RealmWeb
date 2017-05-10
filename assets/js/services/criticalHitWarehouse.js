@@ -47,7 +47,24 @@ define(['jquery',
                 $.when(self.getAllTypes()).then (
                     function(allTypesCollection) {
                         allTypesCollection.add(typeAttributes);
+                        deferred.resolve();
+                    }
+                )
 
+                return deferred.promise();
+            };
+
+            this.removeType = function(typeID) {
+                var deferred = $.Deferred();
+
+                $.when(self.getAllTypes()).then (
+                    function(allTypesCollection) {
+                        allTypesCollection.forEach(function(myType, key, list) {
+                            if (myType && myType.get('id') == typeID) {
+                                allTypesCollection.remove(myType);
+                            }
+                        })
+                        deferred.resolve();
                     }
                 )
 

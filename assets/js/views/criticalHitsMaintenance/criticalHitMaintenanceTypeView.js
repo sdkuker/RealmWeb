@@ -11,9 +11,10 @@ define(['marionette',
             template: CriticalHitMaintenanceTypeTemplate,
             events : {
                 'click #addTypeButton' : 'addCriticalButtonClicked',
-                'click #deleteTypelButton' : 'deleteCriticalButtonClicked'
+                'click #deleteTypeButton' : 'deleteCriticalButtonClicked'
             },
             chosenType : null,
+            chosenTypeObject : null,
             initialize : function() {
                 self = this;
                 $(document.body).on('change', '#typeSelect', function(e) {
@@ -38,9 +39,9 @@ define(['marionette',
                 });
                 if (self.chosenType) {
                     if (self.options.criticalHits && self.options.criticalHits.length > 0) {
-                        $('#deleteTypeButton', this.$el).prop('disabled', false);
-                    } else {
                         $('#deleteTypeButton', this.$el).prop('disabled', true);
+                    } else {
+                        $('#deleteTypeButton', this.$el).prop('disabled', false);
                     }
                 } else {
                     $('#deleteTypeButton', this.$el).prop('disabled', true);
@@ -62,16 +63,29 @@ define(['marionette',
             addCriticalButtonClicked : function(event ) {
                 var newTypeName = $('#newType').val();
                 if (newTypeName) {
-                    CriticalHitWarehouse.addType({id: newTypeName});
+                    $.when(CriticalHitWarehouse.addType({id: newTypeName})).then (
+                        function() {
+                            ViewUtilities.showModalView('Information', 'Type ' + newTypeName + ' was added.');
+                            self.render();
+                        }
+                    )
                 } else {
                     ViewUtilities.showModalView('Error', 'You must specify the type name before clicking Add');
                 }
-                self.render();
             },
             deleteCriticalButtonClicked : function() {
                 self = this;
-                //TODO do this
-                self.render();
+                if (self.chosenType) {
+                    $.when(CriticalHitWarehouse.removeType(self.chosenType)).then (
+                        function() {
+                            ViewUtilities.showModalView('Information', 'Type ' + self.chosenType + ' was deleted.');
+                            self.chosenType = null;
+                            self.render();
+                        }
+                    )
+                } else {
+                    ViewUtilities.showModalView('Error', 'You must choose a type before clicking Delete');
+                }
             },
         });
 
