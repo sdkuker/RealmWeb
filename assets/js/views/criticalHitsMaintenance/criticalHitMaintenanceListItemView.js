@@ -12,7 +12,11 @@ define(['marionette',
                // this.isOpenRound = options.isOpenRound;
             },
             templateHelpers : function() {
-                var myDescription = decodeURI(this.model.get('description'));
+                var myDescription = null;
+                if (this.model.get('description')) {
+                    console.log('description: ' + this.model.get('description'));
+                    myDescription = decodeURI(this.model.get('description'));
+                };
                 return {
                     myDescription : myDescription
                 }

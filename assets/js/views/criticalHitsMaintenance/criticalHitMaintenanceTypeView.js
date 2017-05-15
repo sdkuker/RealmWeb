@@ -13,31 +13,31 @@ define(['marionette',
                 'click #addTypeButton' : 'addCriticalButtonClicked',
                 'click #deleteTypeButton' : 'deleteCriticalButtonClicked'
             },
-            chosenType : null,
-            chosenTypeObject : null,
-            initialize : function() {
+            selectedType : null,
+            initialize : function(options) {
                 self = this;
                 $(document.body).on('change', '#typeSelect', function(e) {
                     self.typeSelected();
                 });
+                self.selectedType = options.selectedType;
                 self.listenTo(self.options.criticalHitTypes, 'add', self.render);
             },
             onRender : function() {
-                self = this;
+                var self = this;
                 var typeSelectElement = this.$el.find('#typeSelect');
                 typeSelectElement.empty();
-                this.options.criticalHitTypes.forEach(function(myType, key, list) {
+                self.options.criticalHitTypes.forEach(function(myType, key, list) {
                     var appendString = "<option value='" + myType.get('id') +  "'";
-                    if ((key == 0 && ! self.chosenType) || (self.chosenType && self.chosenType == myType.get('id'))) {
+                    if ((key == 0 && ! self.selectedType) || (self.selectedType && self.selectedType == myType.get('id'))) {
                         appendString = appendString + " selected='selected'";
-                        if (! self.chosenType) {
-                            self.chosenType = myType.get('id');
+                        if (! self.selectedType) {
+                            self.selectedType = myType.get('id');
                         }
                     };
                     appendString = appendString + ">" + myType.get('id') + "</option>"
                     typeSelectElement.append(appendString);
                 });
-                if (self.chosenType) {
+                if (self.selectedType) {
                     if (self.options.criticalHits && self.options.criticalHits.length > 0) {
                         $('#deleteTypeButton', this.$el).prop('disabled', true);
                     } else {
@@ -49,8 +49,8 @@ define(['marionette',
             },
             typeSelected : function() {
                 self = this;
-                self.chosenType = $('#typeSelect option:selected').val();
-                $.when(CriticalHitWarehouse.getCriticalHitsForType(self.chosenType)).then (
+                self.selectedType = $('#typeSelect option:selected').val();
+                $.when(CriticalHitWarehouse.getCriticalHitsForType(self.selectedType)).then (
                     function(criticalHitCollection) {
                         self.options.criticalHits = criticalHitCollection;
                         self.render();
@@ -75,11 +75,11 @@ define(['marionette',
             },
             deleteCriticalButtonClicked : function() {
                 self = this;
-                if (self.chosenType) {
-                    $.when(CriticalHitWarehouse.removeType(self.chosenType)).then (
+                if (self.selectedType) {
+                    $.when(CriticalHitWarehouse.removeType(self.selectedType)).then (
                         function() {
-                            ViewUtilities.showModalView('Information', 'Type ' + self.chosenType + ' was deleted.');
-                            self.chosenType = null;
+                            ViewUtilities.showModalView('Information', 'Type ' + self.selectedType + ' was deleted.');
+                            self.selectedType = null;
                             self.render();
                         }
                     )

@@ -177,20 +177,22 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
             criticalHitMaintenance : function() {
                 require(['views/criticalHitsMaintenance/criticalHitMaintenanceLayoutView',
                          'views/criticalHitsMaintenance/criticalHitMaintenanceTypeView',
-                        'views/criticalHitsMaintenance/criticalHitMaintenanceListView',
+                         'views/criticalHitsMaintenance/criticalHitMaintenanceListView',
                          'services/criticalHitWarehouse'],
                     function(CriticalHitMaintenanceLayoutView, CriticalHitMaintenanceTypeView,
                              CriticalHitMaintenanceListView, CriticalHitWarehouse) {
-                        var layoutView = new CriticalHitMaintenanceLayoutView();
-                        RealmApplication.regions.mainRegion.show(layoutView);
                         $.when(CriticalHitWarehouse.getAllTypes()).then(
                             function(criticalHitTypeCollection) {
-                                var viewParms = {criticalHitTypes : criticalHitTypeCollection};
-                                var typesView = new CriticalHitMaintenanceTypeView(viewParms);
-                                var listView = new CriticalHitMaintenanceListView();
-                                layoutView.getRegion('criticalHitTypesMaintenanceRegion').show(typesView);
-                                layoutView.getRegion('criticalHitsMaintenanceRegion').show(listView);
-
+                                var selectedType = criticalHitTypeCollection.at(0).get('id');
+                                $.when(CriticalHitWarehouse.getCriticalHitsForType(selectedType)).then (
+                                    function(criticalHitsForSelectedTypeCollection) {
+                                        var viewParms = {criticalHitTypes : criticalHitTypeCollection,
+                                                         selectedType : selectedType,
+                                                         criticalHitsForSelectedType : criticalHitsForSelectedTypeCollection};
+                                        var layoutView = new CriticalHitMaintenanceLayoutView(viewParms);
+                                        RealmApplication.regions.mainRegion.show(layoutView);
+                                    }
+                                )
                             }
                         )
 

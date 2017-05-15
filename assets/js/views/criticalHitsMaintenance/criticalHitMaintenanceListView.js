@@ -5,16 +5,14 @@ define(['marionette',
     "tpl!templates/criticalHitMaintenance/criticalHitMaintenanceListTemplate.tpl",
     'views/criticalHitsMaintenance/criticalHitMaintenanceListItemView'],
     function (Marionette, RealmApplication, Logger, ViewUtilities, CriticalHitMaintenanceListTemplate, CriticalHitMaintenanceItemView) {
-    var CriticalHitListView = Marionette.CompositeView.extend({
-        tagName : 'ul',
-        id : 'criticalHitList',
-        className : 'list-group',
+    var CriticalHitMaintenanceListView = Marionette.CompositeView.extend({
+        tagName : 'table',
+        id : 'criticalHitMaintenanceList',
+        className : 'table table-striped',
         template: CriticalHitMaintenanceListTemplate,
         childView : CriticalHitMaintenanceItemView,
-        childViewContainer : 'ul',
+        childViewContainer : 'tbody',
         selectedModel : '',
-        numberOfHitsToDisplay : 10,
-        lastHitsDisplayedWasList : false,
         initialize : function() {
             var self = this;
             this.listenTo(RealmApplication.vent, 'criticalHitFilter:criticalHitSelected', function(selectedCriticalHitModelArray) {
@@ -41,6 +39,6 @@ define(['marionette',
         }
     });
 
-    return CriticalHitListView;
+    return CriticalHitMaintenanceListView;
 
 });
