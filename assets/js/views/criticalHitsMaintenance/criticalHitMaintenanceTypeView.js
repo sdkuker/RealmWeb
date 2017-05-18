@@ -50,16 +50,17 @@ define(['marionette',
             typeSelected : function() {
                 self = this;
                 self.selectedType = $('#typeSelect option:selected').val();
-                $.when(CriticalHitWarehouse.getCriticalHitsForType(self.selectedType)).then (
-                    function(criticalHitCollection) {
-                        self.options.criticalHits = criticalHitCollection;
-                        self.render();
-                        RealmApplication.vent.trigger('criticalHitMaintenanceType:typeSelected', self.selectedType);
-                    },
-                    function(errorString) {
-                        console.log(errorString);
-                    }
-                )
+                RealmApplication.vent.trigger('criticalHitMaintenanceType:typeSelected', self.selectedType);
+                // $.when(CriticalHitWarehouse.getCriticalHitsForType(self.selectedType)).then (
+                //     function(criticalHitCollection) {
+                //         self.options.criticalHits = criticalHitCollection;
+                //         self.render();
+                //         RealmApplication.vent.trigger('criticalHitMaintenanceType:typeSelected', self.selectedType);
+                //     },
+                //     function(errorString) {
+                //         console.log(errorString);
+                //     }
+                // )
             },
             addCriticalButtonClicked : function(event ) {
                 var newTypeName = $('#newType').val();

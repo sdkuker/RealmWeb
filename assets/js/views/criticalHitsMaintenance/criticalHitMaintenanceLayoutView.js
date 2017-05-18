@@ -28,7 +28,8 @@ define(['marionette',
             onRender: function() {
                 var self = this;
                 var typeViewOptions = {criticalHitTypes : self.criticalHitTypes,
-                                        selectedType : self.selectedType};
+                                        selectedType : self.selectedType,
+                                        criticalHits : self.criticalHitsForSelectedType};
                 var typeView = new CriticalHitMaintenanceTypeView(typeViewOptions);
                 var listViewOptions = {collection : self.criticalHitsForSelectedType};
                 var listView = new CriticalHitMaintenanceListView(listViewOptions);

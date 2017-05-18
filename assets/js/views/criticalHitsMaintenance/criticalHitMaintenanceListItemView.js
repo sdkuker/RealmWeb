@@ -14,7 +14,7 @@ define(['marionette',
             templateHelpers : function() {
                 var myDescription = null;
                 if (this.model.get('description')) {
-                    console.log('description: ' + this.model.get('description'));
+                  //  console.log('description: ' + this.model.get('description'));
                     myDescription = decodeURI(this.model.get('description').replace(/%/g, " percent"));
                 };
                 return {
