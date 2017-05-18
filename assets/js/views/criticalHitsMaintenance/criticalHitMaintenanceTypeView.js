@@ -54,6 +54,7 @@ define(['marionette',
                     function(criticalHitCollection) {
                         self.options.criticalHits = criticalHitCollection;
                         self.render();
+                        RealmApplication.vent.trigger('criticalHitMaintenanceType:typeSelected', self.selectedType);
                     },
                     function(errorString) {
                         console.log(errorString);

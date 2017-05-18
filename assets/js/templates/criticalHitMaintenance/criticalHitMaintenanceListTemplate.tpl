@@ -1,4 +1,4 @@
-<caption><strong>Critical Hits</strong></caption>
+<caption><h2>Critical Hits</h2></caption>
 <thead>
 <tr>
     <th id="severity">Severity</th>

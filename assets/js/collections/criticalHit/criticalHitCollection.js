@@ -8,7 +8,7 @@ define(['backbone', 'firebase', 'backfire', 'models/criticalHit/criticalHitModel
                 this.myType = encodeURI(options.type);
             },
             url: function() {
-                return new Firebase(ServiceConstants.backFireBaseURL + '/criticalHits/' + this.myType);
+                return new Firebase(ServiceConstants.backFireBaseURL + '/criticalHits/' + this.myType).orderByChild('severity');
             },
             model: CriticalHitModel,
             comparator: function(criticalHit) {

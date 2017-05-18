@@ -27,9 +27,6 @@ define(['marionette',
             this.listenTo(this.collection, 'add', this.render);
             this.listenTo(this.collection, 'remove', this.render);
             this.listenTo(this.collection, 'changed', this.render);
-            // this.collection.on('all', function(event) {
-            //     self.render();
-            // })
             this.collection.on('all', self.handleCollectionEvents(self));
         },
         handleCollectionEvents : function(myView) {

@@ -1,9 +1,10 @@
 define(['marionette',
+        'realmApplication',
         "tpl!templates/criticalHitMaintenance/criticalHitMaintenanceLayoutTemplate.tpl",
         'views/criticalHitsMaintenance/criticalHitMaintenanceTypeView',
         'views/criticalHitsMaintenance/criticalHitMaintenanceListView',
         'services/criticalHitWarehouse'],
-    function (Marionette, CriticalHitMaintenanceLayoutTemplate, CriticalHitMaintenanceTypeView,
+    function (Marionette, RealmApplication, CriticalHitMaintenanceLayoutTemplate, CriticalHitMaintenanceTypeView,
               CriticalHitMaintenanceListView, CriticalHitWarehouse) {
 
         var CriticalHitMaintenanceLayoutiew = Marionette.LayoutView.extend({
@@ -17,6 +18,9 @@ define(['marionette',
                 self.criticalHitTypes = options.criticalHitTypes;
                 self.selectedType = options.selectedType;
                 self.criticalHitsForSelectedType = options.criticalHitsForSelectedType;
+                this.listenTo(RealmApplication.vent, 'criticalHitMaintenanceType:typeSelected', function(criticalHitsForTypeCollection) {
+                    self.displayCriticalHits(criticalHitsForTypeCollection);
+                });
             },
             criticalHitTypes : null,
             selectedType : null,
@@ -29,11 +33,26 @@ define(['marionette',
                 var listViewOptions = {collection : self.criticalHitsForSelectedType};
                 var listView = new CriticalHitMaintenanceListView(listViewOptions);
 
-                // this.listenTo(buttonsView, 'combatEncounterNextRoundButton:clicked', this.createAndDisplayNextRound);
-                // this.listenTo(buttonsView, 'combatEncounterRoundNumberToDisplay:selected', this.displayRoundNumber);
                 this.showChildView('criticalHitTypesMaintenanceRegion', typeView);
                 this.showChildView('criticalHitsMaintenanceRegion', listView);
             },
+            displayCriticalHits : function(criticalHitTypeString) {
+                var self = this;
+                self.selectedType = criticalHitTypeString;
+
+                $.when(CriticalHitWarehouse.getAllTypes()).then(
+                    function(criticalHitTypeCollection) {
+                        self.criticalHitTypes = criticalHitTypeCollection;
+                        $.when(CriticalHitWarehouse.getCriticalHitsForType(self.selectedType)).then (
+                            function(criticalHitsForSelectedTypeCollection) {
+                                self.criticalHitsForSelectedType = criticalHitsForSelectedTypeCollection;
+                                self.render();
+                            }
+                        )
+                    }
+                )
+
+            }
         });
 
         return CriticalHitMaintenanceLayoutiew;

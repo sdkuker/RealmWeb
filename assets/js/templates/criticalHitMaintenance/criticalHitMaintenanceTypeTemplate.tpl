@@ -1,6 +1,6 @@
 <div class="container">
     <div class="page-header">
-        <h1>Critical Hit Types</h1>
+        <h2>Critical Hit Types</h2>
     </div>
     <div class="row">
         <label class="control-label col-md-1">Types:</label>

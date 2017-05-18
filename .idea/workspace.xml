@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3adb2a7-14e6-4f04-b818-55fea9bb621c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/router/routerController.js" afterPath="$PROJECT_DIR$/assets/js/router/routerController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/collections/criticalHit/criticalHitCollection.js" afterPath="$PROJECT_DIR$/assets/js/collections/criticalHit/criticalHitCollection.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceListTemplate.tpl" afterPath="$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceListTemplate.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceTypeTemplate.tpl" afterPath="$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceTypeTemplate.tpl" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsListView.js" afterPath="$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsListView.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceLayoutView.js" afterPath="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceLayoutView.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListItemView.js" afterPath="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListItemView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListView.js" afterPath="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListView.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceTypeView.js" afterPath="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceTypeView.js" />
     </list>
     <ignored path="RealmWeb.iws" />
@@ -26,6 +29,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="criticalHitFilterView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitFilterView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="92" column="24" lean-forward="false" selection-start-line="92" selection-start-column="12" selection-end-line="92" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="criticalHitListView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitListView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="232">
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="20" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="criticalHitMaintenanceListView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListView.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -36,21 +59,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routerController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/router/routerController.js">
+      <file leaf-file-name="criticalHitMaintenanceTypeView.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceTypeView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="188" column="56" lean-forward="false" selection-start-line="188" selection-start-column="56" selection-end-line="188" selection-end-column="56" />
+            <state relative-caret-position="30">
+              <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="criticalHitMaintenanceLayoutView.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="criticalHitMaintenanceLayoutView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceLayoutView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+            <state relative-caret-position="90">
+              <caret line="6" column="44" lean-forward="false" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="criticalHitMaintenanceListItemView.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListItemView.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="17" column="88" lean-forward="false" selection-start-line="17" selection-start-column="88" selection-end-line="17" selection-end-column="88" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routerController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/router/routerController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="196" column="25" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="196" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -59,8 +102,8 @@
       <file leaf-file-name="combatEncounterRoundStatisticsListView.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsListView.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="15" column="35" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="35" />
+            <state relative-caret-position="179">
+              <caret line="28" column="67" lean-forward="false" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -77,18 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>criticalHitMaintenance/criticalh</find>
-      <find>criticalHitMaintenance/criticalhi</find>
-      <find>criticalHitMaintenance/criticalhit</find>
-      <find>criticalHitMaintenance/criticalhitm</find>
-      <find>criticalHitMaintenance/criticalhitma</find>
-      <find>criticalHitMaintenance/criticalhitmai</find>
-      <find>criticalHitMaintenance/criticalhitmain</find>
-      <find>criticalHitMaintenance/criticalhitmaint</find>
-      <find>criticalHitMaintenance/criticalhitmainte</find>
-      <find>criticalHitMaintenance/criticalhitmainten</find>
-      <find>criticalHitMaintenance/criticalhitmaintena</find>
-      <find>criticalHitMaintenance/criticalhitmaintenan</find>
       <find>criticalHitMaintenance/criticalhitmaintenanc</find>
       <find>criticalHitMaintenance/criticalhitmaintenance</find>
       <find>criticalHitMaintenance/criticalhitmaintenancel</find>
@@ -101,12 +132,24 @@
       <find>criticalHitMaintenance/criticalhitmaintenancelistitem</find>
       <find>criticalHitMaintenance/criticalhitmaintenancelistitemv</find>
       <find>criticalHitMaintenance/criticalhitmaintenancelistitemvie</find>
-      <find>criticalHitMaintenance/criticalhitmaintenancelistitemview</find>
       <find>maintenance</find>
       <find>TypeObject</find>
       <find>%</find>
       <find>roundStatistics</find>
       <find>CriticalHitMaintenanceLayoutView</find>
+      <find>criticalHitMaintenance/criticalhitmaintenancelistitemview</find>
+      <find>d</find>
+      <find>de</find>
+      <find>des</find>
+      <find>desc</find>
+      <find>descr</find>
+      <find>descri</find>
+      <find>descrip</find>
+      <find>descriptio</find>
+      <find>description</find>
+      <find>description:</find>
+      <find>typeSelected</find>
+      <find>criticalHitFilter:criticalHitSelected</find>
     </findStrings>
     <replaceStrings>
       <replace>-md-</replace>
@@ -120,8 +163,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/assets/js/templates/logInBackground.tpl" />
-        <option value="$PROJECT_DIR$/assets/js/views/loginBackgroundView.js" />
         <option value="$PROJECT_DIR$/assets/js/views/login/loginBackgroundView.js" />
         <option value="$PROJECT_DIR$/assets/js/models/modal/modalModel.js" />
         <option value="$PROJECT_DIR$/assets/js/views/modal/modalRegion.js" />
@@ -157,20 +198,22 @@
         <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterLayoutView.js" />
         <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsItemView.js" />
         <option value="$PROJECT_DIR$/assets/js/templates/combat/combatEncounterRoundStatisticItemTemplate.tpl" />
-        <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsListView.js" />
         <option value="$PROJECT_DIR$/assets/js/templates/navigation/navControls.tpl" />
         <option value="$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceLayoutTemplate.tpl" />
         <option value="$PROJECT_DIR$/assets/js/router/router.js" />
         <option value="$PROJECT_DIR$/assets/js/views/modal/modalLoginView.js" />
-        <option value="$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceTypeTemplate.tpl" />
         <option value="$PROJECT_DIR$/assets/js/services/criticalHitWarehouse.js" />
         <option value="$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/critialHitMaintenanceListTemplate.tpl" />
         <option value="$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceListItemTemplate.tpl" />
-        <option value="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceLayoutView.js" />
         <option value="$PROJECT_DIR$/assets/js/router/routerController.js" />
-        <option value="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceTypeView.js" />
-        <option value="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListItemView.js" />
         <option value="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListView.js" />
+        <option value="$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceTypeTemplate.tpl" />
+        <option value="$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceListTemplate.tpl" />
+        <option value="$PROJECT_DIR$/assets/js/collections/criticalHit/criticalHitCollection.js" />
+        <option value="$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsListView.js" />
+        <option value="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceTypeView.js" />
+        <option value="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceLayoutView.js" />
+        <option value="$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListItemView.js" />
       </list>
     </option>
   </component>
@@ -181,8 +224,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="75" />
-    <option name="y" value="92" />
+    <option name="x" value="16" />
+    <option name="y" value="196" />
     <option name="width" value="1346" />
     <option name="height" value="713" />
   </component>
@@ -327,80 +370,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="combat" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="criticalHitMaintenance" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RealmWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -777,15 +746,16 @@
       <workItem from="1492203177965" duration="17892000" />
       <workItem from="1492477647265" duration="49166000" />
       <workItem from="1494195232142" duration="12000" />
-      <workItem from="1494195261820" duration="22570000" />
+      <workItem from="1494195261820" duration="29593000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="493585000" />
+    <option name="totallyTimeSpent" value="500608000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="75" y="92" width="1346" height="713" extended-state="0" />
+    <frame x="16" y="196" width="1346" height="713" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32226416" sideWeight="0.49078342" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -859,18 +829,6 @@
           <option name="timeStamp" value="901" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/js/router/routerController.js</url>
-          <line>188</line>
-          <properties />
-          <option name="timeStamp" value="979" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceLayoutView.js</url>
-          <line>33</line>
-          <properties />
-          <option name="timeStamp" value="982" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListItemView.js</url>
           <line>68</line>
           <properties />
@@ -891,20 +849,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterListItemView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/models/combat/combatEncounterModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/models/combat/characterCombatRoundStatisticModel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
@@ -1004,14 +948,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitFilterView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="85" column="78" lean-forward="true" selection-start-line="85" selection-start-column="19" selection-end-line="85" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/utility/viewUtilities.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -1028,14 +964,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceTypeTemplate.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="82" lean-forward="false" selection-start-line="13" selection-start-column="82" selection-end-line="13" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/templates/criticalHit/criticalHitListTemplate.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1044,26 +972,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitListView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" lean-forward="true" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/templates/criticalHit/criticalHitListItemTemplate.tpl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceListTemplate.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1088,30 +1000,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="24" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceLayoutTemplate.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="42" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitLayoutView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="13" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/collections/criticalHit/criticalHitCollection.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1144,14 +1032,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
           <caret line="688" column="12" lean-forward="false" selection-start-line="688" selection-start-column="12" selection-end-line="688" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListItemView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="70" column="12" lean-forward="false" selection-start-line="70" selection-start-column="12" selection-end-line="70" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -1244,22 +1124,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceTypeView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="21" column="43" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsListView.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="15" column="35" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListView.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -1268,18 +1132,114 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceLayoutTemplate.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="10" lean-forward="true" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/collections/criticalHit/criticalHitTypeCollection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/collections/combat/characterCombatRoundStatisticCollection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="33" column="115" lean-forward="false" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="115" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceListTemplate.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/templates/criticalHitMaintenance/criticalHitMaintenanceTypeTemplate.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="3" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/collections/criticalHit/criticalHitCollection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="126" lean-forward="false" selection-start-line="10" selection-start-column="126" selection-end-line="10" selection-end-column="126" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/combat/combatEncounterRoundStatisticsListView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="28" column="67" lean-forward="false" selection-start-line="28" selection-start-column="67" selection-end-line="28" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitLayoutView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="13" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitFilterView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="92" column="24" lean-forward="false" selection-start-line="92" selection-start-column="12" selection-end-line="92" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHit/criticalHitListView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="20" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/router/routerController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="188" column="56" lean-forward="false" selection-start-line="188" selection-start-column="56" selection-end-line="188" selection-end-column="56" />
+        <state relative-caret-position="241">
+          <caret line="196" column="25" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="196" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceTypeView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="27" lean-forward="false" selection-start-line="2" selection-start-column="8" selection-end-line="2" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceLayoutView.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+        <state relative-caret-position="90">
+          <caret line="6" column="44" lean-forward="false" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/views/criticalHitsMaintenance/criticalHitMaintenanceListItemView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="17" column="88" lean-forward="false" selection-start-line="17" selection-start-column="88" selection-end-line="17" selection-end-column="88" />
           <folding />
         </state>
       </provider>
