@@ -19,6 +19,7 @@ define(['marionette',
                 self = this;
                 self.selectedType = options.selectedType;
                 self.listenTo(self.options.criticalHitTypes, 'add', self.render);
+                self.listenTo(self.options.criticalHitTypes, 'remove', self.render);
             },
             onRender : function() {
                 var self = this;

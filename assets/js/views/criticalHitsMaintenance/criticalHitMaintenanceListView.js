@@ -18,6 +18,8 @@ define(['marionette',
             this.listenTo(RealmApplication.vent, 'criticalHitFilter:criticalHitSelected', function(selectedCriticalHitModelArray) {
                 self.displayCriticalHit(selectedCriticalHitModelArray);
             });
+            this.listenTo(this.collection, 'add', this.render);
+            this.listenTo(this.collection, 'remove', this.render);
         },
         displayCriticalHit : function(aCriticalHitModelArray) {
             if (aCriticalHitModelArray) {

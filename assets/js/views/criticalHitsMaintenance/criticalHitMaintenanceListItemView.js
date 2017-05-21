@@ -9,7 +9,7 @@ define(['marionette',
             model : CriticalHitModel,
             template: CriticalHitMaintanenceListItemTemplate,
             initialize : function(options) {
-               // this.isOpenRound = options.isOpenRound;
+                this.listenTo(this.model, 'change', this.render);
             },
             templateHelpers : function() {
                 var myDescription = null;
