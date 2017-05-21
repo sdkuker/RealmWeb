@@ -18,7 +18,13 @@ define(['marionette',
                 'click #openEndedDieButton' : 'openEndedDieButtonClicked',
                 'click #getCriticalButton' : 'getCriticalButtonClicked',
                 'click #listCritcalsButton' : 'listCriticalButtonClicked',
-                'click #navToCombatButton' : 'navToCombatButtonClicked'
+                'click #navToCombatButton' : 'navToCombatButtonClicked',
+                'change #typeSelect' : 'typeSelected',
+                'change #severitySelect' : 'severitySelected',
+                'change #attackerBonus' : 'attackerBonusChanged',
+                'change #defenderBonus' : 'defenderBonusChanged',
+                'change #combatEncounterSelect' : 'combatEncounterSelected',
+                'change #defenderSelect' : 'defenderSelected'
             },
             chosenType : null,
             chosenSeverity : null,
@@ -34,24 +40,6 @@ define(['marionette',
             noCombatID : 'noCombatID',
             initialize : function() {
                 self = this;
-                $(document.body).on('change', '#typeSelect', function(e) {
-                    self.typeSelected();
-                });
-                $(document.body).on('change', '#severitySelect', function(e) {
-                    self.severitySelected();
-                });
-                $(document.body).on('change', '#attackerBonus', function(e) {
-                    self.attackerBonusChanged();
-                });
-                $(document.body).on('change', '#defenderBonus', function(e) {
-                    self.defenderBonusChanged();
-                });
-                $(document.body).on('change', '#combatEncounterSelect', function(e) {
-                    self.combatEncounterSelected();
-                });
-                $(document.body).on('change', '#defenderSelect', function(e) {
-                    self.defenderSelected();
-                });
                 self.dieInstance = new DieModel();
                 if (this.options.combatEncounterID) {
                     self.chosenCombatEncounterID = this.options.combatEncounterID;
