@@ -11,14 +11,12 @@ define(['marionette',
             template: CriticalHitMaintenanceTypeTemplate,
             events : {
                 'click #addTypeButton' : 'addCriticalButtonClicked',
-                'click #deleteTypeButton' : 'deleteCriticalButtonClicked'
+                'click #deleteTypeButton' : 'deleteCriticalButtonClicked',
+                'change #typeSelect' : 'typeSelected'
             },
             selectedType : null,
             initialize : function(options) {
                 self = this;
-                $(document.body).on('change', '#typeSelect', function(e) {
-                    self.typeSelected();
-                });
                 self.selectedType = options.selectedType;
                 self.listenTo(self.options.criticalHitTypes, 'add', self.render);
             },
