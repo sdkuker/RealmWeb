@@ -18,10 +18,10 @@ define(['jquery',
                 if (cache[aCriticalHitTypeString]) {
                     deferred.resolve(cache[aCriticalHitTypeString]);
                 } else {
-                    cache[aCriticalHitTypeString] = new CriticalHitCollection({}, {type: aCriticalHitTypeString});
-                    cache[aCriticalHitTypeString].fetch();
+                    cache[aCriticalHitTypeString] = new CriticalHitCollection(null, {type: aCriticalHitTypeString});
+                    // cache[aCriticalHitTypeString].fetch();
                     cache[aCriticalHitTypeString].on('sync', function(collection) {
-                        deferred.resolve(collection);
+                        deferred.resolve(cache[aCriticalHitTypeString]);
                     })
                 }
                 return deferred.promise();

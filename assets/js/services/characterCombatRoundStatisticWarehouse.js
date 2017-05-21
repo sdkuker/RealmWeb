@@ -18,7 +18,6 @@ define(['jquery',
 
             this.getCombatRoundStatisticsForRound = function(combatRound) {
                 var deferred = $.Deferred();
-                //TODO test this - log in with non admin user
 
                 $.when(getAllCombatRoundStatisticsForRound(combatRound)). then(
                     function(myCombatRoundStatisticCollection) {

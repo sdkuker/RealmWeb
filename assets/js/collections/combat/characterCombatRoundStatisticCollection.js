@@ -9,7 +9,7 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/characterCombatRoundS
             autoSync : true,
             initialize: function(models, options) {
                 // return all the rounds if no encounter id was specified
-                // you cannot  add round to a collection generated with a query
+                // you cannot  add round to a collection generated with an orderByChild or equalTo clause
                 if (options) {
                     if (options.encounterID) {
                         this.myEncounterID = encodeURI(options.encounterID);

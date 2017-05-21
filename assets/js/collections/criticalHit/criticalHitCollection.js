@@ -6,6 +6,7 @@ define(['backbone', 'firebase', 'backfire', 'models/criticalHit/criticalHitModel
             initialize: function(models, options) {
                 this.myType = encodeURI(options.type);
             },
+           // autoSync : false,
             url: function() {
                 return new Firebase(ServiceConstants.backFireBaseURL + '/criticalHits/' + this.myType).orderByChild('severity');
             },
