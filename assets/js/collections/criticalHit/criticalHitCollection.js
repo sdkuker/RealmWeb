@@ -2,7 +2,6 @@ define(['backbone', 'firebase', 'backfire', 'models/criticalHit/criticalHitModel
     function (Backbone, Firebase, Backfire, CriticalHitModel, ServiceConstants) {
 
         var CriticalHitCollection = Backbone.Firebase.Collection.extend({
-            autoSync : false,
             myType : null,
             initialize: function(models, options) {
                 this.myType = encodeURI(options.type);

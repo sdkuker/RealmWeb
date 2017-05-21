@@ -15,7 +15,7 @@ define(['marionette',
                 var myDescription = null;
                 if (this.model.get('description')) {
                   //  console.log('description: ' + this.model.get('description'));
-                    myDescription = decodeURI(this.model.get('description').replace(/%/g, " percent"));
+                    myDescription = decodeURI(this.model.get('description').replace(/%\s/g, " percent "));
                 };
                 return {
                     myDescription : myDescription
@@ -36,11 +36,6 @@ define(['marionette',
                     var targetID = self.inputEvent.target.getAttribute('headers');
                     var targetStringExcludingTags = self.inputEvent.target.innerHTML.replace(/(<([^>]+)>)/ig,"");
                     var targetValue = encodeURI((targetStringExcludingTags));
-                    // var targetValue = parseInt(targetStringExcludingTags);
-                    //
-                    // if (isNaN(targetValue)) {
-                    //     targetValue = 0;
-                    // }
                     this.cellBeingEdited = targetID;
                     var modelAttributeName = '';
 
