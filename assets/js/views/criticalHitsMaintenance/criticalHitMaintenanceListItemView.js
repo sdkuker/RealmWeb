@@ -17,12 +17,15 @@ define(['marionette',
                   //  console.log('description: ' + this.model.get('description'));
                     myDescription = decodeURI(this.model.get('description').replace(/%\s/g, " percent "));
                 };
+                var actionLabel = this.model.get('id') ? 'Delete' : 'Add';
                 return {
-                    myDescription : myDescription
+                    myDescription : myDescription,
+                    actionLabel : actionLabel
                 }
             },
             events : {
-                'input' : 'tableCellUpdated'
+                'input' : 'tableCellUpdated',
+                'click #deleteCriticalHitButton' : 'deleteButtonClicked'
             },
             timeout: null,
             self : null,
@@ -63,6 +66,9 @@ define(['marionette',
                 if (this.cellBeingEdited) {
                     $(this.$el).find("[headers='" + this.cellBeingEdited + "']").focus();
                 }
+            },
+            deleteButtonClicked : function(event) {
+                RealmApplication.vent.trigger('criticalHitMaintenanceDeleteButton:clicked', this.model);
             }
         });
 

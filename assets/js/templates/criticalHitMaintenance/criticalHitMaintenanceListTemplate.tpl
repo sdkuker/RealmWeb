@@ -5,6 +5,7 @@
     <th id="rollMinimumValue">Minimum Roll</th>
     <th id="rollMaximumValue">Maximum Roll</th>
     <th id="description">Description</th>
+    <th id="actions"></th>
 </tr>
 </thead>
 <tbody>

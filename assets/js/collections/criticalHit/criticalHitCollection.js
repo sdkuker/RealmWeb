@@ -3,12 +3,20 @@ define(['backbone', 'firebase', 'backfire', 'models/criticalHit/criticalHitModel
 
         var CriticalHitCollection = Backbone.Firebase.Collection.extend({
             myType : null,
+            orderBySeverity : false,
             initialize: function(models, options) {
                 this.myType = encodeURI(options.type);
+                if (options.orderBySeverity) {
+                    this.orderBySeverity = options.orderBySeverity;
+                }
             },
-           // autoSync : false,
             url: function() {
-                return new Firebase(ServiceConstants.backFireBaseURL + '/criticalHits/' + this.myType).orderByChild('severity');
+                if (this.orderBySeverity) {
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/criticalHits/' + this.myType).orderByChild('severity');
+                } else {
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/criticalHits/' + this.myType);
+                }
+
             },
             model: CriticalHitModel,
             comparator: function(criticalHit) {

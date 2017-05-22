@@ -3,8 +3,10 @@ define(['marionette',
     'logger',
     'utility/viewUtilities',
     "tpl!templates/criticalHitMaintenance/criticalHitMaintenanceListTemplate.tpl",
-    'views/criticalHitsMaintenance/criticalHitMaintenanceListItemView'],
-    function (Marionette, RealmApplication, Logger, ViewUtilities, CriticalHitMaintenanceListTemplate, CriticalHitMaintenanceItemView) {
+    'views/criticalHitsMaintenance/criticalHitMaintenanceListItemView',
+    'services/criticalHitWarehouse'],
+    function (Marionette, RealmApplication, Logger, ViewUtilities, CriticalHitMaintenanceListTemplate,
+              CriticalHitMaintenanceItemView, CriticalHitWarehouse) {
     var CriticalHitMaintenanceListView = Marionette.CompositeView.extend({
         tagName : 'table',
         id : 'criticalHitMaintenanceList',
@@ -18,8 +20,14 @@ define(['marionette',
             this.listenTo(RealmApplication.vent, 'criticalHitFilter:criticalHitSelected', function(selectedCriticalHitModelArray) {
                 self.displayCriticalHit(selectedCriticalHitModelArray);
             });
+            this.listenTo(RealmApplication.vent, 'criticalHitMaintenanceDeleteButton:clicked', function(criticalHitModelToDelete) {
+                self.deleteCriticalHit(criticalHitModelToDelete);
+            });
             this.listenTo(this.collection, 'add', this.render);
             this.listenTo(this.collection, 'remove', this.render);
+        },
+        deleteCriticalHit : function(criticalHitModelToDelete) {
+            CriticalHitWarehouse.removeCriticalHit(criticalHitModelToDelete);
         },
         displayCriticalHit : function(aCriticalHitModelArray) {
             if (aCriticalHitModelArray) {

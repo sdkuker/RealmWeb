@@ -18,8 +18,7 @@ define(['jquery',
                 if (cache[aCriticalHitTypeString]) {
                     deferred.resolve(cache[aCriticalHitTypeString]);
                 } else {
-                    cache[aCriticalHitTypeString] = new CriticalHitCollection(null, {type: aCriticalHitTypeString});
-                    // cache[aCriticalHitTypeString].fetch();
+                    cache[aCriticalHitTypeString] = new CriticalHitCollection(null, {orderBySeverity: true, type: aCriticalHitTypeString});
                     cache[aCriticalHitTypeString].on('sync', function(collection) {
                         deferred.resolve(cache[aCriticalHitTypeString]);
                     })
@@ -69,7 +68,35 @@ define(['jquery',
                 )
 
                 return deferred.promise();
-            }
+            },
+
+            this.removeCriticalHit = function(aCriticalHitModelObject) {
+                var deferred = $.Deferred();
+
+                $.when(self.getUnorderedCriticalHitsForType(aCriticalHitModelObject.get('type'))).then (
+                    function(anUnorderedCriticalHitForTypeCollection) {
+                        anUnorderedCriticalHitForTypeCollection.remove(aCriticalHitModelObject);
+                        deferred.resolve();
+                    }
+                )
+
+                return deferred.promise();
+            },
+
+            // private functions
+            this.getUnorderedCriticalHitsForType = function(aCriticalHitTypeString) {
+                var deferred = $.Deferred();
+                var cacheKey = aCriticalHitTypeString + ':unordered';
+                if (cache[cacheKey]) {
+                    deferred.resolve(cache[cacheKey]);
+                } else {
+                    cache[cacheKey] = new CriticalHitCollection(null, {orderBySeverity: false, type: aCriticalHitTypeString});
+                    cache[cacheKey].on('sync', function(collection) {
+                        deferred.resolve(cache[cacheKey]);
+                    })
+                }
+                return deferred.promise();
+            };
         };
 
         var myCriticalHitWarehouse = new CriticalHitWarehouse();
