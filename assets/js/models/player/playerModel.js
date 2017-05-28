@@ -5,7 +5,6 @@ define(['backbone'],
             defaults: {
                 name: '',
                 id : '',
-       //         photo : '',
                 administrator : false
             },
             getName: function() {

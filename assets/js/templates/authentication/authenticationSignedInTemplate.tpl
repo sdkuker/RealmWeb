@@ -3,9 +3,6 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="media">
-                 <!--   <div class="media-left">
-                        <img src="<%- photo %>">
-                    </div> -->
                     <div class="media-body">
                         <h4 class="media-heading"><%- name %></h4>
                         <h4 class="media-heading"><%- playerType %></h4>
