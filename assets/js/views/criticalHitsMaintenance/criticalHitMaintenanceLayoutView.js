@@ -31,7 +31,8 @@ define(['marionette',
                                         selectedType : self.selectedType,
                                         criticalHits : self.criticalHitsForSelectedType};
                 var typeView = new CriticalHitMaintenanceTypeView(typeViewOptions);
-                var listViewOptions = {collection : self.criticalHitsForSelectedType};
+                var listViewOptions = {collection : self.criticalHitsForSelectedType,
+                                        selectedType : self.selectedType};
                 var listView = new CriticalHitMaintenanceListView(listViewOptions);
 
                 this.showChildView('criticalHitTypesMaintenanceRegion', typeView);
@@ -44,7 +45,7 @@ define(['marionette',
                 $.when(CriticalHitWarehouse.getAllTypes()).then(
                     function(criticalHitTypeCollection) {
                         self.criticalHitTypes = criticalHitTypeCollection;
-                        $.when(CriticalHitWarehouse.getCriticalHitsForType(self.selectedType)).then (
+                        $.when(CriticalHitWarehouse.getCriticalHitsForTypeWithDefaultForAdd(self.selectedType)).then (
                             function(criticalHitsForSelectedTypeCollection) {
                                 self.criticalHitsForSelectedType = criticalHitsForSelectedTypeCollection;
                                 self.render();

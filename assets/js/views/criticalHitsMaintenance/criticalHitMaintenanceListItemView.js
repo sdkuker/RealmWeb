@@ -2,12 +2,15 @@ define(['marionette',
         'realmApplication',
         "tpl!templates/criticalHitMaintenance/criticalHitMaintenanceListItemTemplate.tpl",
         'models/criticalHit/criticalHitModel',
-        'services/criticalHitWarehouse'],
-    function (Marionette, RealmApplication, CriticalHitMaintanenceListItemTemplate, CriticalHitModel, CriticalHitWarehouse) {
+        'services/criticalHitWarehouse',
+        'utility/viewUtilities'],
+    function (Marionette, RealmApplication, CriticalHitMaintanenceListItemTemplate, CriticalHitModel,
+              CriticalHitWarehouse, ViewUtilities) {
         var CriticalHitMaintenanceItemView = Marionette.ItemView.extend({
             tagName : 'tr',
             model : CriticalHitModel,
             template: CriticalHitMaintanenceListItemTemplate,
+            newModelAttributes : {},
             initialize : function(options) {
                 this.listenTo(this.model, 'change', this.render);
             },
@@ -25,7 +28,7 @@ define(['marionette',
             },
             events : {
                 'input' : 'tableCellUpdated',
-                'click #deleteCriticalHitButton' : 'deleteButtonClicked'
+                'click #actionCriticalHitButton' : 'actionButtonClicked'
             },
             timeout: null,
             self : null,
@@ -44,7 +47,7 @@ define(['marionette',
 
                     switch (targetID) {
                         case 'severity':
-                            modelAttributeName = 'roundsStillStunned';
+                            modelAttributeName = 'severity';
                             break;
                         case 'rollMinimumValue':
                             modelAttributeName = 'rollMinimumValue';
@@ -56,10 +59,29 @@ define(['marionette',
                             modelAttributeName = 'description';
                             break;
                     }
+                    if (modelAttributeName == 'rollMinimumValue' || modelAttributeName == 'rollMaximumValue') {
+                        if (! self.isNormalInteger(targetValue)) {
+                            ViewUtilities.showModalView('Error', 'Roll values must be integers.');
+                        } else {
+                            self.persistAttributeChange(modelAttributeName,targetValue);
+                        }
+                    } else {
+                        self.persistAttributeChange(modelAttributeName,targetValue);
+                    }
+
+                }, 400);
+            },
+            persistAttributeChange : function(modelAttributeName, targetValue) {
+                var self = this;
+                if (self.model.get('id')) {
                     self.model.set(modelAttributeName, targetValue);
                     self.render();
-
-                }, 800);
+                } else {
+                    self.newModelAttributes[modelAttributeName] = targetValue;
+                };
+            },
+            isNormalInteger: function(string) {
+                return /^\+?\d+$/.test(string);
             },
             onRender : function() {
                 var self = this;
@@ -67,8 +89,21 @@ define(['marionette',
                     $(this.$el).find("[headers='" + this.cellBeingEdited + "']").focus();
                 }
             },
-            deleteButtonClicked : function(event) {
-                RealmApplication.vent.trigger('criticalHitMaintenanceDeleteButton:clicked', this.model);
+            actionButtonClicked : function(event) {
+                if (this.model.id) {
+                    RealmApplication.vent.trigger('criticalHitMaintenanceActionButton:clicked', this.model);
+                } else {
+                    if (this.newModelAttributes.severity && this.newModelAttributes.rollMinimumValue &&
+                        this.newModelAttributes.rollMaximumValue && this.newModelAttributes.description) {
+                        var copiedObject = jQuery.extend({}, this.newModelAttributes);
+                        this.newModelAttributes = {};
+                        this.render();
+                        RealmApplication.vent.trigger('criticalHitMaintenanceActionButton:clicked', copiedObject);
+                    } else {
+                        ViewUtilities.showModalView('Error', 'Must provide all attributes before you can add');
+                    }
+                }
+
             }
         });
 

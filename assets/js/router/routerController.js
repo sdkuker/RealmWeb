@@ -184,7 +184,7 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                         $.when(CriticalHitWarehouse.getAllTypes()).then(
                             function(criticalHitTypeCollection) {
                                 var selectedType = criticalHitTypeCollection.at(0).get('id');
-                                $.when(CriticalHitWarehouse.getCriticalHitsForType(selectedType)).then (
+                                $.when(CriticalHitWarehouse.getCriticalHitsForTypeWithDefaultForAdd(selectedType)).then (
                                     function(criticalHitsForSelectedTypeCollection) {
                                         var viewParms = {criticalHitTypes : criticalHitTypeCollection,
                                                          selectedType : selectedType,

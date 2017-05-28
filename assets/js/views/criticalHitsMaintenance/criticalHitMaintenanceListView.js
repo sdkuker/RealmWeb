@@ -15,19 +15,49 @@ define(['marionette',
         childView : CriticalHitMaintenanceItemView,
         childViewContainer : 'tbody',
         selectedModel : '',
-        initialize : function() {
+        selectedType : '',
+        initialize : function(options) {
             var self = this;
+            self.selectedType = options.selectedType;
             this.listenTo(RealmApplication.vent, 'criticalHitFilter:criticalHitSelected', function(selectedCriticalHitModelArray) {
                 self.displayCriticalHit(selectedCriticalHitModelArray);
             });
-            this.listenTo(RealmApplication.vent, 'criticalHitMaintenanceDeleteButton:clicked', function(criticalHitModelToDelete) {
-                self.deleteCriticalHit(criticalHitModelToDelete);
+            this.listenTo(RealmApplication.vent, 'criticalHitMaintenanceActionButton:clicked', function(criticalHitModelToAction) {
+                self.actionCriticalHit(criticalHitModelToAction);
             });
-            this.listenTo(this.collection, 'add', this.render);
-            this.listenTo(this.collection, 'remove', this.render);
+            // this.listenTo(this.collection, 'add', this.collectionChanged);
+            // this.listenTo(this.collection, 'remove', this.render);
         },
-        deleteCriticalHit : function(criticalHitModelToDelete) {
-            CriticalHitWarehouse.removeCriticalHit(criticalHitModelToDelete);
+        collectionChanged : function() {
+            console.log("here");
+            this.render();
+        },
+        onRender : function() {
+            console.log('rendering');
+        },
+        actionCriticalHit : function(criticalHitModelToAction) {
+            if (criticalHitModelToAction.description) {
+                // just an object that needs to be added
+                criticalHitModelToAction.type  = this.selectedType;
+                $.when(CriticalHitWarehouse.addCriticalHit(criticalHitModelToAction)).then(
+                    function() {
+                        $.when(CriticalHitWarehouse.getCriticalHitsForTypeWithDefaultForAdd(this.selectedType)).then(
+                            function(aCollection) {
+                                this.collection = aCollection;
+ //                               this.render();
+                            }
+                        )
+                    }
+                )
+            } else {
+                //will be an actual backbone model
+                $.when(CriticalHitWarehouse.removeCriticalHit(criticalHitModelToAction)).then(
+                    function() {
+ //                       this.render();
+                    }
+                )
+            }
+
         },
         displayCriticalHit : function(aCriticalHitModelArray) {
             if (aCriticalHitModelArray) {
