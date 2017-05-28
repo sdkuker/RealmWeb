@@ -21,22 +21,31 @@ define(['marionette',
                 this.listenTo(RealmApplication.vent, 'criticalHitMaintenanceType:typeSelected', function(criticalHitsForTypeCollection) {
                     self.displayCriticalHits(criticalHitsForTypeCollection);
                 });
+                this.listenTo(RealmApplication.vent, 'criticalHitMaintenanceList:criticalHitActioned', function() {
+                    self.criticalHitActioned();
+                });
             },
             criticalHitTypes : null,
             selectedType : null,
             criticalHitsForSelectedType : null,
+            myTypeView : null,
             onRender: function() {
                 var self = this;
                 var typeViewOptions = {criticalHitTypes : self.criticalHitTypes,
                                         selectedType : self.selectedType,
                                         criticalHits : self.criticalHitsForSelectedType};
-                var typeView = new CriticalHitMaintenanceTypeView(typeViewOptions);
+                self.myTypeView = new CriticalHitMaintenanceTypeView(typeViewOptions);
                 var listViewOptions = {collection : self.criticalHitsForSelectedType,
                                         selectedType : self.selectedType};
                 var listView = new CriticalHitMaintenanceListView(listViewOptions);
 
-                this.showChildView('criticalHitTypesMaintenanceRegion', typeView);
+                this.showChildView('criticalHitTypesMaintenanceRegion', self.myTypeView);
                 this.showChildView('criticalHitsMaintenanceRegion', listView);
+            },
+            criticalHitActioned : function() {
+                // a critical hit was added or deleted.  must update the type view's 'delete' button status.
+                var self = this;
+                self.myTypeView.render();
             },
             displayCriticalHits : function(criticalHitTypeString) {
                 var self = this;

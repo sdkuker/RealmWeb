@@ -37,7 +37,7 @@ define(['marionette',
                     typeSelectElement.append(appendString);
                 });
                 if (self.selectedType) {
-                    if (self.options.criticalHits && self.options.criticalHits.length > 0) {
+                    if (self.options.criticalHits && self.options.criticalHits.length > 1) {
                         $('#deleteTypeButton', this.$el).prop('disabled', true);
                     } else {
                         $('#deleteTypeButton', this.$el).prop('disabled', false);
@@ -57,6 +57,7 @@ define(['marionette',
                     $.when(CriticalHitWarehouse.addType({id: newTypeName})).then (
                         function() {
                             ViewUtilities.showModalView('Information', 'Type ' + newTypeName + ' was added.');
+                            self.selectedType = newTypeName;
                             self.render();
                         }
                     )
