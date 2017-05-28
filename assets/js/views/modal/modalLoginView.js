@@ -36,7 +36,7 @@ define(['realmApplication', 'marionette',  'models/player/playerModel',
             //$('#loginModal').modal("hide");
             $("[data-dismiss=modal]").trigger({ type: "click" });
             modalLoginView.playerModel.set('name', aUser.displayName);
-            modalLoginView.playerModel.set('photo', aUser.photoURL);
+          //  modalLoginView.playerModel.set('photo', aUser.photoURL);
             modalLoginView.playerModel.set('id', aUser.uid);
             require(['utility/firebaseAuthUIUtilities'], function(AuthUIUtilities) {
                 AuthUIUtilities.getAuthUI().reset();
