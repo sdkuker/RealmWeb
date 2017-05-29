@@ -41,9 +41,15 @@ define(['jquery',
                 $.when(getCombatRoundStatisticCollectionForRound(combatRound)).then(
                     function(myStatisticsCollection) {
                         var arrayOfRoundDeferred = [];
-                        myStatisticsCollection.each(function(statisticsModel, index) {
+                        // right here, the collection is being changed - ones are deleted while others are processing
+                        // make a new collection or array with the statistics models and then iterate through the array.
+                        var modelArray = myStatisticsCollection.toArray();
+                        modelArray.forEach(function(statisticsModel, index) {
                             arrayOfRoundDeferred.push(CombatRoundStatisticFactory.removeStatistic(statisticsModel));
                         });
+                        // myStatisticsCollection.each(function(statisticsModel, index) {
+                        //     arrayOfRoundDeferred.push(CombatRoundStatisticFactory.removeStatistic(statisticsModel));
+                        // });
                         $.when.apply($, arrayOfRoundDeferred).then(function() {
                             deferred.resolve();
                         });

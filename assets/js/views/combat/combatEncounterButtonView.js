@@ -23,6 +23,7 @@ define(['marionette',
             events : {
                 'click #nextRoundButton' : 'nextRoundButtonClicked',
                 'click #criticalHitsButton' : 'criticalHitsButtonClicked',
+                'click #deleteRoundButton' : 'deleteRoundButtonClicked',
                 'change #displayedRoundNumber' : 'displayedRoundNumberSelected'
             },
             onRender : function() {
@@ -30,10 +31,18 @@ define(['marionette',
                 if (! PlayerWarehouse.getPlayerLoggedIn().get('administrator')) {
                     $('#nextRoundButton', this.el).prop('disabled', true);
                 }
+                if (self.displayedRoundNumber == self.model.get('openRound')) {
+                    $('#deleteRoundButton', this.el).prop('disabled', false);
+                } else {
+                    $('#deleteRoundButton', this.el).prop('disabled', true);
+                }
                 self.populateRounds();
             },
             nextRoundButtonClicked : function() {
                 this.trigger('combatEncounterNextRoundButton:clicked');
+            },
+            deleteRoundButtonClicked : function() {
+                this.trigger('combatEncounterDeleteRoundButton:clicked');
             },
             criticalHitsButtonClicked : function() {
                 var self = this;

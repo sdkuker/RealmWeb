@@ -2,8 +2,10 @@ define(['jquery',
         'logger',
         'collections/combat/combatRoundCollection',
         'services/combatRoundFactory',
-        'services/characterCombatRoundStatisticWarehouse'],
-    function ($, Logger, CombatRoundCollection, CombatRoundFactory, CombatRoundStatisticWarehouse) {
+        'services/characterCombatRoundStatisticWarehouse',
+        'services/combatRoundCriticalHitWarehouse'],
+    function ($, Logger, CombatRoundCollection, CombatRoundFactory, CombatRoundStatisticWarehouse,
+              CombatRoundCriticalHitWarehouse) {
 
         // I am the first stop for getting combat rounds.  If I don't have them, I'll get them from Firebase
         // and put them in my cache.  If I have them in my cache, I'll return them.
@@ -114,15 +116,20 @@ define(['jquery',
             this.deleteRoundAndStatisticsForRound = function(combatRound) {
                 var deferred = $.Deferred();
                 if (combatRound && combatRound.get('id') != undefined) {
-                    $.when(CombatRoundStatisticWarehouse.removeCombatRoundStatisticsForRound(combatRound)).then(
+                    $.when(CombatRoundCriticalHitWarehouse.deleteCombatRoundCriticalHitsForRound(combatRound.get('id'))).then (
                         function() {
-                            $.when(CombatRoundFactory.removeCombatRound(combatRound)).then(
+                            $.when(CombatRoundStatisticWarehouse.removeCombatRoundStatisticsForRound(combatRound)).then(
                                 function() {
-                                    deferred.resolve();
+                                    $.when(CombatRoundFactory.removeCombatRound(combatRound)).then(
+                                        function() {
+                                            deferred.resolve();
+                                        }
+                                    )
                                 }
                             )
                         }
                     )
+
                 } else {
                     deferred.resolve();
                 }

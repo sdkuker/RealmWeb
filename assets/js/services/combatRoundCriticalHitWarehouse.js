@@ -51,6 +51,26 @@ define(['jquery',
                 return deferred.promise();
             };
 
+            this.deleteCombatRoundCriticalHitsForRound = function(combatRoundID) {
+                var deferred = $.Deferred();
+                var arrayOfDeferredDeletes = [];
+                $.when(getCombatRoundCriticalHitCollection()). then(
+                    function(myCombatRoundCriticalHitsCollection) {
+                        var hitArray = myCombatRoundCriticalHitsCollection.toArray();
+                        hitArray.forEach(function(criticalHit, index) {
+                            if (criticalHit.get('combatRoundID') == combatRoundID) {
+                                arrayOfDeferredDeletes.push(removeCombatRoundCriticalHit(criticalHit));
+                            }
+                        })
+                        $.when.apply($, arrayOfDeferredDeletes).then(function() {
+                            deferred.resolve();
+                        });
+                    }
+                )
+
+                return deferred.promise();
+            };
+
             // persists the critical hit for the round.  Adding to the 'all' collection - should also appear in any
             // encounter specific collections that the critial hit for round belongs to.
             this.addCombatRoundCriticalHit = function(aCombatEncounterID, aCombatRoundID, aCombatRoundNumber, aCharacterID, aCriticalHitID, aCriticalHitDescription) {
@@ -82,7 +102,24 @@ define(['jquery',
                     })
                 }
                 return deferred.promise();
-            }
+            };
+
+            // deletes the hit.  Removing from the 'all' collection - should also appear in any
+            // specific collections that the hit belongs to.
+            removeCombatRoundCriticalHit = function(aCombatRoundCriticalHitToBeRemoved) {
+                var deferred = $.Deferred();
+                if (aCombatRoundCriticalHitToBeRemoved.get('id')) {
+                    $.when(getCombatRoundCriticalHitCollection()).then (
+                        function(myAllHitsCollection) {
+                            myAllHitsCollection.remove(aCombatRoundCriticalHitToBeRemoved);
+                            deferred.resolve();
+                        }
+                    )
+                } else {
+                    deferred.resolve();
+                }
+                return deferred.promise();
+            };
         };
 
         var myCombatRoundCriticalHitWarehouse = new CombatRoundCriticalHitWarehouse();

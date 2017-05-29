@@ -47,7 +47,7 @@ define(['jquery',
                 return deferred.promise();
             };
 
-            // deletes the stastic.  Removing from the 'all' collection - should also appear in any
+            // deletes the stastistic.  Removing from the 'all' collection - should also appear in any
             // specific collections that the statistic belongs to.
             this.removeStatistic = function(aStatisticToBeRemoved) {
                 var deferred = $.Deferred();

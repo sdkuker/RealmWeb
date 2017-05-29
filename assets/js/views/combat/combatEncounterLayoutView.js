@@ -19,7 +19,6 @@ define(['marionette',
                 }
             },
             encounter : null,
-            encounterRounds : null,
             roundToShow : null,
             roundIdentifierToShow : 0,
             roundStatistics : null,
@@ -33,6 +32,7 @@ define(['marionette',
                 var listView = new StatisticsListView({model : this.encounter, roundNumber: self.roundIdentifierToShow, collection: self.roundStatistics});
                 var buttonsView = new ButtonView({model : this.encounter, roundIdentifierToShow : this.roundIdentifierToShow});
                 this.listenTo(buttonsView, 'combatEncounterNextRoundButton:clicked', this.createAndDisplayNextRound);
+                this.listenTo(buttonsView, 'combatEncounterDeleteRoundButton:clicked', this.deleteCurrentRound);
                 this.listenTo(buttonsView, 'combatEncounterRoundNumberToDisplay:selected', this.displayRoundNumber);
                 this.showChildView('roundsTableRegion', listView);
                 this.showChildView('roundsButtonsRegion', buttonsView);
@@ -45,6 +45,22 @@ define(['marionette',
                         self.render();
                     }
                 )
+            },
+            deleteCurrentRound : function() {
+                var self = this;
+                $.when(CombatRoundWarehouse.getOpenRoundForEncounter(self.encounter)).then(
+                    function(openRoundModelObject) {
+                        $.when(CombatRoundWarehouse.deleteRoundAndStatisticsForRound(openRoundModelObject)).then(
+                            function() {
+                                self.encounter.set('openRound', self.encounter.get('openRound') - 1);
+                                self.roundToShow = self.encounter.get('openRound');
+                                self.displayRoundNumber(self.roundToShow);
+                            }
+                        )
+                    }
+                )
+
+
             },
             createAndDisplayNextRound : function() {
                 var self = this;
