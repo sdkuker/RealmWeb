@@ -41,9 +41,10 @@ define(['realmApplication',
                             $.when(getPlayerCollection()).then(
                                 function(allPlayersCollection) {
                                     var newPlayerObject = {name : aPlayerModel.get('name'),
-                                        id : aPlayerModel.get('id'), photo : aPlayerModel.get('photo')};
+                                        id : aPlayerModel.get('id')};
                                     allPlayersCollection.add(newPlayerObject);
-                                    deferred.resolve();
+                                    self.playerLoggedIn = aPlayerModel;
+                                    deferred.resolve(self.playerLoggedIn);
                                 }
                             )
                         }

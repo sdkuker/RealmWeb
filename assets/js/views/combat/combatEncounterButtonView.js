@@ -31,11 +31,17 @@ define(['marionette',
                 if (! PlayerWarehouse.getPlayerLoggedIn().get('administrator')) {
                     $('#nextRoundButton', this.el).prop('disabled', true);
                 }
-                if (self.displayedRoundNumber == self.model.get('openRound')) {
-                    $('#deleteRoundButton', this.el).prop('disabled', false);
+
+                if (PlayerWarehouse.getPlayerLoggedIn().get('administrator')) {
+                    if (self.displayedRoundNumber == self.model.get('openRound')) {
+                        $('#deleteRoundButton', this.el).prop('disabled', false);
+                    } else {
+                        $('#deleteRoundButton', this.el).prop('disabled', true);
+                    }
                 } else {
                     $('#deleteRoundButton', this.el).prop('disabled', true);
                 }
+
                 self.populateRounds();
             },
             nextRoundButtonClicked : function() {
