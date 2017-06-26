@@ -235,6 +235,35 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                     RealmApplication.regions.mainRegion.show(characterView);
                 });
             },
+            itemList: function () {
+                require(['views/item/itemListView', 'views/item/itemView',
+                        'views/item/itemListLayoutView','views/item/itemListButtonView',
+                        'services/itemWarehouse'],
+                    function (ItemListView, ItemView, ItemListLayoutView,
+                              ItemListButtonView, ItemWarehouse) {
+                        var itemListLayoutView = new ItemListLayoutView();
+                        RealmApplication.regions.mainRegion.show(itemListLayoutView);
+                        $.when(ItemWarehouse.getAllItems()).then(
+                            function(myItemCollection) {
+                                var itemListView = new ItemListView({collection: myItemCollection});
+                                var itemListButtonView = new ItemListButtonView();
+                                itemListLayoutView.getRegion('itemTableRegion').show(itemListView);
+                                itemListLayoutView.getRegion('buttonsRegion').show(itemListButtonView);
+                                ViewUtilities.currentNavSelection = 'items';
+                            }
+                        ),
+                            function() {
+                                console.log('some kind of error getting items');
+                            }
+                    });
+            },
+            viewItem: function(itemModel) {
+                require(['views/item/itemView'], function (ItemView) {
+                    var itemView = new ItemView({model : itemModel});
+                    RealmApplication.regions.mainRegion.show(itemView);
+                });
+            },
+
         };
 
         return RouterController;

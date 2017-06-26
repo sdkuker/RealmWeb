@@ -88,4 +88,27 @@ define(['realmApplication', 'router/router', 'router/routerController', 'utility
             ViewUtilities.currentNavSelection = 'dieRoller';
             ViewUtilities.resetActiveNavSelection();
         });
+
+        RealmApplication.vent.bind('itemListAddItem', function (model) {
+            Router.navigate('viewItem');
+            RouterController.viewItem(model);
+        });
+
+        RealmApplication.vent.bind('characterListChangeCharacter', function (model) {
+            Router.navigate('viewItem');
+            RouterController.viewItem(model);
+        });
+
+        RealmApplication.vent.bind('characterListDeleteButton:clicked', function (model) {
+            // don't need to do anything I think
+        });
+        RealmApplication.vent.bind('viewItemList', function () {
+            Router.navigate('itemList');
+            RouterController.itemList();
+        });
+        RealmApplication.vent.bind('itemListChangeItem', function (model) {
+            Router.navigate('viewItem');
+            RouterController.viewItem(model);
+        });
+
     });
