@@ -29,6 +29,9 @@ define(['backbone', 'services/playerWarehouse'],
                 miscItemChoice : 0,
                 adrenalDefense : 0
             },
+            totalWill : function() {
+                return this.get('will') + this.get('willModifier');
+            },
             totalHitPoints : function() {
                 return this.get('hitPoints') + this.get('hitPointsModifier');
             },

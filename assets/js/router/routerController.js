@@ -263,6 +263,19 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                     RealmApplication.regions.mainRegion.show(itemView);
                 });
             },
+            willContestConsequenceMaintenance : function() {
+                require(['views/willContestConsequenceMaintenance/willContestConsequenceMaintenanceLayoutView',
+                        'services/willContestConsequenceWarehouse'],
+                    function(WillContestConsequenceMaintenanceLayoutView, WillContestConsequenceWarehouse) {
+                        $.when(WillContestConsequenceWarehouse.getAllWillContestConsequences()).then(
+                            function(willContestConsequenceCollection) {
+                                var viewParms = {consequenceCollection : willContestConsequenceCollection};
+                                var layoutView = new WillContestConsequenceMaintenanceLayoutView(viewParms);
+                                RealmApplication.regions.mainRegion.show(layoutView);
+                            }
+                        )
+                    })
+            }
 
         };
 

@@ -21,7 +21,15 @@
                 <li id='resistanceTable'><a href="#resistanceTable" >Resistance Table</a></li>
                 <li id='herbLore'><a href="#herbLore" >Herb Lore</a></li>
                 <li id='itemList'><a href="#itemList" >Item List</a></li>
-                <li id='willContestList'><a href="#willContestList" >Will Contest List</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Will Contests
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li id='willContestList'><a href="#willContestList" >Will Contest List</a></li>
+                        <li id='willContestConsequenceMaintenance'><a href="#willContestConsequenceMaintenance" >Will Contest Consequence Maintenance</a></li>
+                    </ul>
+                </li>
                 <li id='movementManeuvers'><a href="#movementManeuvers" >Movement Maneuvers</a></li>
             </ul>
         </div>

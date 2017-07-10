@@ -13,7 +13,10 @@ define(['backbone'],
             },
             setName: function(aName) {
                 return this.set('name', encodeURI(aName));
-            }
+            },
+            totalWill : function() {
+                return this.get('will') + this.get('willModifier');
+            },
         });
 
         return ItemModel;
