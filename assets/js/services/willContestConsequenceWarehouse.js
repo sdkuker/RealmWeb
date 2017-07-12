@@ -20,7 +20,7 @@ define(['jquery',
                 if (cache[allConsequencesCollectionKey]) {
                     deferred.resolve(cache[allConsequencesCollectionKey]);
                 } else {
-                    cache[allConsequencesCollectionKey] = new ConsequenceCollection();
+                    cache[allConsequencesCollectionKey] = new ConsequenceCollection(null, {orderByMinimumRollValue : true});
                     cache[allConsequencesCollectionKey].on('sync',function(collection) {
                         deferred.resolve(collection);
                     })
@@ -28,7 +28,60 @@ define(['jquery',
                 return deferred.promise();
             };
 
+            this.getAllWillContestConsequencesWithDefaultForAdd = function() {
+                var deferred = $.Deferred();
+                var cacheKey = allConsequencesCollectionKey + ':withDefault';
+                if (cache[cacheKey]) {
+                    deferred.resolve(cache[cacheKey]);
+                } else {
+                    var defaultConsequence = {};
+                    defaultConsequence['description'] = 'Add New Consequence On This Row';
+                    defaultConsequence['minimumRollValue'] = 0;
+                    defaultConsequence['maximumRollValue'] = 0;
+                    defaultConsequence['permanentBonus'] = 0;
+                    defaultConsequence['temporaryBonus'] = 0;
+                    defaultConsequence['durationInRoundsOfTemporaryBonus'] = 0;
+
+                    cache[cacheKey] = new ConsequenceCollection(defaultConsequence, {orderByMinimumRollValue : true});
+                    cache[cacheKey].on('sync', function(collection) {
+                        deferred.resolve(cache[cacheKey]);
+                    })
+                }
+
+                return deferred.promise();
+            };
+
+            this.addWillContestConsequence = function(consequenceAttributes) {
+                var deferred = $.Deferred();
+
+                $.when(getAllWillContestConsequencesUnordered()).then (
+                    function(allConsequencesCollection) {
+                        allConsequencesCollection.add(consequenceAttributes);
+                        deferred.resolve();
+                    }
+                )
+
+                return deferred.promise();
+            };
+
+            // private functions
+
+            getAllWillContestConsequencesUnordered = function() {
+                var deferred = $.Deferred();
+                var cacheKey = allConsequencesCollectionKey + ':unordered';
+                if (cache[allConsequencesCollectionKey]) {
+                    deferred.resolve(cache[cacheKey]);
+                } else {
+                    cache[cacheKey] = new ConsequenceCollection(null, {orderByMinimumRollValue : false});
+                    cache[cacheKey].on('sync',function(collection) {
+                        deferred.resolve(collection);
+                    })
+                }
+                return deferred.promise();
+            };
+
         };
+
 
         var myWillContestConsequenceWarehouse = new WillContestConsequenceWarehouse();
 

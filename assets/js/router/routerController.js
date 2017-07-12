@@ -267,7 +267,7 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                 require(['views/willContestConsequenceMaintenance/willContestConsequenceMaintenanceLayoutView',
                         'services/willContestConsequenceWarehouse'],
                     function(WillContestConsequenceMaintenanceLayoutView, WillContestConsequenceWarehouse) {
-                        $.when(WillContestConsequenceWarehouse.getAllWillContestConsequences()).then(
+                        $.when(WillContestConsequenceWarehouse.getAllWillContestConsequencesWithDefaultForAdd()).then(
                             function(willContestConsequenceCollection) {
                                 var viewParms = {consequenceCollection : willContestConsequenceCollection};
                                 var layoutView = new WillContestConsequenceMaintenanceLayoutView(viewParms);

@@ -35,7 +35,7 @@ define(['marionette',
             cellBeingEdited : null,
             inputEvent : null,
             tableCellUpdated : function(event) {
-                self = this;
+                    self = this;
                 self.inputEvent = event;
                 clearTimeout(this.timeout);
                 this.timeout = setTimeout(function() {
@@ -107,7 +107,7 @@ define(['marionette',
                         this.render();
                         RealmApplication.vent.trigger('willContestConsequenceMaintenanceActionButton:clicked', copiedObject);
                     } else {
-                        ViewUtilities.showModalView('Error', 'Must provide all attributes before you can add');
+                        ViewUtilities.showModalView('Error', 'Must change the description and provide all attributes before you can add');
                     }
                 }
 

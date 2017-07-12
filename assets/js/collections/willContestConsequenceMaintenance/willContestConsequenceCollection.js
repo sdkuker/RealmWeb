@@ -3,9 +3,19 @@ define(['backbone', 'firebase', 'backfire', 'models/willContestConsequenceMainte
     function (Backbone, Firebase, Backfire, WillContestConsequenceModel, ServiceConstants) {
 
         var WillContestConsequenceCollection = Backbone.Firebase.Collection.extend({
+            orderByMinimumRollValue : false,
+            initialize: function(models, options) {
+                if (options.orderByMinimumRollValue) {
+                    this.orderByMinimumRollValue = true;
+                }
+            },
             url: function() {
-                return new Firebase(ServiceConstants.backFireBaseURL + '/willContestConsequence/')
+                if (this.orderByMinimumRollValue) {
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/willContestConsequence/')
                         .orderByChild("minimumRollValue");
+                } else {
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/willContestConsequence/');
+                }
             },
             model: WillContestConsequenceModel,
             comparator: function(willContestConsequence) {
