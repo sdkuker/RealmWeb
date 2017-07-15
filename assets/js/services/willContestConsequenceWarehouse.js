@@ -64,6 +64,18 @@ define(['jquery',
                 return deferred.promise();
             };
 
+            this.removeWillContestConsequence = function(aConsequence) {
+                var deferred = $.Deferred();
+                var myConsequence = aConsequence;
+                $.when(getAllWillContestConsequencesUnordered()).then (
+                    function(allCondequencesCollection) {
+                        allCondequencesCollection.remove(myConsequence)
+                        deferred.resolve();
+                    }
+                )
+
+                return deferred.promise();
+            },
             // private functions
 
             getAllWillContestConsequencesUnordered = function() {

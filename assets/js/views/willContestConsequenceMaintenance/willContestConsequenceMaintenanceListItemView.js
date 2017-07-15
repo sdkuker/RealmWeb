@@ -87,7 +87,7 @@ define(['marionette',
                 };
             },
             isNormalInteger: function(string) {
-                return /^\+?\d+$/.test(string);
+                return /^[\+\-]?\d+$/.test(string);
             },
             onRender : function() {
                 var self = this;
