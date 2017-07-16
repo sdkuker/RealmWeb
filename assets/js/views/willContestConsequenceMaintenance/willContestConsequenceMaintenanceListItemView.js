@@ -27,56 +27,68 @@ define(['marionette',
                 }
             },
             events : {
-                'input' : 'tableCellUpdated',
-                'click #actionConsequenceButton' : 'actionButtonClicked'
+                'click #actionConsequenceButton' : 'actionButtonClicked',
+                'blur #description' : 'descriptionModified',
+                'blur #minimumRollValue' : 'minimumRollValueModified',
+                'blur #maximumRollValue' : 'maximumRollValueModified',
+                'blur #permanentBonus' : 'permanentBonusModified',
+                'blur #temporaryBonus' : 'temporaryBonusModified',
+                'blur #durationInRoundsOfTemporaryBonus' : 'durationOfTemporaryBonusModified'
+            },
+            descriptionModified : function(event) {
+                var self = this;
+                var cellValue = encodeURI(this.el.cells[0].innerText);
+                self.persistAttributeChange('description',cellValue);
+            },
+            minimumRollValueModified : function(event) {
+                var self = this;
+                var cellValue = encodeURI(this.el.cells[1].innerText);
+                if (! self.isNormalInteger(cellValue)) {
+                    ViewUtilities.showModalView('Error', 'Roll values must be integers.');
+                } else {
+                    self.persistAttributeChange('minimumRollValue',cellValue);
+                }
+            },
+            maximumRollValueModified : function(event) {
+                var self = this;
+                var cellValue = encodeURI(this.el.cells[2].innerText);
+                if (! self.isNormalInteger(cellValue)) {
+                    ViewUtilities.showModalView('Error', 'Roll values must be integers.');
+                } else {
+                    self.persistAttributeChange('maximumRollValue',cellValue);
+                }
+            },
+            permanentBonusModified : function(event) {
+                var self = this;
+                var cellValue = encodeURI(this.el.cells[3].innerText);
+                if (! self.isNormalInteger(cellValue)) {
+                    ViewUtilities.showModalView('Error', 'Roll values must be integers.');
+                } else {
+                    self.persistAttributeChange('permanentBonus',cellValue);
+                }
+            },
+            temporaryBonusModified : function(event) {
+                var self = this;
+                var cellValue = encodeURI(this.el.cells[4].innerText);
+                if (! self.isNormalInteger(cellValue)) {
+                    ViewUtilities.showModalView('Error', 'Roll values must be integers.');
+                } else {
+                    self.persistAttributeChange('temporaryBonus',cellValue);
+                }
+            },
+            durationOfTemporaryBonusModified : function(event) {
+                var self = this;
+                var cellValue = encodeURI(this.el.cells[5].innerText);
+                if (! self.isNormalInteger(cellValue)) {
+                    ViewUtilities.showModalView('Error', 'Roll values must be integers.');
+                } else {
+                    self.persistAttributeChange('durationInRoundsOfTemporaryBonus',cellValue);
+                }
             },
             timeout: null,
             self : null,
             cellBeingEdited : null,
             inputEvent : null,
-            tableCellUpdated : function(event) {
-                    self = this;
-                self.inputEvent = event;
-                clearTimeout(this.timeout);
-                this.timeout = setTimeout(function() {
-                    var targetID = self.inputEvent.target.getAttribute('headers');
-                    var targetStringExcludingTags = self.inputEvent.target.innerHTML.replace(/(<([^>]+)>)/ig,"");
-                    var targetValue = encodeURI((targetStringExcludingTags));
-                    this.cellBeingEdited = targetID;
-                    var modelAttributeName = '';
-
-                    switch (targetID) {
-                        case 'minimumRollValue':
-                            modelAttributeName = 'minimumRollValue';
-                            break;
-                        case 'maximumRollValue':
-                            modelAttributeName = 'maximumRollValue';
-                            break;
-                        case 'permanentBonus':
-                            modelAttributeName = 'permanentBonus';
-                            break;
-                        case 'temporaryBonus':
-                            modelAttributeName = 'temporaryBonus';
-                            break;
-                        case 'durationInRoundsOfTemporaryBonus':
-                            modelAttributeName = 'durationInRoundsOfTemporaryBonus';
-                            break;
-                        case 'description':
-                            modelAttributeName = 'description';
-                            break;
-                    }
-                    if (modelAttributeName == 'minimumRollValue' || modelAttributeName == 'maximumRollValue') {
-                        if (! self.isNormalInteger(targetValue)) {
-                            ViewUtilities.showModalView('Error', 'Roll values must be integers.');
-                        } else {
-                            self.persistAttributeChange(modelAttributeName,targetValue);
-                        }
-                    } else {
-                        self.persistAttributeChange(modelAttributeName,targetValue);
-                    }
-
-                }, 400);
-            },
             persistAttributeChange : function(modelAttributeName, targetValue) {
                 var self = this;
                 if (self.model.get('id')) {
