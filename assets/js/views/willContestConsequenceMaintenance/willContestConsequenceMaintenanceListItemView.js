@@ -111,8 +111,8 @@ define(['marionette',
                 if (this.model.id) {
                     RealmApplication.vent.trigger('willContestConsequenceMaintenanceActionButton:clicked', this.model);
                 } else {
-                    if (this.newModelAttributes.permanentBonus && this.newModelAttributes.temporaryBonus &&
-                        this.newModelAttributes.durationInRoundsOfTemporaryBonus && this.newModelAttributes.description &&
+                    // require mandatory fields
+                    if (this.newModelAttributes.description &&
                         this.newModelAttributes.minimumRollValue && this.newModelAttributes.maximumRollValue) {
                         var copiedObject = jQuery.extend({}, this.newModelAttributes);
                         this.newModelAttributes = {};

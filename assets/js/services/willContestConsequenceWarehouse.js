@@ -36,7 +36,7 @@ define(['jquery',
                 } else {
                     var defaultConsequence = {};
                     defaultConsequence['description'] = 'Add New Consequence On This Row';
-                    defaultConsequence['minimumRollValue'] = 0;
+                    defaultConsequence['minimumRollValue'] = -10000;
                     defaultConsequence['maximumRollValue'] = 0;
                     defaultConsequence['permanentBonus'] = 0;
                     defaultConsequence['temporaryBonus'] = 0;

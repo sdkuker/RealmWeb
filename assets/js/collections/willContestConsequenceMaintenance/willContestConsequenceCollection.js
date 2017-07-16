@@ -19,7 +19,7 @@ define(['backbone', 'firebase', 'backfire', 'models/willContestConsequenceMainte
             },
             model: WillContestConsequenceModel,
             comparator: function(willContestConsequence) {
-                return willContestConsequence.get('minimumRollValue');
+                return parseInt(willContestConsequence.get('minimumRollValue'));
             }
         });
 
