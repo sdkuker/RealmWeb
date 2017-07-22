@@ -274,8 +274,47 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                                 RealmApplication.regions.mainRegion.show(layoutView);
                             }
                         )
+                })
+            },
+            movementManeuverMaintenance : function() {
+                require(['views/movementManeuverMaintenance/movementManeuverMaintenanceListLayoutView',
+                        'services/movementManeuverWarehouse'],
+                    function(MovementManeuverMaintenanceListLayoutView, MovementManeuverWarehouse) {
+                        $.when(MovementManeuverWarehouse.getAllMovementManeuvers()).then(
+                            function(movementManeuversCollection) {
+                                var viewParms = {movementManeuversCollection : movementManeuversCollection};
+                                var layoutView = new MovementManeuverMaintenanceListLayoutView(viewParms);
+                                RealmApplication.regions.mainRegion.show(layoutView);
+                            }
+                        )
                     })
-            }
+            },
+            movementManeuverMaintenance: function () {
+                require(['views/movementManeuverMaintenance/movementManeuverMaintenanceListView',
+                        'views/movementManeuverMaintenance/movementManeuverMaintenanceListLayoutView',
+                        'views/movementManeuverMaintenance/movementManeuverMaintenanceListButtonView',
+                        'services/movementManeuverWarehouse',
+                    ],
+                    function (MovementManeuverMaintenanceListView, MovementManeuverMaintenanceListLayoutView,
+                              MovementManeuverMaintenanceListButtonView, MovementManeuverWarehouse) {
+                        var layoutView = new MovementManeuverMaintenanceListLayoutView();
+                        RealmApplication.regions.mainRegion.show(layoutView);
+                        $.when(MovementManeuverWarehouse.getAllMovementManeuvers()).then(
+                            function(movementManeuversCollection) {
+                                var maneuverMaintenanceListView =
+                                    new MovementManeuverMaintenanceListView({collection: movementManeuversCollection});
+                                var maneuversListButtonView = new MovementManeuverMaintenanceListButtonView();
+                                layoutView.getRegion('movementManeuverMaintenanceTableRegion').show(maneuverMaintenanceListView);
+                                layoutView.getRegion('buttonsRegion').show(maneuversListButtonView);
+                               // ViewUtilities.currentNavSelection = 'characterList';
+                            }
+                        ),
+                            function() {
+                                console.log('some kind of error getting movement maneuvers');
+                            }
+
+                    });
+            },
 
         };
 

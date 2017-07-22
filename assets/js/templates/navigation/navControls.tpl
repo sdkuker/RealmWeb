@@ -30,7 +30,15 @@
                         <li id='willContestConsequenceMaintenance'><a href="#willContestConsequenceMaintenance" >Will Contest Consequence Maintenance</a></li>
                     </ul>
                 </li>
-                <li id='movementManeuvers'><a href="#movementManeuvers" >Movement Maneuvers</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Movement Maneuvers
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li id='movementManeuvers'><a href="#movementManeuvers" >Movement Maneuvers</a></li>
+                        <li id='movementManeuverMaintenance'><a href="#movementManeuverMaintenance" >Movement Maneuver Maintenance</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

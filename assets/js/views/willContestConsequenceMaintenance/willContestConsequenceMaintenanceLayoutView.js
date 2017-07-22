@@ -1,10 +1,9 @@
 define(['marionette',
         'realmApplication',
         "tpl!templates/willContestConsequenceMaintenance/willContestConsequenceMaintenanceLayoutTemplate.tpl",
-        'views/willContestConsequenceMaintenance/willContestConsequenceMaintenanceListView',
-        'services/willContestConsequenceWarehouse'],
+        'views/willContestConsequenceMaintenance/willContestConsequenceMaintenanceListView'],
     function (Marionette, RealmApplication, WillContestConsequenceMaintenanceLayoutTemplate,
-              WillContestConsequenceMaintenanceListView, WillContestConsequenceWarehouse) {
+              WillContestConsequenceMaintenanceListView) {
 
         var WillContestConsequenceMaintenanceLayoutView = Marionette.LayoutView.extend({
             template: WillContestConsequenceMaintenanceLayoutTemplate,
@@ -24,11 +23,6 @@ define(['marionette',
                 var listViewOptions = {collection : self.consequenceCollection,};
                 var listView = new WillContestConsequenceMaintenanceListView(listViewOptions);
                 this.showChildView('willContestConsequencesMaintenanceRegion', listView);
-            },
-            willContestConsequenceActioned : function() {
-                // a consequence was added or deleted.  must update the type view's 'delete' button status.
-                var self = this;
-                //TODO - think you can delete this - self.myTypeView.render();
             }
         });
 
