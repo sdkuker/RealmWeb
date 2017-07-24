@@ -111,4 +111,19 @@ define(['realmApplication', 'router/router', 'router/routerController', 'utility
             RouterController.viewItem(model);
         });
 
+        RealmApplication.vent.bind('movementManeuverMaintenanceListAddMovementManeuverMaintenance', function (model) {
+            Router.navigate('viewMovementManeuverMaintenance');
+            RouterController.viewMovementManeuverMaintenance(model);
+        });
+
+        RealmApplication.vent.bind('viewMovementManeuverMaintenanceList', function () {
+            Router.navigate('movementManeuverMaintenance');
+            RouterController.movementManeuverMaintenance();
+        });
+
+        RealmApplication.vent.bind('movementManeuverMaintenanceListChangeMovementManeuverMaintenance', function (model) {
+            Router.navigate('viewMovementManeuverMaintenance');
+            RouterController.viewMovementManeuverMaintenance(model);
+        });
+
     });

@@ -48,7 +48,7 @@ define(['marionette',
             self.model.setSheerFollyManeuverResult($('#sheerFollyManeuverResult').val());
             self.model.setAbsurdManeuverResult($('#absurdManeuverResult').val());
             self.model.setInsaneManeuverResult($('#insaneManeuverResult').val());
-            self.model.setPhenomenalManeuverResult($('#phenomalManeuverResult').val());
+            self.model.setPhenomenalManeuverResult($('#phenomenalManeuverResult').val());
             self.model.setVirtuallyImpossibleManeuverResult($('#virtuallyImpossibleManeuverResult').val());
         },
         parseAsInt : function(someValue) {
@@ -64,7 +64,6 @@ define(['marionette',
         createObjectWithAttributes : function() {
             var self = this;
             var tempObject = {};
-            var myPlayer = PlayerWarehouse.getPlayerWithoutWaitingWithName(self.getChosenPlayer());
             
             tempObject.minimumRollValue = self.parseAsInt($('#minimumRollValue').val());
             tempObject.maximumRollValue = self.parseAsInt($('#maximumRollValue').val());
@@ -79,7 +78,7 @@ define(['marionette',
             tempObject.sheerFollyManeuverResult = encodeURI($('#sheerFollyManeuverResult').val());
             tempObject.absurdManeuverResult = encodeURI($('#absurdManeuverResult').val());
             tempObject.insaneManeuverResult = encodeURI($('#insaneManeuverResult').val());
-            tempObject.phenomalManeuverResult = encodeURI($('#phenomalManeuverResult').val());
+            tempObject.phenomenalManeuverResult = encodeURI($('#phenomenalManeuverResult').val());
             tempObject.virtuallyImpossibleManeuverResult = encodeURI($('#virtuallyImpossibleManeuverResult').val());
  
            return tempObject;
@@ -93,7 +92,7 @@ define(['marionette',
                 var tempObject = self.createObjectWithAttributes();
                 $.when(MovementManeuverWarehouse.addMovementManeuver(tempObject)).then(
                     function() {
-                        ViewUtilities.showModalView('Informational', 'MovementManeuver Saved');
+                        ViewUtilities.showModalView('Informational', 'Movement Maneuver Saved');
                         RealmApplication.vent.trigger('viewMovementManeuverMaintenanceList');
                     }
                 ),

@@ -315,6 +315,12 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
 
                     });
             },
+            viewMovementManeuverMaintenance: function(movementManeuverModel) {
+                require(['views/movementManeuverMaintenance/movementManeuverMaintenanceView'], function (MovementManeuverMaintenanceView) {
+                    var view = new MovementManeuverMaintenanceView({model : movementManeuverModel});
+                    RealmApplication.regions.mainRegion.show(view);
+                });
+            },
 
         };
 

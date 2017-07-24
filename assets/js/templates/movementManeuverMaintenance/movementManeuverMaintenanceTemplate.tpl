@@ -1,6 +1,6 @@
 <div class="container">
     <div class="page-header">
-        <h1>Character</h1>
+        <h1>Movement Maneuver</h1>
     </div>
     <div class="container">
         <div class="panel panel-default">
@@ -95,9 +95,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class='control-label col-sm-2' for="phenomalManeuverResult">Phenomenal Maneuver Result:</label>
+                        <label class='control-label col-sm-2' for="phenomenalManeuverResult">Phenomenal Maneuver Result:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="phenomalManeuverResult" value="<%- getPhenomenalManeuverResult %> ">
+                            <input type="text" class="form-control" id="phenomenalManeuverResult" value="<%- getPhenomenalManeuverResult %> ">
                         </div>
                     </div>
                     <div class="form-group">

@@ -59,7 +59,7 @@ define(['jquery',
             getAllMovementManeuversUnordered = function() {
                 var deferred = $.Deferred();
                 var cacheKey = allManeuversCollectionKey + ':unordered';
-                if (cache[allManeuversCollectionKey]) {
+                if (cache[cacheKey]) {
                     deferred.resolve(cache[cacheKey]);
                 } else {
                     cache[cacheKey] = new MovementManeuverCollection(null, {orderByMinimumRollValue : false});
