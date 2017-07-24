@@ -4,7 +4,10 @@ define(['marionette',
     'utility/viewUtilities',
     'models/movementManeuverMaintenance/movementManeuverModel',
     "tpl!templates/movementManeuverMaintenance/movementManeuverMaintenanceListTemplate.tpl",
-    'views/movementManeuverMaintenance/movementManeuverMaintenanceListItemView'], function (Marionette, RealmApplication, Logger, ViewUtilities, MovementManeuverMaintenanceModel, MovementManeuverMaintenanceListTemplate, MovementManeuverMaintenanceView  ) {
+    'views/movementManeuverMaintenance/movementManeuverMaintenanceListItemView',
+    'services/movementManeuverWarehouse'],
+    function (Marionette, RealmApplication, Logger, ViewUtilities, MovementManeuverMaintenanceModel,
+              MovementManeuverMaintenanceListTemplate, MovementManeuverMaintenanceView, MovementManeuverWarehouse  ) {
     var MovementManeuverMaintenanceListView = Marionette.CompositeView.extend({
         tagName : 'table',
         id : 'movementManeuverMaintenanceTable',
@@ -33,7 +36,7 @@ define(['marionette',
             RealmApplication.vent.trigger('movementManeuverMaintenanceListAddMovementManeuverMaintenance', new MovementManeuverMaintenanceModel());
         },
         triggerEditMovementManeuverMaintenanceFunction : function() {
-            self = this;
+            var self = this;
             if (self.selectedModel) {
                 RealmApplication.vent.trigger('movementManeuverMaintenanceListChangeMovementManeuverMaintenance', self.selectedModel);
             } else {
@@ -41,12 +44,18 @@ define(['marionette',
             }
         },
         triggerDeleteMovementManeuverMaintenanceFunction : function() {
+            var self = this;
             if (self.selectedModel) {
-                this.collection.remove(self.selectedModel);
-                Logger.logInfo('movementManeuverMaintenance model deleted');
-                ViewUtilities.showModalView('Informational', 'Entry with minimum roll value: ' + self.selectedModel.get('minimumRollValue') + ' Deleted');
-                self.selectedModel = null;
-                RealmApplication.vent.trigger('viewMovementManeuverMaintenanceList');
+                $.when(MovementManeuverWarehouse.removeMovementManeuver(self.selectedModel)).then (
+                    function() {
+                        Logger.logInfo('movementManeuverMaintenance model deleted');
+                        ViewUtilities.showModalView('Informational', 'Entry with minimum roll value: ' + self.selectedModel.get('minimumRollValue') + ' Deleted');
+                        self.selectedModel = null;
+                        RealmApplication.vent.trigger('viewMovementManeuverMaintenanceList');
+                    }
+                )
+                self.collection.remove(self.selectedModel);
+
             } else {
                 ViewUtilities.showModalView('Error', 'You must select an entry to delete');
             }
