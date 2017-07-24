@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class='control-label col-sm-2' for="virtuallyImpossibleManeuverResult">VirtuallyImpossible Maneuver Result:</label>
+                        <label class='control-label col-sm-2' for="virtuallyImpossibleManeuverResult">Virtually Impossible Maneuver Result:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="virtuallyImpossibleManeuverResult" value="<%- getVirtuallyImpossibleManeuverResult %> ">
                         </div>
