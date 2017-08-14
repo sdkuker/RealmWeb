@@ -47,7 +47,6 @@
         <form role="form">
             <div class="form-group form-horizontal">
                 <button class="col-md-offset-1 col-md-2 btn btn-default" id='getManeuverButton' type='button'>Get Maneuver</button>
-                <button class="col-md-offset-1 col-md-2 btn btn-default" id='listManeuversButton' type='button'>List Maneuver</button>
             </div>
         </form>
     </div>

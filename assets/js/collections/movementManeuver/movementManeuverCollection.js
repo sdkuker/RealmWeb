@@ -33,7 +33,7 @@ define(['backbone', 'firebase', 'backfire', 'models/movementManeuver/movementMan
                     function(model) {
                         if (model.get('minimumRollValue') <= rollValue &&
                             model.get('maximumRollValue') >= rollValue) {
-                            selectedModel = model;
+                            return model;
                         }
                     });
                 return selectedModel;

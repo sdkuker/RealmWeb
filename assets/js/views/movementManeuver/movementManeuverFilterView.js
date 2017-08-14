@@ -3,16 +3,16 @@ define(['marionette',
         'realmApplication',
         "models/dieRoller/dieModel",
         'services/movementManeuverWarehouse',
+        'utility/viewUtilities',
         'tpl!templates/movementManeuver/movementManeuverFilterTemplate.tpl'],
     function (Marionette, Backbone, RealmApplication, DieModel,MovementManeuverWarehouse,
-              MovementManeuverFilterTemplate) {
+              ViewUtilities, MovementManeuverFilterTemplate) {
 
         var MovementManeuverFilterView = Marionette.ItemView.extend({
             template: MovementManeuverFilterTemplate,
             events : {
                 'click #openEndedDieButton' : 'openEndedDieButtonClicked',
                 'click #getManeuverButton' : 'getManeuverButtonClicked',
-                'click #listManeuversButton' : 'listManeuversButtonClicked',
                 'change #difficultySelect' : 'difficultySelected',
                 'change #rollAdjustment' : 'rollAdjustmentChanged'
             },
@@ -79,53 +79,60 @@ define(['marionette',
             getManeuverButtonClicked : function () {
                 var self = this;
                 var selectedMovementManeuver = self.options.movementManeuvers.getManeuverForRoll(self.rollTotalValue);
-                var result;
-                if (selectedMovementManeuver && self.chosenDifficulty ) {
-                    switch (self.chosenDifficulty) {
-                        case 'trivial':
-                            result = selectedMovementManeuver.getTrivialManeuverResult();
-                            break;
-                        case 'routine' :
-                            result = selectedMovementManeuver.getRoutineManeuverResult();
-                            break;
-                        case 'easy' :
-                            result = selectedMovementManeuver.getEasyManeuverResult();
-                            break;
-                        case 'light' :
-                            result = selectedMovementManeuver.getLightManeuverResult();
-                            break;
-                        case 'medium' :
-                            result = selectedMovementManeuver.getMediumManeuverResult();
-                            break;
-                        case 'hard' :
-                            result = selectedMovementManeuver.getHardManeuverResult();
-                            break;
-                        case 'veryHard' :
-                            result = selectedMovementManeuver.getVeryHardManeuverResult();
-                            break;
-                        case 'extremelyHard' :
-                            result = selectedMovementManeuver.getExtremelyHardManeuverResult();
-                            break;
-                        case 'sheerFolly' :
-                            result = selectedMovementManeuver.getSheerFollyManeuverResult();
-                            break;
-                        case 'absurd' :
-                            result = selectedMovementManeuver.getAbsurdManeuverResult();
-                            break;
-                        case 'insane' :
-                            result = selectedMovementManeuver.getInsaneManeuverResult();
-                            break;
-                        case 'phenomenal' :
-                            result = selectedMovementManeuver.getPhenomenalManeuverResult();
-                            break;
-                        case 'virtuallyImpossible' :
-                            result = selectedMovementManeuver.getVirtuallyImpossibleManeuverResult();
-                            break;
-                    };
-                    var selectedData = {model: selectedMovementManeuver, result: result};
+                if (selectedMovementManeuver) {
+                    var result;
+                    if (selectedMovementManeuver && self.chosenDifficulty) {
+                        switch (self.chosenDifficulty) {
+                            case 'trivial':
+                                result = selectedMovementManeuver.getTrivialManeuverResult();
+                                break;
+                            case 'routine' :
+                                result = selectedMovementManeuver.getRoutineManeuverResult();
+                                break;
+                            case 'easy' :
+                                result = selectedMovementManeuver.getEasyManeuverResult();
+                                break;
+                            case 'light' :
+                                result = selectedMovementManeuver.getLightManeuverResult();
+                                break;
+                            case 'medium' :
+                                result = selectedMovementManeuver.getMediumManeuverResult();
+                                break;
+                            case 'hard' :
+                                result = selectedMovementManeuver.getHardManeuverResult();
+                                break;
+                            case 'veryHard' :
+                                result = selectedMovementManeuver.getVeryHardManeuverResult();
+                                break;
+                            case 'extremelyHard' :
+                                result = selectedMovementManeuver.getExtremelyHardManeuverResult();
+                                break;
+                            case 'sheerFolly' :
+                                result = selectedMovementManeuver.getSheerFollyManeuverResult();
+                                break;
+                            case 'absurd' :
+                                result = selectedMovementManeuver.getAbsurdManeuverResult();
+                                break;
+                            case 'insane' :
+                                result = selectedMovementManeuver.getInsaneManeuverResult();
+                                break;
+                            case 'phenomenal' :
+                                result = selectedMovementManeuver.getPhenomenalManeuverResult();
+                                break;
+                            case 'virtuallyImpossible' :
+                                result = selectedMovementManeuver.getVirtuallyImpossibleManeuverResult();
+                                break;
+                        }
+                        ;
+                        var selectedData = {model: selectedMovementManeuver, result: result};
 
-                    RealmApplication.vent.trigger('movementManeuverFilter:movementManeuverSelected', selectedData );
+                        RealmApplication.vent.trigger('movementManeuverFilter:movementManeuverSelected', selectedData);
+
+                    }
+                } else {
+                    ViewUtilities.showModalView("Informational", 'No maneuver exists for roll total: ' + self.rollTotalValue);
                 }
+
             },
             displayCombatMovementManeuvers : function(overrideCombatMode) {
 

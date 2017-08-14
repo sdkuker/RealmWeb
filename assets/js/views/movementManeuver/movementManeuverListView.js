@@ -23,7 +23,7 @@ define(['marionette',
         displayMovementManeuver : function(aMovementManeuverData) {
             if (aMovementManeuverData) {
                 this.collection.add(aMovementManeuverData, {at: 0});
-                if (this.collection.length > this.numberOfManeuversToDisplay && ! displayingAList) {
+                if (this.collection.length > this.numberOfManeuversToDisplay) {
                     this.collection.pop();
                 }
             }
