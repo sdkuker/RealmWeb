@@ -1,6 +1,6 @@
 define(['marionette',
     'realmApplication',
-    'models/movementManeuverMaintenance/movementManeuverModel',
+    'models/movementManeuver/movementManeuverModel',
     'utility/viewUtilities',
     "tpl!templates/movementManeuverMaintenance/movementManeuverMaintenanceTemplate.tpl",
     'logger',

@@ -1,6 +1,6 @@
 define(['jquery',
         'logger',
-        'collections/movementManeuverMaintenance/movementManeuverCollection'],
+        'collections/movementManeuver/movementManeuverCollection'],
     function ($, Logger, MovementManeuverCollection) {
 
         // I am the first stop for getting movement maneuvers.  If I don't have them,
@@ -12,9 +12,28 @@ define(['jquery',
             var self = this;
             var cache = {};
             var allManeuversCollectionKey = 'allManeuversCollectionKey';
+            var allManeuverDifficultiesKey = 'allManeuverDifficultiesKey';
 
             // public functions
 
+            this.getAllMovementManeuverDifficulties = function() {
+                if (! cache[allManeuverDifficultiesKey]) {
+                    populateManeuverDifficultiesCache();
+                }
+                return cache[allManeuverDifficultiesKey];;
+            },
+
+            this.getMovementManeuverResult = function(rollValue, difficulty) {
+                var deferred = $.Deferred();
+
+                $.when(getAllMovementManeuvers()).then (
+                    function(allManeunversCollection) {
+                        var selectedManeuver;
+                        deferred.resolve();
+                    }
+                )
+
+            },
             this.getAllMovementManeuvers = function() {
                 var deferred = $.Deferred();
                 if (cache[allManeuversCollectionKey]) {
@@ -55,6 +74,31 @@ define(['jquery',
             },
 
             // private functions
+
+            populateManeuverDifficultiesCache = function() {
+
+                var difficulties = [];
+                
+                difficulties.push(createDifficultyObject('trivial', 'Trivial'));
+                difficulties.push(createDifficultyObject('routine', 'Routine'));
+                difficulties.push(createDifficultyObject('easy', 'Easy'));
+                difficulties.push(createDifficultyObject('light', 'Light'));
+                difficulties.push(createDifficultyObject('medium', 'Medium'));
+                difficulties.push(createDifficultyObject('hard', 'Hard'));
+                difficulties.push(createDifficultyObject('veryHard', 'Very Hard'));
+                difficulties.push(createDifficultyObject('extremelyHard', 'Extremely Hard'));
+                difficulties.push(createDifficultyObject('sheerFolly', 'Sheer Folly'));
+                difficulties.push(createDifficultyObject('absurd', 'Absurd'));
+                difficulties.push(createDifficultyObject('insane', 'Insane'));
+                difficulties.push(createDifficultyObject('phenomenal', 'Phenomenal'));
+                difficulties.push(createDifficultyObject('virtuallyImpossible', 'Virtually Impossible'));
+
+                cache[allManeuverDifficultiesKey] = difficulties;
+            },
+                
+            createDifficultyObject = function(id, description) {
+                return {'id' : id, 'description': description};
+            },
 
             getAllMovementManeuversUnordered = function() {
                 var deferred = $.Deferred();

@@ -321,6 +321,33 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                     RealmApplication.regions.mainRegion.show(view);
                 });
             },
+            movementManeuvers: function () {
+                require(['views/movementManeuver/movementManeuverLayoutView', 'collections/movementManeuver/movementManeuverCollection',
+                        'views/movementManeuver/movementManeuverListView','views/movementManeuver/movementManeuverFilterView',
+                        'services/movementManeuverWarehouse'
+                    ],
+                    function (MovementManeuverLayoutView, MovementManeuverCollection, MovementManeuverListView,
+                              MovementManeuverFilterView, MovementManeuverWarehouse) {
+
+                        var movementManeuverLayoutView = new MovementManeuverLayoutView();
+                        RealmApplication.regions.mainRegion.show(movementManeuverLayoutView);
+                        $.when(MovementManeuverWarehouse.getAllMovementManeuvers(), MovementManeuverWarehouse.getAllMovementManeuverDifficulties()).then(
+                            function(myMovementManeuversCollection, myMovementManeuverDifficultiesCollection) {
+                                var viewParms = {movementManeuvers : myMovementManeuversCollection, movementManeuverDifficulties: myMovementManeuverDifficultiesCollection};
+                                var movementManeuverFilterView = new MovementManeuverFilterView(viewParms);
+                                var movementManeuverListView = new MovementManeuverListView({collection: new MovementManeuverCollection(null, { disableAutoSync : true, orderByMinimumRollValue: false})});
+                                movementManeuverLayoutView.getRegion('movementManeuverDisplayRegion').show(movementManeuverListView);
+                                movementManeuverLayoutView.getRegion('movementManeuverFilterRegion').show(movementManeuverFilterView);
+                                ViewUtilities.currentNavSelection = 'movementManeuvers';
+                            }
+                        ),
+                            function() {
+                                console.log('some kind of error getting movement maneuvers');
+                            }
+
+                    });
+            },
+
 
         };
 

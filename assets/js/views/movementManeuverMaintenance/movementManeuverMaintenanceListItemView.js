@@ -1,7 +1,7 @@
 define(['marionette',
     'realmApplication',
     "tpl!templates/movementManeuverMaintenance/movementManeuverMaintenanceListItemTemplate.tpl",
-    'models/movementManeuverMaintenance/movementManeuverModel'], function (Marionette, RealmApplication, MovementManeuverMaintenanceListItemTemplate, MovementManeuverMaintenanceModel) {
+    'models/movementManeuver/movementManeuverModel'], function (Marionette, RealmApplication, MovementManeuverMaintenanceListItemTemplate, MovementManeuverMaintenanceModel) {
     var MovementManeuverMaintenanceListItemView = Marionette.ItemView.extend({
         tagName : 'tr',
         model : MovementManeuverMaintenanceModel,
