@@ -24,7 +24,8 @@ define(['marionette',
                 'change #attackerBonus' : 'attackerBonusChanged',
                 'change #defenderBonus' : 'defenderBonusChanged',
                 'change #combatEncounterSelect' : 'combatEncounterSelected',
-                'change #defenderSelect' : 'defenderSelected'
+                'change #defenderSelect' : 'defenderSelected',
+                'change #rollResult': 'rollResultChanged'
             },
             chosenType : null,
             chosenSeverity : null,
@@ -239,6 +240,14 @@ define(['marionette',
                 self.attackerBonusValue = parseInt($('#attackerBonus').val(), 10);
                 if (Number.isNaN(self.attackerBonusValue)) {
                     self.attackerBonusValue = 0;
+                };
+                self.render();
+            },
+            rollResultChanged : function() {
+                self = this;
+                self.dieRollValue = parseInt($('#rollResult').val(), 10);
+                if (Number.isNaN(self.dieRollValue)) {
+                    self.dieRollValue = 0;
                 };
                 self.render();
             },

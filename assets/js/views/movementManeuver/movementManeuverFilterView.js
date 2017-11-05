@@ -14,7 +14,8 @@ define(['marionette',
                 'click #openEndedDieButton' : 'openEndedDieButtonClicked',
                 'click #getManeuverButton' : 'getManeuverButtonClicked',
                 'change #difficultySelect' : 'difficultySelected',
-                'change #rollAdjustment' : 'rollAdjustmentChanged'
+                'change #rollAdjustment' : 'rollAdjustmentChanged',
+                'change #rollResult' : 'rollResultChanged'
             },
             chosenDifficulty : null,
             dieRollValue : 0,
@@ -73,6 +74,14 @@ define(['marionette',
                 self.rollAdjustmentValue = parseInt($('#rollAdjustment').val(), 10);
                 if (Number.isNaN(self.rollAdjustmentValue)) {
                     self.rollAdjustmentValue = 0;
+                };
+                self.render();
+            },
+            rollResultChanged : function() {
+                var self = this;
+                self.dieRollValue = parseInt($('#rollResult').val(), 10);
+                if (Number.isNaN(self.dieRollValue)) {
+                    self.dieRollValue = 0;
                 };
                 self.render();
             },
