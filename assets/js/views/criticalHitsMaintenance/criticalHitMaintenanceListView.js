@@ -24,15 +24,16 @@ define(['marionette',
             });
         },
         actionCriticalHit : function(criticalHitModelToAction) {
+            var self = this;
             if (criticalHitModelToAction.description) {
                 // just an object that needs to be added
                 criticalHitModelToAction.type  = this.selectedType;
                 $.when(CriticalHitWarehouse.addCriticalHit(criticalHitModelToAction)).then(
                     function() {
-                        $.when(CriticalHitWarehouse.getCriticalHitsForTypeWithDefaultForAdd(this.selectedType)).then(
+                        $.when(CriticalHitWarehouse.getCriticalHitsForTypeWithDefaultForAdd(self.selectedType)).then(
                             function(aCollection) {
                                 this.collection = aCollection;
-                                RealmApplication.vent.trigger('criticalHitMaintenanceList:criticalHitActioned');
+                                RealmApplication.vent.trigger('criticalHitMaintenanceList:criticalHitActioned', aCollection);
                             }
                         )
                     }
@@ -41,7 +42,12 @@ define(['marionette',
                 //will be an actual backbone model
                 $.when(CriticalHitWarehouse.removeCriticalHit(criticalHitModelToAction)).then(
                     function() {
-                        RealmApplication.vent.trigger('criticalHitMaintenanceList:criticalHitActioned');
+                        $.when(CriticalHitWarehouse.getCriticalHitsForTypeWithDefaultForAdd(self.collection.myType)).then(
+                            function(aCollection) {
+                                this.collection = aCollection;
+                                RealmApplication.vent.trigger('criticalHitMaintenanceList:criticalHitActioned', aCollection);
+                            }
+                        )
                     }
                 )
             }

@@ -113,10 +113,10 @@ define(['jquery',
 
                 $.when(self.getUnorderedCriticalHitsForType(aCriticalHitModelObject.get('type'))).then (
                     function(anUnorderedCriticalHitForTypeCollection) {
-                        anUnorderedCriticalHitForTypeCollection.remove(aCriticalHitModelObject);
                         anUnorderedCriticalHitForTypeCollection.on('remove', function(collection) {
                             deferred.resolve(anUnorderedCriticalHitForTypeCollection);
-                        })
+                        });
+                        anUnorderedCriticalHitForTypeCollection.remove(aCriticalHitModelObject);
                     }
                 )
 
