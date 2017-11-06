@@ -10,8 +10,8 @@ define(['marionette',
         var CriticalHitMaintenanceTypeView = Marionette.ItemView.extend({
             template: CriticalHitMaintenanceTypeTemplate,
             events : {
-                'click #addTypeButton' : 'addCriticalButtonClicked',
-                'click #deleteTypeButton' : 'deleteCriticalButtonClicked',
+                'click #addTypeButton' : 'addCriticalTypeButtonClicked',
+                'click #deleteTypeButton' : 'deleteCriticalTypeButtonClicked',
                 'change #typeSelect' : 'typeSelected'
             },
             selectedType : null,
@@ -51,28 +51,28 @@ define(['marionette',
                 self.selectedType = $('#typeSelect option:selected').val();
                 RealmApplication.vent.trigger('criticalHitMaintenanceType:typeSelected', self.selectedType);
             },
-            addCriticalButtonClicked : function(event ) {
+            addCriticalTypeButtonClicked : function(event ) {
                 var newTypeName = $('#newType').val();
                 if (newTypeName) {
                     $.when(CriticalHitWarehouse.addType({id: newTypeName})).then (
                         function() {
                             ViewUtilities.showModalView('Information', 'Type ' + newTypeName + ' was added.');
                             self.selectedType = newTypeName;
-                            self.render();
+                            RealmApplication.vent.trigger('criticalHitMaintenanceType:typeSelected', self.selectedType);
                         }
                     )
                 } else {
                     ViewUtilities.showModalView('Error', 'You must specify the type name before clicking Add');
                 }
             },
-            deleteCriticalButtonClicked : function() {
+            deleteCriticalTypeButtonClicked : function() {
                 self = this;
                 if (self.selectedType) {
                     $.when(CriticalHitWarehouse.removeType(self.selectedType)).then (
                         function() {
                             ViewUtilities.showModalView('Information', 'Type ' + self.selectedType + ' was deleted.');
-                            self.selectedType = null;
-                            self.render();
+                            self.selectedType = self.options.criticalHitTypes.at(0).id;
+                            RealmApplication.vent.trigger('criticalHitMaintenanceType:typeSelected', self.selectedType);
                         }
                     )
                 } else {
