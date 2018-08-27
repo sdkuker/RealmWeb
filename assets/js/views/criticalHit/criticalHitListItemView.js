@@ -5,7 +5,16 @@ define(['marionette',
     var CriticalHitListItemView = Marionette.ItemView.extend({
         tagName : 'li',
         model : CriticalHitModel,
-        template: CriticalHitListItemTemplate
+        template: CriticalHitListItemTemplate,
+        templateHelpers : function() {
+            var myDescription = null;
+            if (this.model.get('description')) {
+                myDescription = decodeURI(this.model.get('description').replace(/%\s/g, " percent "));
+            };
+            return {
+                myDescription : myDescription
+            }
+        },
     });
 
     return CriticalHitListItemView;
