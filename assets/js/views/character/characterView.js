@@ -55,6 +55,7 @@ define(['marionette',
             self.model.set('shieldChoice', self.parseAsInt($('#shieldChoice').val()));
             self.model.set('skillChoice1', self.parseAsInt($('#skillChoice1').val()));
             self.model.set('skillChoice2', self.parseAsInt($('#skillChoice2').val()));
+            self.model.set('skillChoice3', self.parseAsInt($('#skillChoice3').val()));
             self.model.set('specialAbility', self.parseAsInt($('#specialAbility').val()));
             self.model.set('miscItemChoice', self.parseAsInt($('#miscItemChoice').val()));
             self.model.set('adrenalDefense', self.parseAsInt($('#adrenalDefense').val()));
@@ -96,6 +97,7 @@ define(['marionette',
             tempObject.shieldChoice = self.parseAsInt($('#shieldChoice').val());
             tempObject.skillChoice1 = self.parseAsInt($('#skillChoice1').val());
             tempObject.skillChoice2 = self.parseAsInt($('#skillChoice2').val());
+            tempObject.skillChoice3 = self.parseAsInt($('#skillChoice3').val());
             tempObject.specialAbility = self.parseAsInt($('#specialAbility').val());
             tempObject.miscItemChoice = self.parseAsInt($('#miscItemChoice').val());
             tempObject.adrenalDefense = self.parseAsInt($('#adrenalDefense').val());

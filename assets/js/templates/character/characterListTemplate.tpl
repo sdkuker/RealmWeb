@@ -12,7 +12,7 @@
     <th>Stalk</th>
     <th>Alert</th>
     <th>Sense Ambush</th>
-    <th>Armour Type</th>
+    <th>Armour Choice</th>
     <th>Has Adrenal Defense</th>
     <th>Defense Minus Adrenal</th>
     <th>Total Defense</th>

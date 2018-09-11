@@ -25,6 +25,7 @@ define(['backbone', 'services/playerWarehouse'],
                 shieldChoice : 0,
                 skillChoice1 : 0,
                 skillChoice2 : 0,
+                skillChoice3 : 0,
                 specialAbility : 0,
                 miscItemChoice : 0,
                 adrenalDefense : 0
@@ -43,6 +44,7 @@ define(['backbone', 'services/playerWarehouse'],
                         this.get('shieldChoice') +
                         this.get('skillChoice1') +
                         this.get('skillChoice2') +
+                        this.get('skillChoice3') +
                         this.get('specialAbility') +
                         this.get('miscItemChoice') +
                         this.get('adrenalDefense');
