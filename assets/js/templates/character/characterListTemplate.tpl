@@ -15,6 +15,7 @@
     <th>Armour Choice</th>
     <th>Has Adrenal Defense</th>
     <th>Defense Minus Adrenal</th>
+    <th>Defense Minus Adrenal and Weapon Parry</th>
     <th>Total Defense</th>
     <th>Has Shield</th>
     <th>Hit Points</th>

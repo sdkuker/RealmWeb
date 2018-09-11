@@ -28,7 +28,8 @@ define(['backbone', 'services/playerWarehouse'],
                 skillChoice3 : 0,
                 specialAbility : 0,
                 miscItemChoice : 0,
-                adrenalDefense : 0
+                adrenalDefense : 0,
+                weaponParry : 0
             },
             totalWill : function() {
                 return this.get('will') + this.get('willModifier');
@@ -47,10 +48,29 @@ define(['backbone', 'services/playerWarehouse'],
                         this.get('skillChoice3') +
                         this.get('specialAbility') +
                         this.get('miscItemChoice') +
+                        this.get('weaponParry') +
                         this.get('adrenalDefense');
+            },
+            totalDefensiveBonusDescription: function() {
+                return  "Quickness Bonus(" + this.get('quicknessBonus') + ") + " +
+                        "Racial Modifier(" + this.get('racialModifier') + ") + " +
+                        "Armour Choice(" + this.get('armorChoice') + ") + " +
+                        "Armor on Armor(" + this.get('armorOnArmor') + ") + " +
+                        "Shield Choice(" + this.get('shieldChoice') + ") + " +
+                        "Skill Choice 1(" + this.get('skillChoice1') + ") + " +
+                        "Skill Choice 2(" + this.get('skillChoice2') + ") + " +
+                        "Skill Choice 3(" + this.get('skillChoice3') + ") + " +
+                        "Special Ability(" + this.get('specialAbility') + ") + " +
+                        "Misc Item Choice(" + this.get('miscItemChoice') + ") + " +
+                        "Weapon Parry(" + this.get('weaponParry') + ") + " +
+                        "Adrenal Defense(" + this.get('adrenalDefense') + ") = " +
+                        this.totalDefensiveBonus();
             },
             totalDefensiveBonusMinusAdrenalDefense: function() {
                 return  this.totalDefensiveBonus() - this.get('adrenalDefense');
+            },
+            totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry: function() {
+                return  this.totalDefensiveBonus() - this.get('adrenalDefense')  - this.get('weaponParry');
             },
             getName: function() {
                 return decodeURI(this.get('name'));

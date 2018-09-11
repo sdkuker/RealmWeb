@@ -59,6 +59,7 @@ define(['marionette',
             self.model.set('specialAbility', self.parseAsInt($('#specialAbility').val()));
             self.model.set('miscItemChoice', self.parseAsInt($('#miscItemChoice').val()));
             self.model.set('adrenalDefense', self.parseAsInt($('#adrenalDefense').val()));
+            self.model.set('weaponParry', self.parseAsInt($('#weaponParry').val()));
         },
         parseAsInt : function(someValue) {
             var theReturn = 0;
@@ -101,6 +102,7 @@ define(['marionette',
             tempObject.specialAbility = self.parseAsInt($('#specialAbility').val());
             tempObject.miscItemChoice = self.parseAsInt($('#miscItemChoice').val());
             tempObject.adrenalDefense = self.parseAsInt($('#adrenalDefense').val());
+            tempObject.weaponParry = self.parseAsInt($('#weaponParry').val());
 
            return tempObject;
         },

@@ -13,7 +13,8 @@
 <td><%= armorChoice %></td>
 <td><%= hasAdrenalDefense %></td>
 <td><%= totalDefensiveBonusMinusAdrenalDefense %></td>
-<td><%= totalDefensiveBonus %></td>
+<td><%= totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry %></td>
+<td data-toggle="tooltip" title="<%- totalDefensiveBonusDescription%>"><%= totalDefensiveBonus %></td>
 <td><%= hasShield %></td>
 <td><%= hitPoints %></td>
 <td><%= hitPointsModifier %></td>

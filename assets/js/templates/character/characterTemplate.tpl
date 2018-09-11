@@ -147,8 +147,12 @@
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="specialAbility" value="<%- specialAbility %> ">
                         </div>
+                        <label class='control-label col-sm-2' for="weaponParry">Weapon Parry:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="weaponParry" value="<%- weaponParry %> ">
+                        </div>
                         <label class='control-label col-sm-2' for="adrenalDefense">Adrenal Defense:</label>
-                        <div class="col-sm-6">
+                        <div class="col-sm-2">
                             <input type="text" class="form-control" id="adrenalDefense" value="<%- adrenalDefense %> ">
                         </div>
                     </div>
