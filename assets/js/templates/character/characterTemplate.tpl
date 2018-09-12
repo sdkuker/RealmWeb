@@ -109,9 +109,19 @@
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="racialModifier" value="<%- racialModifier %> ">
                         </div>
+                        <label class='control-label col-sm-2' for="adrenalDefense">Adrenal Defense:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="adrenalDefense" value="<%- adrenalDefense %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class='control-label col-sm-2' for="armorChoice">Armor Choice:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="armorChoice" value="<%- armorChoice %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="armorChoiceDescription">Armor Choice Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="armorChoiceDescription" value="<%- myArmorChoiceDescription %> ">
                         </div>
                     </div>
                     <div class="form-group">
@@ -119,13 +129,29 @@
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="armorOnArmor" value="<%- armorOnArmor %> ">
                         </div>
+                        <label class='control-label col-sm-2' for="armorOnArmorDescription">Armor On Armor Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="armorOnArmorDescription" value="<%- myArmorOnArmorDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class='control-label col-sm-2' for="shieldChoice">Shield Choice:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="shieldChoice" value="<%- shieldChoice %> ">
                         </div>
+                        <label class='control-label col-sm-2' for="shieldChoiceDescription">Shield Choice Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="shieldChoiceDescription" value="<%- myShieldChoiceDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class='control-label col-sm-2' for="miscItemChoice">Misc Item Choice:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="miscItemChoice" value="<%- miscItemChoice %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="miscItemChoiceDescription">Misc Item Choice Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="miscItemChoiceDescription" value="<%- myMiscItemChoiceDescription %> ">
                         </div>
                     </div>
                     <div class="form-group">
@@ -133,13 +159,29 @@
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="skillChoice1" value="<%- skillChoice1 %> ">
                         </div>
+                        <label class='control-label col-sm-2' for="skillChoice1Description">Skill Choice 1 Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="skillChoice1Description" value="<%- mySkillChoice1Description %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class='control-label col-sm-2' for="skillChoice2">Skill Choice 2:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="skillChoice2" value="<%- skillChoice2 %> ">
                         </div>
+                        <label class='control-label col-sm-2' for="skillChoice2Description">Skill Choice 2 Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="skillChoice2Description" value="<%- mySkillChoice2Description %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class='control-label col-sm-2' for="skillChoice3">Skill Choice 3:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="skillChoice3" value="<%- skillChoice3 %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="skillChoice3Description">Skill Choice 3 Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="skillChoice3Description" value="<%- mySkillChoice3Description %> ">
                         </div>
                     </div>
                     <div class="form-group">
@@ -147,13 +189,19 @@
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="specialAbility" value="<%- specialAbility %> ">
                         </div>
+                        <label class='control-label col-sm-2' for="specialAbilityDescription">Special Ability Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="specialAbilityDescription" value="<%- mySpecialAbilityDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class='control-label col-sm-2' for="weaponParry">Weapon Parry:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="weaponParry" value="<%- weaponParry %> ">
                         </div>
-                        <label class='control-label col-sm-2' for="adrenalDefense">Adrenal Defense:</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="adrenalDefense" value="<%- adrenalDefense %> ">
+                        <label class='control-label col-sm-2' for="weaponParryDescription">Weapon Parry Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="weaponParryDescription" value="<%- myWeaponParryDescription %> ">
                         </div>
                     </div>
                 </form>

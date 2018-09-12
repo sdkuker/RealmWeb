@@ -26,8 +26,27 @@ define(['marionette',
         },
         templateHelpers : function() {
             var characterName = this.model.getName();
+            var myArmorChoiceDescription = this.model.getArmorChoiceDescription();
+            var myArmorOnArmorDescription = this.model.getArmorOnArmorDescription();
+            var myShieldChoiceDescription = this.model.getShieldChoiceDescription();
+            var myMiscItemChoiceDescription = this.model.getMiscItemChoiceDescription();
+            var mySkillChoice1Description = this.model.getSkillChoice1Description();
+            var mySkillChoice2Description = this.model.getSkillChoice2Description();
+            var mySkillChoice3Description = this.model.getSkillChoice3Description();
+            var mySpecialAbilityDescription = this.model.getSpecialAbilityDescription();
+            var myWeaponParryDescription = this.model.getWeaponParryDescription();
+
             return {
-                characterName : characterName
+                characterName : characterName,
+                myArmorChoiceDescription : myArmorChoiceDescription,
+                myArmorOnArmorDescription : myArmorOnArmorDescription,
+                myShieldChoiceDescription : myShieldChoiceDescription,
+                myMiscItemChoiceDescription : myMiscItemChoiceDescription,
+                mySkillChoice1Description : mySkillChoice1Description,
+                mySkillChoice2Description : mySkillChoice2Description,
+                mySkillChoice3Description : mySkillChoice3Description,
+                mySpecialAbilityDescription : mySpecialAbilityDescription,
+                myWeaponParryDescription : myWeaponParryDescription
             }
         },
         populateModel : function() {
@@ -51,15 +70,24 @@ define(['marionette',
             self.model.set('quicknessBonus', self.parseAsInt($('#quicknessBonus').val()));
             self.model.set('racialModifier', self.parseAsInt($('#racialModifier').val()));
             self.model.set('armorChoice', self.parseAsInt($('#armorChoice').val()));
+            self.model.setArmorChoiceDescription($('#armorChoiceDescription').val());
             self.model.set('armorOnArmor', self.parseAsInt($('#armorOnArmor').val()));
+            self.model.setArmorOnArmorDescription($('#armorOnArmorDescription').val());
             self.model.set('shieldChoice', self.parseAsInt($('#shieldChoice').val()));
+            self.model.setShieldChoiceDescription($('#shieldChoiceDescription').val());
             self.model.set('skillChoice1', self.parseAsInt($('#skillChoice1').val()));
+            self.model.setSkillChoice1Description($('#skillChoice1Description').val());
             self.model.set('skillChoice2', self.parseAsInt($('#skillChoice2').val()));
+            self.model.setSkillChoice2Description($('#skillChoice2Description').val());
             self.model.set('skillChoice3', self.parseAsInt($('#skillChoice3').val()));
+            self.model.setSkillChoice3Description($('#skillChoice3Description').val());
             self.model.set('specialAbility', self.parseAsInt($('#specialAbility').val()));
+            self.model.setSpecialAbilityDescription($('#specialAbilityDescription').val());
             self.model.set('miscItemChoice', self.parseAsInt($('#miscItemChoice').val()));
+            self.model.setMiscItemChoiceDescription($('#miscItemChoiceDescription').val());
             self.model.set('adrenalDefense', self.parseAsInt($('#adrenalDefense').val()));
             self.model.set('weaponParry', self.parseAsInt($('#weaponParry').val()));
+            self.model.setWeaponParryDescription($('#weaponParryDescription').val());
         },
         parseAsInt : function(someValue) {
             var theReturn = 0;
@@ -94,15 +122,24 @@ define(['marionette',
             tempObject.quicknessBonus = self.parseAsInt($('#quicknessBonus').val());
             tempObject.racialModifier = self.parseAsInt($('#racialModifier').val());
             tempObject.armorChoice = self.parseAsInt($('#armorChoice').val());
+            tempObject.armorChoiceDescription = encodeURI($('#armorChoiceDescription').val());
             tempObject.armorOnArmor = self.parseAsInt($('#armorOnArmor').val());
+            tempObject.armorOnArmorDescription = encodeURI($('#armorOnArmorDescription').val());
             tempObject.shieldChoice = self.parseAsInt($('#shieldChoice').val());
+            tempObject.shieldChoiceDescription = encodeURI($('#shieldChoiceDescription').val());
             tempObject.skillChoice1 = self.parseAsInt($('#skillChoice1').val());
+            tempObject.skillChoice1Description = encodeURI($('#skillChoice1Description').val());
             tempObject.skillChoice2 = self.parseAsInt($('#skillChoice2').val());
+            tempObject.skillChoice2Description = encodeURI($('#skillChoice2Description').val());
             tempObject.skillChoice3 = self.parseAsInt($('#skillChoice3').val());
+            tempObject.skillChoice3Description = encodeURI($('#skillChoice3Description').val());
             tempObject.specialAbility = self.parseAsInt($('#specialAbility').val());
+            tempObject.specialAbilityDescription = encodeURI($('#specialAbilityDescription').val());
             tempObject.miscItemChoice = self.parseAsInt($('#miscItemChoice').val());
+            tempObject.miscItemChoiceDescription = encodeURI($('#miscItemChoiceDescription').val());
             tempObject.adrenalDefense = self.parseAsInt($('#adrenalDefense').val());
             tempObject.weaponParry = self.parseAsInt($('#weaponParry').val());
+            tempObject.weaponParryDescription = encodeURI($('#weaponParryDescription').val());
 
            return tempObject;
         },

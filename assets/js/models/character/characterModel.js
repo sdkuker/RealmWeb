@@ -21,15 +21,24 @@ define(['backbone', 'services/playerWarehouse'],
                 quicknessBonus : 0,
                 racialModifier : 0,
                 armorChoice : 0,
+                armorChoiceDescription : '',
                 armorOnArmor : 0,
+                armorOnArmorDescription : '',
                 shieldChoice : 0,
+                shieldChoiceDescription : '',
                 skillChoice1 : 0,
+                skillChoice1Description : '',
                 skillChoice2 : 0,
+                skillChoice2Description : '',
                 skillChoice3 : 0,
+                skillChoice3Description : '',
                 specialAbility : 0,
+                specialAbilityDescription : '',
                 miscItemChoice : 0,
+                miscItemChoiceDescription : '',
                 adrenalDefense : 0,
-                weaponParry : 0
+                weaponParry : 0,
+                weaponParryDescription : ''
             },
             totalWill : function() {
                 return this.get('will') + this.get('willModifier');
@@ -91,6 +100,60 @@ define(['backbone', 'services/playerWarehouse'],
             },
             hasShield : function() {
                 return this.get('shieldChoice') > 0;
+            },
+            getArmorChoiceDescription: function() {
+                return decodeURI(this.get('armorChoiceDescription'));
+            },
+            setArmorChoiceDescription: function(aDescription) {
+                return this.set('armorChoiceDescription', encodeURI(aDescription));
+            },
+            getArmorOnArmorDescription: function() {
+                return decodeURI(this.get('armorOnArmorDescription'));
+            },
+            setArmorOnArmorDescription: function(aDescription) {
+                return this.set('armorOnArmorDescription', encodeURI(aDescription));
+            },
+            getShieldChoiceDescription: function() {
+                return decodeURI(this.get('shieldChoiceDescription'));
+            },
+            setShieldChoiceDescription: function(aDescription) {
+                return this.set('shieldChoiceDescription', encodeURI(aDescription));
+            },
+            getSkillChoice1Description: function() {
+                return decodeURI(this.get('skillChoice1Description'));
+            },
+            setSkillChoice1Description: function(aDescription) {
+                return this.set('skillChoice1Description', encodeURI(aDescription));
+            },
+            getSkillChoice2Description: function() {
+                return decodeURI(this.get('skillChoice2Description'));
+            },
+            setSkillChoice2Description: function(aDescription) {
+                return this.set('skillChoice2Description', encodeURI(aDescription));
+            },
+            getSkillChoice3Description: function() {
+                return decodeURI(this.get('skillChoice3Description'));
+            },
+            setSkillChoice3Description: function(aDescription) {
+                return this.set('skillChoice3Description', encodeURI(aDescription));
+            },
+            getSpecialAbilityDescription: function() {
+                return decodeURI(this.get('specialAbilityDescription'));
+            },
+            setSpecialAbilityDescription: function(aDescription) {
+                return this.set('specialAbilityDescription', encodeURI(aDescription));
+            },
+            getMiscItemChoiceDescription: function() {
+                return decodeURI(this.get('miscItemChoiceDescription'));
+            },
+            setMiscItemChoiceDescription: function(aDescription) {
+                return this.set('miscItemChoiceDescription', encodeURI(aDescription));
+            },
+            getWeaponParryDescription: function() {
+                return decodeURI(this.get('weaponParryDescription'));
+            },
+            setWeaponParryDescription: function(aDescription) {
+                return this.set('weaponParryDescription', encodeURI(aDescription));
             }
         });
 
