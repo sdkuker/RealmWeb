@@ -63,8 +63,7 @@ define(['marionette',
             $(tableRow.el).siblings().removeClass('info');
             $(tableRow.el).addClass('info');
             selectedModel = model;
-            this.trigger('encounterSelected')
-            //RealmApplication.vent.trigger('combatEnconterList:encounterSelected');
+            this.trigger('encounterSelected');
         }
     });
 

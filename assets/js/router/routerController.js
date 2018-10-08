@@ -50,6 +50,47 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                     ViewUtilities.currentNavSelection = 'dieRoller';
                 });
             },
+            willContestList: function () {
+                require(['views/willContest/willContestListView',
+                        'views/willContest/willContestListLayoutView','views/willContest/willContestListButtonView',
+                        'services/willContestWarehouse', 'services/characterWarehouse'],
+                    function (WillContestListView, WillContestListLayoutView,
+                              WillContestListButtonView, WillContestWarehouse, CharacterWarehouse) {
+                        var willContestListLayoutView = new WillContestListLayoutView();
+                        RealmApplication.regions.mainRegion.show(willContestListLayoutView);
+                        $.when(CharacterWarehouse.getAllCharacters()). then (
+                            function(myCharacterList) {
+                                // need to prepopulate the character list for contests.  Now do the contest stuff.
+                                $.when(WillContestWarehouse.getAllWillContests()).then(
+                                    function(myWillContestCollection ) {
+                                        if (myWillContestCollection && myWillContestCollection.length > 0) {
+                                            var willContestListView = new WillContestListView({collection: myWillContestCollection});
+                                            willContestListLayoutView.getRegion('willContestListRegion').show(willContestListView);
+                                        }
+                                        var willContestListButtonView = new WillContestListButtonView();
+                                        willContestListLayoutView.getRegion('willContestListButtonsRegion').show(willContestListButtonView);
+                                        ViewUtilities.currentNavSelection = 'willContestList';
+                                    }
+                                ),
+                                    function() {
+                                        console.log('some kind of error getting will contests');
+                                    }
+                            }
+                        )
+
+                    });
+            },
+            willContest: function(willContestModel) {
+                require(['services/willContestWarehouse', 'views/willContest/willContestLayoutView'],
+                    function (WillContestWarehouse, WillContestLayoutView) {
+                        $.when(WillContestWarehouse.getAllWillContestants()).then (
+                            function(allWillContestantsArray) {
+                                var willContestLayoutView = new WillContestLayoutView({model: willContestModel, allWillContenstants: allWillContestantsArray});
+                                RealmApplication.regions.mainRegion.show(willContestLayoutView);
+                            }
+                        )
+                    });
+            },
             combatEncounterList: function () {
                 require(['views/combat/combatEncounterListView',
                         'views/combat/combatEncounterListLayoutView','views/combat/combatEncounterListButtonView',
