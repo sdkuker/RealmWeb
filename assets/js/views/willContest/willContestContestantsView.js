@@ -13,8 +13,8 @@ define(['marionette',
                 'change #contestantTwoSelect' : 'contestantTwoSelected'
             },
             model: WillContestModel,
-            chosenContestantOne : null,
-            chosenContestantTwo : null,
+            chosenContestantOneID : null,
+            chosenContestantTwoID : null,
             allWillContenstants : null,
             initialize : function() {
                 self = this;
@@ -30,20 +30,20 @@ define(['marionette',
                 contestantTwoSelectElement.empty();
                 this.options.allWillContenstants.forEach(function(myContestant, key, list) {
                     var contestantOneOption = "<option value='" + myContestant.id +  "'";
-                    if ((key == 0 && ! self.chosenContestantOne) || (self.chosenContestantOne && self.chosenContestantOne == myContestant.id)) {
+                    if ((key == 0 && ! self.chosenContestantOneID) || (self.chosenContestantOneID && self.chosenContestantOneID == myContestant.id)) {
                         contestantOneOption = contestantOneOption + " selected='selected'";
-                        if (! self.chosenContestantOne) {
-                            self.chosenContestantOne = myContestant.id;
+                        if (! self.chosenContestantOneID) {
+                            self.chosenContestantOneID = myContestant.id;
                         }
                     };
                     contestantOneOption = contestantOneOption + ">" + myContestant.name + "</option>"
                     contestantOneSelectElement.append(contestantOneOption);
 
                     var contestantTwoOption = "<option value='" + myContestant.id +  "'";
-                    if ((key == 0 && ! self.chosenContestantTwo) || (self.chosenContestantTwo && self.chosenContestantTwo == myContestant.id)) {
+                    if ((key == 0 && ! self.chosenContestantTwoID) || (self.chosenContestantTwoID && self.chosenContestantTwoID == myContestant.id)) {
                         contestantTwoOption = contestantTwoOption + " selected='selected'";
-                        if (! self.chosenContestantTwo) {
-                            self.chosenContestantTwo = myContestant.id;
+                        if (! self.chosenContestantTwoID) {
+                            self.chosenContestantTwoID = myContestant.id;
                         }
                     };
                     contestantTwoOption = contestantTwoOption + ">" + myContestant.name + "</option>"
@@ -52,11 +52,15 @@ define(['marionette',
             },
             contestantOneSelected : function() {
                 self = this;
-                self.chosenContestantOne = $('#contestantOneSelect option:selected').val();
+                self.chosenContestantOneID = $('#contestantOneSelect option:selected').val();
+                self.model.set('contestantOneID', self.chosenContestantOneID);
+                RealmApplication.vent.trigger('willContestContestantOne:selected', self.chosenContestantOneID);
             },
             contestantTwoSelected : function() {
                 self = this;
-                self.chosenContestantTwo = $('#contestantTwoSelect option:selected').val();
+                self.chosenContestantTwoID = $('#contestantTwoSelect option:selected').val();
+                self.model.set('contestantTwoID', self.chosenContestantTwoID);
+                RealmApplication.vent.trigger('willContestContestantTwo:selected', self.chosenContestantTwoID);
             },
         });
 

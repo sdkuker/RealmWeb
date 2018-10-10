@@ -1,11 +1,11 @@
 define(['marionette',
         'views/willContest/willContestContestantsView',
-        // 'views/willContest/willContestRoundControlsView',
+        'views/willContest/willContestRoundControlsView',
         // 'views/willContest/willContestDisplayedRoundView',
         'models/willContest/willContestModel',
         'tpl!templates/willContest/willContestLayoutTemplate.tpl',
         'services/willContestWarehouse'],
-    function (Marionette, WillContestContestantsView,
+    function (Marionette, WillContestContestantsView, WillContestRoundControlView,
               WillContestModel, WillContestLayoutTemplate, WillContestWarehouse) {
 
         var WillContestLayoutiew = Marionette.LayoutView.extend({
@@ -16,7 +16,7 @@ define(['marionette',
                 displayedRoundRegion : '#displayedRoundRegion'
             },
             model: WillContestModel,
-            roundToShow : null,
+            roundNumberToShow : 1,
             roundIdentifierToShow : 0,
             contestantsView : null,
             roundControlsView : null,
@@ -29,27 +29,41 @@ define(['marionette',
             onRender: function() {
                 var self = this;
                 var contestantsView = new WillContestContestantsView({model : this.model, allWillContenstants: self.allWillContenstants});
-            //     var roundControlsView = new WillContestRoundControlsView();
-            //     var displayedRoundsView = new WillContestDisplayedRoundView({model : this.willContest, roundIdentifierToShow : this.roundIdentifierToShow});
-            //     this.listenTo(contestantsView, 'willContestContestantOne:selected', this.contestandOneSelected);
-            //     this.listenTo(contestantsView, 'willContestContestantTwo:selected', this.contestantTwoSelected);
-            //     this.listenTo(roundControlsView, 'willContestNextRoundButton:clicked', this.createAndDisplayNextRound);
-            //     this.listenTo(roundControlsView, 'willContestRoundNumberToDisplay:selected', this.displayRoundNumber);
+                var roundControlsView = new WillContestRoundControlView({currentRound: this.roundNumberToShow, totalNumberOfRounds: 10});
+                // var displayedRoundsView = new WillContestDisplayedRoundView({model : this.willContest, roundIdentifierToShow : this.roundIdentifierToShow});
+                this.listenTo(roundControlsView, 'willContestRoundControlsPreviousButton:clicked', this.displayPreviousRound);
+                this.listenTo(roundControlsView, 'willContestRoundControlsNextButton:clicked', this.displayNextRound);
+                this.listenTo(roundControlsView, 'willContestRoundControlsCreateNextRoundButton:clicked', this.createAndDisplayNextRound);
                 this.showChildView('contestantsRegion', contestantsView);
-            //     this.showChildView('roundControlsRegion', roundControlsView);
+                this.showChildView('roundControlsRegion', roundControlsView);
             //     this.showChildView('displayedRoundRegion', displayedRoundsView);
              },
-            // displayRoundNumber : function(roundNumberToDisplay) {
-            //     var self = this;
-            //     self.roundIdentifierToShow = roundNumberToDisplay;
-            //     $.when(self.prepareToShowRound(self.roundIdentifierToShow)).then(
-            //         function() {
-            //             self.render();
-            //         }
-            //     )
-            // },
-            // createAndDisplayNextRound : function() {
-            //     var self = this;
+            displayPreviousRound : function() {
+                var self = this;
+                if (self.roundNumberToShow > 1) {
+                    self.roundNumberToShow --;
+                    self.render();
+                }
+                // $.when(self.prepareToShowRound(self.roundIdentifierToShow)).then(
+                //     function() {
+                //         self.render();
+                //     }
+                // )
+            },
+            displayNextRound : function() {
+                var self = this;
+                if (self.roundNumberToShow < 11) {
+                    self.roundNumberToShow ++;
+                    self.render();
+                }
+                // $.when(self.prepareToShowRound(self.roundIdentifierToShow)).then(
+                //     function() {
+                //         self.render();
+                //     }
+                // )
+            },
+            createAndDisplayNextRound : function() {
+                var self = this;
             //     $.when( CombatRoundWarehouse.createNextCombatRoundsForEncounter(self.encounter)).then (
             //         function(combatRoundCollection) {
             //             $.when(self.prepareToShowRound(self.encounter.get('openRound'))).then (
@@ -59,7 +73,7 @@ define(['marionette',
             //             )
             //         }
             //     )
-            // },
+            },
             // prepareToShowRound : function(roundIdentifier) {
             //     var self = this;
             //     var deferred = $.Deferred();

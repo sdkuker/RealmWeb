@@ -4,10 +4,8 @@ define(['backbone'],
         var WillContestModel = Backbone.Model.extend({
             defaults: {
                 contestantOneID: '',
-                contestantOneType : '',
                 contestantOneName : '',
                 contestantTwoID: '',
-                contestantTwoType : '',
                 contestantTwoName : ''
             }
         });
