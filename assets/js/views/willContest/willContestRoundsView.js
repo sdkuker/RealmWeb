@@ -20,7 +20,12 @@ define(['marionette',
                 return {
                     currentRound : this.options.currentRound,
                     totalNumberOfRounds : this.options.totalNumberOfRounds,
-                    temporaryModifierExpirationRound : 3
+                    contestantOneTotalWill : 10,
+                    contestantTwoTotalWill : 20,
+                    permanentModifier : 30,
+                    temporaryModifier : 40,
+                    temporaryModifierExpirationRound : 3,
+                    consequence : 'this is the consequence of whatever happened.'
                 }
             },
             onRender : function() {
