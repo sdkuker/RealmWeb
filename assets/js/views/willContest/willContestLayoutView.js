@@ -1,19 +1,17 @@
 define(['marionette',
         'views/willContest/willContestContestantsView',
-        'views/willContest/willContestRoundControlsView',
-        // 'views/willContest/willContestDisplayedRoundView',
+        'views/willContest/willContestRoundsView',
         'models/willContest/willContestModel',
         'tpl!templates/willContest/willContestLayoutTemplate.tpl',
         'services/willContestWarehouse'],
-    function (Marionette, WillContestContestantsView, WillContestRoundControlView,
+    function (Marionette, WillContestContestantsView, WillContestRoundsView,
               WillContestModel, WillContestLayoutTemplate, WillContestWarehouse) {
 
         var WillContestLayoutiew = Marionette.LayoutView.extend({
             template: WillContestLayoutTemplate,
             regions : {
                 contestantsRegion : '#contestantsRegion',
-                roundControlsRegion : '#roundControlsRegion',
-                displayedRoundRegion : '#displayedRoundRegion'
+                roundsRegion : '#roundsRegion'
             },
             model: WillContestModel,
             roundNumberToShow : 1,
@@ -29,14 +27,13 @@ define(['marionette',
             onRender: function() {
                 var self = this;
                 var contestantsView = new WillContestContestantsView({model : this.model, allWillContenstants: self.allWillContenstants});
-                var roundControlsView = new WillContestRoundControlView({currentRound: this.roundNumberToShow, totalNumberOfRounds: 10});
+                var roundControlsView = new WillContestRoundsView({currentRound: this.roundNumberToShow, totalNumberOfRounds: 10});
                 // var displayedRoundsView = new WillContestDisplayedRoundView({model : this.willContest, roundIdentifierToShow : this.roundIdentifierToShow});
-                this.listenTo(roundControlsView, 'willContestRoundControlsPreviousButton:clicked', this.displayPreviousRound);
-                this.listenTo(roundControlsView, 'willContestRoundControlsNextButton:clicked', this.displayNextRound);
-                this.listenTo(roundControlsView, 'willContestRoundControlsCreateNextRoundButton:clicked', this.createAndDisplayNextRound);
+                this.listenTo(roundControlsView, 'willContestRoundsPreviousButton:clicked', this.displayPreviousRound);
+                this.listenTo(roundControlsView, 'willContestRoundsNextButton:clicked', this.displayNextRound);
+                this.listenTo(roundControlsView, 'willContestRoundsCreateNextRoundButton:clicked', this.createAndDisplayNextRound);
                 this.showChildView('contestantsRegion', contestantsView);
-                this.showChildView('roundControlsRegion', roundControlsView);
-            //     this.showChildView('displayedRoundRegion', displayedRoundsView);
+                this.showChildView('roundsRegion', roundControlsView);
              },
             displayPreviousRound : function() {
                 var self = this;

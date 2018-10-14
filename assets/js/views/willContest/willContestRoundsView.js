@@ -2,12 +2,12 @@ define(['marionette',
         'backbone',
         'realmApplication',
         'services/playerWarehouse',
-        'tpl!templates/willContest/willContestRoundControlsTemplate.tpl'],
+        'tpl!templates/willContest/willContestRoundsTemplate.tpl'],
     function (Marionette, Backbone, RealmApplication, PlayerWarehouse,
-              WillContestRoundControlsTemplate) {
+              WillContestRoundsTemplate) {
 
-        var WillContestRoundControlsView = Marionette.ItemView.extend({
-            template: WillContestRoundControlsTemplate,
+        var WillContestRoundsView = Marionette.ItemView.extend({
+            template: WillContestRoundsTemplate,
             events : {
                 'click #previousButton' : 'previousButtonClicked',
                 'click #nextButton' : 'nextButtonClicked',
@@ -19,7 +19,8 @@ define(['marionette',
             templateHelpers : function() {
                 return {
                     currentRound : this.options.currentRound,
-                    totalNumberOfRounds : this.options.totalNumberOfRounds
+                    totalNumberOfRounds : this.options.totalNumberOfRounds,
+                    temporaryModifierExpirationRound : 3
                 }
             },
             onRender : function() {
@@ -44,6 +45,6 @@ define(['marionette',
             }
         });
 
-        return WillContestRoundControlsView;
+        return WillContestRoundsView;
 
     });
