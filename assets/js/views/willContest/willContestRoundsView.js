@@ -1,13 +1,15 @@
 define(['marionette',
         'backbone',
         'realmApplication',
+        'models/willContest/willContestRoundModel',
         'services/playerWarehouse',
         'tpl!templates/willContest/willContestRoundsTemplate.tpl'],
-    function (Marionette, Backbone, RealmApplication, PlayerWarehouse,
+    function (Marionette, Backbone, RealmApplication, WillContestRoundModel, PlayerWarehouse,
               WillContestRoundsTemplate) {
 
         var WillContestRoundsView = Marionette.ItemView.extend({
             template: WillContestRoundsTemplate,
+            model : WillContestRoundModel,
             events : {
                 'click #previousButton' : 'previousButtonClicked',
                 'click #nextButton' : 'nextButtonClicked',
@@ -18,14 +20,14 @@ define(['marionette',
             },
             templateHelpers : function() {
                 return {
-                    currentRound : this.options.currentRound,
-                    totalNumberOfRounds : this.options.totalNumberOfRounds,
-                    contestantOneTotalWill : 10,
-                    contestantTwoTotalWill : 20,
-                    permanentModifier : 30,
-                    temporaryModifier : 40,
-                    temporaryModifierExpirationRound : 3,
-                    consequence : 'this is the consequence of whatever happened.'
+                    currentRoundNumber : this.model.get('currentRoundNumber'),
+                    totalNumberOfRounds : this.options.numberOfWillContestRounds,
+                    contestantOneTotalWill : this.options.roundToShow ? this.options.roundToShow.contestantOneTotalWill : '',
+                    contestantTwoTotalWill : this.options.roundToShow ? this.options.roundToShow.contestantTwoTotalWill : '',
+                    permanentModifier : this.options.roundToShow ? this.options.roundToShow.contestantOnePermanentModifier : '',
+                    temporaryModifier : this.options.roundToShow ? this.options.roundToShow.contestantOneTemporaryModifier : '',
+                    temporaryModifierExpirationRound : this.options.roundToShow ? this.options.roundToShow.contestantOneTemporaryModifierExpirationRound : '',
+                    consequence : this.options.roundToShow ? this.options.roundToShow.consequenceDescription : ''
                 }
             },
             onRender : function() {

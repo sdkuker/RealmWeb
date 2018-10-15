@@ -83,9 +83,9 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
             willContest: function(willContestModel) {
                 require(['services/willContestWarehouse', 'views/willContest/willContestLayoutView'],
                     function (WillContestWarehouse, WillContestLayoutView) {
-                        $.when(WillContestWarehouse.getAllWillContestants()).then (
-                            function(allWillContestantsArray) {
-                                var willContestLayoutView = new WillContestLayoutView({model: willContestModel, allWillContenstants: allWillContestantsArray});
+                        $.when(WillContestWarehouse.getAllWillContestants(), WillContestWarehouse.getRoundsForWillContest({aWillContestId: willContestModel.id})).then (
+                            function(allWillContestantsArray, willContestRounds) {
+                                var willContestLayoutView = new WillContestLayoutView({model: willContestModel, allWillContenstants: allWillContestantsArray, willContestRounds: willContestRounds});
                                 RealmApplication.regions.mainRegion.show(willContestLayoutView);
                             }
                         )

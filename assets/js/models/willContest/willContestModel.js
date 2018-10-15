@@ -6,7 +6,8 @@ define(['backbone'],
                 contestantOneID: '',
                 contestantOneName : '',
                 contestantTwoID: '',
-                contestantTwoName : ''
+                contestantTwoName : '',
+                currentRoundNumber: 0
             }
         });
 

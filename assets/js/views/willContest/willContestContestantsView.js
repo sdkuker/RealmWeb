@@ -24,10 +24,14 @@ define(['marionette',
             },
             onRender : function() {
                 self = this;
-                var contestantOneSelectElement = this.$el.find('#contestantOneSelect');
-                var contestantTwoSelectElement = this.$el.find('#contestantTwoSelect');
-                contestantOneSelectElement.empty();
-                contestantTwoSelectElement.empty();
+                var contestantOneSelectDivElement = this.$el.find('#contestantOneSelectDiv');
+                var contestantOneSelectString = self.model.get('currentRoundNumber') === 0 ?
+                    "<select id='contestantOneSelect' class='form-control'>" :
+                    "<select id='contestantOneSelect' class='form-control' disabled>";
+                var contestantTwoSelectDivElement = this.$el.find('#contestantTwoSelectDiv');
+                var contestantTwoSelectString = self.model.get('currentRoundNumber') === 0 ?
+                    "<select id='contestantTwoSelect' class='form-control'>" :
+                    "<select id='contestantTwoSelect' class='form-control' disabled>";
                 this.options.allWillContenstants.forEach(function(myContestant, key, list) {
                     var contestantOneOption = "<option value='" + myContestant.id +  "'";
                     if ((key == 0 && ! self.chosenContestantOneID) || (self.chosenContestantOneID && self.chosenContestantOneID == myContestant.id)) {
@@ -37,7 +41,7 @@ define(['marionette',
                         }
                     };
                     contestantOneOption = contestantOneOption + ">" + myContestant.name + "</option>"
-                    contestantOneSelectElement.append(contestantOneOption);
+                    contestantOneSelectString = contestantOneSelectString + contestantOneOption;
 
                     var contestantTwoOption = "<option value='" + myContestant.id +  "'";
                     if ((key == 0 && ! self.chosenContestantTwoID) || (self.chosenContestantTwoID && self.chosenContestantTwoID == myContestant.id)) {
@@ -47,8 +51,13 @@ define(['marionette',
                         }
                     };
                     contestantTwoOption = contestantTwoOption + ">" + myContestant.name + "</option>"
-                    contestantTwoSelectElement.append(contestantTwoOption);
+                    contestantTwoSelectString = contestantTwoSelectString + contestantTwoOption;
                 });
+                contestantOneSelectString = contestantOneSelectString + "</select>";
+                contestantOneSelectDivElement.append(contestantOneSelectString);
+                contestantTwoSelectString = contestantTwoSelectString + "</select>";
+                contestantTwoSelectDivElement.append(contestantTwoSelectString);
+
             },
             contestantOneSelected : function() {
                 self = this;

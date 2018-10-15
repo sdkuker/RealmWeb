@@ -10,7 +10,8 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 contestantOnePermanentModifier : 0,
                 contestantOneTemporaryModifier : 0,
                 contestantOneTemporaryModifierExpirationRound : 0,
-                consequenceId : ''
+                consequenceId : '',
+                consequenceDescription : ''
             }
         });
 

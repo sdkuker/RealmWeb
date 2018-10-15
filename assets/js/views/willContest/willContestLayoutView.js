@@ -9,95 +9,109 @@ define(['marionette',
 
         var WillContestLayoutiew = Marionette.LayoutView.extend({
             template: WillContestLayoutTemplate,
-            regions : {
-                contestantsRegion : '#contestantsRegion',
-                roundsRegion : '#roundsRegion'
+            regions: {
+                contestantsRegion: '#contestantsRegion',
+                roundsRegion: '#roundsRegion'
             },
             model: WillContestModel,
-            roundNumberToShow : 1,
-            roundIdentifierToShow : 0,
-            contestantsView : null,
-            roundControlsView : null,
-            displayedRoundView : null,
-            allWillContenstants : null,
-            initialize : function(options) {
+            roundNumberToShow: 1,
+            roundToShow: null,
+            roundIdentifierToShow: 0,
+            contestantsView: null,
+            roundControlsView: null,
+            displayedRoundView: null,
+            allWillContenstants: null,
+            willContestRounds: null,
+            initialize: function (options) {
                 self = this;
                 self.allWillContenstants = options.allWillContenstants;
+                self.willContestRounds = options.willContestRounds;
             },
-            onRender: function() {
+            onRender: function () {
                 var self = this;
-                var contestantsView = new WillContestContestantsView({model : this.model, allWillContenstants: self.allWillContenstants});
-                var roundControlsView = new WillContestRoundsView({currentRound: this.roundNumberToShow, totalNumberOfRounds: 10});
-                // var displayedRoundsView = new WillContestDisplayedRoundView({model : this.willContest, roundIdentifierToShow : this.roundIdentifierToShow});
-                this.listenTo(roundControlsView, 'willContestRoundsPreviousButton:clicked', this.displayPreviousRound);
-                this.listenTo(roundControlsView, 'willContestRoundsNextButton:clicked', this.displayNextRound);
-                this.listenTo(roundControlsView, 'willContestRoundsCreateNextRoundButton:clicked', this.createAndDisplayNextRound);
+                var contestantsView = new WillContestContestantsView({
+                    model: this.model,
+                    allWillContenstants: self.allWillContenstants
+                });
+                var roundView = new WillContestRoundsView({
+                    model: this.model,
+                    numberOfWillContestRounds: this.willContestRounds.length,
+                    roundToShow : this.roundToShow
+                });
+                this.listenTo(roundView, 'willContestRoundsPreviousButton:clicked', this.displayPreviousRound);
+                this.listenTo(roundView, 'willContestRoundsNextButton:clicked', this.displayNextRound);
+                this.listenTo(roundView, 'willContestRoundsCreateNextRoundButton:clicked', this.createAndDisplayNextRound);
                 this.showChildView('contestantsRegion', contestantsView);
-                this.showChildView('roundsRegion', roundControlsView);
-             },
-            displayPreviousRound : function() {
+                this.showChildView('roundsRegion', roundView);
+            },
+            displayPreviousRound: function () {
                 var self = this;
-                if (self.roundNumberToShow > 1) {
-                    self.roundNumberToShow --;
-                    self.render();
+                if (self.roundNumberToShow > self.willContestRounds.length) {
+                    self.roundNumberToShow--;
+                    $.when(self.prepareToShowRound(self.roundNumberToShow)).then(
+                        function () {
+                            self.render();
+                        }
+                    )
                 }
-                // $.when(self.prepareToShowRound(self.roundIdentifierToShow)).then(
-                //     function() {
-                //         self.render();
-                //     }
-                // )
+
             },
-            displayNextRound : function() {
+            displayNextRound: function () {
                 var self = this;
-                if (self.roundNumberToShow < 11) {
-                    self.roundNumberToShow ++;
-                    self.render();
+                if (self.roundNumberToShow < self.willContestRounds.length) {
+                    self.roundNumberToShow++;
+                    $.when(self.prepareToShowRound(self.roundNumberToShow)).then(
+                        function () {
+                            self.render();
+                        }
+                    )
                 }
-                // $.when(self.prepareToShowRound(self.roundIdentifierToShow)).then(
-                //     function() {
-                //         self.render();
-                //     }
-                // )
             },
-            createAndDisplayNextRound : function() {
+            createAndDisplayNextRound: function () {
                 var self = this;
-            //     $.when( CombatRoundWarehouse.createNextCombatRoundsForEncounter(self.encounter)).then (
-            //         function(combatRoundCollection) {
-            //             $.when(self.prepareToShowRound(self.encounter.get('openRound'))).then (
-            //                 function() {
-            //                     self.render();
-            //                 }
-            //             )
-            //         }
-            //     )
+                $.when(WillContestWarehouse.generateNextWillContestRound(self.model)).then(
+                    function (nextWillContestRoundCreationReturn) {
+                        if (nextWillContestRoundCreationReturn.newContestModel) {
+                            // a new contest model was created, must refresh this layout view
+                            self.model = newContestModel;
+                        }
+                        $.when(self.prepareToShowRound(self.model.get('currentRoundNumber'))).then(
+                            function () {
+                                self.render();
+                            }
+                        )
+                    }
+                )
             },
-            // prepareToShowRound : function(roundIdentifier) {
-            //     var self = this;
-            //     var deferred = $.Deferred();
-            //
-            //     $.when(WillContestWarehouse.getRoundsForContest(self.willContest)).then(
-            //         function(myWillContestRoundsCollection) {
-            //             self.selectRoundToShow(roundIdentifier, myWillContestRoundsCollection);
-            //             deferred.resolve();
-            //         }
-            //     ),  function(error) {
-            //         console.log('some kind of error getting rounds');
-            //         deferred.fail();
-            //     };
-            //
-            //     return deferred.promise();
-            // },
-            // selectRoundToShow: function(roundIdentifier, roundCollection) {
-            //     var self = this;
-            //     if (roundIdentifier == 'open') {
-            //         self.roundIdentifierToShow = self.encounter.get('openRound');
-            //     } else {
-            //         self.roundIdentifierToShow = roundIdentifier;
-            //     };
-            //     self.roundToShow = roundCollection.find(function(round) {
-            //         return self.roundIdentifierToShow == round.get('roundNumber');
-            //     });
-            // }
+            prepareToShowRound: function (roundNumber) {
+                var self = this;
+                var deferred = $.Deferred();
+
+                $.when(WillContestWarehouse.getRoundsForWillContest(self.model)).then(
+                    function (myWillContestRoundsCollection) {
+                        self.willContestRounds = myWillContestRoundsCollection;
+                        self.selectRoundToShow(roundNumber);
+                        deferred.resolve();
+                    }
+                ), function (error) {
+                    console.log('some kind of error getting rounds');
+                    deferred.fail();
+                };
+
+                return deferred.promise();
+            },
+            selectRoundToShow: function (roundNumber) {
+                var self = this;
+                if (roundNumber == 'open') {
+                    self.roundNumberToShow = self.model.get('currentRoundNumber');
+                } else {
+                    self.roundNumberToShow = roundNumber;
+                }
+                ;
+                self.roundToShow = roundCollection.find(function (round) {
+                    return self.roundNumberToShow == round.get('roundNumber');
+                });
+            }
         });
 
         return WillContestLayoutiew;

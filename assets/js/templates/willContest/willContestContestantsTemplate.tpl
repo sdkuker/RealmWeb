@@ -4,8 +4,8 @@
             <div class="form-group form-horizontal">
                 <label class="control-label col-md-2">Contestant One</label>
                 <div class="col-md-3">
-                    <select id='contestantOneSelect' class="form-control">
-                    </select>
+                    <div id="contestantOneSelectDiv">
+                    </div>
                 </div>
             </div>
         </form>
@@ -13,8 +13,8 @@
             <div class="form-group form-horizontal">
                 <label class="control-label col-md-2">Contestant Two</label>
                 <div class="col-md-3">
-                    <select id='contestantTwoSelect' class="form-control">
-                    </select>
+                    <div id="contestantTwoSelectDiv">
+                    </div>
                 </div>
             </div>
         </form>

@@ -75,7 +75,7 @@ define(['jquery',
                 )
 
                 return deferred.promise();
-            },
+            };
             // private functions
 
             getAllWillContestConsequencesUnordered = function() {
