@@ -21,6 +21,10 @@ define(['marionette',
                 if (this.options.allWillContenstants) {
                     self.allWillContenstants = this.options.allWillContenstants;
                 };
+                if (self.model) {
+                    self.chosenContestantOneID = self.model.get('contestantOneID');
+                    self.chosenContestantTwoID = self.model.get('contestantTwoID');
+                }
             },
             onRender : function() {
                 self = this;

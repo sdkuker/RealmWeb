@@ -3,7 +3,7 @@
 <tr>
     <th id="contestantOne">Contestant One</th>
     <th id="contestantTwo">Contestant Two</th>
-    <th id="status">Status</th>
+    <th id="currentRoundNumber">Current Round</th>
     <th id="actions"></th>
 </tr>
 </thead>
