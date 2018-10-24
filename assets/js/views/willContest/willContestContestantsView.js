@@ -63,12 +63,14 @@ define(['marionette',
                 self = this;
                 self.chosenContestantOneID = $('#contestantOneSelect option:selected').val();
                 self.model.set('contestantOneID', self.chosenContestantOneID);
+                self.model.set('contestantOneName', $('#contestantOneSelect option:selected').text());
                 RealmApplication.vent.trigger('willContestContestantOne:selected', self.chosenContestantOneID);
             },
             contestantTwoSelected : function() {
                 self = this;
                 self.chosenContestantTwoID = $('#contestantTwoSelect option:selected').val();
                 self.model.set('contestantTwoID', self.chosenContestantTwoID);
+                self.model.set('contestantTwoName', $('#contestantTwoSelect option:selected').text());
                 RealmApplication.vent.trigger('willContestContestantTwo:selected', self.chosenContestantTwoID);
             },
         });

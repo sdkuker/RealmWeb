@@ -1,9 +1,10 @@
 define(['marionette',
         'realmApplication',
+        'services/willContestWarehouse',
         "tpl!templates/willContest/willContestListLayoutTemplate.tpl",
         'views/willContest/willContestListView',
         'models/willContest/willContestModel'],
-    function (Marionette, RealmApplication, WillContestListLayoutTemplate,
+    function (Marionette, RealmApplication, WillContestWarehouse, WillContestListLayoutTemplate,
               WillContestListView, WillContestModel) {
 
         var WillContestListLayoutView = Marionette.LayoutView.extend({
@@ -31,7 +32,11 @@ define(['marionette',
             contestCollection : null,
             selectedModel : null,
             triggerCreateWillContestFunction : function() {
-                RealmApplication.vent.trigger('willContestListAddWillContest', new WillContestModel());
+                $.when(WillContestWarehouse.createDefaultWillContest()).then(
+                    function(aWillContestModel) {
+                        RealmApplication.vent.trigger('willContestListAddWillContest', aWillContestModel);
+                    }
+                )
             },
             triggerOpenWillContestFunction : function() {
                 //var model = this.collection.at($(':selected', this.$el).index());

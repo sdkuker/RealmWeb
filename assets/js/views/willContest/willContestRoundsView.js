@@ -22,12 +22,12 @@ define(['marionette',
                 return {
                     currentRoundNumber : this.model.get('currentRoundNumber'),
                     totalNumberOfRounds : this.options.numberOfWillContestRounds,
-                    contestantOneTotalWill : this.options.roundToShow ? this.options.roundToShow.contestantOneTotalWill : '',
-                    contestantTwoTotalWill : this.options.roundToShow ? this.options.roundToShow.contestantTwoTotalWill : '',
-                    permanentModifier : this.options.roundToShow ? this.options.roundToShow.contestantOnePermanentModifier : '',
-                    temporaryModifier : this.options.roundToShow ? this.options.roundToShow.contestantOneTemporaryModifier : '',
-                    temporaryModifierExpirationRound : this.options.roundToShow ? this.options.roundToShow.contestantOneTemporaryModifierExpirationRound : '',
-                    consequence : this.options.roundToShow ? this.options.roundToShow.consequenceDescription : ''
+                    contestantOneTotalWill : this.options.roundToShow ? this.options.roundToShow.get('contestantOneTotalWill') : '',
+                    contestantTwoTotalWill : this.options.roundToShow ? this.options.roundToShow.get('contestantTwoTotalWill') : '',
+                    permanentModifier : this.options.roundToShow ? this.options.roundToShow.get('contestantOnePermanentModifier') : '',
+                    temporaryModifier : this.options.roundToShow ? this.options.roundToShow.get('contestantOneTemporaryModifier') : '',
+                    temporaryModifierExpirationRound : this.options.roundToShow ? this.options.roundToShow.get('contestantOneTemporaryModifierExpirationRound') : '',
+                    consequence : this.options.roundToShow ? this.options.roundToShow.get('consequenceDescription') : ''
                 }
             },
             onRender : function() {

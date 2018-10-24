@@ -1,13 +1,14 @@
 define(['marionette',
         'views/willContest/willContestContestantsView',
         'views/willContest/willContestRoundsView',
+        'utility/viewUtilities',
         'models/willContest/willContestModel',
         'tpl!templates/willContest/willContestLayoutTemplate.tpl',
         'services/willContestWarehouse'],
-    function (Marionette, WillContestContestantsView, WillContestRoundsView,
+    function (Marionette, WillContestContestantsView, WillContestRoundsView, ViewUtilities,
               WillContestModel, WillContestLayoutTemplate, WillContestWarehouse) {
 
-        var WillContestLayoutiew = Marionette.LayoutView.extend({
+        var WillContestLayoutView = Marionette.LayoutView.extend({
             template: WillContestLayoutTemplate,
             regions: {
                 contestantsRegion: '#contestantsRegion',
@@ -40,7 +41,7 @@ define(['marionette',
                 });
                 this.listenTo(roundView, 'willContestRoundsPreviousButton:clicked', this.displayPreviousRound);
                 this.listenTo(roundView, 'willContestRoundsNextButton:clicked', this.displayNextRound);
-                this.listenTo(roundView, 'willContestRoundsCreateNextRoundButton:clicked', this.createAndDisplayNextRound);
+                this.listenTo(roundView, 'willContestRoundControlsCreateNextRoundButton:clicked', this.createAndDisplayNextRound);
                 this.showChildView('contestantsRegion', contestantsView);
                 this.showChildView('roundsRegion', roundView);
             },
@@ -69,25 +70,29 @@ define(['marionette',
             },
             createAndDisplayNextRound: function () {
                 var self = this;
-                $.when(WillContestWarehouse.generateNextWillContestRound(self.model)).then(
-                    function (nextWillContestRoundCreationReturn) {
-                        if (nextWillContestRoundCreationReturn.newContestModel) {
-                            // a new contest model was created, must refresh this layout view
-                            self.model = newContestModel;
-                        }
-                        $.when(self.prepareToShowRound(self.model.get('currentRoundNumber'))).then(
-                            function () {
-                                self.render();
+                if (self.model.get('contestantOneID') === self.model.get('contestantTwoID')) {
+                    ViewUtilities.showModalView('Error', 'The will contestants must be different');
+                } else {
+                    $.when(WillContestWarehouse.generateNextWillContestRound(self.model)).then(
+                        function (nextWillContestRoundCreationReturn) {
+                            if (nextWillContestRoundCreationReturn.newContestModel) {
+                                // a new contest model was created, must refresh this layout view
+                                self.model = nextWillContestRoundCreationReturn.newContestModel;
                             }
-                        )
-                    }
-                )
+                            $.when(self.prepareToShowRound(self.model.get('currentRoundNumber'))).then(
+                                function () {
+                                    self.render();
+                                }
+                            )
+                        }
+                    )
+                }
             },
             prepareToShowRound: function (roundNumber) {
                 var self = this;
                 var deferred = $.Deferred();
 
-                $.when(WillContestWarehouse.getRoundsForWillContest(self.model)).then(
+                $.when(WillContestWarehouse.getRoundsForWillContest(self.model.id)).then(
                     function (myWillContestRoundsCollection) {
                         self.willContestRounds = myWillContestRoundsCollection;
                         self.selectRoundToShow(roundNumber);
@@ -108,12 +113,12 @@ define(['marionette',
                     self.roundNumberToShow = roundNumber;
                 }
                 ;
-                self.roundToShow = roundCollection.find(function (round) {
+                self.roundToShow = self.willContestRounds.find(function (round) {
                     return self.roundNumberToShow == round.get('roundNumber');
                 });
             }
         });
 
-        return WillContestLayoutiew;
+        return WillContestLayoutView;
 
     });

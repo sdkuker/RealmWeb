@@ -20,8 +20,8 @@ define(['marionette',
                 if (this.model.get('contestantOneName')) {
                     contestantOneName = decodeURI(this.model.get('contestantOneName').replace(/%\s/g, " percent "));
                 };
-                if (this.model.get('contestantTwpName')) {
-                    contestantTwoName = decodeURI(this.model.get('contestantTwpName').replace(/%\s/g, " percent "));
+                if (this.model.get('contestantTwoName')) {
+                    contestantTwoName = decodeURI(this.model.get('contestantTwoName').replace(/%\s/g, " percent "));
                 };
                 return {
                     contestantOneName : contestantOneName,
