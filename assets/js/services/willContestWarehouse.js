@@ -185,7 +185,7 @@ define(['jquery',
                     function (willContestRoundsCollection) {
                         var currentRound = null;
                         willContestRoundsCollection.forEach(function (myRound, key, list) {
-                            if (curentRound == null || myRound.get('roundNumber') > currentRound.get('roundNumber')) {
+                            if (currentRound == null || myRound.get('roundNumber') > currentRound.get('roundNumber')) {
                                 currentRound = myRound;
                             }
                         });

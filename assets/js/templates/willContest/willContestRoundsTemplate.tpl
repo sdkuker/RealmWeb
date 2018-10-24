@@ -61,7 +61,7 @@
                         Previous
                     </button>
                     <b>
-                        <span>Round: <%- currentRoundNumber %> </span>
+                        <span>Round: <%- roundToShow %> </span>
                         <span> of: <%- totalNumberOfRounds %> </span>
                     </b>
                     <button id="nextButton" type="button" class="btn btn-default">

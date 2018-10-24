@@ -41,13 +41,13 @@ define(['marionette',
                 });
                 this.listenTo(roundView, 'willContestRoundsPreviousButton:clicked', this.displayPreviousRound);
                 this.listenTo(roundView, 'willContestRoundsNextButton:clicked', this.displayNextRound);
-                this.listenTo(roundView, 'willContestRoundControlsCreateNextRoundButton:clicked', this.createAndDisplayNextRound);
+                this.listenTo(roundView, 'willContestRoundsCreateNextRoundButton:clicked', this.createAndDisplayNextRound);
                 this.showChildView('contestantsRegion', contestantsView);
                 this.showChildView('roundsRegion', roundView);
             },
             displayPreviousRound: function () {
                 var self = this;
-                if (self.roundNumberToShow > self.willContestRounds.length) {
+                if (self.roundNumberToShow > 1) {
                     self.roundNumberToShow--;
                     $.when(self.prepareToShowRound(self.roundNumberToShow)).then(
                         function () {

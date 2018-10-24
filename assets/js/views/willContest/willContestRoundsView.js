@@ -20,7 +20,7 @@ define(['marionette',
             },
             templateHelpers : function() {
                 return {
-                    currentRoundNumber : this.model.get('currentRoundNumber'),
+                    roundToShow : this.options.roundToShow ? this.options.roundToShow.get('roundNumber') : 0,
                     totalNumberOfRounds : this.options.numberOfWillContestRounds,
                     contestantOneTotalWill : this.options.roundToShow ? this.options.roundToShow.get('contestantOneTotalWill') : '',
                     contestantTwoTotalWill : this.options.roundToShow ? this.options.roundToShow.get('contestantTwoTotalWill') : '',
@@ -40,15 +40,15 @@ define(['marionette',
             },
             previousButtonClicked : function() {
                 self = this;
-                self.trigger('willContestRoundControlsPreviousButton:clicked');
+                self.trigger('willContestRoundsPreviousButton:clicked');
             },
             nextButtonClicked : function() {
                 self = this;
-                self.trigger('willContestRoundControlsNextButton:clicked');
+                self.trigger('willContestRoundsNextButton:clicked');
             },
             createNextRoundButtonClicked : function() {
                 self = this;
-                self.trigger('willContestRoundControlsCreateNextRoundButton:clicked');
+                self.trigger('willContestRoundsCreateNextRoundButton:clicked');
             }
         });
 
