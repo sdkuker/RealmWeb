@@ -84,6 +84,9 @@ define(['marionette',
                                     self.render();
                                 }
                             )
+                        },
+                        function(aRejectReason) {
+                            ViewUtilities.showModalView('Error', 'Unable to generate contest round because: ' + aRejectReason);
                         }
                     )
                 }

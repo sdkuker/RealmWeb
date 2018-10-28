@@ -51,6 +51,24 @@ define(['jquery',
                 return deferred.promise();
             };
 
+            this.getConsequence = function(aConsequenceValue) {
+                var deferred = $.Deferred();
+                $.when(self.getAllWillContestConsequences()).then(
+                    function(willContestConsequenceCollection) {
+                        var arrayOfChosenConsequence = willContestConsequenceCollection.filter(function (aConsequence) {
+                            return  aConsequenceValue >= parseInt(aConsequence.get('minimumRollValue')) &&
+                                    aConsequenceValue <= parseInt(aConsequence.get('maximumRollValue'));
+                        })
+                        if (arrayOfChosenConsequence && arrayOfChosenConsequence.length === 1) {
+                            deferred.resolve(arrayOfChosenConsequence[0]);
+                        } else {
+                            deferred.reject('unable to find a consequence for value: ' + aConsequenceValue);
+                        }
+                    }
+                )
+                return deferred.promise();
+            };
+
             this.addWillContestConsequence = function(consequenceAttributes) {
                 var deferred = $.Deferred();
 
