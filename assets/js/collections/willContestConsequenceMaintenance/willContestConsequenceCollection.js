@@ -1,6 +1,6 @@
 define(['backbone', 'firebase', 'backfire', 'models/willContestConsequenceMaintenance/willContestConsequenceModel',
         'services/serviceConstants', 'config'],
-    function (Backbone, Firebase, Backfire, WillContestConsequenceModel, ServiceConstants) {
+    function (Backbone, Firebase, Backfire, WillContestConsequenceModel, ServiceConstants, Config) {
 
         var WillContestConsequenceCollection = Backbone.Firebase.Collection.extend({
             orderByMinimumRollValue : false,
@@ -11,10 +11,10 @@ define(['backbone', 'firebase', 'backfire', 'models/willContestConsequenceMainte
             },
             url: function() {
                 if (this.orderByMinimumRollValue) {
-                    return new Firebase(ServiceConstants.backFireBaseURL + '/willContestConsequence/')
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/willContestConsequence/')
                         .orderByChild("minimumRollValue");
                 } else {
-                    return new Firebase(ServiceConstants.backFireBaseURL + '/willContestConsequence/');
+                    return new Firebase(ServiceConstants.backFireBaseURL + '/'  + Config.environment + '/willContestConsequence/');
                 }
             },
             model: WillContestConsequenceModel,

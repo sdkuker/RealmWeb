@@ -26,7 +26,7 @@ define(['marionette',
                 // just an object that needs to be added
                 $.when(WillContestConsequenceWarehouse.addWillContestConsequence(willContestConsequenceModelToAction)).then(
                     function() {
-                        $.when(WillContestConsequenceWarehouse.getWillContestConsequencesForTypeWithDefaultForAdd(this.selectedType)).then(
+                        $.when(WillContestConsequenceWarehouse.getAllWillContestConsequencesWithDefaultForAdd()).then(
                             function(aCollection) {
                                 this.collection = aCollection;
                                 RealmApplication.vent.trigger('willContestConsequenceMaintenanceList:willContestConsequenceActioned');

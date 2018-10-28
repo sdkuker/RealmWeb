@@ -23,6 +23,10 @@ define(['marionette',
                 var listViewOptions = {collection : self.consequenceCollection,};
                 var listView = new WillContestConsequenceMaintenanceListView(listViewOptions);
                 this.showChildView('willContestConsequencesMaintenanceRegion', listView);
+            },
+            willContestConsequenceActioned : function() {
+                var self = this;
+                self.render();
             }
         });
 
