@@ -27,6 +27,10 @@ define(['marionette',
                 self = this;
                 self.allWillContenstants = options.allWillContenstants;
                 self.willContestRounds = options.willContestRounds;
+                if (self.willContestRounds && self.willContestRounds.length > 0 ) {
+                    self.roundToShow = self.willContestRounds.last();
+                    self.roundNumberToShow = self.roundToShow.get('roundNumber');
+                }
             },
             onRender: function () {
                 var self = this;
