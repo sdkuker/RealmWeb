@@ -129,9 +129,13 @@ define(['jquery',
             this.removeWillContest = function (aContest) {
                 var deferred = $.Deferred();
                 var myContest = aContest;
-                $.when(getAllWillContests()).then(
-                    function (allContestsCollection) {
-                        allContestsCollection.remove(myConsequence)
+                $.when(this.getAllWillContests(), this.getAllWillContestRounds()).then(
+                    function (allContestsCollection, allRoundsCollection) {
+                        var arrayOfRoundsToDelete = allRoundsCollection.where({willContestID : aContest.id});
+                        for (index = 0; index < arrayOfRoundsToDelete.length; index++) {
+                            allRoundsCollection.remove(arrayOfRoundsToDelete[index]);
+                        }
+                        allContestsCollection.remove(aContest);
                         deferred.resolve();
                     }
                 )

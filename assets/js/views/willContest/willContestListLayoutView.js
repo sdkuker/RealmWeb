@@ -49,8 +49,23 @@ define(['marionette',
 
             },
             triggerDeleteWillContestFunction : function() {
-                //var model = this.collection.at($(':selected', this.$el).index());
-                // figure this one out
+                var self = this;
+                if(self.selectedModel) {
+                    $.when(WillContestWarehouse.removeWillContest(self.selectedModel)).then(
+                        function() {
+                            RealmApplication.vent.trigger('willContestListWillContestDeleted', selectedModel);
+                            // self.selectedModel = null;
+                            // $.when(WillContestWarehouse.getAllWillContests()).then(
+                            //     function(willContestCollection) {
+                            //         self.contestCollection = willContestCollection;
+                            //         self.render();
+                            //      }
+                            // )
+                        }
+                    )
+                } else {
+                    ViewUtilities.showModalView('Error', 'Must select a contest to delete');
+                }
             },
             willContestSelected : function(model) {
                 this.selectedModel = model;
