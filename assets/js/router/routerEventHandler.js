@@ -132,7 +132,7 @@ define(['realmApplication', 'router/router', 'router/routerController', 'utility
         });
         RealmApplication.vent.bind('willContestListWillContestDeleted', function (model) {
             Router.navigate('willContestList');
-            RouterController.willContest(model);
+            RouterController.willContestList();
         });
 
     });

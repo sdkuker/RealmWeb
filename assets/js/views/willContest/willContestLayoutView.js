@@ -35,17 +35,17 @@ define(['marionette',
             onRender: function () {
                 var self = this;
                 var contestantsView = new WillContestContestantsView({
-                    model: this.model,
+                    model: self.model,
                     allWillContenstants: self.allWillContenstants
                 });
                 var roundView = new WillContestRoundsView({
-                    model: this.model,
-                    numberOfWillContestRounds: this.willContestRounds.length,
-                    roundToShow : this.roundToShow
+                    model: self.model,
+                    numberOfWillContestRounds: self.model.id ? self.willContestRounds.length : 0,
+                    roundToShow : self.model.id ? self.roundToShow : null,
                 });
-                this.listenTo(roundView, 'willContestRoundsPreviousButton:clicked', this.displayPreviousRound);
-                this.listenTo(roundView, 'willContestRoundsNextButton:clicked', this.displayNextRound);
-                this.listenTo(roundView, 'willContestRoundsCreateNextRoundButton:clicked', this.createAndDisplayNextRound);
+                this.listenTo(roundView, 'willContestRoundsPreviousButton:clicked', self.displayPreviousRound);
+                this.listenTo(roundView, 'willContestRoundsNextButton:clicked', self.displayNextRound);
+                this.listenTo(roundView, 'willContestRoundsCreateNextRoundButton:clicked', self.createAndDisplayNextRound);
                 this.showChildView('contestantsRegion', contestantsView);
                 this.showChildView('roundsRegion', roundView);
             },
