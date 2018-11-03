@@ -37,12 +37,12 @@ define(['marionette',
             },
             descriptionModified : function(event) {
                 var self = this;
-                var cellValue = encodeURI(this.el.cells[0].innerText);
+                var cellValue = encodeURI(this.el.cells[0].textContent);
                 self.persistAttributeChange('description',cellValue);
             },
             minimumRollValueModified : function(event) {
                 var self = this;
-                var cellValue = encodeURI(this.el.cells[1].innerText);
+                var cellValue = encodeURI(this.el.cells[1].textContent);
                 if (! self.isNormalInteger(cellValue)) {
                     ViewUtilities.showModalView('Error', 'Roll values must be integers.');
                 } else {
@@ -51,7 +51,7 @@ define(['marionette',
             },
             maximumRollValueModified : function(event) {
                 var self = this;
-                var cellValue = encodeURI(this.el.cells[2].innerText);
+                var cellValue = encodeURI(this.el.cells[2].textContent);
                 if (! self.isNormalInteger(cellValue)) {
                     ViewUtilities.showModalView('Error', 'Roll values must be integers.');
                 } else {
@@ -60,7 +60,7 @@ define(['marionette',
             },
             permanentBonusModified : function(event) {
                 var self = this;
-                var cellValue = encodeURI(this.el.cells[3].innerText);
+                var cellValue = encodeURI(this.el.cells[3].textContent);
                 if (! self.isNormalInteger(cellValue)) {
                     ViewUtilities.showModalView('Error', 'Roll values must be integers.');
                 } else {
@@ -69,7 +69,7 @@ define(['marionette',
             },
             temporaryBonusModified : function(event) {
                 var self = this;
-                var cellValue = encodeURI(this.el.cells[4].innerText);
+                var cellValue = encodeURI(this.el.cells[4].textContent);
                 if (! self.isNormalInteger(cellValue)) {
                     ViewUtilities.showModalView('Error', 'Roll values must be integers.');
                 } else {
@@ -78,7 +78,7 @@ define(['marionette',
             },
             durationOfTemporaryBonusModified : function(event) {
                 var self = this;
-                var cellValue = encodeURI(this.el.cells[5].innerText);
+                var cellValue = encodeURI(this.el.cells[5].textContent);
                 if (! self.isNormalInteger(cellValue)) {
                     ViewUtilities.showModalView('Error', 'Roll values must be integers.');
                 } else {

@@ -53,31 +53,36 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
             willContestList: function () {
                 require(['views/willContest/willContestListView',
                         'views/willContest/willContestListLayoutView','views/willContest/willContestListButtonView',
-                        'services/willContestWarehouse', 'services/characterWarehouse'],
+                        'utility/viewUtilities',
+                        'services/willContestWarehouse', 'services/characterWarehouse', 'services/playerWarehouse'],
                     function (WillContestListView, WillContestListLayoutView,
-                              WillContestListButtonView, WillContestWarehouse, CharacterWarehouse) {
-                        var willContestListLayoutView = new WillContestListLayoutView();
-                        RealmApplication.regions.mainRegion.show(willContestListLayoutView);
-                        $.when(CharacterWarehouse.getAllCharacters()). then (
-                            function(myCharacterList) {
-                                // need to prepopulate the character list for contests.  Now do the contest stuff.
-                                $.when(WillContestWarehouse.getAllWillContests()).then(
-                                    function(myWillContestCollection ) {
-                                        if (myWillContestCollection && myWillContestCollection.length > 0) {
-                                            var willContestListView = new WillContestListView({collection: myWillContestCollection});
-                                            willContestListLayoutView.getRegion('willContestListRegion').show(willContestListView);
+                              WillContestListButtonView, ViewUtilities, WillContestWarehouse, CharacterWarehouse,
+                              PlayerWarehouse) {
+                        if (PlayerWarehouse.getPlayerLoggedIn().get('administrator')) {
+                            var willContestListLayoutView = new WillContestListLayoutView();
+                            RealmApplication.regions.mainRegion.show(willContestListLayoutView);
+                            $.when(CharacterWarehouse.getAllCharacters()). then (
+                                function(myCharacterList) {
+                                    // need to prepopulate the character list for contests.  Now do the contest stuff.
+                                    $.when(WillContestWarehouse.getAllWillContests()).then(
+                                        function(myWillContestCollection ) {
+                                            if (myWillContestCollection && myWillContestCollection.length > 0) {
+                                                var willContestListView = new WillContestListView({collection: myWillContestCollection});
+                                                willContestListLayoutView.getRegion('willContestListRegion').show(willContestListView);
+                                            }
+                                            var willContestListButtonView = new WillContestListButtonView();
+                                            willContestListLayoutView.getRegion('willContestListButtonsRegion').show(willContestListButtonView);
+                                            ViewUtilities.currentNavSelection = 'willContestList';
                                         }
-                                        var willContestListButtonView = new WillContestListButtonView();
-                                        willContestListLayoutView.getRegion('willContestListButtonsRegion').show(willContestListButtonView);
-                                        ViewUtilities.currentNavSelection = 'willContestList';
-                                    }
-                                ),
-                                    function() {
-                                        console.log('some kind of error getting will contests');
-                                    }
-                            }
-                        )
-
+                                    ),
+                                        function() {
+                                            console.log('some kind of error getting will contests');
+                                        }
+                                }
+                            )
+                        } else {
+                            ViewUtilities.showModalView('Error', 'Must be an administrator to view will contests');
+                        }
                     });
             },
             willContest: function(willContestModel) {
