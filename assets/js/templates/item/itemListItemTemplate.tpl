@@ -1,3 +1,3 @@
 <td><%= name %></td>
-<td><%= will %></td>
-<td><%= willModifier %></td>
+<td><%= theWill %></td>
+<td><%= theWillModifier %></td>

@@ -1,8 +1,8 @@
 define(['marionette',
         'backbone',
         'realmApplication',
-        'tpl!templates/item/itemListButtonTemplate.tpl'],
-    function (Marionette, Backbone, RealmApplication, ItemListButtonTemplate) {
+        'tpl!templates/item/itemListButtonTemplate.tpl', 'services/playerWarehouse'],
+    function (Marionette, Backbone, RealmApplication, ItemListButtonTemplate, PlayerWarehouse) {
 
         var ItemListButtonView = Marionette.ItemView.extend({
             template: ItemListButtonTemplate,
@@ -20,13 +20,20 @@ define(['marionette',
             },
             onRender : function() {
                 var self = this;
-                if (self.itemIsSelected) {
-                    $('#changeButton', this.$el).prop('disabled', false);
-                    $('#deleteButton', this.$el).prop('disabled', false);
+                if (PlayerWarehouse.getPlayerLoggedIn().get('administrator')) {
+                    if (self.itemIsSelected) {
+                        $('#changeButton', this.$el).prop('disabled', false);
+                        $('#deleteButton', this.$el).prop('disabled', false);
+                    } else {
+                        $('#changeButton', this.$el).prop('disabled', true);
+                        $('#deleteButton', this.$el).prop('disabled', true);
+                    }
                 } else {
+                    $('#addButton', this.$el).prop('disabled', true);
                     $('#changeButton', this.$el).prop('disabled', true);
                     $('#deleteButton', this.$el).prop('disabled', true);
                 }
+
             },
             addButtonClicked : function() {
                 RealmApplication.vent.trigger('itemListAddButton:clicked');
