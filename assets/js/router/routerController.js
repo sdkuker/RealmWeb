@@ -173,6 +173,17 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                     RealmApplication.regions.mainRegion.show(playerView);
                 });
             },
+            resistanceCalculator: function () {
+                require(['views/resistanceCalculator/resistanceCalculatorLayoutView',
+                    'views/resistanceCalculator/resistanceCalculatorView'],
+                    function (ResistanceCalculatorLayoutView, ResistanceCalculatorView) {
+                    var calculatorView = new ResistanceCalculatorView();
+                    var layoutView = new ResistanceCalculatorLayoutView();
+                    RealmApplication.regions.mainRegion.show(layoutView);
+                    layoutView.getRegion('resistanceCalculatorRegion').show(calculatorView);
+                    ViewUtilities.currentNavSelection = 'resistanceCalculator';
+                });
+            },
             criticalHits: function (combatEncounterID, characterID) {
                 require(['views/criticalHit/criticalHitLayoutView', 'views/criticalHit/criticalHitFilterView',
                          'services/criticalHitWarehouse', 'collections/criticalHit/criticalHitCollection',

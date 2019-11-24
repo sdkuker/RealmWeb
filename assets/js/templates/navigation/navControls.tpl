@@ -18,7 +18,7 @@
                 <li id='players'><a href="#players" >Players</a></li>
                 <li id='characterList'><a href="#characterList" >Character List</a></li>
                 <li id='combatEncounterList'><a href="#combatEncounterList" >Combat</a></li>
-                <li id='resistanceTable'><a href="#resistanceTable" >Resistance Table</a></li>
+                <li id='resistanceCalculator'><a href="#resistanceCalculator" >Resistance Calculator</a></li>
                 <li id='itemList'><a href="#itemList" >Item List</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Will Contests
