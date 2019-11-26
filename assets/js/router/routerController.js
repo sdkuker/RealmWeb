@@ -175,12 +175,18 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
             },
             resistanceCalculator: function () {
                 require(['views/resistanceCalculator/resistanceCalculatorLayoutView',
-                    'views/resistanceCalculator/resistanceCalculatorView'],
-                    function (ResistanceCalculatorLayoutView, ResistanceCalculatorView) {
+                        'views/resistanceCalculator/resistanceCalculatorView',
+                        'views/resistanceCalculator/resistanceCalculatorResultsListView',
+                        'collections/resistanceCalculator/resistanceCalculatorResultCollection'],
+                    function (ResistanceCalculatorLayoutView, ResistanceCalculatorView, ResistanceCalculatorResultsListView,
+                              ResistanceCalculatorResultCollection) {
                     var calculatorView = new ResistanceCalculatorView();
                     var layoutView = new ResistanceCalculatorLayoutView();
                     RealmApplication.regions.mainRegion.show(layoutView);
                     layoutView.getRegion('resistanceCalculatorRegion').show(calculatorView);
+                    var resultsCollection = new ResistanceCalculatorResultCollection();
+                    var listView = new ResistanceCalculatorResultsListView({collection: resultsCollection});
+                    layoutView.getRegion('resistanceResultsRegion').show(listView);
                     ViewUtilities.currentNavSelection = 'resistanceCalculator';
                 });
             },
