@@ -3,8 +3,9 @@ define(['jquery',
         'models/combat/characterCombatRoundStatisticModel',
         'collections/combat/characterCombatRoundStatisticCollection',
         'services/characterWarehouse',
-        'collections/character/characterCollection'],
-    function ($, Logger, StatisticModel, StatisticCollection, CharacterWarehouse, CharacterCollection) {
+        'collections/character/characterCollection',
+        'domain/combat/combatRoundAttributeDeterminer'],
+    function ($, Logger, StatisticModel, StatisticCollection, CharacterWarehouse, CharacterCollection, CombatRoundAttributeDeterminer) {
 
         CombatRoundStatisticFactory = function() {
             // all variables are private
@@ -94,9 +95,9 @@ define(['jquery',
                 characterStatisticsObject.playerID = aCharacter.get('playerID');
                 characterStatisticsObject.characterID = aCharacter.get('id');
                 characterStatisticsObject.characterName = aCharacter.get('name');
-                characterStatisticsObject.initiative = aCharacter.get('initiative');
-                characterStatisticsObject.alertness = aCharacter.get('alertnessSkill');
-                characterStatisticsObject.observation = aCharacter.get('observationSkill');
+                characterStatisticsObject.initiative = CombatRoundAttributeDeterminer.determineRoundInitiative(aCharacter);
+                characterStatisticsObject.alertness = CombatRoundAttributeDeterminer.determineRoundAlertness(aCharacter);
+                characterStatisticsObject.observation = CombatRoundAttributeDeterminer.determineRoundObservation(aCharacter);
                 characterStatisticsObject.totalHits = aCharacter.totalHitPoints();
                 characterStatisticsObject.bleeding = 0;
                 characterStatisticsObject.roundsStillStunned = 0;

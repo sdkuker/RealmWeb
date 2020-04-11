@@ -35,16 +35,16 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 theReturn.playerID = aCharacterModel.get('playerID');
                 theReturn.characterID = aCharacterModel.get('id');
                 theReturn.characterName = this.get('characterName');
-                theReturn.initiative = CombatRoundAttributeDeterminer.determineBaseCombatInitiative(aCharacterModel);
+                theReturn.initiative =  CombatRoundAttributeDeterminer.determineRoundInitiative(aCharacterModel);
                 theReturn.characterTotalHitPointsAtStartOfRound = aCharacterModel.totalHitPoints();
                 theReturn.totalHits = this.get('totalHits') + changesToCharacterTotalHits;
                 theReturn.hitsAtStartOfRound = this.getHitsAtEndOfRound(aCharacterModel) + changesToCharacterTotalHits;
                 theReturn.bleeding = this.get('bleeding');
-                theReturn.roundsStillStunned = this.get('roundsStillStunned');
+                theReturn.roundsStillStunned = CombatRoundAttributeDeterminer.determineNumberOfRoundsStillStunned(this.get('roundsStillStunned'));
                 theReturn.negativeModifier = this.get('negativeModifier');
                 theReturn.regeneration = this.get('regeneration');
-                theReturn.alertness = this.get('alertness');
-                theReturn.observation = this.get('observation');
+                theReturn.alertness = CombatRoundAttributeDeterminer.determineRoundAlertness(aCharacterModel);
+                theReturn.observation = CombatRoundAttributeDeterminer.determineRoundObservation(aCharacterModel);
 
                 //TODO still need to do something about the critial hits sufferred
 

@@ -7,7 +7,7 @@ define(['marionette',
     'services/movementManeuverWarehouse'
 ], function (Marionette, RealmApplication, MovementManeuverMaintenanceModel, ViewUtilities, MovementManeuverMaintenanceTemplate, Logger,
              MovementManeuverWarehouse) {
-    var PlayerView = Marionette.ItemView.extend({
+    var MovementManeuverMaintenanceView = Marionette.ItemView.extend({
         template: MovementManeuverMaintenanceTemplate,
         model: MovementManeuverMaintenanceModel,
         events: {
@@ -119,6 +119,6 @@ define(['marionette',
         }
     });
 
-    return PlayerView;
+    return MovementManeuverMaintenanceView;
 
 });

@@ -116,6 +116,11 @@ define(['realmApplication', 'router/router', 'router/routerController', 'utility
             RouterController.viewMovementManeuverMaintenance(model);
         });
 
+        RealmApplication.vent.bind('movementManeuverMaintenanceListChangeMovementManeuverMaintenance', function (model) {
+            Router.navigate('viewMovementManeuverMaintenance');
+            RouterController.viewMovementManeuverMaintenance(model);
+        });
+
         RealmApplication.vent.bind('viewMovementManeuverMaintenanceList', function () {
             Router.navigate('movementManeuverMaintenance');
             RouterController.movementManeuverMaintenance();

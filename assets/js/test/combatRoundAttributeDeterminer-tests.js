@@ -4,7 +4,7 @@ define(['jquery', 'domain/combat/combatRoundAttributeDeterminer', 'models/charac
     var assert = chai.assert;
     var expect = chai.expect;
 
-    /* Tests */
+    /*  My Tests */
 
     describe('AttributeDeterminer', function() {
 

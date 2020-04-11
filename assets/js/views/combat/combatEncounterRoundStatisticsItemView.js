@@ -65,7 +65,7 @@ define(['marionette',
                             break;
                     }
                     self.model.set(modelAttributeName, targetValue);
-                    self.render();
+                   // self.render();
 
                 }, 800);
             },
