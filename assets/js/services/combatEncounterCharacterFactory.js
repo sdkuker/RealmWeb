@@ -61,8 +61,8 @@ define(['jquery',
             getAllEncounterCharacters = function () {
                 var deferred = $.Deferred();
                 $.when(getAllEncounterCharacterCollection()).then(
-                    function (myEncounterCharacterCollection) {
-                        deferred.resolve(myEncounterCharacterCollection);
+                    function (myAllEncounterCharacterCollection) {
+                        deferred.resolve(myAllEncounterCharacterCollection);
                     }
                 )
                 return deferred.promise();
@@ -83,7 +83,7 @@ define(['jquery',
 
             getEncounterCharacterCollection = function (encounterModel) {
                 var deferred = $.Deferred();
-                var encounterCharactersCollection = new CombatEncounterCharacterCollection(encounterModel.get('id'));
+                var encounterCharactersCollection = new CombatEncounterCharacterCollection(null, {encounterID : encounterModel.get('id')});
                 encounterCharactersCollection.on('sync', function (collection) {
                     deferred.resolve(collection);
                 })
@@ -112,14 +112,14 @@ define(['jquery',
                 var deferred = $.Deferred();
                 $.when(getAllEncounterCharacters()).then(
                     function (myAllEncounterCharactersCollection) {
-                        var newModel = new CombatEncounterCharacterModel();
-                        newModel.set('encounterID', encounterModel.get('id'));
-                        newModel.set('characterID', character.get('id'));
-                        newModel.set('name', character.get('name'));
+                        var newDataObject = {};
+                        newDataObject.encounterID = encounterModel.get('id');
+                        newDataObject.characterID = character.get('id');
+                        newDataObject.characterName = character.get('name');
                         myAllEncounterCharactersCollection.on('add', function (addedModel) {
                             deferred.resolve(addedModel);
                         });
-                        myAllRoundsCollection.add(newModel);
+                        myAllEncounterCharactersCollection.add(newDataObject);
                     }
                 )
                 return deferred.promise();

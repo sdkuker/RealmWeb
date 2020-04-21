@@ -1,5 +1,5 @@
 define(['jquery', 'realmApplication', 'utility/viewUtilities'
-    ],
+],
     function ($, RealmApplication, ViewUtilities) {
 
         RouterController = {
@@ -11,30 +11,30 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                     ViewUtilities.showLoginModalView();
                 });
             },
-            displayLoggedInUser: function(playerModel) {
+            displayLoggedInUser: function (playerModel) {
                 require(['views/authentication/authenticationSignedInView', 'services/playerWarehouse'],
                     function (AuthenticationSignedInView, PlayerWarehouse) {
-                        $.when(PlayerWarehouse.setPlayerLoggedIn(playerModel)).then (
-                            function(playerLoggedIn) {
-                                var view = new AuthenticationSignedInView({model: playerLoggedIn});
+                        $.when(PlayerWarehouse.setPlayerLoggedIn(playerModel)).then(
+                            function (playerLoggedIn) {
+                                var view = new AuthenticationSignedInView({ model: playerLoggedIn });
                                 RealmApplication.regions.authRegion.show(view);
                             }
                         )
-                });
+                    });
             },
-            hideSigninRegionAndDisplayLoginModal: function() {
+            hideSigninRegionAndDisplayLoginModal: function () {
                 RealmApplication.regions.authRegion.reset();
                 this.login();
             },
-            hideSigninRegionAndDisplaySignedOutView: function() {
+            hideSigninRegionAndDisplaySignedOutView: function () {
                 require(['views/authentication/authenticationSignedOutBackgroundView',
                     'services/playerWarehouse'],
                     function (AuthenticationSignedOutBackgroundView, PlayerWarehouse) {
-                    RealmApplication.regions.authRegion.reset();
-                    ViewUtilities.disableAllNavSelections();
-                    var view = new AuthenticationSignedOutBackgroundView({model: PlayerWarehouse.getPlayerLoggedIn()});
-                    RealmApplication.regions.mainRegion.show(view);
-                });
+                        RealmApplication.regions.authRegion.reset();
+                        ViewUtilities.disableAllNavSelections();
+                        var view = new AuthenticationSignedOutBackgroundView({ model: PlayerWarehouse.getPlayerLoggedIn() });
+                        RealmApplication.regions.mainRegion.show(view);
+                    });
             },
             workInProgress: function () {
                 require(['views/workInProgressView'], function (WorkInProgressView) {
@@ -43,31 +43,31 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                 });
             },
             dieRoller: function () {
-                require(['models/dieRoller/dieModel','views/dieRoller/dieRollerView'], function (DieModel, DieRollerView) {
+                require(['models/dieRoller/dieModel', 'views/dieRoller/dieRollerView'], function (DieModel, DieRollerView) {
                     var dieModel = new DieModel();
-                    var view = new DieRollerView({model: dieModel});
+                    var view = new DieRollerView({ model: dieModel });
                     RealmApplication.regions.mainRegion.show(view);
                     ViewUtilities.currentNavSelection = 'dieRoller';
                 });
             },
             willContestList: function () {
                 require(['views/willContest/willContestListView',
-                        'views/willContest/willContestListLayoutView','views/willContest/willContestListButtonView',
-                        'utility/viewUtilities',
-                        'services/willContestWarehouse', 'services/characterWarehouse', 'services/playerWarehouse'],
+                    'views/willContest/willContestListLayoutView', 'views/willContest/willContestListButtonView',
+                    'utility/viewUtilities',
+                    'services/willContestWarehouse', 'services/characterWarehouse', 'services/playerWarehouse'],
                     function (WillContestListView, WillContestListLayoutView,
-                              WillContestListButtonView, ViewUtilities, WillContestWarehouse, CharacterWarehouse,
-                              PlayerWarehouse) {
+                        WillContestListButtonView, ViewUtilities, WillContestWarehouse, CharacterWarehouse,
+                        PlayerWarehouse) {
                         if (PlayerWarehouse.getPlayerLoggedIn().get('administrator')) {
                             var willContestListLayoutView = new WillContestListLayoutView();
                             RealmApplication.regions.mainRegion.show(willContestListLayoutView);
-                            $.when(CharacterWarehouse.getAllCharacters()). then (
-                                function(myCharacterList) {
+                            $.when(CharacterWarehouse.getAllCharacters()).then(
+                                function (myCharacterList) {
                                     // need to prepopulate the character list for contests.  Now do the contest stuff.
                                     $.when(WillContestWarehouse.getAllWillContests()).then(
-                                        function(myWillContestCollection ) {
+                                        function (myWillContestCollection) {
                                             if (myWillContestCollection && myWillContestCollection.length > 0) {
-                                                var willContestListView = new WillContestListView({collection: myWillContestCollection});
+                                                var willContestListView = new WillContestListView({ collection: myWillContestCollection });
                                                 willContestListLayoutView.getRegion('willContestListRegion').show(willContestListView);
                                             }
                                             var willContestListButtonView = new WillContestListButtonView();
@@ -75,7 +75,7 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                                             ViewUtilities.currentNavSelection = 'willContestList';
                                         }
                                     ),
-                                        function() {
+                                        function () {
                                             console.log('some kind of error getting will contests');
                                         }
                                 }
@@ -85,12 +85,12 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                         }
                     });
             },
-            willContest: function(willContestModel) {
+            willContest: function (willContestModel) {
                 require(['services/willContestWarehouse', 'views/willContest/willContestLayoutView'],
                     function (WillContestWarehouse, WillContestLayoutView) {
-                        $.when(WillContestWarehouse.getAllWillContestants(), WillContestWarehouse.getRoundsForWillContest(willContestModel.id)).then (
-                            function(allWillContestantsArray, willContestRounds) {
-                                var willContestLayoutView = new WillContestLayoutView({model: willContestModel, allWillContenstants: allWillContestantsArray, willContestRounds: willContestRounds});
+                        $.when(WillContestWarehouse.getAllWillContestants(), WillContestWarehouse.getRoundsForWillContest(willContestModel.id)).then(
+                            function (allWillContestantsArray, willContestRounds) {
+                                var willContestLayoutView = new WillContestLayoutView({ model: willContestModel, allWillContenstants: allWillContestantsArray, willContestRounds: willContestRounds });
                                 RealmApplication.regions.mainRegion.show(willContestLayoutView);
                             }
                         )
@@ -98,25 +98,25 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
             },
             combatEncounterList: function () {
                 require(['views/combat/combatEncounterListView',
-                        'views/combat/combatEncounterListLayoutView','views/combat/combatEncounterListButtonView',
-                        'services/combatEncounterWarehouse', 'services/characterWarehouse'],
+                    'views/combat/combatEncounterListLayoutView', 'views/combat/combatEncounterListButtonView',
+                    'services/combatEncounterWarehouse', 'services/characterWarehouse'],
                     function (CombatEncounterListView, CombatEncounterListLayoutView,
-                              CombatEncounterListButtonView, CombatEncounterWarehouse, CharacterWarehouse) {
+                        CombatEncounterListButtonView, CombatEncounterWarehouse, CharacterWarehouse) {
                         var combatEncounterListLayoutView = new CombatEncounterListLayoutView();
                         RealmApplication.regions.mainRegion.show(combatEncounterListLayoutView);
-                        $.when(CharacterWarehouse.getAllCharacters()). then (
-                            function(myCharacterList) {
+                        $.when(CharacterWarehouse.getAllCharacters()).then(
+                            function (myCharacterList) {
                                 // need to prepopulate the character list for combat.  Now do the combat stuff.
                                 $.when(CombatEncounterWarehouse.getAllCombatEncounters()).then(
-                                    function(myCombatEncounterCollection) {
-                                        var combatEncounterListView = new CombatEncounterListView({collection: myCombatEncounterCollection});
-                                        var combatEncounterListButtonView = new CombatEncounterListButtonView({listView: combatEncounterListView});
+                                    function (myCombatEncounterCollection) {
+                                        var combatEncounterListView = new CombatEncounterListView({ collection: myCombatEncounterCollection });
+                                        var combatEncounterListButtonView = new CombatEncounterListButtonView({ listView: combatEncounterListView });
                                         combatEncounterListLayoutView.getRegion('combatEncountersTableRegion').show(combatEncounterListView);
                                         combatEncounterListLayoutView.getRegion('buttonsRegion').show(combatEncounterListButtonView);
                                         ViewUtilities.currentNavSelection = 'combatEncounterList';
                                     }
                                 ),
-                                    function() {
+                                    function () {
                                         console.log('some kind of error getting combat encounters');
                                     }
                             }
@@ -124,89 +124,94 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
 
                     });
             },
-            addChangeCombatEncounter: function(combatEncounterModel) {
-                require(['views/combat/addChangeCombatEncounterView'],
-                    function (AddChangeCombatEncounterView) {
-                        var addChangeCombatEncounterView = new AddChangeCombatEncounterView({model: combatEncounterModel});
-                        RealmApplication.regions.mainRegion.show(addChangeCombatEncounterView);
-                });
+            addChangeCombatEncounter: function (combatEncounterModel) {
+                require(['views/combat/addChangeCombatEncounterLayoutView', 'services/combatEncounterCharacterWarehouse'],
+                    function (AddChangeCombatEncounterLayoutView, CombatEncounterCharacterWarehouse) {
+                        $.when(CombatEncounterCharacterWarehouse.getCombatEncounterCharactersForEncounter(combatEncounterModel)).then(
+                            function (combatEncounterCharacterCollection) {
+                                var addChangeCombatEncounterLayoutView = new AddChangeCombatEncounterLayoutView(
+                                    { model: combatEncounterModel, combatEncounterCharacterCollection: combatEncounterCharacterCollection });
+                                RealmApplication.regions.mainRegion.show(addChangeCombatEncounterLayoutView);
+                            }
+                        )
+                    });
             },
-            openCombatEncounter: function(combatEncounterModel) {
+            openCombatEncounter: function (combatEncounterModel) {
                 require(['views/combat/combatEncounterLayoutView'],
                     function (CombatEncounterLayoutView) {
-                        var combatEncounterLayoutView = new CombatEncounterLayoutView({encounter : combatEncounterModel});
+                        var combatEncounterLayoutView = new CombatEncounterLayoutView({ encounter: combatEncounterModel });
                         $.when(combatEncounterLayoutView.prepareToShowRound('open')).then(
-                            function() {
+                            function () {
                                 RealmApplication.regions.mainRegion.show(combatEncounterLayoutView);
-                             }
+                            }
                         )
-                });
+                    });
             },
             playerList: function () {
                 require(['views/player/playerListView', 'views/player/playerView',
-                    'views/player/playerListLayoutView','views/player/playerListButtonView',
+                    'views/player/playerListLayoutView', 'views/player/playerListButtonView',
                     'services/playerWarehouse'],
                     function (PlayerListView, PlayerView, PlayerListLayoutView,
-                              PlayerListButtonView, PlayerWarehouse) {
-                    var playerListLayoutView = new PlayerListLayoutView();
-                    RealmApplication.regions.mainRegion.show(playerListLayoutView);
-                    $.when(PlayerWarehouse.getAllPlayers()).then(
-                        function(myPlayerCollection) {
-                            var playerListView = new PlayerListView({collection: myPlayerCollection});
-                            var playerListButtonView = new PlayerListButtonView();
-                            playerListLayoutView.getRegion('playerTableRegion').show(playerListView);
-                            // TODO: you can delete all the button here - since you moved to using authenticate users
-                            // as players.  You did this in mid-April 2017.  Dump the buttons region and views
-                            // in a bit as soon as you're sure you don't want them.
-                           // playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
-                            ViewUtilities.currentNavSelection = 'players';
-                        }
-                    ),
-                        function() {
-                            console.log('some kind of error getting players');
-                        }
-                });
+                        PlayerListButtonView, PlayerWarehouse) {
+                        var playerListLayoutView = new PlayerListLayoutView();
+                        RealmApplication.regions.mainRegion.show(playerListLayoutView);
+                        $.when(PlayerWarehouse.getAllPlayers()).then(
+                            function (myPlayerCollection) {
+                                var playerListView = new PlayerListView({ collection: myPlayerCollection });
+                                var playerListButtonView = new PlayerListButtonView();
+                                playerListLayoutView.getRegion('playerTableRegion').show(playerListView);
+                                // TODO: you can delete all the button here - since you moved to using authenticate users
+                                // as players.  You did this in mid-April 2017.  Dump the buttons region and views
+                                // in a bit as soon as you're sure you don't want them.
+                                // playerListLayoutView.getRegion('buttonsRegion').show(playerListButtonView);
+                                ViewUtilities.currentNavSelection = 'players';
+                            }
+                        ),
+                            function () {
+                                console.log('some kind of error getting players');
+                            }
+                    });
             },
-            viewPlayer: function(playerModel) {
+            viewPlayer: function (playerModel) {
                 require(['views/player/playerView'], function (PlayerView) {
-                    var playerView = new PlayerView({model : playerModel});
+                    var playerView = new PlayerView({ model: playerModel });
                     RealmApplication.regions.mainRegion.show(playerView);
                 });
             },
             resistanceCalculator: function () {
                 require(['views/resistanceCalculator/resistanceCalculatorLayoutView',
-                        'views/resistanceCalculator/resistanceCalculatorView',
-                        'views/resistanceCalculator/resistanceCalculatorResultsListView',
-                        'collections/resistanceCalculator/resistanceCalculatorResultCollection'],
+                    'views/resistanceCalculator/resistanceCalculatorView',
+                    'views/resistanceCalculator/resistanceCalculatorResultsListView',
+                    'collections/resistanceCalculator/resistanceCalculatorResultCollection'],
                     function (ResistanceCalculatorLayoutView, ResistanceCalculatorView, ResistanceCalculatorResultsListView,
-                              ResistanceCalculatorResultCollection) {
-                    var calculatorView = new ResistanceCalculatorView();
-                    var layoutView = new ResistanceCalculatorLayoutView();
-                    RealmApplication.regions.mainRegion.show(layoutView);
-                    layoutView.getRegion('resistanceCalculatorRegion').show(calculatorView);
-                    var resultsCollection = new ResistanceCalculatorResultCollection();
-                    var listView = new ResistanceCalculatorResultsListView({collection: resultsCollection});
-                    layoutView.getRegion('resistanceResultsRegion').show(listView);
-                    ViewUtilities.currentNavSelection = 'resistanceCalculator';
-                });
+                        ResistanceCalculatorResultCollection) {
+                        var calculatorView = new ResistanceCalculatorView();
+                        var layoutView = new ResistanceCalculatorLayoutView();
+                        RealmApplication.regions.mainRegion.show(layoutView);
+                        layoutView.getRegion('resistanceCalculatorRegion').show(calculatorView);
+                        var resultsCollection = new ResistanceCalculatorResultCollection();
+                        var listView = new ResistanceCalculatorResultsListView({ collection: resultsCollection });
+                        layoutView.getRegion('resistanceResultsRegion').show(listView);
+                        ViewUtilities.currentNavSelection = 'resistanceCalculator';
+                    });
             },
             criticalHits: function (combatEncounterID, characterID) {
                 require(['views/criticalHit/criticalHitLayoutView', 'views/criticalHit/criticalHitFilterView',
-                         'services/criticalHitWarehouse', 'collections/criticalHit/criticalHitCollection',
-                        'collections/criticalHit/criticalHitDisplayCollection', 'collections/criticalHit/criticalHitTypeCollection',
-                        'views/criticalHit/criticalHitListView', 'services/serviceConstants', 'services/combatEncounterWarehouse'],
+                    'services/criticalHitWarehouse', 'collections/criticalHit/criticalHitCollection',
+                    'collections/criticalHit/criticalHitDisplayCollection', 'collections/criticalHit/criticalHitTypeCollection',
+                    'views/criticalHit/criticalHitListView', 'services/serviceConstants', 'services/combatEncounterWarehouse'],
                     function (CriticalHitLayoutView, CriticalHitFilterView, CriticalHitWarehouse, CriticalHitCollection,
-                              CriticalHitDisplayCollection, CriticalHitTypeCollection, CriticalHitListView, ServiceConstants,
-                              CombatEncounterWarehouse) {
+                        CriticalHitDisplayCollection, CriticalHitTypeCollection, CriticalHitListView, ServiceConstants,
+                        CombatEncounterWarehouse) {
                         var criticalHitLayoutView = new CriticalHitLayoutView();
                         RealmApplication.regions.mainRegion.show(criticalHitLayoutView);
                         $.when(CriticalHitWarehouse.getAllTypes()).then(
-                            function(criticalHitTypeCollection) {
-                                $.when(CriticalHitWarehouse.getCriticalHitsForType(criticalHitTypeCollection.at(0).get('id'))).then (
-                                    function(criticalHitCollection) {
+                            function (criticalHitTypeCollection) {
+                                $.when(CriticalHitWarehouse.getCriticalHitsForType(criticalHitTypeCollection.at(0).get('id'))).then(
+                                    function (criticalHitCollection) {
                                         $.when(CombatEncounterWarehouse.getAllCombatEncounters()).then(
-                                            function(combatEncounterCollection) {
-                                                var viewParms = {criticalHitTypes : criticalHitTypeCollection, criticalHits: criticalHitCollection, combatEncounters: combatEncounterCollection};
+                                            function (combatEncounterCollection) {
+                                                var viewParms = { criticalHitTypes: criticalHitTypeCollection, criticalHits: criticalHitCollection, combatEncounters: combatEncounterCollection };
                                                 if (combatEncounterID) {
                                                     viewParms.combatEncounterID = combatEncounterID;
                                                 };
@@ -215,43 +220,45 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                                                 };
                                                 var criticalHitFilterView = new CriticalHitFilterView(viewParms);
                                                 var displayedHitsCollection = new CriticalHitDisplayCollection();
-                                                var criticalHitListView = new CriticalHitListView({collection : displayedHitsCollection});
+                                                var criticalHitListView = new CriticalHitListView({ collection: displayedHitsCollection });
                                                 criticalHitLayoutView.getRegion('criticalHitFilterRegion').show(criticalHitFilterView);
                                                 criticalHitLayoutView.getRegion('criticalHitDisplayRegion').show(criticalHitListView);
                                                 RealmApplication.vent.trigger('navigationEvent', 'criticalHits');
                                                 ViewUtilities.currentNavSelection = 'criticalHits';
                                             },
-                                            function(errorString) {
+                                            function (errorString) {
                                                 console.log(errorString);
                                             }
                                         )
                                     },
-                                    function(errorString) {
+                                    function (errorString) {
                                         console.log(errorString);
                                     }
                                 )
                             },
-                            function(errorString) {
+                            function (errorString) {
                                 console.log(errorString);
                             }
                         )
                     });
             },
-            criticalHitMaintenance : function() {
+            criticalHitMaintenance: function () {
                 require(['views/criticalHitsMaintenance/criticalHitMaintenanceLayoutView',
-                         'views/criticalHitsMaintenance/criticalHitMaintenanceTypeView',
-                         'views/criticalHitsMaintenance/criticalHitMaintenanceListView',
-                         'services/criticalHitWarehouse'],
-                    function(CriticalHitMaintenanceLayoutView, CriticalHitMaintenanceTypeView,
-                             CriticalHitMaintenanceListView, CriticalHitWarehouse) {
+                    'views/criticalHitsMaintenance/criticalHitMaintenanceTypeView',
+                    'views/criticalHitsMaintenance/criticalHitMaintenanceListView',
+                    'services/criticalHitWarehouse'],
+                    function (CriticalHitMaintenanceLayoutView, CriticalHitMaintenanceTypeView,
+                        CriticalHitMaintenanceListView, CriticalHitWarehouse) {
                         $.when(CriticalHitWarehouse.getAllTypes()).then(
-                            function(criticalHitTypeCollection) {
+                            function (criticalHitTypeCollection) {
                                 var selectedType = criticalHitTypeCollection.at(0).get('id');
-                                $.when(CriticalHitWarehouse.getCriticalHitsForTypeWithDefaultForAdd(selectedType)).then (
-                                    function(criticalHitsForSelectedTypeCollection) {
-                                        var viewParms = {criticalHitTypes : criticalHitTypeCollection,
-                                                         selectedType : selectedType,
-                                                         criticalHitsForSelectedType : criticalHitsForSelectedTypeCollection};
+                                $.when(CriticalHitWarehouse.getCriticalHitsForTypeWithDefaultForAdd(selectedType)).then(
+                                    function (criticalHitsForSelectedTypeCollection) {
+                                        var viewParms = {
+                                            criticalHitTypes: criticalHitTypeCollection,
+                                            selectedType: selectedType,
+                                            criticalHitsForSelectedType: criticalHitsForSelectedTypeCollection
+                                        };
                                         var layoutView = new CriticalHitMaintenanceLayoutView(viewParms);
                                         RealmApplication.regions.mainRegion.show(layoutView);
                                     }
@@ -263,25 +270,25 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
             },
             characterList: function () {
                 require(['views/character/characterListView', 'views/character/characterView',
-                        'views/character/characterListLayoutView','views/character/characterListButtonView',
-                        'services/characterWarehouse', 'services/playerWarehouse', 'utility/firebaseAuthUIUtilities',
-                        ],
+                    'views/character/characterListLayoutView', 'views/character/characterListButtonView',
+                    'services/characterWarehouse', 'services/playerWarehouse', 'utility/firebaseAuthUIUtilities',
+                ],
                     function (CharacterListView, CharacterView, CharacterListLayoutView,
-                              CharacterListButtonView, CharacterrWarehouse, PlayerWarehouse, AuthUIUtilities) {
+                        CharacterListButtonView, CharacterrWarehouse, PlayerWarehouse, AuthUIUtilities) {
                         if (AuthUIUtilities.isUserLoggedIn()) {
                             var characterListLayoutView = new CharacterListLayoutView();
                             RealmApplication.regions.mainRegion.show(characterListLayoutView);
                             $.when(CharacterrWarehouse.getAllCharacters(), PlayerWarehouse.getAllPlayers()).then(
-                                function(myCharacterCollection, myPlayerCollection) {
+                                function (myCharacterCollection, myPlayerCollection) {
                                     // getting the players so the character list model can get them without waiting
-                                    var characterListView = new CharacterListView({collection: myCharacterCollection});
+                                    var characterListView = new CharacterListView({ collection: myCharacterCollection });
                                     var characterListButtonView = new CharacterListButtonView();
                                     characterListLayoutView.getRegion('characterTableRegion').show(characterListView);
                                     characterListLayoutView.getRegion('buttonsRegion').show(characterListButtonView);
                                     ViewUtilities.currentNavSelection = 'characterList';
                                 }
                             ),
-                                function() {
+                                function () {
                                     console.log('some kind of error getting characters');
                                 }
                         } else {
@@ -292,60 +299,60 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
 
                     });
             },
-            viewCharacter: function(characterModel) {
+            viewCharacter: function (characterModel) {
                 require(['views/character/characterView'], function (CharacterView) {
-                    var characterView = new CharacterView({model : characterModel});
+                    var characterView = new CharacterView({ model: characterModel });
                     RealmApplication.regions.mainRegion.show(characterView);
                 });
             },
             itemList: function () {
                 require(['views/item/itemListView', 'views/item/itemView',
-                        'views/item/itemListLayoutView','views/item/itemListButtonView',
-                        'services/itemWarehouse'],
+                    'views/item/itemListLayoutView', 'views/item/itemListButtonView',
+                    'services/itemWarehouse'],
                     function (ItemListView, ItemView, ItemListLayoutView,
-                              ItemListButtonView, ItemWarehouse) {
+                        ItemListButtonView, ItemWarehouse) {
                         var itemListLayoutView = new ItemListLayoutView();
                         RealmApplication.regions.mainRegion.show(itemListLayoutView);
                         $.when(ItemWarehouse.getAllItems()).then(
-                            function(myItemCollection) {
-                                var itemListView = new ItemListView({collection: myItemCollection});
+                            function (myItemCollection) {
+                                var itemListView = new ItemListView({ collection: myItemCollection });
                                 var itemListButtonView = new ItemListButtonView();
                                 itemListLayoutView.getRegion('itemTableRegion').show(itemListView);
                                 itemListLayoutView.getRegion('buttonsRegion').show(itemListButtonView);
                                 ViewUtilities.currentNavSelection = 'items';
                             }
                         ),
-                            function() {
+                            function () {
                                 console.log('some kind of error getting items');
                             }
                     });
             },
-            viewItem: function(itemModel) {
+            viewItem: function (itemModel) {
                 require(['views/item/itemView'], function (ItemView) {
-                    var itemView = new ItemView({model : itemModel});
+                    var itemView = new ItemView({ model: itemModel });
                     RealmApplication.regions.mainRegion.show(itemView);
                 });
             },
-            willContestConsequenceMaintenance : function() {
+            willContestConsequenceMaintenance: function () {
                 require(['views/willContestConsequenceMaintenance/willContestConsequenceMaintenanceLayoutView',
-                        'services/willContestConsequenceWarehouse'],
-                    function(WillContestConsequenceMaintenanceLayoutView, WillContestConsequenceWarehouse) {
+                    'services/willContestConsequenceWarehouse'],
+                    function (WillContestConsequenceMaintenanceLayoutView, WillContestConsequenceWarehouse) {
                         $.when(WillContestConsequenceWarehouse.getAllWillContestConsequencesWithDefaultForAdd()).then(
-                            function(willContestConsequenceCollection) {
-                                var viewParms = {consequenceCollection : willContestConsequenceCollection};
+                            function (willContestConsequenceCollection) {
+                                var viewParms = { consequenceCollection: willContestConsequenceCollection };
                                 var layoutView = new WillContestConsequenceMaintenanceLayoutView(viewParms);
                                 RealmApplication.regions.mainRegion.show(layoutView);
                             }
                         )
-                })
+                    })
             },
-            movementManeuverMaintenance : function() {
+            movementManeuverMaintenance: function () {
                 require(['views/movementManeuverMaintenance/movementManeuverMaintenanceListLayoutView',
-                        'services/movementManeuverWarehouse'],
-                    function(MovementManeuverMaintenanceListLayoutView, MovementManeuverWarehouse) {
+                    'services/movementManeuverWarehouse'],
+                    function (MovementManeuverMaintenanceListLayoutView, MovementManeuverWarehouse) {
                         $.when(MovementManeuverWarehouse.getAllMovementManeuvers()).then(
-                            function(movementManeuversCollection) {
-                                var viewParms = {movementManeuversCollection : movementManeuversCollection};
+                            function (movementManeuversCollection) {
+                                var viewParms = { movementManeuversCollection: movementManeuversCollection };
                                 var layoutView = new MovementManeuverMaintenanceListLayoutView(viewParms);
                                 RealmApplication.regions.mainRegion.show(layoutView);
                             }
@@ -354,57 +361,57 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
             },
             movementManeuverMaintenance: function () {
                 require(['views/movementManeuverMaintenance/movementManeuverMaintenanceListView',
-                        'views/movementManeuverMaintenance/movementManeuverMaintenanceListLayoutView',
-                        'views/movementManeuverMaintenance/movementManeuverMaintenanceListButtonView',
-                        'services/movementManeuverWarehouse',
-                    ],
+                    'views/movementManeuverMaintenance/movementManeuverMaintenanceListLayoutView',
+                    'views/movementManeuverMaintenance/movementManeuverMaintenanceListButtonView',
+                    'services/movementManeuverWarehouse',
+                ],
                     function (MovementManeuverMaintenanceListView, MovementManeuverMaintenanceListLayoutView,
-                              MovementManeuverMaintenanceListButtonView, MovementManeuverWarehouse) {
+                        MovementManeuverMaintenanceListButtonView, MovementManeuverWarehouse) {
                         var layoutView = new MovementManeuverMaintenanceListLayoutView();
                         RealmApplication.regions.mainRegion.show(layoutView);
                         $.when(MovementManeuverWarehouse.getAllMovementManeuvers()).then(
-                            function(movementManeuversCollection) {
+                            function (movementManeuversCollection) {
                                 var maneuverMaintenanceListView =
-                                    new MovementManeuverMaintenanceListView({collection: movementManeuversCollection});
+                                    new MovementManeuverMaintenanceListView({ collection: movementManeuversCollection });
                                 var maneuversListButtonView = new MovementManeuverMaintenanceListButtonView();
                                 layoutView.getRegion('movementManeuverMaintenanceTableRegion').show(maneuverMaintenanceListView);
                                 layoutView.getRegion('buttonsRegion').show(maneuversListButtonView);
-                               // ViewUtilities.currentNavSelection = 'characterList';
+                                // ViewUtilities.currentNavSelection = 'characterList';
                             }
                         ),
-                            function() {
+                            function () {
                                 console.log('some kind of error getting movement maneuvers');
                             }
 
                     });
             },
-            viewMovementManeuverMaintenance: function(movementManeuverModel) {
+            viewMovementManeuverMaintenance: function (movementManeuverModel) {
                 require(['views/movementManeuverMaintenance/movementManeuverMaintenanceView'], function (MovementManeuverMaintenanceView) {
-                    var view = new MovementManeuverMaintenanceView({model : movementManeuverModel});
+                    var view = new MovementManeuverMaintenanceView({ model: movementManeuverModel });
                     RealmApplication.regions.mainRegion.show(view);
                 });
             },
             movementManeuvers: function () {
                 require(['views/movementManeuver/movementManeuverLayoutView', 'collections/movementManeuver/movementManeuverCollection',
-                        'views/movementManeuver/movementManeuverListView','views/movementManeuver/movementManeuverFilterView',
-                        'services/movementManeuverWarehouse'
-                    ],
+                    'views/movementManeuver/movementManeuverListView', 'views/movementManeuver/movementManeuverFilterView',
+                    'services/movementManeuverWarehouse'
+                ],
                     function (MovementManeuverLayoutView, MovementManeuverCollection, MovementManeuverListView,
-                              MovementManeuverFilterView, MovementManeuverWarehouse) {
+                        MovementManeuverFilterView, MovementManeuverWarehouse) {
 
                         var movementManeuverLayoutView = new MovementManeuverLayoutView();
                         RealmApplication.regions.mainRegion.show(movementManeuverLayoutView);
                         $.when(MovementManeuverWarehouse.getAllMovementManeuvers(), MovementManeuverWarehouse.getAllMovementManeuverDifficulties()).then(
-                            function(myMovementManeuversCollection, myMovementManeuverDifficultiesCollection) {
-                                var viewParms = {movementManeuvers : myMovementManeuversCollection, movementManeuverDifficulties: myMovementManeuverDifficultiesCollection};
+                            function (myMovementManeuversCollection, myMovementManeuverDifficultiesCollection) {
+                                var viewParms = { movementManeuvers: myMovementManeuversCollection, movementManeuverDifficulties: myMovementManeuverDifficultiesCollection };
                                 var movementManeuverFilterView = new MovementManeuverFilterView(viewParms);
-                                var movementManeuverListView = new MovementManeuverListView({collection: new MovementManeuverCollection(null, { disableAutoSync : true, orderByMinimumRollValue: false})});
+                                var movementManeuverListView = new MovementManeuverListView({ collection: new MovementManeuverCollection(null, { disableAutoSync: true, orderByMinimumRollValue: false }) });
                                 movementManeuverLayoutView.getRegion('movementManeuverDisplayRegion').show(movementManeuverListView);
                                 movementManeuverLayoutView.getRegion('movementManeuverFilterRegion').show(movementManeuverFilterView);
                                 ViewUtilities.currentNavSelection = 'movementManeuvers';
                             }
                         ),
-                            function() {
+                            function () {
                                 console.log('some kind of error getting movement maneuvers');
                             }
 

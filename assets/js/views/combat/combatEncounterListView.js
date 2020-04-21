@@ -5,16 +5,17 @@ define(['marionette',
     'models/combat/combatEncounterModel',
     "tpl!templates/combat/combatEncounterListTemplate.tpl",
     'views/combat/combatEncounterListItemView',
-    'services/combatRoundWarehouse'],
+    'services/combatRoundWarehouse',
+    'services/combatEncounterWarehouse'],
     function (Marionette, RealmApplication, Logger, ViewUtilities,
-                CombatEncounterModel, CombatEncounterListTemplate, CombatEncounterView,
-                CombatRoundWarehouse) {
+                CombatEncounterModel, CombatEncounterListTemplate, CombatEncounterListItemView,
+                CombatRoundWarehouse, CombatEncounerWarehouse) {
     var CombatEncounterListView = Marionette.CompositeView.extend({
         tagName : 'table',
         id : 'combatEncounterTable',
         className : 'table table-striped',
         template: CombatEncounterListTemplate,
-        childView : CombatEncounterView,
+        childView : CombatEncounterListItemView,
         childViewContainer : 'tbody',
         selectedModel : '',
         initialize : function() {
@@ -37,7 +38,11 @@ define(['marionette',
             this.listenTo(this.collection, 'add', this.render);
         },
         triggerAddCombatEncounterFunction : function() {
-            RealmApplication.vent.trigger('combatEncounterListAddCombatEncounter', new CombatEncounterModel());
+            $.when(CombatEncounerWarehouse.createCombatEncounter()).then(
+                function(newCombatEncounterModel) {
+                    RealmApplication.vent.trigger('combatEncounterListAddCombatEncounter', newCombatEncounterModel);
+                }
+            )
         },
         triggerEditCombatEncounterFunction : function() {
             //var model = this.collection.at($(':selected', this.$el).index());

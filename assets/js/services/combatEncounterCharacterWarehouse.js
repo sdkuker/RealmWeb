@@ -14,9 +14,10 @@ define(['jquery',
 
             // public functions
 
-            this.getCombatEncounterCharacterCollectionForEncounter = function(combatEncounterModel) {
+            this.getCombatEncounterCharactersForEncounter = function(combatEncounterModel) {
                 var deferred = $.Deferred();
-                $.when(getCombatEncounterCharacterCollectionForEncounter(combatEncounterModel.get('id'))). then(
+                var self = this;
+                $.when(getCombatEncounterCharacterCollectionForEncounter(combatEncounterModel)). then(
                     function(myCombatEncounterCharacterCollection) {
                         deferred.resolve(myCombatEncounterCharacterCollection); 
                     }

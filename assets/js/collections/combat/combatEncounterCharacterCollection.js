@@ -19,11 +19,8 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/combatEncounterCharac
                 }
                 
             },
-            getAll: function() {
-                return this.getDescription();
-            },
-            comparator: function(combatRound) {
-                return combatRound.get('encounterID') + '-' + combatRound.get('characterID');
+            comparator: function(combatEncounterCharacter) {
+                return combatEncounterCharacter.get('encounterID') + '-' + combatEncounterCharacter.get('characterID');
             }
         });
 
