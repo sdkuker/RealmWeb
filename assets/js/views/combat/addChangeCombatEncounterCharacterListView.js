@@ -16,15 +16,19 @@ define(['marionette',
         childViewContainer : 'tbody',
         initialize : function() {
             var self = this;
-            this.listenTo(RealmApplication.vent, 'addChangeCombatEncounterCharacterActioned', function(tableRow, model) {
-                self.combatEncounterCharacterActioned(tableRow, model);
+            this.listenTo(RealmApplication.vent, 'addChangeCombatEncounterCharacterChecked', function(tableRow, model) {
+                self.combatEncounterCharacterChecked(tableRow, model);
+            });
+            this.listenTo(RealmApplication.vent, 'addChangeCombatEncounterCharacterUnchecked', function(tableRow, model) {
+                self.combatEncounterCharacterUnchecked(tableRow, model);
             });
             this.listenTo(this.collection, 'add', this.render);
         },
-        combatEncounterCharacterActioned : function(tableRow, actionedModel) {
-            $(tableRow.el).siblings().removeClass('info');
-            $(tableRow.el).addClass('info');
-            this.trigger('combatEncounterCharacterAddedOrRemoved', this, actionedModel);
+        combatEncounterCharacterChecked : function(tableRow, actionedModel) {
+            RealmApplication.vent.trigger('combatEncounterCharacterChecked', actionedModel);
+        },
+        combatEncounterCharacterUnchecked : function(tableRow, actionedModel) {
+            RealmApplication.vent.trigger('combatEncounterCharacterUnchecked', actionedModel);
         }
     });
 

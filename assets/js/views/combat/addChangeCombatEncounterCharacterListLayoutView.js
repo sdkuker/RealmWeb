@@ -24,15 +24,6 @@ define(['marionette',
                 var self = this;
                 var listView = new AddChangeCombatEncounterCharacterListView({collection: self.combatEncounterCharacterCollection});
                 this.showChildView('addChangeCombatEncounterCharacterListRegion', listView);
-            },
-            displayRoundNumber : function(roundNumberToDisplay) {
-                var self = this;
-                self.roundIdentifierToShow = roundNumberToDisplay;
-                $.when(self.prepareToShowRound(self.roundIdentifierToShow)).then(
-                    function() {
-                        self.render();
-                    }
-                )
             }
         });
 

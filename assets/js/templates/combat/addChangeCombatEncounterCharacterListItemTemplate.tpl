@@ -1,1 +1,1 @@
-<td><input type="checkbox" name="checkboxName" /><%= decodedCharacterName %></td>
+<td><input type="checkbox" name="<%= checkboxName %>" /><%= decodedCharacterName %></td>

@@ -10,7 +10,7 @@ define(['marionette',
             'click' : 'characterActioned'
         },
         templateHelpers : function() {
-            var checkboxName = this.model.getCharacterName();
+            var checkboxName = this.model.get('id');
             var characterName = this.model.getCharacterName();
             return {
                 checkboxName : checkboxName,
@@ -18,7 +18,11 @@ define(['marionette',
             }
         },
         characterActioned : function(event) {
-            RealmApplication.vent.trigger('addChangeCombatEncounterCharacterActioned', this, this.model);
+            if (event.target.checked) {
+                RealmApplication.vent.trigger('addChangeCombatEncounterCharacterChecked', this, this.model);
+            } else {
+                RealmApplication.vent.trigger('addChangeCombatEncounterCharacterUnchecked', this, this.model);
+            }
         }
     });
 
