@@ -6,5 +6,4 @@
     <div class="table-responsive">
         <div id="encounterCharactersTableRegion"> </div>
     </div>
-    <div id="encounterButtonsRegion"> </div>
 </div>

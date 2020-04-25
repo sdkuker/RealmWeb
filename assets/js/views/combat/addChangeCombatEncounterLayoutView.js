@@ -2,9 +2,8 @@ define(['marionette',
         'realmApplication',
         'views/combat/addChangeCombatEncounterDescriptionView',
         'views/combat/addChangeCombatEncounterCharacterListLayoutView',
-        'views/combat/addChangeCombatEncounterButtonView',
         'tpl!templates/combat/addChangeCombatEncounterLayoutTemplate.tpl'],
-    function (Marionette, RealmApplication, EncounterDescriptionView, CharacterListLayoutView, ButtonView, AddChangeCombatEncounterLayoutTemplate) {
+    function (Marionette, RealmApplication, EncounterDescriptionView, CharacterListLayoutView, AddChangeCombatEncounterLayoutTemplate) {
 
         var AddChangeEncounterLayoutView = Marionette.LayoutView.extend({
             template: AddChangeCombatEncounterLayoutTemplate,
@@ -30,9 +29,6 @@ define(['marionette',
                 var self = this;
                 var descriptionView = new EncounterDescriptionView({model : this.model});
                 var listLayoutView = new CharacterListLayoutView({model : this.model, combatEncounterCharacterCollection: self.combatEncounterCharacterCollection});
-                var buttonsView = new ButtonView({model : this.model});
-                this.listenTo(buttonsView, 'addChangeCombatEncounterSaveButton:clicked', this.saveCombatEncounter);
-                this.showChildView('encounterButtonsRegion', buttonsView);
                 this.showChildView('encounterDescriptionRegion', descriptionView);
                 this.showChildView('encounterCharactersTableRegion', listLayoutView);
             },
