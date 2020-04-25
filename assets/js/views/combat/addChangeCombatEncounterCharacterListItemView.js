@@ -9,6 +9,10 @@ define(['marionette',
         events : {
             'click' : 'characterActioned'
         },
+        initialize: function(options){
+            this.encounterHasStarted = options.encounterHasStarted;
+       },
+       encounterHasStarted : false,
         templateHelpers : function() {
             var checkboxName = this.model.get('id');
             var characterName = this.model.getCharacterName();
@@ -16,20 +20,23 @@ define(['marionette',
             if  (this.model.get('activeInEncounter')) {
                 isCharacterActiveInEncounter = "checked";
             }
+            var shouldDisable = " ";
+            if (this.encounterHasStarted) {
+                shouldDisable = "disabled";
+            }
             return {
                 checkboxName : checkboxName,
                 decodedCharacterName : characterName,
-                isCheckboxChecked : isCharacterActiveInEncounter
+                isCheckboxChecked : isCharacterActiveInEncounter,
+                shouldDisable : shouldDisable
             }
         },
         characterActioned : function(event) {
             var self = this;
             if (event.target.checked) {
                 self.model.set('activeInEncounter', true);
-                RealmApplication.vent.trigger('addChangeCombatEncounterCharacterChecked', this, this.model);
             } else {
                 self.model.set('activeInEncounter', false);
-                RealmApplication.vent.trigger('addChangeCombatEncounterCharacterUnchecked', this, this.model);
             }
         }
     });

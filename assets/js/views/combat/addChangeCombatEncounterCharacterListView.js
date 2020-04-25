@@ -14,22 +14,17 @@ define(['marionette',
         template: AddChangeCombatEncounterCharacterListTemplate,
         childView : AddChangeCombatEncounterCharacterListItemView,
         childViewContainer : 'tbody',
-        initialize : function() {
+        childViewOptions(model) {
+            return {
+                encounterHasStarted: this.encounterHasStarted
+            }
+        },
+        encounterHasStarted : false,
+        initialize : function(options) {
             var self = this;
-            this.listenTo(RealmApplication.vent, 'addChangeCombatEncounterCharacterChecked', function(tableRow, model) {
-                self.combatEncounterCharacterChecked(tableRow, model);
-            });
-            this.listenTo(RealmApplication.vent, 'addChangeCombatEncounterCharacterUnchecked', function(tableRow, model) {
-                self.combatEncounterCharacterUnchecked(tableRow, model);
-            });
             this.listenTo(this.collection, 'add', this.render);
+            self.encounterHasStarted = options.encounterHasStarted;
         },
-        combatEncounterCharacterChecked : function(tableRow, actionedModel) {
-            RealmApplication.vent.trigger('combatEncounterCharacterChecked', actionedModel);
-        },
-        combatEncounterCharacterUnchecked : function(tableRow, actionedModel) {
-            RealmApplication.vent.trigger('combatEncounterCharacterUnchecked', actionedModel);
-        }
     });
 
     return AddChangeCombatEncounterCharacterListView;

@@ -9,14 +9,7 @@ define(['marionette',
             template: AddChangeCombatEncounterLayoutTemplate,
             regions : {
                 encounterDescriptionRegion : '#encounterDescriptionRegion',
-                encounterCharactersTableRegion : '#encounterCharactersTableRegion',
-                encounterButtonsRegion : '#encounterButtonsRegion'
-            },
-            templateHelpers : function() {
-                var encounterDescription = this.model.get('description');
-                return {
-                    encounterDescription : encounterDescription
-                }
+                encounterCharactersTableRegion : '#encounterCharactersTableRegion'
             },
             combatEncounterCharacterCollection : null,
             combatEncounterCharactersAdded : [],

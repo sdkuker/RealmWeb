@@ -10,19 +10,13 @@ define(['marionette',
                 addChangeCombatEncounterCharacterListRegion : '#addChangeCombatEncounterCharacterListRegion'
             },
             combatEncounterCharacterCollection : null,
-            templateHelpers : function() {
-                var encounterDescription = this.model.get('description');
-                return {
-                    encounterDescription : encounterDescription
-                }
-            },
             initialize : function(options) {
                 self = this;
                 self.combatEncounterCharacterCollection = options.combatEncounterCharacterCollection;
             },
             onRender: function() {
                 var self = this;
-                var listView = new AddChangeCombatEncounterCharacterListView({collection: self.combatEncounterCharacterCollection});
+                var listView = new AddChangeCombatEncounterCharacterListView({collection: self.combatEncounterCharacterCollection, encounterHasStarted: self.model.hasAnyRounds()});
                 this.showChildView('addChangeCombatEncounterCharacterListRegion', listView);
             }
         });
