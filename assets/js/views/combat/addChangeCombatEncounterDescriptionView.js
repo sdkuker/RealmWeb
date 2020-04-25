@@ -5,17 +5,31 @@ define(['marionette',
     'logger',
     'services/combatEncounterWarehouse'
 ], function (Marionette, RealmApplication, CombatEncounterModel, AddChangeCombatEncounterDescriptionTemplate, Logger, CombatEncounterWarehouse) {
-    var AddCombatEncounterView = Marionette.ItemView.extend({
+    var AddCombatEncounterDescriptionView = Marionette.ItemView.extend({
         template: AddChangeCombatEncounterDescriptionTemplate,
+        events : {
+            'change' : 'descriptionChanged'
+        },
+        templateHelpers : function() {
+            var myDescription = this.model.getDescription();
+            return {
+                myDescription : myDescription
+            }
+        },
         model: CombatEncounterModel,
         initialize : function() {
             this.listenTo(this.model, 'change', this.render);
         },
         onShow : function() {
             this.$el.find('#encounterDescription').focus();
+        },
+        descriptionChanged : function(event) {
+            var self = this;
+            var newDescription = event.target.value;
+            self.model.setDescription(newDescription);
         }
     });
 
-    return AddCombatEncounterView;
+    return AddCombatEncounterDescriptionView;
 
 });

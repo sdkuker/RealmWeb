@@ -25,12 +25,6 @@ define(['marionette',
             initialize : function(options) {
                 var self = this;
                 self.combatEncounterCharacterCollection = options.combatEncounterCharacterCollection;
-                this.listenTo(RealmApplication.vent, 'combatEncounterCharacterChecked', function(model) {
-                    self.combatEncounterCharacterChecked(model);
-                });
-                this.listenTo(RealmApplication.vent, 'combatEncounterCharacterUnchecked', function(model) {
-                    self.combatEncounterCharacterUnchecked(model);
-                });
             },
             onRender: function() {
                 var self = this;
@@ -44,32 +38,6 @@ define(['marionette',
             },
             saveCombatEncounter : function() {
                 var self = this;
-            },
-            combatEncounterCharacterChecked : function(combatEncounterCharacterModel) {
-                var self = this;
-                var indexOfAlreadyRemovedCharacter = self.combatEncounterCharactersRemoved.findIndex(
-                    alreadyRemovedCharacter => {
-                        return alreadyRemovedCharacter.get('id') === combatEncounterCharacterModel.get('id')
-                    }
-                )
-                if (indexOfAlreadyRemovedCharacter > -1) {
-                    self.combatEncounterCharactersRemoved.splice(indexOfAlreadyRemovedCharacter, 1);
-                } else {
-                    self.combatEncounterCharactersAdded.push(combatEncounterCharacterModel);
-                }
-            },
-            combatEncounterCharacterUnchecked : function(combatEncounterCharacterModel) {
-                var self = this;
-                var indexOfAlreadyAddedCharacter = self.combatEncounterCharactersAdded.findIndex(
-                    alreadyAddedCharacter => {
-                        return alreadyAddedCharacter.get('id') === combatEncounterCharacterModel.get('id')
-                    }
-                )
-                if (indexOfAlreadyAddedCharacter > -1) {
-                    self.combatEncounterCharactersAdded.splice(indexOfAlreadyAddedCharacter, 1);
-                } else {
-                    self.combatEncounterCharactersRemoved.push(combatEncounterCharacterModel);
-                }
             }
         });
 

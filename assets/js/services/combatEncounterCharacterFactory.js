@@ -116,6 +116,7 @@ define(['jquery',
                         newDataObject.encounterID = encounterModel.get('id');
                         newDataObject.characterID = character.get('id');
                         newDataObject.characterName = character.get('name');
+                        newDataObject.activeInEncounter = true;
                         myAllEncounterCharactersCollection.on('add', function (addedModel) {
                             deferred.resolve(addedModel);
                         });

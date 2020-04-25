@@ -12,15 +12,23 @@ define(['marionette',
         templateHelpers : function() {
             var checkboxName = this.model.get('id');
             var characterName = this.model.getCharacterName();
+            var isCharacterActiveInEncounter = " ";
+            if  (this.model.get('activeInEncounter')) {
+                isCharacterActiveInEncounter = "checked";
+            }
             return {
                 checkboxName : checkboxName,
-                decodedCharacterName : characterName
+                decodedCharacterName : characterName,
+                isCheckboxChecked : isCharacterActiveInEncounter
             }
         },
         characterActioned : function(event) {
+            var self = this;
             if (event.target.checked) {
+                self.model.set('activeInEncounter', true);
                 RealmApplication.vent.trigger('addChangeCombatEncounterCharacterChecked', this, this.model);
             } else {
+                self.model.set('activeInEncounter', false);
                 RealmApplication.vent.trigger('addChangeCombatEncounterCharacterUnchecked', this, this.model);
             }
         }
