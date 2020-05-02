@@ -1,17 +1,20 @@
 define(['jquery',
         'logger',
-        'models/combat/characterCombatRoundStatisticModel',
         'collections/combat/characterCombatRoundStatisticCollection',
-        'services/characterWarehouse',
         'collections/character/characterCollection',
-        'domain/combat/combatRoundAttributeDeterminer'],
-    function ($, Logger, StatisticModel, StatisticCollection, CharacterWarehouse, CharacterCollection, CombatRoundAttributeDeterminer) {
+        'collections/character/characterDisplayCollection',
+        'collections/combat/combatEncounterCharacterCollection',
+        'domain/combat/combatRoundAttributeDeterminer',
+        'services/characterWarehouse'],
+    function ($, Logger, StatisticCollection, CharacterCollection, CharacterDisplayCollection, 
+        CombatEncounterCharacterCollection, CombatRoundAttributeDeterminer, CharacterWarehouse) {
 
         CombatRoundStatisticFactory = function() {
             // all variables are private
             var self = this;
             var allStatisticsCollection = null;
             var allCharactersCollection = null;
+            var allCombatEncounterCharactersCollection = null;
 
             // public functions
 
@@ -71,7 +74,7 @@ define(['jquery',
                 var deferred = $.Deferred();
                 var encounterRoundID = collectionOfExistingStatisticsForRound.formatEncounterRoundID(round.get('encounterID'), round.get('id'));
 
-                $.when(getAllCharacters()).then(
+                $.when(getCharactersForEncounter(round.get('encounterID'))).then(
                     function(myCharactersCollection) {
                         var arrayOfAddStatisticsDeferred = [];
                         myCharactersCollection.each(function(character, index) {
@@ -123,10 +126,12 @@ define(['jquery',
                                 function(previousCombatRound) {
                                     $.when(CombatRoundStatisticWarehouse.getCombatRoundStatisticsForRound(previousCombatRound)).then (
                                         function(previousRoundCombatStatisticsCollection) {
-                                            $.when(getAllCharacters()).then (
+                                            // getting all characters to populate the warehouse so the 'getCharacterWithoutWaiting' will work
+                                            // not actully using allCharactersCollection for anything
+                                            $.when(CharacterWarehouse.getAllCharacters()).then (
                                                 function(allCharactersCollection) {
                                                     previousRoundCombatStatisticsCollection.each(function(statistic, index, list) {
-                                                        var myCharacter = allCharactersCollection.findWhere({id: statistic.get('characterID')});
+                                                        var myCharacter = CharacterWarehouse.getCharacterWithoutWaiting(statistic.get('characterID'))
                                                         var newStatisticObject = statistic.cloneForCombat(myCharacter);
                                                         newStatisticObject.encounterRoundID = collectionOfExistingStatisticsForRound.
                                                         formatEncounterRoundID(round.get('encounterID'), round.get('id'));
@@ -177,23 +182,40 @@ define(['jquery',
                 }
                 return deferred.promise();
             };
-            getAllCharacters = function() {
-                var deferred = $.Deferred();
-                $.when(getCharacters()).then(
-                    function(myCharactersCollection) {
-                        deferred.resolve(myCharactersCollection);
-                    }
-                );
-                return deferred.promise();
-            };
-
-            getCharacters = function() {
+            getCharactersForEncounter = function(encounterID) {
                 var deferred = $.Deferred();
                 if (allCharactersCollection) {
                     deferred.resolve(allCharactersCollection);
                 } else {
-                    allCharactersCollection = new CharacterCollection();
-                    allCharactersCollection.on('sync',function(collection) {
+                    $.when(getAllCombatEncounterCharacters(encounterID)).then(
+                        function(myCombatEncounterCharactersCollection) {
+                            // need to get all the characters so when you 
+                            // getCharacterWithoutWaiting, they're there in the warehouse
+                            // you don't actually use allCharactersCollection here
+                            $.when(CharacterWarehouse.getAllCharacters()).then(
+                                function(allCharactersCollection) {
+                                    allCharactersDisplayCollection = new CharacterDisplayCollection();
+                                    myCombatEncounterCharactersCollection.each(function(combatEncounterCharacter, index) {
+                                        if (combatEncounterCharacter.get('activeInEncounter')) {
+                                            allCharactersDisplayCollection.push(CharacterWarehouse.getCharacterWithoutWaiting(combatEncounterCharacter.get('characterID')));
+                                        }
+                                    });
+                                    deferred.resolve(allCharactersDisplayCollection);
+                                }
+                            )
+                        }
+                    );
+                }
+                return deferred.promise();
+            };
+
+            getAllCombatEncounterCharacters = function(encounterID) {
+                var deferred = $.Deferred();
+                if (allCombatEncounterCharactersCollection) {
+                    deferred.resolve(allCombatEncounterCharactersCollection);
+                } else {
+                    allCombatEncounterCharactersCollection = new CombatEncounterCharacterCollection(null, {'encounterID': encounterID});
+                    allCombatEncounterCharactersCollection.on('sync',function(collection) {
                         deferred.resolve(collection);
                     })
                 }

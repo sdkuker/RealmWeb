@@ -24,9 +24,9 @@ define(['marionette',
         initialize : function(options) {
             self = this;
             self.myRound = options.roundNumber;
-            this.listenTo(this.collection, 'add', this.render);
-            this.listenTo(this.collection, 'remove', this.render);
-            this.listenTo(this.collection, 'changed', this.render);
+           // this.listenTo(this.collection, 'add', this.render);
+           // this.listenTo(this.collection, 'remove', this.render);
+           // this.listenTo(this.collection, 'changed', this.render);
             this.collection.on('all', self.handleCollectionEvents(self));
         },
         handleCollectionEvents : function(myView) {
