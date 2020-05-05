@@ -347,41 +347,41 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                     })
             },
             movementManeuverMaintenance: function () {
-                require(['views/movementManeuverMaintenance/movementManeuverMaintenanceListLayoutView',
-                    'services/movementManeuverWarehouse'],
-                    function (MovementManeuverMaintenanceListLayoutView, MovementManeuverWarehouse) {
-                        $.when(MovementManeuverWarehouse.getAllMovementManeuvers()).then(
-                            function (movementManeuversCollection) {
-                                var viewParms = { movementManeuversCollection: movementManeuversCollection };
-                                var layoutView = new MovementManeuverMaintenanceListLayoutView(viewParms);
-                                RealmApplication.regions.mainRegion.show(layoutView);
-                            }
-                        )
-                    })
-            },
-            movementManeuverMaintenance: function () {
-                require(['views/movementManeuverMaintenance/movementManeuverMaintenanceListView',
+                require([
+                    'views/movementManeuverMaintenance/movementManeuverMaintenanceLayoutView',
+                    'views/movementManeuverMaintenance/movementManeuverMaintenanceListView',
                     'views/movementManeuverMaintenance/movementManeuverMaintenanceListLayoutView',
                     'views/movementManeuverMaintenance/movementManeuverMaintenanceListButtonView',
                     'services/movementManeuverWarehouse',
+                    'services/movementManeuverDifficultyWarehouse'
                 ],
-                    function (MovementManeuverMaintenanceListView, MovementManeuverMaintenanceListLayoutView,
-                        MovementManeuverMaintenanceListButtonView, MovementManeuverWarehouse) {
-                        var layoutView = new MovementManeuverMaintenanceListLayoutView();
-                        RealmApplication.regions.mainRegion.show(layoutView);
-                        $.when(MovementManeuverWarehouse.getAllMovementManeuvers()).then(
-                            function (movementManeuversCollection) {
-                                var maneuverMaintenanceListView =
-                                    new MovementManeuverMaintenanceListView({ collection: movementManeuversCollection });
-                                var maneuversListButtonView = new MovementManeuverMaintenanceListButtonView();
-                                layoutView.getRegion('movementManeuverMaintenanceTableRegion').show(maneuverMaintenanceListView);
-                                layoutView.getRegion('buttonsRegion').show(maneuversListButtonView);
-                                // ViewUtilities.currentNavSelection = 'characterList';
+                    function (MovementManeuverMaintenanceLayoutView, MovementManeuverMaintenanceListView, MovementManeuverMaintenanceListLayoutView,
+                        MovementManeuverMaintenanceListButtonView, MovementManeuverWarehouse, MovementManeuverDifficultyWarehouse) {
+                        $.when(MovementManeuverDifficultyWarehouse.getOrderedMovementManeuverDifficulties()).then(
+                            function (orderedCollectionOfDifficulties) {
+                                var layoutView = new MovementManeuverMaintenanceLayoutView(
+                                    { movementManeuverDifficulties: orderedCollectionOfDifficulties, selectedDifficulty: orderedCollectionOfDifficulties.at(0) });
+                                    RealmApplication.regions.mainRegion.show(layoutView);
                             }
                         ),
-                            function () {
-                                console.log('some kind of error getting movement maneuvers');
-                            }
+                        function () {
+                            console.log('some kind of error getting movement maneuver difficulties');
+                        }
+                    //     var listLayoutView = new MovementManeuverMaintenanceListLayoutView();
+                    //     RealmApplication.regions.mainRegion.show(listLayoutView);
+                    //     $.when(MovementManeuverWarehouse.getAllMovementManeuvers()).then(
+                    //         function (movementManeuversCollection) {
+                    //             var maneuverMaintenanceListView =
+                    //                 new MovementManeuverMaintenanceListView({ collection: movementManeuversCollection });
+                    //             var maneuversListButtonView = new MovementManeuverMaintenanceListButtonView();
+                    //             listLayoutView.getRegion('movementManeuverMaintenanceTableRegion').show(maneuverMaintenanceListView);
+                    //             listLayoutView.getRegion('buttonsRegion').show(maneuversListButtonView);
+                    //             // ViewUtilities.currentNavSelection = 'characterList';
+                    //         }
+                    //     ),
+                    //         function () {
+                    //             console.log('some kind of error getting movement maneuvers');
+                    //         }
 
                     });
             },
