@@ -2,23 +2,27 @@
     <div class="page-header">
         <h2>Difficulties Maintenance</h2>
     </div>
-    <div class="row">
-        <label class="control-label col-md-2">Difficulties:</label>
-        <div class="col-md-2">
-            <select id='difficultySelect' class="form-control">
-            </select>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-2">Difficulties:</label>
+            <div class="col-md-2">
+                <select id='difficultySelect' class="form-control">
+             </select>
+            </div>
+            <label class="control-label col-md-1">Level:</label>
+            <input class="col-md-1" type="string" id="difficultyLevel">
+            <button class="btn btn-default col-md-1 col-md-offset-1" id='updateDifficultyButton' type='button'>Update</button>
+            <button class="btn btn-default col-md-1 col-md-offset-1" id='deleteDifficultyButton' type='button'>Delete</button>
         </div>
-        <label class="control-label col-md-1">Level:</label>
-        <input class="col-md-1" type="string" id="difficultyLevel">
-        <button class="btn btn-default col-md-1 col-md-offset-1" id='updateDifficultyButton' type='button'>Update</button>
-        <button class="btn btn-default col-md-1 col-md-offset-1" id='deleteDifficultyButton' type='button'>Delete</button>
-    </div>
-    <div class="row">
-        <label class="control-label col-md-2">New Difficulty:</label>
-        <input class="col-md-2" type="string" id="newDifficulty">
-        <label class="control-label col-md-1">Level:</label>
-        <input class="col-md-1" type="string" id="newDifficultyLevel">
-        <button class="btn btn-default col-md-1 col-md-offset-1" id='addDifficultyButton' type='button'>Add</button>
-        <label class="col-md-1"> </label>
-    </div>
+    </form>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-md-2">New Difficulty:</label>
+            <input class="col-md-2" type="string" id="newDifficulty">
+            <label class="control-label col-md-1">Level:</label>
+            <input class="col-md-1" type="string" id="newDifficultyLevel">
+            <button class="btn btn-default col-md-1 col-md-offset-1" id='addDifficultyButton' type='button'>Add</button>
+            <label class="col-md-1"> </label>
+        </div>
+    </form>
 </div>
