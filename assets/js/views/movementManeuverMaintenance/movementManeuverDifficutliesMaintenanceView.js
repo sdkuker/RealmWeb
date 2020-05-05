@@ -11,7 +11,9 @@ define(['marionette',
             template: MovementManeuverDifficutliesMaintenanceTemplate,
             events : {
                 'click #addDifficultyButton' : 'addDifficultyButtonClicked',
+                'click #updateDifficultyButton' : 'updateDifficultyButtonClicked',
                 'click #deleteDifficultyButton' : 'deleteDifficultyButtonClicked',
+                'click #verifyLevelButton' : 'verifyLevelButtonClicked',
                 'change #difficultySelect' : 'difficultySelected'
             },
             selectedDifficulty : null,
@@ -53,6 +55,7 @@ define(['marionette',
             },
             addDifficultyButtonClicked : function(event ) {
                 var newDifficultyName = $('#newDifficulty').val();
+                var newDifficultyLevel = $('#newDifficultyLevel').val();
                 if (newDifficultyName) {
                     $.when(MovementManeuverDifficultyWarehouse.addMovementManeuverDifficulty({id: newDifficultyName})).then (
                         function() {
@@ -65,7 +68,7 @@ define(['marionette',
                     ViewUtilities.showModalView('Error', 'You must specify the difficulty name and level before clicking Add');
                 }
             },
-            deleteDifficultyButton : function() {
+            deleteDifficultyButtonClicked : function() {
                 self = this;
                 if (self.selectedDifficulty) {
                     $.when(MovementManeuverDifficultyWarehouse.removeMovementManeuverDifficulty(self.selectedDifficulty)).then (
@@ -79,6 +82,12 @@ define(['marionette',
                     ViewUtilities.showModalView('Error', 'You must choose a difficulty before clicking Delete');
                 }
             },
+            updateDifficultyButtonClicked : function() {
+                self = this;
+            },
+            verifyLevelButtonClicked : function() {
+                self = this;
+            }
         });
 
         return MovementManeuverDifficutliesMaintenanceView;
