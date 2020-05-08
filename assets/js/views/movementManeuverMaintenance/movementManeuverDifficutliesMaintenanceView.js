@@ -93,6 +93,15 @@ define(['marionette',
             },
             verifyLevelButtonClicked : function() {
                 self = this;
+                var knownLevels = [];
+                self.options.movementManeuverDifficulties.forEach(function(myDifficulty, key, list) {
+                    if (knownLevels.includes(myDifficulty.get('levelOfDifficulty'))) {
+                        ViewUtilities.showModalView('Info', 'There are at least 2 difficulties with level: ' + myDifficulty.get('levelOfDifficulty'));
+                    } else {
+                        knownLevels.push(myDifficulty.get('levelOfDifficulty'));
+                    }
+                });
+                self.render();
             }
         });
 
