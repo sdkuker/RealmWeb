@@ -87,6 +87,9 @@ define(['marionette',
             },
             updateDifficultyButtonClicked : function() {
                 self = this;
+                var newDifficultyLevel = $('#difficultyLevel').val();
+                self.selectedDifficulty.set('levelOfDifficulty', newDifficultyLevel);
+                self.render();
             },
             verifyLevelButtonClicked : function() {
                 self = this;
