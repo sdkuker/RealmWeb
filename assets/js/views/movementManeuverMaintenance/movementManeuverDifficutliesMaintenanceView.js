@@ -42,9 +42,9 @@ define(['marionette',
                     var difficultyLevelElement = this.$el.find('#difficultyLevel');
                     difficultyLevelElement.val(self.selectedDifficulty.get('levelOfDifficulty'));
                     if (self.options.movementManeuverDifficulties && self.options.movementManeuverDifficulties.length > 1) {
-                        $('#deleteDifficultyButton', this.$el).prop('disabled', true);
-                    } else {
                         $('#deleteDifficultyButton', this.$el).prop('disabled', false);
+                    } else {
+                        $('#deleteDifficultyButton', this.$el).prop('disabled', true);
                     }
                 } else {
                     $('#deleteDifficultyButton', this.$el).prop('disabled', true);

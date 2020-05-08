@@ -61,7 +61,7 @@ define(['marionette',
                 // automatically.  Just need to set the selected difficulty to the one just
                 // added and render.
                 var self = this;
-                self.selectedDifficulty = movementManeuverDifficulties.at(0);
+                self.selectedDifficulty = self.movementManeuverDifficulties.at(0);
                 self.render();
             },
             displayMovementManeuvers: function (movementManeuverDifficultyModel) {
