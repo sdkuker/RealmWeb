@@ -29,16 +29,18 @@ define(['marionette',
                 difficultySelectElement.empty();
                 self.options.movementManeuverDifficulties.forEach(function(myDifficulty, key, list) {
                     var appendString = "<option value='" + myDifficulty.get('id') +  "'";
-                    if ((key == 0 && ! self.selectedDifficulty) || (self.selectedDifficulty && self.selectedDifficulty == myDifficulty.get('id'))) {
+                    if ((key == 0 && ! self.selectedDifficulty) || (self.selectedDifficulty && self.selectedDifficulty.get('id') == myDifficulty.get('id'))) {
                         appendString = appendString + " selected='selected'";
                         if (! self.selectedDifficulty) {
-                            self.selectedDifficulty = myDifficulty.get('id');
+                            self.selectedDifficulty = myDifficulty;
                         }
                     };
-                    appendString = appendString + ">" + myDifficulty.get('id') + "</option>"
+                    appendString = appendString + ">" + myDifficulty.get('difficultyDescription') + "</option>"
                     difficultySelectElement.append(appendString);
                 });
                 if (self.selectedDifficulty) {
+                    var difficultyLevelElement = this.$el.find('#difficultyLevel');
+                    difficultyLevelElement.val(self.selectedDifficulty.get('levelOfDifficulty'));
                     if (self.options.movementManeuverDifficulties && self.options.movementManeuverDifficulties.length > 1) {
                         $('#deleteDifficultyButton', this.$el).prop('disabled', true);
                     } else {
@@ -50,17 +52,18 @@ define(['marionette',
             },
             difficultySelected : function() {
                 self = this;
-                self.selectedDifficulty = $('#difficultySelect option:selected').val();
+                var selectedDifficultyId = $('#difficultySelect option:selected').val();
+                self.selectedDifficulty = self.options.movementManeuverDifficulties.get(selectedDifficultyId);
                 RealmApplication.vent.trigger('movementManeuverDifficultiesMaintenance:difficultySelected', self.selectedDifficulty);
             },
             addDifficultyButtonClicked : function(event ) {
                 var newDifficultyName = $('#newDifficulty').val();
                 var newDifficultyLevel = $('#newDifficultyLevel').val();
-                if (newDifficultyName) {
-                    $.when(MovementManeuverDifficultyWarehouse.addMovementManeuverDifficulty({id: newDifficultyName})).then (
-                        function() {
+                if (newDifficultyName && newDifficultyLevel) {
+                    $.when(MovementManeuverDifficultyWarehouse.addMovementManeuverDifficulty({difficultyDescription: newDifficultyName, levelOfDifficulty: newDifficultyLevel})).then (
+                        function(addedDifficultyModel) {
                             ViewUtilities.showModalView('Information', 'Type ' + newDifficultyName + ' was added.');
-                            self.selectedDifficulty = newDifficultyName;
+                            self.selectedDifficulty = addedDifficultyModel;
                             RealmApplication.vent.trigger('movementManeuverDifficultiesMaintenance:difficultyAdded', self.selectedDifficulty);
                         }
                     )

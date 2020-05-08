@@ -66,8 +66,8 @@ define(['marionette',
             },
             displayMovementManeuvers: function (movementManeuverDifficultyModel) {
                 var self = this;
-                self.selectedDifficulty = criticalHitTypeString;
-                // figure this out
+                self.selectedDifficulty = movementManeuverDifficultyModel;
+                self.render();
             }
         });
 

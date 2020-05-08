@@ -35,8 +35,10 @@ define(['jquery',
 
                 $.when(getMovementManeuverDifficultiesUnordered()).then(
                     function (allManeunverDifficultiesCollection) {
+                        allManeunverDifficultiesCollection.on('add', function (addedModel) {
+                            deferred.resolve(addedModel);
+                        });
                         allManeunverDifficultiesCollection.add(maneuverDifficultyAttributes);
-                        deferred.resolve();
                     }
                 )
 
