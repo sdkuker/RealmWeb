@@ -1,8 +1,9 @@
 <thead>
 <tr>
-    <th>Minimum Roll Value</th>
-    <th>Maximum Roll Value</th>
-    <th>Result</th>
+    <th id="minimumRollValue">Minimum Roll</th>
+    <th id="maximumRollValue">Maximum Roll</th>
+    <th id="resultValue">Result</th>
+    <th id="actions"></th>
 </tr>
 </thead>
 <tbody>
