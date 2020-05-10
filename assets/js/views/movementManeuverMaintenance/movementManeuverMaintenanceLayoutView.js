@@ -3,9 +3,12 @@ define(['marionette',
     "tpl!templates/movementManeuverMaintenance/movementManeuverMaintenanceLayoutTemplate.tpl",
     'views/movementManeuverMaintenance/movementManeuverDifficutliesMaintenanceView',
     'views/movementManeuverMaintenance/movementManeuverMaintenanceListView',
+    'views/movementManeuverMaintenance/movementManeuverMaintenanceListLayoutView',
+    'views/movementManeuverMaintenance/movementManeuverMaintenanceListButtonView',
     'services/movementManeuverWarehouse'],
     function (Marionette, RealmApplication, MovementManeuverMaintenanceLayoutTemplate, MovementManeuverDifficultiesMainteanceView,
-        MovementManeuverMaintenanceListView, MovementManeuverWarehouse) {
+        MovementManeuverMaintenanceListView, MovementManeuverMaintenanceListLayoutView, MovementManeuverMaintenanceListButtonView, 
+        MovementManeuverWarehouse) {
 
         var MovementManeuverMaintenanceLayoutiew = Marionette.LayoutView.extend({
             template: MovementManeuverMaintenanceLayoutTemplate,
@@ -14,9 +17,11 @@ define(['marionette',
                 movementManeuverMaintenanceRegion: '#movementManeuverMaintenanceRegion'
             },
             initialize: function (options) {
+                //here
                 var self = this;
                 self.movementManeuverDifficulties = options.movementManeuverDifficulties;
                 self.selectedDifficulty = options.selectedDifficulty;
+                self.movementManeuversForSelectedDifficulty = options.movementManeuversForSelectedDifficulty;
                 this.listenTo(RealmApplication.vent, 'movementManeuverDifficultiesMaintenance:difficultySelected', function (movementManeuverDifficultyModel) {
                     self.displayMovementManeuvers(movementManeuverDifficultyModel);
                 });
@@ -32,21 +37,27 @@ define(['marionette',
             selectedDifficulty: null,
             myDifficultyView: null,
             myManeuverListView: null,
+            movementManeuversForSelectedDifficulty: null,
             onRender: function () {
                 var self = this;
                 var difficultyViewOptions = {
                     movementManeuverDifficulties: self.movementManeuverDifficulties,
                     selectedDifficulty: self.selectedDifficulty
                 };
+
                 self.myDifficultyView = new MovementManeuverDifficultiesMainteanceView(difficultyViewOptions);
+                var listLayoutView = new MovementManeuverMaintenanceListLayoutView();
                 var listViewOptions = {
-                    collection: self.criticalHitsForSelectedType,
+                    collection: self.movementManeuversForSelectedDifficulty,
                     selectedType: self.selectedType
                 };
                 var listView = new MovementManeuverMaintenanceListView(listViewOptions);
+                var buttonView = new MovementManeuverMaintenanceListButtonView();
 
                 this.showChildView('movementManeuverDifficultiesMaintenanceRegion', self.myDifficultyView);
-                // this.showChildView('criticalHitsMaintenanceRegion', listView);
+                this.showChildView('movementManeuverMaintenanceRegion', listLayoutView);
+                listLayoutView.showChildView('buttonsRegion', buttonView);
+                listLayoutView.showChildView('movementManeuverMaintenanceTableRegion', listView);
             },
             movementManeuverDifficultyAdded: function (movementManeuverDifficultyModel) {
                 // a difficulty was added.  The collection should have been updated 

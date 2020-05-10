@@ -11,7 +11,7 @@ define(['jquery',
             // all variables are private
             var self = this;
             var cache = {};
-            var allManeuversCollectionKey = 'allManeuversCollectionKey';
+            var movementManeuversForDifficultyBaseKey = 'movementManeuversForDifficultyBaseKey';
             var allManeuverDifficultiesKey = 'allManeuverDifficultiesKey';
 
             // public functions
@@ -23,29 +23,47 @@ define(['jquery',
                 return cache[allManeuverDifficultiesKey];;
             },
 
-            this.getMovementManeuverResult = function(rollValue, difficulty) {
+            this.getMovementManeuversForDifficulty = function(aMovementManeuverDifficultyModelObject) {
                 var deferred = $.Deferred();
-
-                $.when(getAllMovementManeuvers()).then (
-                    function(allManeunversCollection) {
-                        var selectedManeuver;
-                        deferred.resolve();
-                    }
-                )
-
-            },
-            this.getAllMovementManeuvers = function() {
-                var deferred = $.Deferred();
-                if (cache[allManeuversCollectionKey]) {
-                    deferred.resolve(cache[allManeuversCollectionKey]);
+                var cacheKey = movementManeuversForDifficultyBaseKey + '-' + aMovementManeuverDifficultyModelObject.get('id');
+                if (cache[cacheKey]) {
+                    deferred.resolve(cache[cacheKey]);
                 } else {
-                    cache[allManeuversCollectionKey] = new MovementManeuverCollection(null, {orderByMinimumRollValue : true});
-                    cache[allManeuversCollectionKey].on('sync',function(collection) {
+                    cache[cacheKey] = new MovementManeuverCollection(null, {difficultyId : aMovementManeuverDifficultyModelObject.get('id')});
+                    cache[cacheKey].on('sync',function(collection) {
                         deferred.resolve(collection);
                     })
                 }
                 return deferred.promise();
             };
+
+            this.getMovementManeuversForDifficultyWithDefaultForAdd = function(aMovementManeuverDifficultyModelObject) {
+                var deferred = $.Deferred();
+                var cacheKey = movementManeuversForDifficultyBaseKey + '-' + aMovementManeuverDifficultyModelObject.get('id') + ':withDefault';
+                if (cache[cacheKey]) {
+                    deferred.resolve(cache[cacheKey]);
+                } else {
+                    var defaultManeuver = {};
+                    defaultManeuver['result'] = 'Add New Maneuver On This Row';
+                    defaultManeuver['minimumRollValue'] = 0;
+                    defaultManeuver['maximumRollValue'] = 0;
+                    cache[cacheKey] = new MovementManeuverCollection(defaultManeuver, {difficultyId : aMovementManeuverDifficultyModelObject.get('id')});
+                    cache[cacheKey].on('sync',function(collection) {
+                        deferred.resolve(collection);
+                    })
+                }
+                return deferred.promise();
+            };
+
+            this.getMovementManeuverResult = function(rollValue, aMovementManeuverDifficultyModelObject) {
+                var deferred = $.Deferred();
+
+                $.when(getMovementManeuversForDifficulty(aMovementManeuverDifficultyModelObject)).then (
+                    function(allManeunversCollection) {
+                        deferred.resolve(allManeunversCollection.getManeuverForRoll(rollValue));
+                    }
+                )
+            },
 
             this.addMovementManeuver = function(maneuverAttributes) {
                 var deferred = $.Deferred();
@@ -74,31 +92,6 @@ define(['jquery',
             },
 
             // private functions
-
-            populateManeuverDifficultiesCache = function() {
-
-                var difficulties = [];
-                
-                difficulties.push(createDifficultyObject('trivial', 'Trivial'));
-                difficulties.push(createDifficultyObject('routine', 'Routine'));
-                difficulties.push(createDifficultyObject('easy', 'Easy'));
-                difficulties.push(createDifficultyObject('light', 'Light'));
-                difficulties.push(createDifficultyObject('medium', 'Medium'));
-                difficulties.push(createDifficultyObject('hard', 'Hard'));
-                difficulties.push(createDifficultyObject('veryHard', 'Very Hard'));
-                difficulties.push(createDifficultyObject('extremelyHard', 'Extremely Hard'));
-                difficulties.push(createDifficultyObject('sheerFolly', 'Sheer Folly'));
-                difficulties.push(createDifficultyObject('absurd', 'Absurd'));
-                difficulties.push(createDifficultyObject('insane', 'Insane'));
-                difficulties.push(createDifficultyObject('phenomenal', 'Phenomenal'));
-                difficulties.push(createDifficultyObject('virtuallyImpossible', 'Virtually Impossible'));
-
-                cache[allManeuverDifficultiesKey] = difficulties;
-            },
-                
-            createDifficultyObject = function(id, description) {
-                return {'id' : id, 'description': description};
-            },
 
             getAllMovementManeuversUnordered = function() {
                 var deferred = $.Deferred();

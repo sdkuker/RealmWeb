@@ -1,6 +1,6 @@
 <div>
     <div class="page-header">
-        <h1>Movement Maneuver Maintenance</h1>
+        <h2>Maneuver Maintenance</h2>
     </div>
     <div id="movementManeuverMaintenanceTableRegion"> </div>
     <div id="buttonsRegion"> </div>

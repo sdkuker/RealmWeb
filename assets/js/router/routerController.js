@@ -359,9 +359,15 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                         MovementManeuverMaintenanceListButtonView, MovementManeuverWarehouse, MovementManeuverDifficultyWarehouse) {
                         $.when(MovementManeuverDifficultyWarehouse.getOrderedMovementManeuverDifficulties()).then(
                             function (orderedCollectionOfDifficulties) {
-                                var layoutView = new MovementManeuverMaintenanceLayoutView(
-                                    { movementManeuverDifficulties: orderedCollectionOfDifficulties, selectedDifficulty: orderedCollectionOfDifficulties.at(0) });
-                                    RealmApplication.regions.mainRegion.show(layoutView);
+                                var selectedDifficulty = orderedCollectionOfDifficulties.at(0);
+                                $.when(MovementManeuverWarehouse.getMovementManeuversForDifficultyWithDefaultForAdd(selectedDifficulty)).then(
+                                    function(collectionOfManeuversWithAddForDifficult) {
+                                        var layoutView = new MovementManeuverMaintenanceLayoutView(
+                                            { movementManeuverDifficulties: orderedCollectionOfDifficulties, selectedDifficulty: selectedDifficulty,
+                                              movementManeuversForSelectedDifficulty:  collectionOfManeuversWithAddForDifficult});
+                                            RealmApplication.regions.mainRegion.show(layoutView);
+                                    }
+                                )
                             }
                         ),
                         function () {

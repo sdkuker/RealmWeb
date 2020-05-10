@@ -101,6 +101,7 @@ define(['marionette',
                         knownLevels.push(myDifficulty.get('levelOfDifficulty'));
                     }
                 });
+                if (knownLevels.length > xxxx)
                 self.render();
             }
         });

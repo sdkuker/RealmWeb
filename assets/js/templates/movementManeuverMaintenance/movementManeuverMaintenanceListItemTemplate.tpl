@@ -1,2 +1,3 @@
-<td><%- minimumRollValue %></td>
+<td><%= minimumRollValue %></td>
 <td><%= maximumRollValue %></td>
+<td><%= result %></td>
