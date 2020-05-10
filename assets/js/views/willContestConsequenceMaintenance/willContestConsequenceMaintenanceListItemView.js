@@ -122,7 +122,6 @@ define(['marionette',
                         ViewUtilities.showModalView('Error', 'Must change the description and provide all attributes before you can add');
                     }
                 }
-
             }
         });
 

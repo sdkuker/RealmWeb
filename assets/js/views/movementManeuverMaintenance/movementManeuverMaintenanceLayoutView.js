@@ -7,7 +7,7 @@ define(['marionette',
     'views/movementManeuverMaintenance/movementManeuverMaintenanceListButtonView',
     'services/movementManeuverWarehouse'],
     function (Marionette, RealmApplication, MovementManeuverMaintenanceLayoutTemplate, MovementManeuverDifficultiesMainteanceView,
-        MovementManeuverMaintenanceListView, MovementManeuverMaintenanceListLayoutView, MovementManeuverMaintenanceListButtonView, 
+        MovementManeuverMaintenanceListView, MovementManeuverMaintenanceListLayoutView, MovementManeuverMaintenanceListButtonView,
         MovementManeuverWarehouse) {
 
         var MovementManeuverMaintenanceLayoutiew = Marionette.LayoutView.extend({
@@ -65,7 +65,11 @@ define(['marionette',
                 // added and render.
                 var self = this;
                 self.selectedDifficulty = movementManeuverDifficultyModel;
-                self.render();
+                $.when(updateManeuverCollection).then(
+                    function() {
+                         self.render();
+                    }
+                )
             },
             movementManeuverDifficultyDeleted: function (movementManeuverDifficultyModel) {
                 // a difficulty was deleted.  The collection should have been updated 
@@ -73,12 +77,31 @@ define(['marionette',
                 // added and render.
                 var self = this;
                 self.selectedDifficulty = self.movementManeuverDifficulties.at(0);
-                self.render();
+                $.when(updateManeuverCollection).then(
+                    function() {
+                         self.render();
+                    }
+                )
             },
             displayMovementManeuvers: function (movementManeuverDifficultyModel) {
                 var self = this;
                 self.selectedDifficulty = movementManeuverDifficultyModel;
-                self.render();
+                $.when(updateManeuverCollection).then(
+                    function() {
+                         self.render();
+                    }
+                )
+            },
+            updateManeuverCollection: function () {
+                var self = this;
+                var deferred = $.Deferred();
+                $.when(MovementManeuverWarehouse.getMovementManeuversForDifficultyWithDefaultForAdd(self.selectedDifficulty)).then(
+                    function (maneuversForDifficulty) {
+                        self.movementManeuversForSelectedDifficulty = maneuversForDifficulty;
+                        deferred.resolve();
+                    }
+                )
+                return deferred.promise();
             }
         });
 
