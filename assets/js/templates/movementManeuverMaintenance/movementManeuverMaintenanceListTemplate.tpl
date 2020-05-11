@@ -1,3 +1,4 @@
+<caption><h2>Maneuver List for Selected Difficulty</h2></caption>
 <thead>
 <tr>
     <th id="minimumRollValue">Minimum Roll</th>
