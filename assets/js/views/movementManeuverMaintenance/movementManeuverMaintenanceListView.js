@@ -13,9 +13,16 @@ define(['marionette',
             template: MovementManeuverMaintenanceListTemplate,
             childView: MovementManeuverMaintenanceView,
             childViewContainer: 'tbody',
+            childViewOptions(model) {
+                return {
+                    selectedDifficulty: this.selectedDifficulty
+                }
+            },
             selectedModel: '',
-            initialize: function () {
+            selectedDifficulty: null,
+            initialize: function (options) {
                 var self = this;
+                self.selectedDifficulty = options.selectedDifficulty;
                 this.listenTo(RealmApplication.vent, 'movementManeuverMaintenanceActionButton:clicked', function (movementManeuverModelToAction) {
                     self.actionMovementManeuver(movementManeuverModelToAction);
                 });
@@ -26,7 +33,7 @@ define(['marionette',
                     // just an object that needs to be added
                     $.when(MovementManeuverWarehouse.addMovementManeuver(movementManeuverModelToAction)).then(
                         function () {
-                            $.when(MovementManeuverWarehouse.getMovementManeuversForDifficultyWithDefaultForAdd()).then(
+                            $.when(MovementManeuverWarehouse.getMovementManeuversForDifficultyWithDefaultForAdd(this.selectedDifficulty)).then(
                                 function (aCollection) {
                                     this.collection = aCollection;
                                     RealmApplication.vent.trigger('movementManeuvereMaintenanceList:movementManeuverActioned');

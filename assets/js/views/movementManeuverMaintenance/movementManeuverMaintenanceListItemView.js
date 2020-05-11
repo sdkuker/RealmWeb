@@ -1,16 +1,24 @@
 define(['marionette',
     'realmApplication',
     "tpl!templates/movementManeuverMaintenance/movementManeuverMaintenanceListItemTemplate.tpl",
-    'models/movementManeuver/movementManeuverModel', 'utility/viewUtilities'], 
-    function (Marionette, RealmApplication, MovementManeuverMaintenanceListItemTemplate, 
+    'models/movementManeuver/movementManeuverModel', 'utility/viewUtilities'],
+    function (Marionette, RealmApplication, MovementManeuverMaintenanceListItemTemplate,
         MovementManeuverModel, ViewUtilities) {
         var MovementManeuverMaintenanceListItemView = Marionette.ItemView.extend({
             tagName: 'tr',
             model: MovementManeuverModel,
             template: MovementManeuverMaintenanceListItemTemplate,
             newModelAttributes: {},
+            selectedDifficulty: null,
             initialize: function (options) {
                 this.listenTo(this.model, 'change', this.render);
+                this.selectedDifficulty = options.selectedDifficulty;
+                this.newModelAttributes = { 'difficultyId': this.selectedDifficulty.get('id') };
+                if (this.model) {
+                    this.newModelAttributes.maximumRollValue = this.model.get('maximumRollValue');
+                    this.newModelAttributes.minimumRollValue = this.model.get('minimumRollValue');
+                    this.newModelAttributes.result = this.model.get('result');
+                }
             },
             events: {
                 'click #actionManeuverButton': 'actionButtonClicked',
@@ -20,7 +28,6 @@ define(['marionette',
             },
             templateHelpers: function () {
                 var myResult = null;
-                //hi
                 if (this.model.get('result')) {
                     myResult = decodeURI(this.model.get('result').replace(/%\s/g, " percent "));
                 };
@@ -44,19 +51,21 @@ define(['marionette',
             minimumRollValueModified: function (event) {
                 var self = this;
                 var cellValue = encodeURI(this.el.cells[0].textContent);
-                if (!self.isNormalInteger(cellValue)) {
+                var numericCellValue = parseInt(cellValue);
+                if (!self.isNormalInteger(numericCellValue)) {
                     ViewUtilities.showModalView('Error', 'Minimum roll values must be integers.');
                 } else {
-                    self.persistAttributeChange('minimumRollValue', cellValue);
+                    self.persistAttributeChange('minimumRollValue', numericCellValue);
                 }
             },
             maximumRollValueModified: function (event) {
                 var self = this;
                 var cellValue = encodeURI(this.el.cells[1].textContent);
-                if (!self.isNormalInteger(cellValue)) {
+                var numericCellValue = parseInt(cellValue);
+                if (!self.isNormalInteger(numericCellValue)) {
                     ViewUtilities.showModalView('Error', 'Maximum roll values must be integers.');
                 } else {
-                    self.persistAttributeChange('maximumRollValue', cellValue);
+                    self.persistAttributeChange('maximumRollValue', numericCellValue);
                 }
             },
             persistAttributeChange: function (modelAttributeName, targetValue) {
@@ -76,12 +85,13 @@ define(['marionette',
                     RealmApplication.vent.trigger('movementManeuverMaintenanceActionButton:clicked', this.model);
                 } else {
                     // require mandatory fields
-                    if (this.newModelAttributes.result &&
-                        this.newModelAttributes.minimumRollValue && this.newModelAttributes.maximumRollValue) {
-                        var copiedObject = jQuery.extend({}, this.newModelAttributes);
-                        this.newModelAttributes = {};
-                        this.render();
-                        RealmApplication.vent.trigger('movementManeuverMaintenanceActionButton:clicked', copiedObject);
+                    if (this.newModelAttributes.hasOwnProperty('result') &&
+                        this.newModelAttributes.hasOwnProperty('minimumRollValue') &&
+                        this.newModelAttributes.hasOwnProperty('maximumRollValue')) {
+                            var copiedObject = jQuery.extend({}, this.newModelAttributes);
+                            this.newModelAttributes = {};
+                            this.render();
+                            RealmApplication.vent.trigger('movementManeuverMaintenanceActionButton:clicked', copiedObject);
                     } else {
                         ViewUtilities.showModalView('Error', 'Must speicify the result, roll minimum and roll maximum before you can add');
                     }

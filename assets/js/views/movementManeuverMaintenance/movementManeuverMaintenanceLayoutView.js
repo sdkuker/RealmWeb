@@ -48,7 +48,7 @@ define(['marionette',
                 var listView = new MovementManeuverMaintenanceListView();
                 var listViewOptions = {
                     collection: self.movementManeuversForSelectedDifficulty,
-                    selectedType: self.selectedType
+                    selectedDifficulty: self.selectedDifficulty
                 };
                 var listView = new MovementManeuverMaintenanceListView(listViewOptions);
 
@@ -61,7 +61,7 @@ define(['marionette',
                 // added and render.
                 var self = this;
                 self.selectedDifficulty = movementManeuverDifficultyModel;
-                $.when(updateManeuverCollection).then(
+                $.when(self.updateManeuverCollection()).then(
                     function () {
                         self.render();
                     }
@@ -73,7 +73,7 @@ define(['marionette',
                 // added and render.
                 var self = this;
                 self.selectedDifficulty = self.movementManeuverDifficulties.at(0);
-                $.when(updateManeuverCollection).then(
+                $.when(self.updateManeuverCollection()).then(
                     function () {
                         self.render();
                     }
@@ -82,7 +82,7 @@ define(['marionette',
             displayMovementManeuvers: function (movementManeuverDifficultyModel) {
                 var self = this;
                 self.selectedDifficulty = movementManeuverDifficultyModel;
-                $.when(updateManeuverCollection).then(
+                $.when(self.updateManeuverCollection()).then(
                     function () {
                         self.render();
                     }

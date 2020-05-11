@@ -13,6 +13,7 @@ define(['jquery',
             var cache = {};
             var movementManeuversForDifficultyBaseKey = 'movementManeuversForDifficultyBaseKey';
             var allManeuverDifficultiesKey = 'allManeuverDifficultiesKey';
+            var allManeuversCollectionKey = 'allManeuversCollectionKey';
 
             // public functions
 
@@ -105,19 +106,19 @@ define(['jquery',
 
                 // private functions
 
-                getAllMovementManeuversUnordered = function () {
-                    var deferred = $.Deferred();
-                    var cacheKey = allManeuversCollectionKey + ':unordered';
-                    if (cache[cacheKey]) {
-                        deferred.resolve(cache[cacheKey]);
-                    } else {
-                        cache[cacheKey] = new MovementManeuverCollection(null, { orderByMinimumRollValue: false });
-                        cache[cacheKey].on('sync', function (collection) {
-                            deferred.resolve(collection);
-                        })
-                    }
-                    return deferred.promise();
-                };
+            getAllMovementManeuversUnordered = function () {
+                var deferred = $.Deferred();
+                var cacheKey = allManeuversCollectionKey + ':unordered';
+                if (cache[cacheKey]) {
+                    deferred.resolve(cache[cacheKey]);
+                } else {
+                    cache[cacheKey] = new MovementManeuverCollection(null, { orderByMinimumRollValue: false });
+                    cache[cacheKey].on('sync', function (collection) {
+                        deferred.resolve(collection);
+                    })
+                }
+                return deferred.promise();
+            };
 
         };
 

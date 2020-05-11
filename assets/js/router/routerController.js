@@ -361,7 +361,8 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                                     function (collectionOfManeuversWithAddForDifficult) {
                                         var layoutView = new MovementManeuverMaintenanceLayoutView(
                                             {
-                                                movementManeuverDifficulties: orderedCollectionOfDifficulties, selectedDifficulty: selectedDifficulty,
+                                                movementManeuverDifficulties: orderedCollectionOfDifficulties, 
+                                                selectedDifficulty: selectedDifficulty,
                                                 movementManeuversForSelectedDifficulty: collectionOfManeuversWithAddForDifficult
                                             });
                                         RealmApplication.regions.mainRegion.show(layoutView);
@@ -372,22 +373,6 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                             function () {
                                 console.log('some kind of error getting movement maneuver difficulties');
                             }
-                        //     var listLayoutView = new MovementManeuverMaintenanceListLayoutView();
-                        //     RealmApplication.regions.mainRegion.show(listLayoutView);
-                        //     $.when(MovementManeuverWarehouse.getAllMovementManeuvers()).then(
-                        //         function (movementManeuversCollection) {
-                        //             var maneuverMaintenanceListView =
-                        //                 new MovementManeuverMaintenanceListView({ collection: movementManeuversCollection });
-                        //             var maneuversListButtonView = new MovementManeuverMaintenanceListButtonView();
-                        //             listLayoutView.getRegion('movementManeuverMaintenanceTableRegion').show(maneuverMaintenanceListView);
-                        //             listLayoutView.getRegion('buttonsRegion').show(maneuversListButtonView);
-                        //             // ViewUtilities.currentNavSelection = 'characterList';
-                        //         }
-                        //     ),
-                        //         function () {
-                        //             console.log('some kind of error getting movement maneuvers');
-                        //         }
-
                     });
             },
             viewMovementManeuverMaintenance: function (movementManeuverModel) {
