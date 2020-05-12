@@ -10,7 +10,8 @@
                 </select>
             </div>
             <label class="control-label col-md-1">Level:</label>
-            <input class="col-md-1" type="number" min="1" id="difficultyLevel">
+            <input class="col-md-1" type="number" min="1" id="difficultyLevel" data-toggle='tooltip'
+                title='Used to order difficulties from easiest to hardest'>
             <button class="btn btn-default col-md-1 col-md-offset-1" id='updateDifficultyButton'
                 type='button'>Update</button>
             <button class="btn btn-default col-md-1 col-md-offset-1" id='deleteDifficultyButton'
