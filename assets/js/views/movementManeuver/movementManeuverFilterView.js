@@ -1,45 +1,48 @@
 define(['marionette',
-        'backbone',
-        'realmApplication',
-        "models/dieRoller/dieModel",
-        'services/movementManeuverWarehouse',
-        'utility/viewUtilities',
-        'tpl!templates/movementManeuver/movementManeuverFilterTemplate.tpl'],
-    function (Marionette, Backbone, RealmApplication, DieModel,MovementManeuverWarehouse,
-              ViewUtilities, MovementManeuverFilterTemplate) {
+    'backbone',
+    'realmApplication',
+    "models/dieRoller/dieModel",
+    'services/movementManeuverWarehouse',
+    'utility/viewUtilities',
+    'tpl!templates/movementManeuver/movementManeuverFilterTemplate.tpl'],
+    function (Marionette, Backbone, RealmApplication, DieModel, MovementManeuverWarehouse,
+        ViewUtilities, MovementManeuverFilterTemplate) {
 
         var MovementManeuverFilterView = Marionette.ItemView.extend({
             template: MovementManeuverFilterTemplate,
-            events : {
-                'click #openEndedDieButton' : 'openEndedDieButtonClicked',
-                'click #getManeuverButton' : 'getManeuverButtonClicked',
-                'change #difficultySelect' : 'difficultySelected',
-                'change #rollAdjustment' : 'rollAdjustmentChanged',
-                'change #rollResult' : 'rollResultChanged'
+            events: {
+                'click #openEndedDieButton': 'openEndedDieButtonClicked',
+                'click #getManeuverButton': 'getManeuverButtonClicked',
+                'change #difficultySelect': 'difficultySelected',
+                'change #rollAdjustment': 'rollAdjustmentChanged',
+                'change #rollResult': 'rollResultChanged'
             },
-            chosenDifficulty : null,
-            dieRollValue : 0,
-            rollAdjustmentValue : 0,
-            rollTotalValue : 0,
-            dieInstance : null,
-            initialize : function() {
+            selectedDifficulty: null,
+            dieRollValue: 0,
+            rollAdjustmentValue: 0,
+            rollTotalValue: 0,
+            dieInstance: null,
+            movementManeuverDifficulties: null,
+            initialize: function (options) {
                 var self = this;
                 self.dieInstance = new DieModel();
+                self.movementManeuverDifficulties = options.movementManeuverDifficulties;
+                self.selectedDifficulty = options.selectedDifficulty
             },
-            onRender : function() {
+            onRender: function () {
                 var self = this;
                 var difficultySelectElement = this.$el.find('#difficultySelect');
                 difficultySelectElement.empty();
-                for (index = 0; index < this.options.movementManeuverDifficulties.length; index++) {
-                    var myDifficulty = this.options.movementManeuverDifficulties[index];
-                    var appendString = "<option value='" + myDifficulty.id +  "'";
-                    if ((! self.chosenDifficulty) || (self.chosenDifficulty && self.chosenDifficulty == myDifficulty.id)) {
+                for (index = 0; index < self.movementManeuverDifficulties.length; index++) {
+                    var myDifficulty = self.movementManeuverDifficulties.at(index);
+                    var appendString = "<option value='" + myDifficulty.get('id') + "'";
+                    if ((!self.selectedDifficulty) || (self.selectedDifficulty && self.selectedDifficulty == myDifficulty)) {
                         appendString = appendString + " selected='selected'";
-                        if (! self.chosenDifficulty) {
-                            self.chosenDifficulty = myDifficulty.id;
+                        if (!self.selectedDifficulty) {
+                            self.selectedDifficulty = myDifficulty;
                         }
                     };
-                    appendString = appendString + ">" + myDifficulty.description + "</option>"
+                    appendString = appendString + ">" + myDifficulty.get('difficultyDescription') + "</option>"
                     difficultySelectElement.append(appendString);
                 }
 
@@ -47,29 +50,23 @@ define(['marionette',
                 $('#rollResult').val(self.dieRollValue);
                 $('#rollAdjustment').val(self.rollAdjustmentValue);
                 $('#rollTotal').val(self.rollTotalValue);
-                // if (self.inCombatMode()) {
-                //     $('#listCritcalsButton', this.$el).prop('disabled', true);
-                //     $('#navToCombatButton', this.$el).prop('disabled', false);
-                // } else {
-                //     $('#listCritcalsButton', this.$el).prop('disabled', false);
-                //     $('#navToCombatButton', this.$el).prop('disabled', true);
-                // }
             },
-            difficultySelected : function() {
+            difficultySelected: function () {
                 var self = this;
-                self.chosenDifficulty = $('#difficultySelect option:selected').val();
+                var selectedDifficultyID = $('#difficultySelect option:selected').val();
+                self.selectedDifficulty = self.movementManeuverDifficulties.findWhere({'id': selectedDifficultyID});
             },
-            openEndedDieButtonClicked : function() {
+            openEndedDieButtonClicked: function () {
                 var self = this;
                 self.dieInstance.rollOpenEnded(1);
                 self.dieRollValue = self.dieInstance.get('currentRoll');
                 self.render();
             },
-            caclulateAttackTotal : function() {
+            caclulateAttackTotal: function () {
                 var self = this;
                 self.rollTotalValue = self.dieRollValue + self.rollAdjustmentValue;
             },
-            rollAdjustmentChanged : function() {
+            rollAdjustmentChanged: function () {
                 var self = this;
                 self.rollAdjustmentValue = parseInt($('#rollAdjustment').val(), 10);
                 if (Number.isNaN(self.rollAdjustmentValue)) {
@@ -77,7 +74,7 @@ define(['marionette',
                 };
                 self.render();
             },
-            rollResultChanged : function() {
+            rollResultChanged: function () {
                 var self = this;
                 self.dieRollValue = parseInt($('#rollResult').val(), 10);
                 if (Number.isNaN(self.dieRollValue)) {
@@ -85,65 +82,25 @@ define(['marionette',
                 };
                 self.render();
             },
-            getManeuverButtonClicked : function () {
+            getManeuverButtonClicked: function () {
                 var self = this;
-                var selectedMovementManeuver = self.options.movementManeuvers.getManeuverForRoll(self.rollTotalValue);
-                if (selectedMovementManeuver) {
-                    var result;
-                    if (selectedMovementManeuver && self.chosenDifficulty) {
-                        switch (self.chosenDifficulty) {
-                            case 'trivial':
-                                result = selectedMovementManeuver.getTrivialManeuverResult();
-                                break;
-                            case 'routine' :
-                                result = selectedMovementManeuver.getRoutineManeuverResult();
-                                break;
-                            case 'easy' :
-                                result = selectedMovementManeuver.getEasyManeuverResult();
-                                break;
-                            case 'light' :
-                                result = selectedMovementManeuver.getLightManeuverResult();
-                                break;
-                            case 'medium' :
-                                result = selectedMovementManeuver.getMediumManeuverResult();
-                                break;
-                            case 'hard' :
-                                result = selectedMovementManeuver.getHardManeuverResult();
-                                break;
-                            case 'veryHard' :
-                                result = selectedMovementManeuver.getVeryHardManeuverResult();
-                                break;
-                            case 'extremelyHard' :
-                                result = selectedMovementManeuver.getExtremelyHardManeuverResult();
-                                break;
-                            case 'sheerFolly' :
-                                result = selectedMovementManeuver.getSheerFollyManeuverResult();
-                                break;
-                            case 'absurd' :
-                                result = selectedMovementManeuver.getAbsurdManeuverResult();
-                                break;
-                            case 'insane' :
-                                result = selectedMovementManeuver.getInsaneManeuverResult();
-                                break;
-                            case 'phenomenal' :
-                                result = selectedMovementManeuver.getPhenomenalManeuverResult();
-                                break;
-                            case 'virtuallyImpossible' :
-                                result = selectedMovementManeuver.getVirtuallyImpossibleManeuverResult();
-                                break;
+                if (self.selectedDifficulty) {
+                    $.when(MovementManeuverWarehouse.getMovementManeuversForDifficulty(self.selectedDifficulty)).then(
+                        function (collectionOfManeuversForSelectedDifficulty) {
+                            var selectedMovementManeuver = collectionOfManeuversForSelectedDifficulty.getManeuverForRoll(self.rollTotalValue);
+                            if (selectedMovementManeuver) {
+                                var selectedData = { model: selectedMovementManeuver, difficulty: self.selectedDifficulty.get('difficultyDescription'), rollValue: self.rollTotalValue };
+                                RealmApplication.vent.trigger('movementManeuverFilter:movementManeuverSelected', selectedData);
+                            } else {
+                                ViewUtilities.showModalView("Informational", 'No maneuver was found for difficulty: ' + self.selectedDifficulty.get('difficultyDescription') + ' and roll: ' + self.rollTotalValue);
+                            }
                         }
-                        ;
-                        var selectedData = {model: selectedMovementManeuver, result: result};
-
-                        RealmApplication.vent.trigger('movementManeuverFilter:movementManeuverSelected', selectedData);
-
-                    }
+                    )
                 } else {
-                    ViewUtilities.showModalView("Informational", 'No maneuver exists for roll total: ' + self.rollTotalValue);
+                    ViewUtilities.showModalView("Warning", 'A difficulty must be selected before you can get a maneuver for it');
                 }
-
             },
-            displayCombatMovementManeuvers : function(overrideCombatMode) {
+            displayCombatMovementManeuvers: function (overrideCombatMode) {
 
                 var deferred = $.Deferred();
 
@@ -162,8 +119,8 @@ define(['marionette',
                 return deferred.promise();
 
             },
-            listCriticalButtonClicked : function () {
-                var selectedMovementManeuverArray = this.options.movementManeuvers.getMovementManeuverList(this.chosenType, this.chosenSeverity );
+            listCriticalButtonClicked: function () {
+                var selectedMovementManeuverArray = this.options.movementManeuvers.getMovementManeuverList(this.chosenType, this.chosenSeverity);
                 if (selectedMovementManeuverArray && selectedMovementManeuverArray.length > 0) {
                     RealmApplication.vent.trigger('movementManeuverFilter:movementManeuverSelected', selectedMovementManeuverArray);
                 }

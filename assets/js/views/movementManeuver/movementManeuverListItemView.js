@@ -5,7 +5,13 @@ define(['marionette',
     var MovementManeuverListItemView = Marionette.ItemView.extend({
         tagName : 'li',
         model : MovementManeuverModel,
-        template: MovementManeuverListItemTemplate
+        template: MovementManeuverListItemTemplate,
+        templateHelpers : function() {
+            var myResult = this.model.getResult();
+            return {
+                myResult : myResult
+            }
+        },
     });
 
     return MovementManeuverListItemView;

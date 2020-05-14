@@ -1,1 +1,1 @@
-    <li><%= result %></li>
+    <li><%= myResult %></li>

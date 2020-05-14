@@ -17,13 +17,6 @@ define(['jquery',
 
             // public functions
 
-            this.getAllMovementManeuverDifficulties = function () {
-                if (!cache[allManeuverDifficultiesKey]) {
-                    populateManeuverDifficultiesCache();
-                }
-                return cache[allManeuverDifficultiesKey];;
-            },
-
             this.getMovementManeuversForDifficulty = function (aMovementManeuverDifficultyModelObject) {
                 var deferred = $.Deferred();
                 var cacheKey = movementManeuversForDifficultyBaseKey + '-' + aMovementManeuverDifficultyModelObject.get('id');
