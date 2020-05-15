@@ -91,6 +91,7 @@ define(['marionette',
                             if (selectedMovementManeuver) {
                                 var selectedData = { model: selectedMovementManeuver, difficulty: self.selectedDifficulty.get('difficultyDescription'), rollValue: self.rollTotalValue };
                                 RealmApplication.vent.trigger('movementManeuverFilter:movementManeuverSelected', selectedData);
+                                self.render();
                             } else {
                                 ViewUtilities.showModalView("Informational", 'No maneuver was found for difficulty: ' + self.selectedDifficulty.get('difficultyDescription') + ' and roll: ' + self.rollTotalValue);
                             }

@@ -1,1 +1,1 @@
-    <li><%= myResult %></li>
+    <li><%= description %></li>

@@ -382,12 +382,13 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                 });
             },
             movementManeuvers: function () {
-                require(['views/movementManeuver/movementManeuverLayoutView', 'collections/movementManeuver/movementManeuverCollection',
+                require(['views/movementManeuver/movementManeuverLayoutView',
+                    'collections/movementManeuver/movementManeuverDisplayCollection',
                     'views/movementManeuver/movementManeuverListView', 'views/movementManeuver/movementManeuverFilterView',
-                    'services/movementManeuverWarehouse', 'services/MovementManeuverDifficultyWarehouse'
+                    'services/MovementManeuverDifficultyWarehouse'
                 ],
-                    function (MovementManeuverLayoutView, MovementManeuverCollection, MovementManeuverListView,
-                        MovementManeuverFilterView, MovementManeuverWarehouse, MovementManeuverDifficultyWarehouse) {
+                    function (MovementManeuverLayoutView, MovementManeuverDisplayCollection, MovementManeuverListView,
+                        MovementManeuverFilterView, MovementManeuverDifficultyWarehouse) {
 
                         var movementManeuverLayoutView = new MovementManeuverLayoutView();
                         RealmApplication.regions.mainRegion.show(movementManeuverLayoutView);
@@ -395,7 +396,7 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                             function (myMovementManeuverDifficultiesCollection) {
                                 if (myMovementManeuverDifficultiesCollection && myMovementManeuverDifficultiesCollection.length > 0) {
                                     var selectedDifficulty = myMovementManeuverDifficultiesCollection.at(0);
-                                    var retrievedManeuvers = new MovementManeuverCollection(null, { 'disableAutoSync': true });
+                                    var retrievedManeuvers = new MovementManeuverDisplayCollection();
                                     var filterParms = { movementManeuverDifficulties: myMovementManeuverDifficultiesCollection, selectedDifficulty: selectedDifficulty };
                                     var movementManeuverFilterView = new MovementManeuverFilterView(filterParms);
                                     var movementManeuverListView = new MovementManeuverListView({ collection: retrievedManeuvers });
