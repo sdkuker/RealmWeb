@@ -375,17 +375,11 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                             }
                     });
             },
-            viewMovementManeuverMaintenance: function (movementManeuverModel) {
-                require(['views/movementManeuverMaintenance/movementManeuverMaintenanceView'], function (MovementManeuverMaintenanceView) {
-                    var view = new MovementManeuverMaintenanceView({ model: movementManeuverModel });
-                    RealmApplication.regions.mainRegion.show(view);
-                });
-            },
             movementManeuvers: function () {
                 require(['views/movementManeuver/movementManeuverLayoutView',
                     'collections/movementManeuver/movementManeuverDisplayCollection',
                     'views/movementManeuver/movementManeuverListView', 'views/movementManeuver/movementManeuverFilterView',
-                    'services/MovementManeuverDifficultyWarehouse'
+                    'services/movementManeuverDifficultyWarehouse'
                 ],
                     function (MovementManeuverLayoutView, MovementManeuverDisplayCollection, MovementManeuverListView,
                         MovementManeuverFilterView, MovementManeuverDifficultyWarehouse) {

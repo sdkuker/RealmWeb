@@ -5,13 +5,13 @@ define(['marionette',
     'views/movementManeuverMaintenance/movementManeuverMaintenanceListItemView',
     'services/movementManeuverWarehouse'],
     function (Marionette, RealmApplication, Logger,
-        MovementManeuverMaintenanceListTemplate, MovementManeuverMaintenanceView, MovementManeuverWarehouse) {
+        MovementManeuverMaintenanceListTemplate, MovementManeuverMaintenanceListItemView, MovementManeuverWarehouse) {
         var MovementManeuverMaintenanceListView = Marionette.CompositeView.extend({
             tagName: 'table',
             id: 'movementManeuverMaintenanceTable',
             className: 'table table-striped',
             template: MovementManeuverMaintenanceListTemplate,
-            childView: MovementManeuverMaintenanceView,
+            childView: MovementManeuverMaintenanceListItemView,
             childViewContainer: 'tbody',
             childViewOptions(model) {
                 return {
