@@ -1,6 +1,6 @@
 define(['jquery',
         'logger',
-        'services/CombatEncounterCharacterFactory'],
+        'services/combatEncounterCharacterFactory'],
     function ($, Logger, CombatEncounterCharacterFactory) {
 
         // I am the first stop for getting combat encounter characters.  If I don't have them, I'll get them from Firebase
