@@ -6,7 +6,8 @@ define(['backbone'],
                 encounterID : '',
                 characterID : '',
                 characterName: '',
-                activeInEncounter: false
+                activeInEncounter: false,
+                numberInCombat : 1
             },
             getCharacterName: function() {
                 return decodeURI(this.get('characterName'));

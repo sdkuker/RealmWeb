@@ -1,6 +1,8 @@
 <thead>
 <tr>
-    <th>Include Character In Combat</th>
+    <th>Character</th>
+    <th>Include In Combat</th>
+    <th>Number to Include In Combat</th>
 </tr>
 </thead>
 <tbody>

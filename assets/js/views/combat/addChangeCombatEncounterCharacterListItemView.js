@@ -11,10 +11,12 @@ define(['marionette',
         },
         initialize: function(options){
             this.encounterHasStarted = options.encounterHasStarted;
+            this.listenTo(this.model, 'change', this.render);
        },
        encounterHasStarted : false,
         templateHelpers : function() {
             var checkboxName = this.model.get('id');
+            var numberInCombatName = checkboxName.concat('nbrInCombat');
             var characterName = this.model.getCharacterName();
             var isCharacterActiveInEncounter = " ";
             if  (this.model.get('activeInEncounter')) {
@@ -24,19 +26,34 @@ define(['marionette',
             if (this.encounterHasStarted) {
                 shouldDisable = "disabled";
             }
+            var shouldDisableNbrInCombat = " ";
+            var numberInCombat = this.model.get('numberInCombat');
+            if ( isCharacterActiveInEncounter === ' ' ) {
+                numberInCombat = 0;
+                shouldDisableNbrInCombat = 'disabled';
+            }
             return {
                 checkboxName : checkboxName,
+                numberInCombatName: numberInCombatName,
                 decodedCharacterName : characterName,
                 isCheckboxChecked : isCharacterActiveInEncounter,
-                shouldDisable : shouldDisable
+                shouldDisable : shouldDisable,
+                numberInCombat : numberInCombat,
+                shouldDisableNbrInCombat: shouldDisableNbrInCombat
             }
         },
         characterActioned : function(event) {
             var self = this;
-            if (event.target.checked) {
-                self.model.set('activeInEncounter', true);
+            if (event.target.name.includes('nbrInCombat')) {
+                self.model.set('numberInCombat', event.target.value);
             } else {
-                self.model.set('activeInEncounter', false);
+                if (event.target.checked) {
+                    self.model.set('activeInEncounter', true);
+                    self.model.set('numberInCombat', 1);
+                } else {
+                    self.model.set('activeInEncounter', false);
+                    self.model.set('numberInCombat', 0);
+                }
             }
         }
     });
