@@ -9,11 +9,12 @@
     <th id="observation">Observation</th>
     <th id="roundsStunned">Rounds Stunned</th>
     <th id="negativeModifier">Negative Modifier</th>
-    <th id="hitsStarting">Hits Starting</th>
+    <th id="totalHitsPerClone">Hits Per Instance</th>
+    <th id="hitsStarting">Total Hits Starting Round</th>
     <th id="hitsTakenThisRound">Hits Taken This Round</th>
     <th id="bleeding">Bleeding</th>
     <th id="regeneration">Regeneration</th>
-    <th id="hitsRemaining">Hits Remaining</th>
+    <th id="hitsRemaining">Total Hits Remaining</th>
 </tr>
 </thead>
 <tbody>

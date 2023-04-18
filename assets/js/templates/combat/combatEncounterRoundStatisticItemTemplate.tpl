@@ -6,6 +6,7 @@
 <td headers="observation"><%= observation %></td>
 <td headers="roundsStunned" contenteditable=<%= allowEditing %>><%= roundsStillStunned %></td>
 <td headers="negativeModifier" contenteditable=<%= allowEditing %>><%= negativeModifier %></td>
+<td headers="totalHitsPerClone"><%= totalHitsPerClone %></td>
 <td headers="hitsStarting"><%= hitsAtStartOfRound %></td>
 <td headers="hitsTakenThisRound" contenteditable=<%= allowEditing %>><%= hitsTakenDuringRound %></td>
 <td headers="bleeding" contenteditable=<%= allowEditing %>><%= bleeding %></td>
