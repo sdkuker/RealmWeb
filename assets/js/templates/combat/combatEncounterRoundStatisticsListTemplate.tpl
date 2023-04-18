@@ -2,6 +2,8 @@
 <thead>
 <tr>
     <th id="name">Name</th>
+    <th id="initialNumberOfCharacterClones">Initial Number Instances In Combat</th>
+    <th id="remainingNumberOfCharacterClones">Remaining Number Instances In Combat</th>
     <th id="initiative">Initiative</th>
     <th id="alertness">Alertness</th>
     <th id="observation">Observation</th>

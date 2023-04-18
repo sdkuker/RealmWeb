@@ -1,4 +1,6 @@
 <td headers="name"><%- myCharactersName %></td>
+<td headers="initialNumberOfCharacterClones"><%- initialNumberOfCharacterClones %></td>
+<td headers="remainingNumberOfCharacterClones"><%- remainingNumberOfCharacterClones %></td>
 <td headers="initiative"><%= initiative %></td>
 <td headers="alertness"><%= alertness %></td>
 <td headers="observation"><%= observation %></td>

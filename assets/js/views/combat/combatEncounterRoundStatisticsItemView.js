@@ -16,15 +16,26 @@ define(['marionette',
                     var myCharactersName = decodeURI(this.model.get('characterName'));
                     var myCharacter = CharacterWarehouse.getCharacterWithoutWaiting(this.model.get('characterID'));
                     var hitsRemaining = this.model.getHitsAtEndOfRound(myCharacter);
+                    var remainingNumberOfCharacterClones = this.calculateRemainingNumberOfCharacterClones(hitsRemaining);
                     var allowEditing = this.isOpenRound;
                     return {
                         myCharactersName : myCharactersName,
                         hitsRemaining : hitsRemaining,
-                        allowEditing : allowEditing
+                        allowEditing : allowEditing,
+                        remainingNumberOfCharacterClones : remainingNumberOfCharacterClones
                     }
             },
             events : {
                 'input' : 'tableCellUpdated'
+            },
+            calculateRemainingNumberOfCharacterClones : function(hitsRemaining) {
+                let instancesRemainingFloat = hitsRemaining / this.model.get('totalHitsPerClone');
+                let instancesRemainingInteger = Math.trunc(instancesRemainingFloat);
+                let instancesRemainingRemainder = hitsRemaining % this.model.get('totalHitsPerClone');
+                if ( instancesRemainingRemainder > 0 ) {
+                    instancesRemainingInteger = ++instancesRemainingInteger;
+                };
+                return instancesRemainingInteger;
             },
             timeout: null,
             self : null,
@@ -67,7 +78,7 @@ define(['marionette',
                     self.model.set(modelAttributeName, targetValue);
                    // self.render();
 
-                }, 800);
+                }, 1000);
             },
             onRender : function() {
                 var self = this;

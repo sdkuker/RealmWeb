@@ -15,6 +15,8 @@ define(['jquery',
             var allStatisticsCollection = null;
             var allCharactersCollection = null;
             var allCombatEncounterCharactersCollection = null;
+            // key is the character number, value is the number of clones in combat
+            var numberOfCharacterClonesInCombat = new Map();
 
             // public functions
 
@@ -93,6 +95,7 @@ define(['jquery',
             createInitialRoundStatisticsObjectForCharacter = function(aCharacter, encounterRoundID) {
 
                 var characterStatisticsObject = {};
+                var numberOfClonesInCombat = numberOfCharacterClonesInCombat.get(aCharacter.get('id'));
 
                 characterStatisticsObject.encounterRoundID = encounterRoundID;
                 characterStatisticsObject.playerID = aCharacter.get('playerID');
@@ -101,14 +104,16 @@ define(['jquery',
                 characterStatisticsObject.initiative = CombatRoundAttributeDeterminer.determineRoundInitiative(aCharacter);
                 characterStatisticsObject.alertness = CombatRoundAttributeDeterminer.determineRoundAlertness(aCharacter);
                 characterStatisticsObject.observation = CombatRoundAttributeDeterminer.determineRoundObservation(aCharacter);
-                characterStatisticsObject.totalHits = aCharacter.totalHitPoints();
+                characterStatisticsObject.totalHits = aCharacter.totalHitPoints() * numberOfClonesInCombat;
                 characterStatisticsObject.bleeding = 0;
                 characterStatisticsObject.roundsStillStunned = 0;
                 characterStatisticsObject.negativeModifier = 0;
                 characterStatisticsObject.regeneration = 0;
-                characterStatisticsObject.hitsAtStartOfRound = aCharacter.totalHitPoints();
+                characterStatisticsObject.hitsAtStartOfRound = aCharacter.totalHitPoints() * numberOfClonesInCombat;
                 characterStatisticsObject.hitsTakenDuringRound = 0;
-                characterStatisticsObject.characterTotalHitPointsAtStartOfRound = aCharacter.totalHitPoints();
+                characterStatisticsObject.characterTotalHitPointsAtStartOfRound = aCharacter.totalHitPoints() * numberOfClonesInCombat;
+                characterStatisticsObject.initialNumberOfCharacterClones = numberOfClonesInCombat;
+                characterStatisticsObject.totalHitsPerClone = aCharacter.totalHitPoints();
 
                 return characterStatisticsObject;
             };
@@ -198,6 +203,7 @@ define(['jquery',
                                     myCombatEncounterCharactersCollection.each(function(combatEncounterCharacter, index) {
                                         if (combatEncounterCharacter.get('activeInEncounter')) {
                                             allCharactersDisplayCollection.push(CharacterWarehouse.getCharacterWithoutWaiting(combatEncounterCharacter.get('characterID')));
+                                            numberOfCharacterClonesInCombat.set(combatEncounterCharacter.get('characterID'), combatEncounterCharacter.get('numberInCombat'))
                                         }
                                     });
                                     deferred.resolve(allCharactersDisplayCollection);

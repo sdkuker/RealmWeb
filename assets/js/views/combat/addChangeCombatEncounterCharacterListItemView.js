@@ -7,7 +7,8 @@ define(['marionette',
         model : CombatEncounterCharacter,
         template: AddChangeCombatEncounterListItemTemplate,
         events : {
-            'click' : 'characterActioned'
+            'click' : 'characterActioned',
+            'input' : 'characterActioned'
         },
         initialize: function(options){
             this.encounterHasStarted = options.encounterHasStarted;
@@ -23,10 +24,11 @@ define(['marionette',
                 isCharacterActiveInEncounter = "checked";
             }
             var shouldDisable = " ";
+            var shouldDisableNbrInCombat = " ";
             if (this.encounterHasStarted) {
                 shouldDisable = "disabled";
+                shouldDisableNbrInCombat = 'disabled';
             }
-            var shouldDisableNbrInCombat = " ";
             var numberInCombat = this.model.get('numberInCombat');
             if ( isCharacterActiveInEncounter === ' ' ) {
                 numberInCombat = 0;

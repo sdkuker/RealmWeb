@@ -18,7 +18,9 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 regeneration : 0,
                 hitsAtStartOfRound : 0,
                 hitsTakenDuringRound : 0,
-                characterTotalHitPointsAtStartOfRound : 0
+                characterTotalHitPointsAtStartOfRound : 0,
+                initialNumberOfCharacterClones : 0,
+                totalHitsPerClone : 0
             },
             setNegativeModifier : function(negModifierValue) {
                 if (negModifierValue > 0) {
@@ -31,12 +33,13 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 // it can be added to an active backfire collection.
                 var theReturn = {};
 
-                var changesToCharacterTotalHits = aCharacterModel.totalHitPoints() - this.get('characterTotalHitPointsAtStartOfRound');
+                var changesToCharacterTotalHits = (aCharacterModel.totalHitPoints() * this.get('initialNumberOfCharacterClones'))
+                                                 - this.get('characterTotalHitPointsAtStartOfRound');
                 theReturn.playerID = aCharacterModel.get('playerID');
                 theReturn.characterID = aCharacterModel.get('id');
                 theReturn.characterName = this.get('characterName');
                 theReturn.initiative =  CombatRoundAttributeDeterminer.determineRoundInitiative(aCharacterModel);
-                theReturn.characterTotalHitPointsAtStartOfRound = aCharacterModel.totalHitPoints();
+                theReturn.characterTotalHitPointsAtStartOfRound = aCharacterModel.totalHitPoints() * this.get('initialNumberOfCharacterClones');
                 theReturn.totalHits = this.get('totalHits') + changesToCharacterTotalHits;
                 theReturn.hitsAtStartOfRound = this.getHitsAtEndOfRound(aCharacterModel) + changesToCharacterTotalHits;
                 theReturn.bleeding = this.get('bleeding');
@@ -45,7 +48,9 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 theReturn.regeneration = this.get('regeneration');
                 theReturn.alertness = CombatRoundAttributeDeterminer.determineRoundAlertness(aCharacterModel);
                 theReturn.observation = CombatRoundAttributeDeterminer.determineRoundObservation(aCharacterModel);
-
+                theReturn.initialNumberOfCharacterClones = this.get('initialNumberOfCharacterClones');
+                theReturn.totalHitsPerClone = this.get('totalHitsPerClone');
+                
                 //TODO still need to do something about the critial hits sufferred
 
                 return theReturn;
@@ -53,7 +58,7 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
             getHitsAtEndOfRound : function(aCharacterModel) {
                 var calculatedHitsAtEndOfRound = this.get('hitsAtStartOfRound') - this.get('hitsTakenDuringRound') -
                     this.get('bleeding') + this.get('regeneration');
-                return (Math.min(calculatedHitsAtEndOfRound, aCharacterModel.totalHitPoints()));
+                return (Math.min(calculatedHitsAtEndOfRound, aCharacterModel.totalHitPoints() * this.get('initialNumberOfCharacterClones')));
             }
 
         });
