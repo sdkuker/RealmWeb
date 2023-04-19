@@ -25,6 +25,7 @@ define(['marionette',
                 'change #defenderBonus' : 'defenderBonusChanged',
                 'change #combatEncounterSelect' : 'combatEncounterSelected',
                 'change #defenderSelect' : 'defenderSelected',
+                'change #attackerSelect' : 'attackerSelected',
                 'change #rollResult': 'rollResultChanged'
             },
             chosenType : null,
@@ -38,6 +39,8 @@ define(['marionette',
             chosenCombatEncounter : null,
             openCombatRoundForEncounter : null,
             chosenDefenderID : null,
+            chosenAttackerID : null,
+            chosenAttackerName: null,
             noCombatID : 'noCombatID',
             initialize : function() {
                 self = this;
@@ -64,7 +67,7 @@ define(['marionette',
                    typeSelectElement.append(appendString);
                 });
                 this.populateCombatEncounters();
-                this.populateDefenders();
+                this.populateDefendersAndAttackers();
                 this.populateSeverities();
                 this.caclulateAttackTotal();
                 $('#rollResult').val(self.dieRollValue);
@@ -109,6 +112,11 @@ define(['marionette',
                 self.chosenDefenderID = $('#defenderSelect option:selected').val();
                 self.displayCombatCriticalHits();
             },
+            attackerSelected : function() {
+                self = this;
+                self.chosenAttackerID = $('#attackerSelect option:selected').val();
+                self.chosenAttackerName = $('#attackerSelect option:selected').text();
+            },
             populateCombatEncounters : function() {
                 var self = this;
                 var encounterSelectElement = this.$el.find('#combatEncounterSelect');
@@ -128,7 +136,7 @@ define(['marionette',
                             self.chosenCombatEncounterID = myEncounter.get('id');
                         }
                     };
-                    appendString = appendString + ">" + myEncounter.get('description') + "</option>";
+                    appendString = appendString + ">" + myEncounter.getDescription() + "</option>";
                     encounterSelectElement.append(appendString);
                 });
             },
@@ -142,29 +150,40 @@ define(['marionette',
                 var self = this;
                 return self.chosenCombatEncounterID && self.chosenCombatEncounterID != self.noCombatID;
             },
-            populateDefenders : function() {
+            populateDefendersAndAttackers : function() {
                 var self = this;
                 var deferred = $.Deferred();
 
                 if (self.inCombatMode()) {
                     var self = this;
                     var defenderSelectElement = this.$el.find('#defenderSelect');
+                    var attackerSelectElement = this.$el.find('#attackerSelect');
                     defenderSelectElement.empty();
+                    attackerSelectElement.empty();
                     $.when(CombatRoundWarehouse.getOpenRoundForEncounter(self.chosenCombatEncounter)).then (
                         function(openCombatRound) {
                             self.openCombatRoundForEncounter = openCombatRound;
                             $.when(CombatRoundStatisticWarehouse.getCombatRoundStatisticsForRound(openCombatRound)).then(
                                 function(combatRoundStatisticsCollection) {
                                     combatRoundStatisticsCollection.forEach(function(aStatistic, key, list){
-                                        var optionString = "<option value='" + aStatistic.get('characterID') + "'";
+                                        var defenderOptionString = "<option value='" + aStatistic.get('characterID') + "'";
+                                        var attackerOptionString = "<option value='" + aStatistic.get('characterID') + "'";
                                         if ((key == 0 && ! self.chosenDefenderID) || (self.chosenDefenderID && self.chosenDefenderID == aStatistic.get('characterID'))) {
-                                            optionString = optionString + " selected='selected'";
+                                            defenderOptionString = defenderOptionString + " selected='selected'";
                                             if (! self.chosenDefenderID) {
                                                 self.chosenDefenderID = aStatistic.get('characterID');
                                             }
                                         };
-                                        optionString = optionString + ">" + decodeURI(aStatistic.get('characterName')) + "</option";
-                                        defenderSelectElement.append(optionString);
+                                        if ((key == 0 && ! self.chosenAttackerID) || (self.chosenAttackerID && self.chosenAttackerID == aStatistic.get('characterID'))) {
+                                            attackerOptionString = attackerOptionString + " selected='selected'";
+                                            if (! self.chosenAttackerID) {
+                                                self.chosenAttackerID = aStatistic.get('characterID');
+                                            }
+                                        };
+                                        defenderOptionString = defenderOptionString + ">" + decodeURI(aStatistic.get('characterName')) + "</option";
+                                        defenderSelectElement.append(defenderOptionString);
+                                        attackerOptionString = attackerOptionString + ">" + decodeURI(aStatistic.get('characterName')) + "</option";
+                                        attackerSelectElement.append(attackerOptionString);
                                     });
                                     $.when(self.displayCombatCriticalHits()).then(
                                         function() {
@@ -269,16 +288,17 @@ define(['marionette',
                         var criticalHitID = selectedCriticalHitArray[0].get('id');
                         var criticalHitDescription = selectedCriticalHitArray[0].getDescription();
                         $.when(CombatRoundCriticalHitWarehouse.addCombatRoundCriticalHit(self.chosenCombatEncounterID,
-                            openRoundID, openRoundNumber, self.chosenDefenderID, criticalHitID, criticalHitDescription)).then (
-                            function(newCombatRoundCriticalHit) {
-                                $.when(self.displayCombatCriticalHits()).then(
-                                    function() {
-                                    }
-                                )
-                            },
-                            function(errorString) {
-                                console.log(errorString);
-                            }
+                            openRoundID, openRoundNumber, self.chosenDefenderID, criticalHitID, criticalHitDescription, 
+                            self.chosenAttackerName)).then (
+                                function(newCombatRoundCriticalHit) {
+                                    $.when(self.displayCombatCriticalHits()).then(
+                                        function() {
+                                        }
+                                    )
+                                },
+                                function(errorString) {
+                                    console.log(errorString);
+                                }
                         )
                     } else {
                         RealmApplication.vent.trigger('criticalHitFilter:criticalHitSelected', selectedCriticalHitArray);

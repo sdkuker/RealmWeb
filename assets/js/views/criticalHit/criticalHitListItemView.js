@@ -8,11 +8,16 @@ define(['marionette',
         template: CriticalHitListItemTemplate,
         templateHelpers : function() {
             var myDescription = null;
+            var myCriticalHitDescription = null;
             if (this.model.get('description')) {
                 myDescription = decodeURI(this.model.get('description').replace(/%\s/g, " percent "));
             };
+            if (this.model.get('criticalHitDescription')) {
+                myCriticalHitDescription = decodeURI(this.model.get('criticalHitDescription').replace(/%\s/g, " percent "));
+            };
             return {
-                myDescription : myDescription
+                myDescription : myDescription,
+                myCriticalHitDescription : myCriticalHitDescription
             }
         },
     });

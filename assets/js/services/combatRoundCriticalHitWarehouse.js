@@ -73,7 +73,7 @@ define(['jquery',
 
             // persists the critical hit for the round.  Adding to the 'all' collection - should also appear in any
             // encounter specific collections that the critial hit for round belongs to.
-            this.addCombatRoundCriticalHit = function(aCombatEncounterID, aCombatRoundID, aCombatRoundNumber, aCharacterID, aCriticalHitID, aCriticalHitDescription) {
+            this.addCombatRoundCriticalHit = function(aCombatEncounterID, aCombatRoundID, aCombatRoundNumber, aCharacterID, aCriticalHitID, aCriticalHitDescription, anAttackerName) {
                 var deferred = $.Deferred();
                 $.when(getCombatRoundCriticalHitCollection()).then (
                     function(myAllRoundCriticalHitCollection) {
@@ -84,7 +84,7 @@ define(['jquery',
                         myAllRoundCriticalHitCollection.add(
                             {combatEncounterID: aCombatEncounterID, combatRoundID : aCombatRoundID, combatRoundNumber : aCombatRoundNumber,
                                 characterID : aCharacterID, criticalHitID: aCriticalHitID, criticalHitDescription : aCriticalHitDescription,
-                                timeOfHit : timestamp});
+                                timeOfHit : timestamp, attackerName : anAttackerName});
                     }
                 )
                 return deferred.promise();

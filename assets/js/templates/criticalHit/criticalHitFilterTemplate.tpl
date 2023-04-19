@@ -78,6 +78,15 @@
                     </div>
             </div>
         </form>
+        <form role="form" class="col-md-offset-3">
+            <div class="form-group form-horizontal">
+                    <label class="control-label col-md-2">Attacker</label>
+                    <div class="col-md-3">
+                        <select id='attackerSelect' class="form-control">
+                        </select>
+                    </div>
+            </div>
+        </form>
     </div>
     <div class="row">
         <form role="form">

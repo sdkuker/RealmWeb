@@ -9,7 +9,8 @@ define(['backbone'],
                 criticalHitID : '',
                 characterID : '',
                 criticalHitDescription : '',
-                timeOfHit : ''
+                timeOfHit : '',
+                attackerName : ''
             }
         });
 
