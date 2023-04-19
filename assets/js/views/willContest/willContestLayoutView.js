@@ -74,26 +74,22 @@ define(['marionette',
             },
             createAndDisplayNextRound: function () {
                 var self = this;
-                if (self.model.get('contestantOneID') === self.model.get('contestantTwoID')) {
-                    ViewUtilities.showModalView('Error', 'The will contestants must be different');
-                } else {
-                    $.when(WillContestWarehouse.generateNextWillContestRound(self.model)).then(
-                        function (nextWillContestRoundCreationReturn) {
-                            if (nextWillContestRoundCreationReturn.newContestModel) {
-                                // a new contest model was created, must refresh this layout view
-                                self.model = nextWillContestRoundCreationReturn.newContestModel;
-                            }
-                            $.when(self.prepareToShowRound(self.model.get('currentRoundNumber'))).then(
-                                function () {
-                                    self.render();
-                                }
-                            )
-                        },
-                        function(aRejectReason) {
-                            ViewUtilities.showModalView('Error', 'Unable to generate contest round because: ' + aRejectReason);
+                $.when(WillContestWarehouse.generateNextWillContestRound(self.model)).then(
+                    function (nextWillContestRoundCreationReturn) {
+                        if (nextWillContestRoundCreationReturn.newContestModel) {
+                            // a new contest model was created, must refresh this layout view
+                            self.model = nextWillContestRoundCreationReturn.newContestModel;
                         }
-                    )
-                }
+                        $.when(self.prepareToShowRound(self.model.get('currentRoundNumber'))).then(
+                            function () {
+                                self.render();
+                            }
+                        )
+                    },
+                    function(aRejectReason) {
+                        ViewUtilities.showModalView('Error', 'Unable to generate contest round because: ' + aRejectReason);
+                    }
+                )
             },
             prepareToShowRound: function (roundNumber) {
                 var self = this;
