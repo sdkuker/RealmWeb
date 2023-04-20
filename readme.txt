@@ -24,3 +24,5 @@ martialProwessBonus, terrainAwarenessBonus, zenMasterBonus, calisthenicsBonus.  
 defensive calculations like total defense, etc.
 9) Added the 'must parry' column in combat.  It's just a number that doesn't factor into any calcuation or
 carry over to the next round.  Every round starts at zero regardless of the value from the previous round.
+10) Added the Stevieware Navigation Brand 'about' view and put a version number in there.  I have to manually
+update the version in the about.js file whenever a new version of the app gets deployed.

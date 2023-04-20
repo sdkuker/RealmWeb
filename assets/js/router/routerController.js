@@ -11,6 +11,15 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                     ViewUtilities.showLoginModalView();
                 });
             },
+            about: function () {
+                require(['models/about/aboutModel', 'views/about/aboutView'], function (AboutModel, AboutView) {
+                    var aboutModel = new AboutModel();
+                    var view = new AboutView({ model: aboutModel });
+                    RealmApplication.regions.mainRegion.show(view);
+                    ViewUtilities.currentNavSelection = 'about';
+                    ViewUtilities.resetActiveNavSelection();
+                });
+            },
             displayLoggedInUser: function (playerModel) {
                 require(['views/authentication/authenticationSignedInView', 'services/playerWarehouse'],
                     function (AuthenticationSignedInView, PlayerWarehouse) {

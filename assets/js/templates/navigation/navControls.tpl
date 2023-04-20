@@ -1,7 +1,15 @@
 <nav id="main-nav" class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Stevieware</a>
+            <div class="dropdown">
+                <a class="dropdown-toggle navbar-brand" data-toggle="dropdown" href="#">Stevieware
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li id='stevieware'><a href="#" >Stevieware</a></li>
+                    <li id='about'><a href="#about" >About</a></li>
+                </ul>
+            </div>
         </div>
         <div>
             <ul id='main-nav-ul' class="nav navbar-nav">

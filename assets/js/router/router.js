@@ -5,6 +5,7 @@ define(['marionette',
     var AppRouter = Marionette.AppRouter.extend({
         controller: RouterController,
         appRoutes: {
+            'about': 'about',
             'criticalHits': 'criticalHits',
             'criticalHits/:combatEncounterID' : 'criticalHits',
             'criticalHits/:combatEncounterID/:characterID' : 'criticalHits',
