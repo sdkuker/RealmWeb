@@ -28,31 +28,47 @@ define(['marionette',
             var characterName = this.model.getName();
             var myQuicknessBonusDescription = this.model.getQuicknessBonusDescription();
             var myRacialModifierDescription = this.model.getRacialModifierDescription();
-            var myAdrenalDefenseDescription = this.model.getAdrenalDefenseDescription();
             var myArmorChoiceDescription = this.model.getArmorChoiceDescription();
             var myArmorOnArmorDescription = this.model.getArmorOnArmorDescription();
             var myShieldChoiceDescription = this.model.getShieldChoiceDescription();
-            var myMiscItemChoiceDescription = this.model.getMiscItemChoiceDescription();
+
+            var myBracersBonusDescription = this.model.getBracersBonusDescription();
+            var myRingBonusDescription = this.model.getRingBonusDescription();
+            var myMagicalItemBonusDescription = this.model.getMagicalItemBonusDescription();
+            var myMartialProwessBonusDescription = this.model.getMartialProwessBonusDescription();
+            var myTerrainAwarenessBonusDescription = this.model.getTerrainAwarenessBonusDescription();
+            var myZenMasterBonusDescription = this.model.getZenMasterBonusDescription();
+            var myCalisthenicsBonusDescription = this.model.getCalisthenicsBonusDescription();
+
             var mySkillChoice1Description = this.model.getSkillChoice1Description();
             var mySkillChoice2Description = this.model.getSkillChoice2Description();
             var mySkillChoice3Description = this.model.getSkillChoice3Description();
+            var myMiscItemChoiceDescription = this.model.getMiscItemChoiceDescription();
             var mySpecialAbilityDescription = this.model.getSpecialAbilityDescription();
             var myWeaponParryDescription = this.model.getWeaponParryDescription();
+            var myAdrenalDefenseDescription = this.model.getAdrenalDefenseDescription();
 
             return {
                 characterName : characterName,
                 myQuicknessBonusDescription : myQuicknessBonusDescription,
                 myRacialModifierDescription : myRacialModifierDescription,
-                myAdrenalDefenseDescription : myAdrenalDefenseDescription,
                 myArmorChoiceDescription : myArmorChoiceDescription,
                 myArmorOnArmorDescription : myArmorOnArmorDescription,
                 myShieldChoiceDescription : myShieldChoiceDescription,
-                myMiscItemChoiceDescription : myMiscItemChoiceDescription,
+                myBracersBonusDescription : myBracersBonusDescription,
+                myRingBonusDescription : myRingBonusDescription,
+                myMagicalItemBonusDescription : myMagicalItemBonusDescription,
+                myMartialProwessBonusDescription : myMartialProwessBonusDescription,
+                myTerrainAwarenessBonusDescription : myTerrainAwarenessBonusDescription,
+                myZenMasterBonusDescription : myZenMasterBonusDescription,
+                myCalisthenicsBonusDescription : myCalisthenicsBonusDescription,
                 mySkillChoice1Description : mySkillChoice1Description,
                 mySkillChoice2Description : mySkillChoice2Description,
                 mySkillChoice3Description : mySkillChoice3Description,
+                myMiscItemChoiceDescription : myMiscItemChoiceDescription,
                 mySpecialAbilityDescription : mySpecialAbilityDescription,
-                myWeaponParryDescription : myWeaponParryDescription
+                myWeaponParryDescription : myWeaponParryDescription,
+                myAdrenalDefenseDescription : myAdrenalDefenseDescription
             }
         },
         populateModel : function() {
@@ -84,6 +100,22 @@ define(['marionette',
             self.model.setArmorOnArmorDescription($('#armorOnArmorDescription').val());
             self.model.set('shieldChoice', self.parseAsInt($('#shieldChoice').val()));
             self.model.setShieldChoiceDescription($('#shieldChoiceDescription').val());
+
+            self.model.set('bracersBonus', self.parseAsInt($('#bracersBonus').val()));
+            self.model.setBracersBonusDescription($('#bracersBonusDescription').val());
+            self.model.set('ringBonus', self.parseAsInt($('#ringBonus').val()));
+            self.model.setRingBonusDescription($('#ringBonusDescription').val());
+            self.model.set('magicalItemBonus', self.parseAsInt($('#magicalItemBonus').val()));
+            self.model.setMagicalItemBonusDescription($('#magicalItemBonusDescription').val());
+            self.model.set('martialProwessBonus', self.parseAsInt($('#martialProwessBonus').val()));
+            self.model.setMartialProwessBonusDescription($('#martialProwessBonusDescription').val());
+            self.model.set('terrainAwarenessBonus', self.parseAsInt($('#terrainAwarenessBonus').val()));
+            self.model.setTerrainAwarenessBonusDescription($('#terrainAwarenessBonusDescription').val());
+            self.model.set('zenMasterBonus', self.parseAsInt($('#zenMasterBonus').val()));
+            self.model.setZenMasterBonusDescription($('#zenMasterBonusDescription').val());
+            self.model.set('calisthenicsBonus', self.parseAsInt($('#calisthenicsBonus').val()));
+            self.model.setCalisthenicsBonusDescription($('#calisthenicsBonusDescription').val());
+
             self.model.set('skillChoice1', self.parseAsInt($('#skillChoice1').val()));
             self.model.setSkillChoice1Description($('#skillChoice1Description').val());
             self.model.set('skillChoice2', self.parseAsInt($('#skillChoice2').val()));
@@ -149,6 +181,21 @@ define(['marionette',
             tempObject.adrenalDefense = self.parseAsInt($('#adrenalDefense').val());
             tempObject.weaponParry = self.parseAsInt($('#weaponParry').val());
             tempObject.weaponParryDescription = encodeURI($('#weaponParryDescription').val());
+
+            tempObject.bracersBonus = self.parseAsInt($('#bracersBonus').val());
+            tempObject.bracersBonusDescription = encodeURI($('#bracersBonusDescription').val());
+            tempObject.ringBonus = self.parseAsInt($('#ringBonus').val());
+            tempObject.ringBonusDescription = encodeURI($('#ringBonusDescription').val());
+            tempObject.magicalItemBonus = self.parseAsInt($('#magicalItemBonus').val());
+            tempObject.magicalItemBonusDescription = encodeURI($('#magicalItemBonusDescription').val());
+            tempObject.martialProwessBonus = self.parseAsInt($('#martialProwessBonus').val());
+            tempObject.martialProwessBonusDescription = encodeURI($('#martialProwessBonusDescription').val());
+            tempObject.terrainAwarenessBonus = self.parseAsInt($('#terrainAwarenessBonus').val());
+            tempObject.terrainAwarenessBonusDescription = encodeURI($('#terrainAwarenessBonusDescription').val());
+            tempObject.zenMasterBonus = self.parseAsInt($('#zenMasterBonus').val());
+            tempObject.zenMasterBonusDescription = encodeURI($('#zenMasterBonusDescription').val());
+            tempObject.calisthenicsBonus = self.parseAsInt($('#calisthenicsBonus').val());
+            tempObject.calisthenicsBonusDescription = encodeURI($('#calisthenicsBonusDescription').val());
 
            return tempObject;
         },

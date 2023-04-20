@@ -18,3 +18,7 @@ for him - it has no other impact.
 which has decoding in it - to take out that stuff.  
 6) Fixed a bug in critical hits for combat where it also had %20 in some of the descriptions.  Added a field in the
 view that would decode the combat critical hit description and used that in the template.
+7) Added descriptions for the quickness bonus, racial modifier, and adrenal defense character attributes.
+8) Added several character defense attributes and descriptions.  The are: bracersBonus, ringBonus, magicalItemBonus,
+martialProwessBonus, terrainAwarenessBonus, zenMasterBonus, calisthenicsBonus.  These were all included in the characters
+defensive calculations like total defense, etc.

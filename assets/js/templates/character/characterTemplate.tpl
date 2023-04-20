@@ -121,16 +121,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class='control-label col-sm-2' for="adrenalDefense">Adrenal Defense:</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="adrenalDefense" value="<%- adrenalDefense %> ">
-                        </div>
-                        <label class='control-label col-sm-2' for="adrenalDefenseDescription">Adrenal Defense Description:</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" id="adrenalDefenseDescription" value="<%- myAdrenalDefenseDescription %> ">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class='control-label col-sm-2' for="armorChoice">Armor Choice:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="armorChoice" value="<%- armorChoice %> ">
@@ -160,14 +150,75 @@
                             <input type="text" class="form-control" id="shieldChoiceDescription" value="<%- myShieldChoiceDescription %> ">
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label class='control-label col-sm-2' for="miscItemChoice">Misc Item Choice:</label>
+                        <label class='control-label col-sm-2' for="bracersBonus">Bracers Bonus:</label>
                         <div class="col-sm-2">
-                            <input type="text" class="form-control" id="miscItemChoice" value="<%- miscItemChoice %> ">
+                            <input type="text" class="form-control" id="bracersBonus" value="<%- bracersBonus %> ">
                         </div>
-                        <label class='control-label col-sm-2' for="miscItemChoiceDescription">Misc Item Choice Description:</label>
+                        <label class='control-label col-sm-2' for="bracersBonusDescription">Bracers Bonus Description:</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="miscItemChoiceDescription" value="<%- myMiscItemChoiceDescription %> ">
+                            <input type="text" class="form-control" id="bracersBonusDescription" value="<%- myBracersBonusDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class='control-label col-sm-2' for="ringBonus">Ring Bonus:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="ringBonus" value="<%- ringBonus %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="ringBonusDescription">Ring Bonus Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="ringBonusDescription" value="<%- myRingBonusDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class='control-label col-sm-2' for="magicalItemBonus">Magical Items Bonus:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="magicalItemBonus" value="<%- magicalItemBonus %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="magicalItemBonusDescription">Magical Items Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="magicalItemBonusDescription" value="<%- myMagicalItemBonusDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class='control-label col-sm-2' for="martialProwessBonus">Martial Prowess Bonus:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="martialProwessBonus" value="<%- martialProwessBonus %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="martialProwessBonusDescription">Martial Prowess Bonus Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="martialProwessBonusDescription" value="<%- myMartialProwessBonusDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class='control-label col-sm-2' for="terrainAwarenessBonus">Terrain Awareness Bonus:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="terrainAwarenessBonus" value="<%- terrainAwarenessBonus %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="terrainAwarenessBonusDescription">Terrain Awareness Bonus Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="terrainAwarenessBonusDescription" value="<%- myTerrainAwarenessBonusDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class='control-label col-sm-2' for="zenMasterBonus">Zen Master Bonus:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="zenMasterBonus" value="<%- zenMasterBonus %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="zenMasterBonusDescription">Zen Master Bonus Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="zenMasterBonusDescription" value="<%- myZenMasterBonusDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class='control-label col-sm-2' for="calisthenicsBonus">Calisthenics Bonus:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="calisthenicsBonus" value="<%- calisthenicsBonus %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="calisthenicsBonusDescription">Calisthenics Bonus Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="calisthenicsBonusDescription" value="<%- myCalisthenicsBonusDescription %> ">
                         </div>
                     </div>
                     <div class="form-group">
@@ -201,6 +252,16 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class='control-label col-sm-2' for="miscItemChoice">Misc Item Choice:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="miscItemChoice" value="<%- miscItemChoice %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="miscItemChoiceDescription">Misc Item Choice Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="miscItemChoiceDescription" value="<%- myMiscItemChoiceDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class='control-label col-sm-2' for="specialAbility">Special Ability:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="specialAbility" value="<%- specialAbility %> ">
@@ -218,6 +279,16 @@
                         <label class='control-label col-sm-2' for="weaponParryDescription">Weapon Parry Description:</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="weaponParryDescription" value="<%- myWeaponParryDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class='control-label col-sm-2' for="adrenalDefense">Adrenal Defense:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="adrenalDefense" value="<%- adrenalDefense %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="adrenalDefenseDescription">Adrenal Defense Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="adrenalDefenseDescription" value="<%- myAdrenalDefenseDescription %> ">
                         </div>
                     </div>
                 </form>
