@@ -100,8 +100,8 @@ define(['backbone', 'services/playerWarehouse'],
                         "Skill Choice 1(" + this.get('skillChoice1') + ") + " +
                         "Skill Choice 2(" + this.get('skillChoice2') + ") + " +
                         "Skill Choice 3(" + this.get('skillChoice3') + ") + " +
-                        "Special Ability(" + this.get('specialAbility') + ") + " +
                         "Misc Item Choice(" + this.get('miscItemChoice') + ") + " +
+                        "Special Ability(" + this.get('specialAbility') + ") + " +
                         "Weapon Parry(" + this.get('weaponParry') + ") + " +
                         "Adrenal Defense(" + this.get('adrenalDefense') + ") = " +
                         this.totalDefensiveBonus();
