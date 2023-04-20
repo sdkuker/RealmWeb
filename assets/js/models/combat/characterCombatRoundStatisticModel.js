@@ -14,6 +14,7 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 totalHits : 0,
                 bleeding : 0,
                 roundsStillStunned : 0,
+                mustParry : 0,
                 negativeModifier : 0,
                 regeneration : 0,
                 hitsAtStartOfRound : 0,
@@ -44,6 +45,7 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 theReturn.hitsAtStartOfRound = this.getHitsAtEndOfRound(aCharacterModel) + changesToCharacterTotalHits;
                 theReturn.bleeding = this.get('bleeding');
                 theReturn.roundsStillStunned = CombatRoundAttributeDeterminer.determineNumberOfRoundsStillStunned(this.get('roundsStillStunned'));
+                theReturn.mustParry = 0;
                 theReturn.negativeModifier = this.get('negativeModifier');
                 theReturn.regeneration = this.get('regeneration');
                 theReturn.alertness = CombatRoundAttributeDeterminer.determineRoundAlertness(aCharacterModel);

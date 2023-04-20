@@ -5,6 +5,7 @@
 <td headers="alertness"><%= alertness %></td>
 <td headers="observation"><%= observation %></td>
 <td headers="roundsStunned" contenteditable=<%= allowEditing %>><%= roundsStillStunned %></td>
+<td headers="mustParry" contenteditable=<%= allowEditing %>><%= mustParry %></td>
 <td headers="negativeModifier" contenteditable=<%= allowEditing %>><%= negativeModifier %></td>
 <td headers="totalHitsPerClone"><%= totalHitsPerClone %></td>
 <td headers="hitsStarting"><%= hitsAtStartOfRound %></td>

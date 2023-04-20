@@ -74,6 +74,9 @@ define(['marionette',
                         case 'regeneration':
                             modelAttributeName = 'regeneration';
                             break;
+                        case 'mustParry':
+                            modelAttributeName = 'mustParry';
+                            break;
                     }
                     self.model.set(modelAttributeName, targetValue);
                    // self.render();

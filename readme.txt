@@ -22,3 +22,5 @@ view that would decode the combat critical hit description and used that in the 
 8) Added several character defense attributes and descriptions.  The are: bracersBonus, ringBonus, magicalItemBonus,
 martialProwessBonus, terrainAwarenessBonus, zenMasterBonus, calisthenicsBonus.  These were all included in the characters
 defensive calculations like total defense, etc.
+9) Added the 'must parry' column in combat.  It's just a number that doesn't factor into any calcuation or
+carry over to the next round.  Every round starts at zero regardless of the value from the previous round.

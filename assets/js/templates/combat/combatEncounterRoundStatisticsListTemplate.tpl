@@ -8,6 +8,7 @@
     <th id="alertness">Alertness</th>
     <th id="observation">Observation</th>
     <th id="roundsStunned">Rounds Stunned</th>
+    <th id="mustParry">Must Parry</th>
     <th id="negativeModifier">Negative Modifier</th>
     <th id="totalHitsPerClone">Hits Per Instance</th>
     <th id="hitsStarting">Total Hits Starting Round</th>
