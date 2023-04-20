@@ -26,6 +26,9 @@ define(['marionette',
         },
         templateHelpers : function() {
             var characterName = this.model.getName();
+            var myQuicknessBonusDescription = this.model.getQuicknessBonusDescription();
+            var myRacialModifierDescription = this.model.getRacialModifierDescription();
+            var myAdrenalDefenseDescription = this.model.getAdrenalDefenseDescription();
             var myArmorChoiceDescription = this.model.getArmorChoiceDescription();
             var myArmorOnArmorDescription = this.model.getArmorOnArmorDescription();
             var myShieldChoiceDescription = this.model.getShieldChoiceDescription();
@@ -38,6 +41,9 @@ define(['marionette',
 
             return {
                 characterName : characterName,
+                myQuicknessBonusDescription : myQuicknessBonusDescription,
+                myRacialModifierDescription : myRacialModifierDescription,
+                myAdrenalDefenseDescription : myAdrenalDefenseDescription,
                 myArmorChoiceDescription : myArmorChoiceDescription,
                 myArmorOnArmorDescription : myArmorOnArmorDescription,
                 myShieldChoiceDescription : myShieldChoiceDescription,
@@ -70,6 +76,9 @@ define(['marionette',
             self.model.set('quicknessBonus', self.parseAsInt($('#quicknessBonus').val()));
             self.model.set('racialModifier', self.parseAsInt($('#racialModifier').val()));
             self.model.set('armorChoice', self.parseAsInt($('#armorChoice').val()));
+            self.model.setQuicknessBonusDescription($('#quicknessBonusDescription').val());
+            self.model.setRacialModifierDescription($('#racialModifierDescription').val());
+            self.model.setAdrenalDefenseDescription($('#adrenalDefenseDescription').val());
             self.model.setArmorChoiceDescription($('#armorChoiceDescription').val());
             self.model.set('armorOnArmor', self.parseAsInt($('#armorOnArmor').val()));
             self.model.setArmorOnArmorDescription($('#armorOnArmorDescription').val());

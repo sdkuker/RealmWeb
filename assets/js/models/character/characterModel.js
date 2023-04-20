@@ -19,7 +19,11 @@ define(['backbone', 'services/playerWarehouse'],
                 will : 0,
                 willModifier : 0,
                 quicknessBonus : 0,
+                quicknessBonusDescription : '',
                 racialModifier : 0,
+                racialModifierDescription : '',
+                adrenalDefense : 0,
+                adrenalDefenseDescription : '',
                 armorChoice : 0,
                 armorChoiceDescription : '',
                 armorOnArmor : 0,
@@ -36,7 +40,6 @@ define(['backbone', 'services/playerWarehouse'],
                 specialAbilityDescription : '',
                 miscItemChoice : 0,
                 miscItemChoiceDescription : '',
-                adrenalDefense : 0,
                 weaponParry : 0,
                 weaponParryDescription : ''
             },
@@ -100,6 +103,24 @@ define(['backbone', 'services/playerWarehouse'],
             },
             hasShield : function() {
                 return this.get('shieldChoice') > 0;
+            },
+            getQuicknessBonusDescription: function() {
+                return decodeURI(this.get('quicknessBonusDescription'));
+            },
+            setQuicknessBonusDescription: function(aDescription) {
+                return this.set('quicknessBonusDescription', encodeURI(aDescription));
+            },
+            getRacialModifierDescription: function() {
+                return decodeURI(this.get('racialModifierDescription'));
+            },
+            setRacialModifierDescription: function(aDescription) {
+                return this.set('racialModifierDescription', encodeURI(aDescription));
+            },
+            getAdrenalDefenseDescription: function() {
+                return decodeURI(this.get('adrenalDefenseDescription'));
+            },
+            setAdrenalDefenseDescription: function(aDescription) {
+                return this.set('adrenalDefenseDescription', encodeURI(aDescription));
             },
             getArmorChoiceDescription: function() {
                 return decodeURI(this.get('armorChoiceDescription'));

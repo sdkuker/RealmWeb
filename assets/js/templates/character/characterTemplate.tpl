@@ -101,17 +101,33 @@
             <div class="panel-body">
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class='control-label col-sm-2' for="quicknessBonus">Quickness:</label>
+                        <label class='control-label col-sm-2' for="quicknessBonus">Quickness Bonus:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="quicknessBonus" value="<%- quicknessBonus %> ">
                         </div>
-                        <label class='control-label col-sm-2' for="racialModifier">Racial:</label>
+                        <label class='control-label col-sm-2' for="quicknessBonusDescription">Quickness Bonus Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="quicknessBonusDescription" value="<%- myQuicknessBonusDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class='control-label col-sm-2' for="racialModifier">Racial Modifier:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="racialModifier" value="<%- racialModifier %> ">
                         </div>
+                        <label class='control-label col-sm-2' for="racialModifierDescription">Racial Modifier Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="racialModifierDescription" value="<%- myRacialModifierDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class='control-label col-sm-2' for="adrenalDefense">Adrenal Defense:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="adrenalDefense" value="<%- adrenalDefense %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="adrenalDefenseDescription">Adrenal Defense Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="adrenalDefenseDescription" value="<%- myAdrenalDefenseDescription %> ">
                         </div>
                     </div>
                     <div class="form-group">
