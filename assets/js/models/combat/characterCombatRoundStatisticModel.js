@@ -21,7 +21,11 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 hitsTakenDuringRound : 0,
                 characterTotalHitPointsAtStartOfRound : 0,
                 initialNumberOfCharacterClones : 0,
-                totalHitsPerClone : 0
+                totalHitsPerClone : 0,
+                totalDefensiveBonus : 0,
+                totalDefensiveBonusDescription : '',
+                totalDefensiveBonusMinusAdrenalDefense : 0,
+                totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry : 0
             },
             setNegativeModifier : function(negModifierValue) {
                 if (negModifierValue > 0) {
@@ -52,6 +56,10 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 theReturn.observation = CombatRoundAttributeDeterminer.determineRoundObservation(aCharacterModel);
                 theReturn.initialNumberOfCharacterClones = this.get('initialNumberOfCharacterClones');
                 theReturn.totalHitsPerClone = this.get('totalHitsPerClone');
+                theReturn.totalDefensiveBonus = this.get('totalDefensiveBonus');
+                theReturn.totalDefensiveBonusDescription = this.get('totalDefensiveBonusDescription');
+                theReturn.totalDefensiveBonusMinusAdrenalDefense = this.get('totalDefensiveBonusMinusAdrenalDefense');
+                theReturn.totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry = this.get('totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry');
                 
                 //TODO still need to do something about the critial hits sufferred
 
@@ -61,7 +69,13 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 var calculatedHitsAtEndOfRound = this.get('hitsAtStartOfRound') - this.get('hitsTakenDuringRound') -
                     this.get('bleeding') + this.get('regeneration');
                 return (Math.min(calculatedHitsAtEndOfRound, aCharacterModel.totalHitPoints() * this.get('initialNumberOfCharacterClones')));
-            }
+            },
+            geTtotalDefensiveBonusDescription: function() {
+                return decodeURI(this.get('totalDefensiveBonusDescription'));
+            },
+            setTotalDefensiveBonusDescription: function(aDescription) {
+                return this.set('totalDefensiveBonusDescription', encodeURI(aDescription));
+            },
 
         });
 

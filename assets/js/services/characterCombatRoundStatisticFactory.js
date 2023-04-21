@@ -115,6 +115,11 @@ define(['jquery',
                 characterStatisticsObject.initialNumberOfCharacterClones = numberOfClonesInCombat;
                 characterStatisticsObject.totalHitsPerClone = aCharacter.totalHitPoints();
 
+                characterStatisticsObject.totalDefensiveBonus = aCharacter.totalDefensiveBonus();
+                characterStatisticsObject.totalDefensiveBonusDescription = aCharacter.totalDefensiveBonusDescription();
+                characterStatisticsObject.totalDefensiveBonusMinusAdrenalDefense = aCharacter.totalDefensiveBonusMinusAdrenalDefense();
+                characterStatisticsObject.totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry = aCharacter.totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry();
+
                 return characterStatisticsObject;
             };
 

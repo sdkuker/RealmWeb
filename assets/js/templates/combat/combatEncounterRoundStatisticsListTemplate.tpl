@@ -10,6 +10,11 @@
     <th id="roundsStunned">Rounds Stunned</th>
     <th id="mustParry">Must Parry</th>
     <th id="negativeModifier">Negative Modifier</th>
+
+    <th id="totalDefensiveBonusMinusAdrenalDefense">Defense Minus Adrenal</th>
+    <th id="totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry">Defense Minus Adrenal and Weapon Parry</th>
+    <th id="totalDefensiveBonus">Total Defense</th>
+
     <th id="totalHitsPerClone">Hits Per Instance</th>
     <th id="hitsStarting">Total Hits Starting Round</th>
     <th id="hitsTakenThisRound">Total Hits Taken This Round</th>
