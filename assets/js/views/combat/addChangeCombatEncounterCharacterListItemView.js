@@ -1,7 +1,7 @@
 define(['marionette',
     'realmApplication',
     'tpl!templates/combat/addChangeCombatEncounterCharacterListItemTemplate.tpl',
-    'models/combat/CombatEncounterCharacterModel'], function (Marionette, RealmApplication, AddChangeCombatEncounterListItemTemplate, CombatEncounterCharacter) {
+    'models/combat/combatEncounterCharacterModel'], function (Marionette, RealmApplication, AddChangeCombatEncounterListItemTemplate, CombatEncounterCharacter) {
     var AddChangeCombatEncounterCharacterListItemView = Marionette.ItemView.extend({
         tagName : 'tr',
         model : CombatEncounterCharacter,
