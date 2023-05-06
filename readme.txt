@@ -1,5 +1,9 @@
 Change log
 
+Version 2023-B (deployed 5/5/23)
+1) Added the total defensive bonus to the character detail view so people could see it as they're adding
+their individual items - a suggestion from Dan.
+
 Version 2023-A
 1)  Added the ability to have multiple instances of the same character in combat - i.e. if you had an NPC
 (or any character) on the character list, when you include that character when creating the combat encounter,

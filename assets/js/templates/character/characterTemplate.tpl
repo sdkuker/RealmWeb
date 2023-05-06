@@ -291,6 +291,13 @@
                             <input type="text" class="form-control" id="adrenalDefenseDescription" value="<%- myAdrenalDefenseDescription %> ">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class='control-label col-sm-2' for="totalDefensiveBonus">Total Defensive Bonus:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="totalDefensiveBonus" readOnly data-toggle="tooltip" 
+                                    title="<%- myTotalDefensiveBonusDescription %>"  value="<%- myTotalDefensiveBonus %> ">
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

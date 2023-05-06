@@ -48,6 +48,9 @@ define(['marionette',
             var myWeaponParryDescription = this.model.getWeaponParryDescription();
             var myAdrenalDefenseDescription = this.model.getAdrenalDefenseDescription();
 
+            var myTotalDefensiveBonus = this.model.totalDefensiveBonus();
+            var myTotalDefensiveBonusDescription = this.model.totalDefensiveBonusDescription();
+
             return {
                 characterName : characterName,
                 myQuicknessBonusDescription : myQuicknessBonusDescription,
@@ -68,7 +71,9 @@ define(['marionette',
                 myMiscItemChoiceDescription : myMiscItemChoiceDescription,
                 mySpecialAbilityDescription : mySpecialAbilityDescription,
                 myWeaponParryDescription : myWeaponParryDescription,
-                myAdrenalDefenseDescription : myAdrenalDefenseDescription
+                myAdrenalDefenseDescription : myAdrenalDefenseDescription,
+                myTotalDefensiveBonus : myTotalDefensiveBonus,
+                myTotalDefensiveBonusDescription : myTotalDefensiveBonusDescription
             }
         },
         populateModel : function() {
