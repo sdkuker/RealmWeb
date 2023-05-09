@@ -8,10 +8,11 @@ define(['marionette',
     'services/playerWarehouse'
 ], function (Marionette, RealmApplication, CharacterModel, ViewUtilities, CharacterTemplate, Logger,
              CharacterWarehouse, PlayerWarehouse) {
-    var PlayerView = Marionette.ItemView.extend({
+    var CharacterView = Marionette.ItemView.extend({
         template: CharacterTemplate,
         model: CharacterModel,
         chosenPlayer: null,
+        attributeBeingEdited: null,
         events: {
             'click #saveButton' : 'saveButtonClicked',
             'click #deleteButton' : 'deleteButtonClicked',
@@ -44,6 +45,7 @@ define(['marionette',
             var mySkillChoice2Description = this.model.getSkillChoice2Description();
             var mySkillChoice3Description = this.model.getSkillChoice3Description();
             var myMiscItemChoiceDescription = this.model.getMiscItemChoiceDescription();
+            var myMiscItemChoice2Description = this.model.getMiscItemChoice2Description();
             var mySpecialAbilityDescription = this.model.getSpecialAbilityDescription();
             var myWeaponParryDescription = this.model.getWeaponParryDescription();
             var myAdrenalDefenseDescription = this.model.getAdrenalDefenseDescription();
@@ -69,6 +71,7 @@ define(['marionette',
                 mySkillChoice2Description : mySkillChoice2Description,
                 mySkillChoice3Description : mySkillChoice3Description,
                 myMiscItemChoiceDescription : myMiscItemChoiceDescription,
+                myMiscItemChoice2Description : myMiscItemChoice2Description,
                 mySpecialAbilityDescription : mySpecialAbilityDescription,
                 myWeaponParryDescription : myWeaponParryDescription,
                 myAdrenalDefenseDescription : myAdrenalDefenseDescription,
@@ -76,6 +79,99 @@ define(['marionette',
                 myTotalDefensiveBonusDescription : myTotalDefensiveBonusDescription
             }
         },
+        // events : {
+        //     'input' : 'attributeValueChanged'
+        // },
+        // attributeValueChanged : function(event) {
+        //     self = this;
+        //     self.inputEvent = event;
+        //     clearTimeout(this.timeout);
+        //     this.timeout = setTimeout(function() {
+        //         var targetID = self.inputEvent.target.getAttribute('id');
+        //         this.attributeBeingEdited = targetID;
+        //         var targetValueAsString = self.inputEvent.target.value.replace(/(<([^>]+)>)/ig,"");;
+        //         var targetValue = parseInt(targetValueAsString);
+
+        //         if (isNaN(targetValue)) {
+        //             targetValue = 0;
+        //         }
+        //         var modelAttributeName = null;
+
+        //         switch (targetID) {
+        //             case 'quicknessBonus':
+        //                 modelAttributeName = 'quicknessBonus';
+        //                 break;
+        //             case 'racialModifier':
+        //                 modelAttributeName = 'racialModifier';
+        //                 break;
+        //             case 'armorChoice':
+        //                 modelAttributeName = 'armorChoice';
+        //                 break;
+        //             case 'armorOnArmor':
+        //                 modelAttributeName = 'armorOnArmor';
+        //                 break;
+        //             case 'shieldChoice':
+        //                 modelAttributeName = 'shieldChoice';
+        //                 break;
+        //             case 'bracersBonus':
+        //                 modelAttributeName = 'bracersBonus';
+        //                 break;
+        //             case 'ringBonus':
+        //                 modelAttributeName = 'ringBonus';
+        //                 break;
+        //             case 'magicalItemBonus':
+        //                 modelAttributeName = 'magicalItemBonus';
+        //                 break;
+        //             case 'martialProwessBonus':
+        //                 modelAttributeName = 'martialProwessBonus';
+        //                 break;
+        //             case 'terrainAwarenessBonus':
+        //                 modelAttributeName = 'terrainAwarenessBonus';
+        //                 break;
+        //             case 'zenMasterBonus':
+        //                 modelAttributeName = 'zenMasterBonus';
+        //                 break;
+        //             case 'calisthenicsBonus':
+        //                 modelAttributeName = 'calisthenicsBonus';
+        //                 break;
+        //             case 'skillChoice1':
+        //                 modelAttributeName = 'skillChoice1';
+        //                 break;
+        //             case 'skillChoice2':
+        //                 modelAttributeName = 'skillChoice2';
+        //                 break;
+        //             case 'skillChoice3':
+        //                 modelAttributeName = 'skillChoice3';
+        //                 break;
+        //             case 'miscItemChoice':
+        //                 modelAttributeName = 'miscItemChoice';
+        //                 break;
+        //             case 'miscItemChoice2':
+        //                 modelAttributeName = 'miscItemChoice2';
+        //                 break;
+        //             case 'specialAbility':
+        //                 modelAttributeName = 'specialAbility';
+        //                 break;
+        //             case 'weaponParry':
+        //                 modelAttributeName = 'weaponParry';
+        //                 break;
+        //             case 'adrenalDefense':
+        //                 modelAttributeName = 'adrenalDefense';
+        //                 break;
+        //         }
+        //         if ( modelAttributeName ) {
+        //             self.model.set(modelAttributeName, targetValue);
+        //             self.render();
+        //         }
+
+        //     }, 1000);
+        // },
+        // onRender : function() {
+        //     var self = this;
+        //     if (this.attributeBeingEdited) {
+        //         $(this.$el).find("[id='" + this.attributeBeingEdited + "']").focus();
+        //     }
+        // },
         populateModel : function() {
             var self = this;
             var myPlayer = PlayerWarehouse.getPlayerWithoutWaitingWithName(self.getChosenPlayer());
@@ -131,6 +227,8 @@ define(['marionette',
             self.model.setSpecialAbilityDescription($('#specialAbilityDescription').val());
             self.model.set('miscItemChoice', self.parseAsInt($('#miscItemChoice').val()));
             self.model.setMiscItemChoiceDescription($('#miscItemChoiceDescription').val());
+            self.model.set('miscItemChoice2', self.parseAsInt($('#miscItemChoice2').val()));
+            self.model.setMiscItemChoice2Description($('#miscItemChoice2Description').val());
             self.model.set('adrenalDefense', self.parseAsInt($('#adrenalDefense').val()));
             self.model.set('weaponParry', self.parseAsInt($('#weaponParry').val()));
             self.model.setWeaponParryDescription($('#weaponParryDescription').val());
@@ -183,6 +281,8 @@ define(['marionette',
             tempObject.specialAbilityDescription = encodeURI($('#specialAbilityDescription').val());
             tempObject.miscItemChoice = self.parseAsInt($('#miscItemChoice').val());
             tempObject.miscItemChoiceDescription = encodeURI($('#miscItemChoiceDescription').val());
+            tempObject.miscItemChoice2 = self.parseAsInt($('#miscItemChoice2').val());
+            tempObject.miscItemChoice2Description = encodeURI($('#miscItemChoice2Description').val());
             tempObject.adrenalDefense = self.parseAsInt($('#adrenalDefense').val());
             tempObject.weaponParry = self.parseAsInt($('#weaponParry').val());
             tempObject.weaponParryDescription = encodeURI($('#weaponParryDescription').val());
@@ -214,7 +314,8 @@ define(['marionette',
                 $.when(CharacterWarehouse.addCharacter(tempObject)).then(
                     function() {
                         ViewUtilities.showModalView('Informational', 'Character Saved');
-                        RealmApplication.vent.trigger('viewCharacterList');
+                        // RealmApplication.vent.trigger('viewCharacterList');
+                        self.render();
                     }
                 ),
                     function() {
@@ -225,7 +326,8 @@ define(['marionette',
                 // just move the values to the exiting model.  firebase syncs automatically
                 self.populateModel();
                 ViewUtilities.showModalView('Informational', 'Character Saved');
-                RealmApplication.vent.trigger('viewCharacterList');
+                // RealmApplication.vent.trigger('viewCharacterList');
+                self.render();
             }
 
         },
@@ -280,6 +382,6 @@ define(['marionette',
         }
     });
 
-    return PlayerView;
+    return CharacterView;
 
 });

@@ -1,5 +1,11 @@
 Change log
 
+Version 2023-C (deployed 5/09/23)
+1) Added a second misc item for the characters and added a note on the characters detail view saying that you
+have to save the character before the total defensive bonus will update.  Changed the behavior on 'save' of
+that view to stay on that view instead of going to the characters list view - so people could see the effects
+of changing attributes that make up the defensive bonus.
+
 Version 2023-B (deployed 5/5/23)
 1) Added the total defensive bonus to the character detail view so people could see it as they're adding
 their individual items - a suggestion from Dan.

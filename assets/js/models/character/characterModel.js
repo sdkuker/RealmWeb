@@ -50,6 +50,8 @@ define(['backbone', 'services/playerWarehouse'],
                 skillChoice3Description : '',
                 miscItemChoice : 0,
                 miscItemChoiceDescription : '',
+                miscItemChoice2 : 0,
+                miscItemChoice2Description : '',
                 specialAbility : 0,
                 specialAbilityDescription : '',
                 weaponParry : 0,
@@ -80,6 +82,7 @@ define(['backbone', 'services/playerWarehouse'],
                         this.get('skillChoice2') +
                         this.get('skillChoice3') +
                         this.get('miscItemChoice') +
+                        this.get('miscItemChoice2') +
                         this.get('specialAbility') +
                         this.get('weaponParry') +
                         this.get('adrenalDefense');
@@ -101,6 +104,7 @@ define(['backbone', 'services/playerWarehouse'],
                         "Skill Choice 2(" + this.get('skillChoice2') + ") + " +
                         "Skill Choice 3(" + this.get('skillChoice3') + ") + " +
                         "Misc Item Choice(" + this.get('miscItemChoice') + ") + " +
+                        "Misc Item Choice 2(" + this.get('miscItemChoice2') + ") + " +
                         "Special Ability(" + this.get('specialAbility') + ") + " +
                         "Weapon Parry(" + this.get('weaponParry') + ") + " +
                         "Adrenal Defense(" + this.get('adrenalDefense') + ") = " +
@@ -227,6 +231,12 @@ define(['backbone', 'services/playerWarehouse'],
             },
             setMiscItemChoiceDescription: function(aDescription) {
                 return this.set('miscItemChoiceDescription', encodeURI(aDescription));
+            },
+            getMiscItemChoice2Description: function() {
+                return decodeURI(this.get('miscItemChoice2Description'));
+            },
+            setMiscItemChoice2Description: function(aDescription) {
+                return this.set('miscItemChoice2Description', encodeURI(aDescription));
             },
             getSpecialAbilityDescription: function() {
                 return decodeURI(this.get('specialAbilityDescription'));

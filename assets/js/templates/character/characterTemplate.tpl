@@ -262,6 +262,16 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class='control-label col-sm-2' for="miscItemChoice2">Misc Item Choice 2:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="miscItemChoice2" value="<%- miscItemChoice2 %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="miscItemChoice2Description">Misc Item Choice 2 Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="miscItemChoice2Description" value="<%- myMiscItemChoice2Description %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class='control-label col-sm-2' for="specialAbility">Special Ability:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="specialAbility" value="<%- specialAbility %> ">
@@ -297,6 +307,7 @@
                             <input type="text" class="form-control" id="totalDefensiveBonus" readOnly data-toggle="tooltip" 
                                     title="<%- myTotalDefensiveBonusDescription %>"  value="<%- myTotalDefensiveBonus %> ">
                         </div>
+                        <p class="col-sm-2">Must save to update total defensive bonus</p>
                     </div>
                 </form>
             </div>
