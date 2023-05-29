@@ -1,26 +1,26 @@
-<caption><strong>Character Statistics</strong></caption>
+<caption><strong>* Scroll to the right to see all the fields!</strong></caption>
 <thead>
 <tr>
-    <th id="name">Name</th>
-    <th id="initialNumberOfCharacterClones">Initial Number Instances In Combat</th>
-    <th id="remainingNumberOfCharacterClones">Remaining Number Instances In Combat</th>
-    <th id="initiative">Initiative</th>
-    <th id="alertness">Alertness</th>
-    <th id="observation">Observation</th>
-    <th id="roundsStunned">Rounds Stunned</th>
-    <th id="mustParry">Must Parry</th>
-    <th id="negativeModifier">Negative Modifier</th>
+    <th id="name" scope='col'>Name</th>
+    <th id="initialNumberOfCharacterClones" scope='col'>Initial Number Instances In Combat</th>
+    <th id="remainingNumberOfCharacterClones" scope='col'>Remaining Number Instances In Combat</th>
+    <th id="initiative" scope='col'>Initiative</th>
+    <th id="alertness" scope='col'>Alertness</th>
+    <th id="observation" scope='col'>Observation</th>
+    <th id="roundsStunned" scope='col'>Rounds Stunned</th>
+    <th id="mustParry" scope='col'>Must Parry</th>
+    <th id="negativeModifier" scope='col'>Negative Modifier</th>
 
-    <th id="totalDefensiveBonusMinusAdrenalDefense">Defense Minus Adrenal</th>
-    <th id="totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry">Defense Minus Adrenal and Weapon Parry</th>
+    <th id="totalDefensiveBonusMinusAdrenalDefense" scope='col'>Defense Minus Adrenal</th>
+    <th id="totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry" scope='col'>Defense Minus Adrenal and Weapon Parry</th>
     <th id="totalDefensiveBonus">Total Defense</th>
 
-    <th id="totalHitsPerClone">Hits Per Instance</th>
-    <th id="hitsStarting">Total Hits Starting Round</th>
-    <th id="hitsTakenThisRound">Total Hits Taken This Round</th>
-    <th id="bleeding">Total Bleeding This Round</th>
-    <th id="regeneration">Total Regeneration This Round</th>
-    <th id="hitsRemaining">Total Hits Remaining</th>
+    <th id="totalHitsPerClone" scope='col'>Hits Per Instance</th>
+    <th id="hitsStarting" scope='col'>Total Hits Starting Round</th>
+    <th id="hitsTakenThisRound" scope='col'>Total Hits Taken This Round</th>
+    <th id="bleeding" scope='col'>Total Bleeding This Round</th>
+    <th id="regeneration" scope='col'>Total Regeneration This Round</th>
+    <th id="hitsRemaining" scope='col'>Total Hits Remaining</th>
 </tr>
 </thead>
 <tbody>

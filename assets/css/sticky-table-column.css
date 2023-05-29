@@ -1,0 +1,17 @@
+  .table {
+    border-radius: 0.2rem;
+    width: 100%;
+    padding-bottom: 1rem;
+    color: #212529;
+    margin-bottom: 0;
+  }
+  .table th:first-child,
+  .table td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: #ffffff;
+    color: #373737;
+  }
+  .table td {
+    white-space: nowrap;
+  }
