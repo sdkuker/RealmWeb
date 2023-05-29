@@ -2,7 +2,7 @@ define([],
     function () {
 
         var About = {
-            version : '2023-C'
+            version : '2023-D'
         }
 
         return About;
