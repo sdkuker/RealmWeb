@@ -24,6 +24,39 @@ define(['marionette',
             $(document.body).on('change', '#playerSelect', function(e) {
                 self.playerSelected();
             });
+            $(document.body).on('change', '#shieldChoice', function(e) {
+                self.checkEntryForBonusGroupA();
+            });
+            $(document.body).on('change', '#bracersBonus', function(e) {
+                self.checkEntryForBonusGroupA();
+            });
+            $(document.body).on('change', '#ringBonus', function(e) {
+                self.checkEntryForBonusGroupA();
+            });
+            $(document.body).on('change', '#magicalItemBonus', function(e) {
+                self.checkEntryForBonusGroupA();
+            });
+            $(document.body).on('change', '#martialProwessBonus', function(e) {
+                self.checkEntryForBonusGroupB();
+            });
+            $(document.body).on('change', '#terrainAwarenessBonus', function(e) {
+                self.checkEntryForBonusGroupB();
+            });
+            $(document.body).on('change', '#zenMasterBonus', function(e) {
+                self.checkEntryForBonusGroupB();
+            });
+            $(document.body).on('change', '#calisthenicsBonus', function(e) {
+                self.checkEntryForBonusGroupB();
+            });
+            $(document.body).on('change', '#skillChoice1', function(e) {
+                self.checkEntryForBonusGroupB();
+            });
+            $(document.body).on('change', '#skillChoice2', function(e) {
+                self.checkEntryForBonusGroupB();
+            });
+            $(document.body).on('change', '#skillChoice3', function(e) {
+                self.checkEntryForBonusGroupB();
+            });
         },
         templateHelpers : function() {
             var characterName = this.model.getName();
@@ -79,6 +112,59 @@ define(['marionette',
                 myTotalDefensiveBonusDescription : myTotalDefensiveBonusDescription
             }
         },
+        checkEntryForBonusGroupA : function() {
+             self = this;
+             let editPassed = true;
+             let numberOfFieldsWithPositiveValues = 0;
+             if (self.parseAsInt($('#shieldChoice').val()) > 0) {
+                numberOfFieldsWithPositiveValues++;
+             };
+             if (self.parseAsInt($('#bracersBonus').val()) > 0) {
+                numberOfFieldsWithPositiveValues++;
+             };
+             if (self.parseAsInt($('#ringBonus').val()) > 0) {
+                numberOfFieldsWithPositiveValues++;
+             };
+             if (self.parseAsInt($('#magicalItemBonus').val()) > 0) {
+                numberOfFieldsWithPositiveValues++;
+             };
+             if (numberOfFieldsWithPositiveValues > 1) {
+                editPassed = false;
+                ViewUtilities.showModalView('Warning', 'Can use only one of shield, bracers, ring and magical item bonuses. All others must have a value of zero.  You can use all the description fields though.');
+             }
+             return editPassed;
+        },
+        checkEntryForBonusGroupB : function() {
+            self = this;
+            let editPassed = true;
+            let numberOfFieldsWithPositiveValues = 0;
+            if (self.parseAsInt($('#martialProwessBonus').val()) > 0) {
+               numberOfFieldsWithPositiveValues++;
+            };
+            if (self.parseAsInt($('#terrainAwarenessBonus').val()) > 0) {
+               numberOfFieldsWithPositiveValues++;
+            };
+            if (self.parseAsInt($('#zenMasterBonus').val()) > 0) {
+               numberOfFieldsWithPositiveValues++;
+            };
+            if (self.parseAsInt($('#calisthenicsBonus').val()) > 0) {
+               numberOfFieldsWithPositiveValues++;
+            };
+            if (self.parseAsInt($('#skillChoice1').val()) > 0) {
+                numberOfFieldsWithPositiveValues++;
+             };
+             if (self.parseAsInt($('#skillChoice2').val()) > 0) {
+                numberOfFieldsWithPositiveValues++;
+             };
+             if (self.parseAsInt($('#skillChoice3').val()) > 0) {
+                numberOfFieldsWithPositiveValues++;
+             };
+            if (numberOfFieldsWithPositiveValues > 5) {
+               editPassed = false;
+               ViewUtilities.showModalView('Warning', 'Can use only up to five of martial prowess, terrian awareness, zen master, calisthenics, and the three skill bonuses. At least two must have a value of zero. You can use all the description fields though.');
+            }
+            return editPassed;
+       },
         // events : {
         //     'input' : 'attributeValueChanged'
         // },
@@ -307,29 +393,31 @@ define(['marionette',
 
         saveButtonClicked : function() {
             var self = this;
-            // if it's a new model, add it to the collection
-            if (! self.model.get('id')) {
-                Logger.logInfo('About to add a new character model to the collection');
-                var tempObject = self.createObjectWithAttributes();
-                $.when(CharacterWarehouse.addCharacter(tempObject)).then(
-                    function() {
-                        ViewUtilities.showModalView('Informational', 'Character Saved');
-                        // RealmApplication.vent.trigger('viewCharacterList');
-                        self.render();
-                    }
-                ),
-                    function() {
-                        console.log('some kind of error getting characters for addition of character');
-                    }
-            } else {
-                // don't have to do anything if it's modifying an existing model -
-                // just move the values to the exiting model.  firebase syncs automatically
-                self.populateModel();
-                ViewUtilities.showModalView('Informational', 'Character Saved');
-                // RealmApplication.vent.trigger('viewCharacterList');
-                self.render();
-            }
+            if ( self.checkEntryForBonusGroupA() && self.checkEntryForBonusGroupB() ) {
+                // if it's a new model, add it to the collection
+                if (! self.model.get('id')) {
+                    Logger.logInfo('About to add a new character model to the collection');
+                    var tempObject = self.createObjectWithAttributes();
+                    $.when(CharacterWarehouse.addCharacter(tempObject)).then(
+                        function() {
+                            ViewUtilities.showModalView('Informational', 'Character Saved');
+                            // RealmApplication.vent.trigger('viewCharacterList');
+                            self.render();
+                        }
+                    ),
+                        function() {
+                            console.log('some kind of error getting characters for addition of character');
+                        }
+                } else {
+                    // don't have to do anything if it's modifying an existing model -
+                    // just move the values to the exiting model.  firebase syncs automatically
+                    self.populateModel();
+                    ViewUtilities.showModalView('Informational', 'Character Saved');
+                    // RealmApplication.vent.trigger('viewCharacterList');
+                    self.render();
+                }
 
+            }
         },
         deleteButtonClicked : function() {
             this.model.destroy();

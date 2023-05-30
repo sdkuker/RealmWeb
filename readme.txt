@@ -1,11 +1,16 @@
 Change log
-Version 2023-D (deployed xxxx)
+Version 2023-D (deployed 05/30/23)
 1)  Changed several lables for character attributes.  Shield Choice was changed to Shield Bonus.  The skill bonuses were
 changed so they no longer had the numbers (1,2,3) and now include 'background' - so now all 3 of them are 'Skill or background
 Bonus'.  Changed the Misc Item Choice fields so they're both just 'Misc Item Bonus'.  Changed 'Magical Items' to 'Magical Item',
 just removed the plural 's'.  Added 'bonus' to 'Special Ability'.  Note these are just label changes, the names of the underlying model
 fields were not changed.
-2) 
+2) Added an edit for Character attributes so that only one of shield, bracers, ring, and magical items bonuses can have a value > 0.  
+An error message will appear if you try to enter a second one.  The message will also appear if there are too many filled in when you try
+to save it.  This message will stop the changes from saving.
+3) Added another Character attributes edit so that only five o martial prowess, terrain awareness, zen master, calisthenics, and the 
+three skill choices can have a value > zero.  An error message will appear when you enter it and also if there are too many filled in when
+you try to save it.  This message will stop the changes from saving.
 
 Version 2023-C (deployed 5/09/23)
 1) Added a second misc item for the characters and added a note on the characters detail view saying that you
