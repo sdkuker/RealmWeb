@@ -57,7 +57,9 @@ define(['backbone', 'services/playerWarehouse'],
                 weaponParry : 0,
                 weaponParryDescription : '',
                 adrenalDefense : 0,
-                adrenalDefenseDescription : ''
+                adrenalDefenseDescription : '',
+                defensiveBonusMultiplier : 1.0,
+                defensiveBonusMultiplierDescription : ''
             },
             totalWill : function() {
                 return this.get('will') + this.get('willModifier');
@@ -65,7 +67,7 @@ define(['backbone', 'services/playerWarehouse'],
             totalHitPoints : function() {
                 return this.get('hitPoints') + this.get('hitPointsModifier');
             },
-            totalDefensiveBonus: function() {
+            defensiveBonusSubtotal: function() {
                 return  this.get('quicknessBonus') +
                         this.get('racialModifier') +
                         this.get('armorChoice') +
@@ -83,11 +85,9 @@ define(['backbone', 'services/playerWarehouse'],
                         this.get('skillChoice3') +
                         this.get('miscItemChoice') +
                         this.get('miscItemChoice2') +
-                        this.get('specialAbility') +
-                        this.get('weaponParry') +
-                        this.get('adrenalDefense');
+                        this.get('specialAbility');
             },
-            totalDefensiveBonusDescription: function() {
+            defensiveBonusSubtotalDescription: function() {
                 return  "Quickness Bonus(" + this.get('quicknessBonus') + ") + " +
                         "Racial Modifier(" + this.get('racialModifier') + ") + " +
                         "Armour Choice(" + this.get('armorChoice') + ") + " +
@@ -105,16 +105,41 @@ define(['backbone', 'services/playerWarehouse'],
                         "Skill Choice 3(" + this.get('skillChoice3') + ") + " +
                         "Misc Item Choice(" + this.get('miscItemChoice') + ") + " +
                         "Misc Item Choice 2(" + this.get('miscItemChoice2') + ") + " +
-                        "Special Ability(" + this.get('specialAbility') + ") + " +
+                        "Special Ability(" + this.get('specialAbility') + ") = " +
+                        this.defensiveBonusSubtotal();
+            },
+            totalDefensiveBonus: function() {
+                return  this.defensiveBonusSubtotal() * this.get('defensiveBonusMultiplier');
+            },
+            totalDefensiveBonusDescription: function() {
+                return  "Defensive Bonus Subtotal(" + this.defensiveBonusSubtotalDescription() + ") * " +
+                        "Defensive Bonus Multiplier(" + this.get('defensiveBonusMultiplier') + ") = " +
+                        this.totalDefensiveBonus()
+            },
+            totalDefensiveBonusPlusParry: function() {
+                return  this.totalDefensiveBonus() + this.get('weaponParry');
+            },
+            totalDefensiveBonusPlusParryDescription: function() {
+                return  "Total Defensive Bonus(" + this.totalDefensiveBonusDescription() + ") + " +
+                        "Weapon Parry(" + this.get('weaponParry') + ") = " +
+                        this.totalDefensiveBonusPlusParry()
+            },
+            totalDefensiveBonusPlusAdrenalDefense: function() {
+                return  this.totalDefensiveBonus() + this.get('adrenalDefense');
+            },
+            totalDefensiveBonusPlusAdrenalDefenseDescription: function() {
+                return  "Total Defensive Bonus(" + this.totalDefensiveBonusDescription() + ") + " +
+                        "Adrenal Defense(" + this.get('adrenalDefense') + ") = " +
+                        this.totalDefensiveBonusPlusAdrenalDefense()
+            },
+            totalDefensiveBonusPlusParryPlusAdrenalDefense: function() {
+                return  this.totalDefensiveBonus() + + this.get('weaponParry') + this.get('adrenalDefense');
+            },
+            totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription: function() {
+                return  "Total Defensive Bonus(" + this.totalDefensiveBonusDescription() + ") + " +
                         "Weapon Parry(" + this.get('weaponParry') + ") + " +
                         "Adrenal Defense(" + this.get('adrenalDefense') + ") = " +
-                        this.totalDefensiveBonus();
-            },
-            totalDefensiveBonusMinusAdrenalDefense: function() {
-                return  this.totalDefensiveBonus() - this.get('adrenalDefense');
-            },
-            totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry: function() {
-                return  this.totalDefensiveBonus() - this.get('adrenalDefense')  - this.get('weaponParry');
+                        this.totalDefensiveBonusPlusParryPlusAdrenalDefense()
             },
             getName: function() {
                 return decodeURI(this.get('name'));
@@ -255,7 +280,13 @@ define(['backbone', 'services/playerWarehouse'],
             },
             setAdrenalDefenseDescription: function(aDescription) {
                 return this.set('adrenalDefenseDescription', encodeURI(aDescription));
-            }
+            },
+            getDefensiveBonusMultiplierDescription: function() {
+                return decodeURI(this.get('defensiveBonusMultiplierDescription'));
+            },
+            setDefensiveBonusMultiplierDescription: function(aDescription) {
+                return this.set('defensiveBonusMultiplierDescription', encodeURI(aDescription));
+            },
         });
 
         return CharacterModel;

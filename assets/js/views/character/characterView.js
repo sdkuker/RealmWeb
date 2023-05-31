@@ -83,8 +83,19 @@ define(['marionette',
             var myWeaponParryDescription = this.model.getWeaponParryDescription();
             var myAdrenalDefenseDescription = this.model.getAdrenalDefenseDescription();
 
+            var myDefensiveBonusSubTotal = this.model.defensiveBonusSubtotal();
+            var myDefensiveBonusSubTotalDescription = this.model.defensiveBonusSubtotalDescription();
+
+            var myDefensiveBonusMultiplierDescription = this.model.getDefensiveBonusMultiplierDescription();
+
             var myTotalDefensiveBonus = this.model.totalDefensiveBonus();
             var myTotalDefensiveBonusDescription = this.model.totalDefensiveBonusDescription();
+            var myTotalDefensiveBonusPlusParry = this.model.totalDefensiveBonusPlusParry();
+            var myTotalDefensiveBonusPlusParryDescription = this.model.totalDefensiveBonusPlusParryDescription();
+            var myTotalDefensiveBonusPlusAdrenalDefense = this.model.totalDefensiveBonusPlusAdrenalDefense();
+            var myTotalDefensiveBonusPlusAdrenalDefenseDescription = this.model.totalDefensiveBonusPlusAdrenalDefenseDescription();
+            var myTotalDefensiveBonusPlusParryPlusAdrenalDefense = this.model.totalDefensiveBonusPlusParryPlusAdrenalDefense();
+            var myTotalDefensiveBonusPlusParryPlusAdrenalDefenseDescription = this.model.totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription();
 
             return {
                 characterName : characterName,
@@ -108,8 +119,18 @@ define(['marionette',
                 mySpecialAbilityDescription : mySpecialAbilityDescription,
                 myWeaponParryDescription : myWeaponParryDescription,
                 myAdrenalDefenseDescription : myAdrenalDefenseDescription,
+                myDefensiveBonusSubTotal : myDefensiveBonusSubTotal,
+                myDefensiveBonusSubTotalDescription : myDefensiveBonusSubTotalDescription,
+                myDefensiveBonusMultiplierDescription : myDefensiveBonusMultiplierDescription,
+
                 myTotalDefensiveBonus : myTotalDefensiveBonus,
-                myTotalDefensiveBonusDescription : myTotalDefensiveBonusDescription
+                myTotalDefensiveBonusDescription : myTotalDefensiveBonusDescription,
+                myTotalDefensiveBonusPlusParry : myTotalDefensiveBonusPlusParry,
+                myTotalDefensiveBonusPlusParryDescription : myTotalDefensiveBonusPlusParryDescription,
+                myTotalDefensiveBonusPlusAdrenalDefense : myTotalDefensiveBonusPlusAdrenalDefense,
+                myTotalDefensiveBonusPlusAdrenalDefenseDescription : myTotalDefensiveBonusPlusAdrenalDefenseDescription,
+                myTotalDefensiveBonusPlusParryPlusAdrenalDefense : myTotalDefensiveBonusPlusParryPlusAdrenalDefense,
+                myTotalDefensiveBonusPlusParryPlusAdrenalDefenseDescription : myTotalDefensiveBonusPlusParryPlusAdrenalDefenseDescription,
             }
         },
         checkEntryForBonusGroupA : function() {
@@ -318,6 +339,9 @@ define(['marionette',
             self.model.set('adrenalDefense', self.parseAsInt($('#adrenalDefense').val()));
             self.model.set('weaponParry', self.parseAsInt($('#weaponParry').val()));
             self.model.setWeaponParryDescription($('#weaponParryDescription').val());
+
+            self.model.set('defensiveBonusMultiplier', self.parseAsInt($('#defensiveBonusMultiplier').val()));
+            self.model.setDefensiveBonusMultiplierDescription($('#defensiveBonusMultiplierDescription').val());
         },
         parseAsInt : function(someValue) {
             var theReturn = 0;
@@ -387,6 +411,9 @@ define(['marionette',
             tempObject.zenMasterBonusDescription = encodeURI($('#zenMasterBonusDescription').val());
             tempObject.calisthenicsBonus = self.parseAsInt($('#calisthenicsBonus').val());
             tempObject.calisthenicsBonusDescription = encodeURI($('#calisthenicsBonusDescription').val());
+
+            tempObject.defensiveBonusMultiplier = self.parseAsInt($('#defensiveBonusMultiplier').val());
+            tempObject.defensiveBonusMultiplierDescription = encodeURI($('#defensiveBonusMultiplierDescription').val());
 
            return tempObject;
         },

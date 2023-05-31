@@ -295,6 +295,23 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class='control-label col-sm-2' for="defensiveBonusSubTotal">Defensive Bonus Subtotal:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="defensiveBonusSubTotal" readOnly data-toggle="tooltip" 
+                            title="<%- myDefensiveBonusSubTotalDescription %>" value="<%- myDefensiveBonusSubTotal %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class='control-label col-sm-2' for="defensiveBonusMultiplier">Defensive Bonus Multiplier:</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="defensiveBonusMultiplier" value="<%- defensiveBonusMultiplier %> ">
+                        </div>
+                        <label class='control-label col-sm-2' for="defensiveBonusMultiplierDescription">Defensive Bonus Multiplier Description:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="defensiveBonusMultiplierDescription" value="<%- myDefensiveBonusMultiplierDescription %> ">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class='control-label col-sm-2' for="weaponParry">Weapon Parry:</label>
                         <div class="col-sm-2">
                             <input type="text" class="form-control" id="weaponParry" value="<%- weaponParry %> ">
@@ -314,14 +331,36 @@
                             <input type="text" class="form-control" id="adrenalDefenseDescription" value="<%- myAdrenalDefenseDescription %> ">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class='control-label col-sm-2' for="totalDefensiveBonus">Total Defensive Bonus:</label>
-                        <div class="col-sm-2">
-                            <input type="text" class="form-control" id="totalDefensiveBonus" readOnly data-toggle="tooltip" 
-                                    title="<%- myTotalDefensiveBonusDescription %>"  value="<%- myTotalDefensiveBonus %> ">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Totals - Must save to refresh</h6>
                         </div>
-                        <p class="col-sm-2">Must save to update total defensive bonus</p>
-                    </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class='control-label col-sm-2' for="totalDefensiveBonus">Total Defensive Bonus:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="totalDefensiveBonus" readOnly data-toggle="tooltip" 
+                                            title="<%- myTotalDefensiveBonusDescription %>"  value="<%- myTotalDefensiveBonus %> ">
+                                </div>
+                                <label class='control-label col-sm-2' for="totalDefensiveBonusPlusParry">Total Defensive Bonus Plus Parry:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="totalDefensiveBonusPlusParry" readOnly data-toggle="tooltip" 
+                                            title="<%- myTotalDefensiveBonusPlusParryDescription %>"  value="<%- myTotalDefensiveBonusPlusParry %> ">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class='control-label col-sm-2' for="totalDefensiveBonusPlusAdrenalDefense">Total Defensive Bonus Plus Adrenal Defense:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="totalDefensiveBonusPlusAdrenalDefense" readOnly data-toggle="tooltip" 
+                                            title="<%- myTotalDefensiveBonusPlusAdrenalDefenseDescription %>"  value="<%- myTotalDefensiveBonusPlusAdrenalDefense %> ">
+                                </div>
+                                <label class='control-label col-sm-2' for="totalDefensiveBonusPlusParryPlusAdrenalDefense">Total Defensive Bonus Plus Parry Plus Adrenal Defense:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="totalDefensiveBonusPlusParryPlusAdrenalDefense" readOnly data-toggle="tooltip" 
+                                            title="<%- myTotalDefensiveBonusPlusParryPlusAdrenalDefenseDescription %>"  value="<%- myTotalDefensiveBonusPlusParryPlusAdrenalDefense %> ">
+                                </div>
+                            </div>
+                        </div>
                 </form>
             </div>
         </div>

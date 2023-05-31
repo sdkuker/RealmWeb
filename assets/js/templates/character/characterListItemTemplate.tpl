@@ -12,9 +12,10 @@
 <td><%= senseAmbushSkill %></td>
 <td><%= armorChoice %></td>
 <td><%= hasAdrenalDefense %></td>
-<td><%= totalDefensiveBonusMinusAdrenalDefense %></td>
-<td><%= totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry %></td>
-<td data-toggle="tooltip" title="<%- totalDefensiveBonusDescription%>"><%= totalDefensiveBonus %></td>
+<td data-toggle="tooltip" title="<%- totalDefensiveBonusDescription %>"> <%= totalDefensiveBonus %></td>
+<td data-toggle="tooltip" title="<%- totalDefensiveBonusPlusParryDescription %>"><%= totalDefensiveBonusPlusParry %></td>
+<td data-toggle="tooltip" title="<%- totalDefensiveBonusPlusAdrenalDefenseDescription %>"><%= totalDefensiveBonusPlusAdrenalDefense %></td>
+<td data-toggle="tooltip" title="<%- totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription %>"><%= totalDefensiveBonusPlusParryPlusAdrenalDefense %></td>
 <td><%= hasShield %></td>
 <td><%= hitPoints %></td>
 <td><%= hitPointsModifier %></td>
