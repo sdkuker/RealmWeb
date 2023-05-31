@@ -8,9 +8,10 @@
 <td headers="mustParry" contenteditable=<%= allowEditing %>><%= mustParry %></td>
 <td headers="negativeModifier" contenteditable=<%= allowEditing %>><%= negativeModifier %></td>
 
-<td headers="totalDefensiveBonusMinusAdrenalDefense"><%= totalDefensiveBonusMinusAdrenalDefense %></td>
-<td headers="totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry"><%= totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry %></td>
 <td headers="totalDefensiveBonus" data-toggle="tooltip" title="<%- totalDefensiveBonusDescription%>"><%= totalDefensiveBonus %></td>
+<td headers="totalDefensiveBonusPlusParry" data-toggle="tooltip" title="<%- totalDefensiveBonusPlusParryDescription%>"><%= totalDefensiveBonusPlusParry %></td>
+<td headers="totalDefensiveBonusPlusAdrenal" data-toggle="tooltip" title="<%- totalDefensiveBonusPlusAdrenalDefenseDescription%>"><%= totalDefensiveBonusPlusAdrenalDefense %></td>
+<td headers="totalDefensiveBonusPlusAParryPlusAdrenal" data-toggle="tooltip" title="<%- totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription%>"><%= totalDefensiveBonusPlusParryPlusAdrenalDefense %></td>
 
 <td headers="totalHitsPerClone"><%= totalHitsPerClone %></td>
 <td headers="hitsStarting"><%= hitsAtStartOfRound %></td>

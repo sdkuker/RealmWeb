@@ -11,6 +11,12 @@ to save it.  This message will stop the changes from saving.
 3) Added another Character attributes edit so that only five o martial prowess, terrain awareness, zen master, calisthenics, and the 
 three skill choices can have a value > zero.  An error message will appear when you enter it and also if there are too many filled in when
 you try to save it.  This message will stop the changes from saving.
+4) Changed the character defensive bonus totals so there is now a subtotal, a multiplier, a new total with the multiplier, 
+one with parry, one with adrenal defense and one with parry and adrenal defense.  These are on the character 
+and character list views.
+5) Replaced the old defensive attribute totals with the new ones in combat.  This is not backward-compatible -
+old combats will no longer open (the totals are stored with each character in each round and the old encounters
+will not have the new total fields).
 
 Version 2023-C (deployed 5/09/23)
 1) Added a second misc item for the characters and added a note on the characters detail view saying that you

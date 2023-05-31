@@ -8,8 +8,12 @@ define(['backbone'],
                 characterName: '',
                 totalDefensiveBonus : 0,
                 totalDefensiveBonusDescription : '',
-                totalDefensiveBonusMinusAdrenalDefense : 0,
-                totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry : 0,
+                totalDefensiveBonusPlusParry : 0,
+                totalDefensiveBonusPlusParryDescription : '',
+                totalDefensiveBonusPlusAdrenalDefense : 0,
+                totalDefensiveBonusPlusAdrenalDefenseDescription : '',
+                totalDefensiveBonusPlusParryPlusAdrenalDefense : 0,
+                totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription : '',
                 activeInEncounter: false,
                 numberInCombat : 1
             },
@@ -22,6 +26,25 @@ define(['backbone'],
             setTotalDefensiveBonusDescription: function(aDescription) {
                 return this.set('totalDefensiveBonusDescription', encodeURI(aDescription));
             },
+            getTotalDefensiveBonusPlusParryDescription: function() {
+                return decodeURI(this.get('totalDefensiveBonusPlusParryDescription'));
+            },
+            setTotalDefensiveBonusPlusParryDescription: function(aDescription) {
+                return this.set('totalDefensiveBonusPlusParryDescription', encodeURI(aDescription));
+            },
+            getTotalDefensiveBonusPlusAdrenalDefenseDescription: function() {
+                return decodeURI(this.get('totalDefensiveBonusPlusAdrenalDefenseDescription'));
+            },
+            setTotalDefensiveBonusPlusAdrenalDefenseDescription: function(aDescription) {
+                return this.set('totalDefensiveBonusPlusAdrenalDefenseDescription', encodeURI(aDescription));
+            },
+            getTotalDefensiveBonusPlusParryPlusAdrenalDefenseDescription: function() {
+                return decodeURI(this.get('totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription'));
+            },
+            setTotalDefensiveBonusPlusParryPlusAdrenalDefenseDescription: function(aDescription) {
+                return this.set('totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription', encodeURI(aDescription));
+            },
+
         });
 
         return CombatEncounterCharacter;

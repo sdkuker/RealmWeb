@@ -11,9 +11,10 @@
     <th id="mustParry" scope='col'>Must Parry</th>
     <th id="negativeModifier" scope='col'>Negative Modifier</th>
 
-    <th id="totalDefensiveBonusMinusAdrenalDefense" scope='col'>Defense Minus Adrenal</th>
-    <th id="totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry" scope='col'>Defense Minus Adrenal and Weapon Parry</th>
     <th id="totalDefensiveBonus">Total Defense</th>
+    <th id="totalDefensiveBonusPlusParry" scope='col'>Total Defense Plus Parry</th>
+    <th id="totalDefensiveBonusPlusAdrenal" scope='col'>Total Defense Plus Adrenal</th>
+    <th id="totalDefensiveBonusPlusAParryPlusAdrenal" scope='col'>Total Defense Plus Parry Plus Adrenal</th>
 
     <th id="totalHitsPerClone" scope='col'>Hits Per Instance</th>
     <th id="hitsStarting" scope='col'>Total Hits Starting Round</th>

@@ -24,8 +24,12 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 totalHitsPerClone : 0,
                 totalDefensiveBonus : 0,
                 totalDefensiveBonusDescription : '',
-                totalDefensiveBonusMinusAdrenalDefense : 0,
-                totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry : 0
+                totalDefensiveBonusPlusParry : 0,
+                totalDefensiveBonusPlusParryDescription : '',
+                totalDefensiveBonusPlusAdrenalDefense : 0,
+                totalDefensiveBonusPlusAdrenalDefenseDescription : '',
+                totalDefensiveBonusPlusParryPlusAdrenalDefense : 0,
+                totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription : ''
             },
             setNegativeModifier : function(negModifierValue) {
                 if (negModifierValue > 0) {
@@ -58,8 +62,12 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                 theReturn.totalHitsPerClone = this.get('totalHitsPerClone');
                 theReturn.totalDefensiveBonus = this.get('totalDefensiveBonus');
                 theReturn.totalDefensiveBonusDescription = this.get('totalDefensiveBonusDescription');
-                theReturn.totalDefensiveBonusMinusAdrenalDefense = this.get('totalDefensiveBonusMinusAdrenalDefense');
-                theReturn.totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry = this.get('totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry');
+                theReturn.totalDefensiveBonusPlusParry = this.get('totalDefensiveBonusPlusParry');
+                theReturn.totalDefensiveBonusPlusParryDescription = this.get('totalDefensiveBonusPlusParryDescription');
+                theReturn.totalDefensiveBonusPlusAdrenalDefense = this.get('totalDefensiveBonusPlusAdrenalDefense');
+                theReturn.totalDefensiveBonusPlusAdrenalDefenseDescription = this.get('totalDefensiveBonusPlusAdrenalDefenseDescription');
+                theReturn.totalDefensiveBonusPlusParryPlusAdrenalDefense = this.get('totalDefensiveBonusPlusParryPlusAdrenalDefense');
+                theReturn.totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription = this.get('totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription');
                 
                 //TODO still need to do something about the critial hits sufferred
 
@@ -70,12 +78,30 @@ define(['backbone', 'domain/combat/combatRoundAttributeDeterminer'],
                     this.get('bleeding') + this.get('regeneration');
                 return (Math.min(calculatedHitsAtEndOfRound, aCharacterModel.totalHitPoints() * this.get('initialNumberOfCharacterClones')));
             },
-            geTtotalDefensiveBonusDescription: function() {
+            getTotalDefensiveBonusDescription: function() {
                 return decodeURI(this.get('totalDefensiveBonusDescription'));
             },
             setTotalDefensiveBonusDescription: function(aDescription) {
                 return this.set('totalDefensiveBonusDescription', encodeURI(aDescription));
             },
+            getTotalDefensiveBonusPlusParryDescription: function() {
+                return decodeURI(this.get('totalDefensiveBonusPlusParryDescription'));
+            },
+            setTotalDefensiveBonusPlusParryDescription: function(aDescription) {
+                return this.set('totalDefensiveBonusPlusParryDescription', encodeURI(aDescription));
+            },
+            getTotalDefensiveBonusPlusAdrenalDefenseDescription: function() {
+                return decodeURI(this.get('totalDefensiveBonusPlusAdrenalDefenseDescription'));
+            },
+            setTotalDefensiveBonusPlusAdrenalDefenseDescription: function(aDescription) {
+                return this.set('totalDefensiveBonusPlusAdrenalDefenseDescription', encodeURI(aDescription));
+            },
+            getTotalDefensiveBonusPlusParryPlusAdrenalDefenseDescription: function() {
+                return decodeURI(this.get('totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription'));
+            },
+            setTotalDefensiveBonusPlusParryPlusAdrenalDefenseDescription: function(aDescription) {
+                return this.set('totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription', encodeURI(aDescription));
+            }
 
         });
 

@@ -117,8 +117,12 @@ define(['jquery',
 
                 characterStatisticsObject.totalDefensiveBonus = aCharacter.totalDefensiveBonus();
                 characterStatisticsObject.totalDefensiveBonusDescription = aCharacter.totalDefensiveBonusDescription();
-                characterStatisticsObject.totalDefensiveBonusMinusAdrenalDefense = aCharacter.totalDefensiveBonusMinusAdrenalDefense();
-                characterStatisticsObject.totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry = aCharacter.totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry();
+                characterStatisticsObject.totalDefensiveBonusPlusParry = aCharacter.totalDefensiveBonusPlusParry();
+                characterStatisticsObject.totalDefensiveBonusPlusParryDescription = aCharacter.totalDefensiveBonusPlusParryDescription();
+                characterStatisticsObject.totalDefensiveBonusPlusAdrenalDefense = aCharacter.totalDefensiveBonusPlusAdrenalDefense();
+                characterStatisticsObject.totalDefensiveBonusPlusAdrenalDefenseDescription = aCharacter.totalDefensiveBonusPlusAdrenalDefenseDescription();
+                characterStatisticsObject.totalDefensiveBonusPlusParryPlusAdrenalDefense = aCharacter.totalDefensiveBonusPlusParryPlusAdrenalDefense();
+                characterStatisticsObject.totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription = aCharacter.totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription();
 
                 return characterStatisticsObject;
             };

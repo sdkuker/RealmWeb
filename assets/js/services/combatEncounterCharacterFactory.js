@@ -116,10 +116,16 @@ define(['jquery',
                         newDataObject.encounterID = encounterModel.get('id');
                         newDataObject.characterID = character.get('id');
                         newDataObject.characterName = character.get('name');
+
                         newDataObject.totalDefensiveBonus = character.totalDefensiveBonus();
                         newDataObject.totalDefensiveBonusDescription = character.totalDefensiveBonusDescription();
-                        newDataObject.totalDefensiveBonusMinusAdrenalDefense = character.totalDefensiveBonusMinusAdrenalDefense();
-                        newDataObject.totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry = character.totalDefensiveBonusMinusAdrenalDefenseAndWeaponParry();
+                        newDataObject.totalDefensiveBonusPlusParry = character.totalDefensiveBonusPlusParry();
+                        newDataObject.totalDefensiveBonusPlusParryDescription = character.totalDefensiveBonusPlusParryDescription();
+                        newDataObject.totalDefensiveBonusPlusAdrenalDefense = character.totalDefensiveBonusPlusAdrenalDefense();
+                        newDataObject.totalDefensiveBonusPlusAdrenalDefenseDescription = character.totalDefensiveBonusPlusAdrenalDefenseDescription();
+                        newDataObject.totalDefensiveBonusPlusParryPlusAdrenalDefense = character.totalDefensiveBonusPlusParryPlusAdrenalDefense();
+                        newDataObject.totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription = character.totalDefensiveBonusPlusParryPlusAdrenalDefenseDescription();
+
                         newDataObject.activeInEncounter = true;
                         myAllEncounterCharactersCollection.on('add', function (addedModel) {
                             deferred.resolve(addedModel);
