@@ -1,5 +1,5 @@
 Change log
-Version 2023-D (deployed 05/30/23)
+Version 2023-D (deployed 05/31/23)
 1)  Changed several lables for character attributes.  Shield Choice was changed to Shield Bonus.  The skill bonuses were
 changed so they no longer had the numbers (1,2,3) and now include 'background' - so now all 3 of them are 'Skill or background
 Bonus'.  Changed the Misc Item Choice fields so they're both just 'Misc Item Bonus'.  Changed 'Magical Items' to 'Magical Item',
