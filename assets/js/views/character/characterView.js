@@ -131,6 +131,7 @@ define(['marionette',
                 myTotalDefensiveBonusPlusAdrenalDefenseDescription : myTotalDefensiveBonusPlusAdrenalDefenseDescription,
                 myTotalDefensiveBonusPlusParryPlusAdrenalDefense : myTotalDefensiveBonusPlusParryPlusAdrenalDefense,
                 myTotalDefensiveBonusPlusParryPlusAdrenalDefenseDescription : myTotalDefensiveBonusPlusParryPlusAdrenalDefenseDescription,
+
             }
         },
         checkEntryForBonusGroupA : function() {
@@ -340,7 +341,7 @@ define(['marionette',
             self.model.set('weaponParry', self.parseAsInt($('#weaponParry').val()));
             self.model.setWeaponParryDescription($('#weaponParryDescription').val());
 
-            self.model.set('defensiveBonusMultiplier', self.parseAsInt($('#defensiveBonusMultiplier').val()));
+            self.model.set('defensiveBonusMultiplier', parseFloat($('#defensiveBonusMultiplier').val()));
             self.model.setDefensiveBonusMultiplierDescription($('#defensiveBonusMultiplierDescription').val());
         },
         parseAsInt : function(someValue) {
@@ -412,7 +413,7 @@ define(['marionette',
             tempObject.calisthenicsBonus = self.parseAsInt($('#calisthenicsBonus').val());
             tempObject.calisthenicsBonusDescription = encodeURI($('#calisthenicsBonusDescription').val());
 
-            tempObject.defensiveBonusMultiplier = self.parseAsInt($('#defensiveBonusMultiplier').val());
+            tempObject.defensiveBonusMultiplier = parseFloat($('#defensiveBonusMultiplier').val());
             tempObject.defensiveBonusMultiplierDescription = encodeURI($('#defensiveBonusMultiplierDescription').val());
 
            return tempObject;

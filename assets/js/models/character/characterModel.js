@@ -58,7 +58,7 @@ define(['backbone', 'services/playerWarehouse'],
                 weaponParryDescription : '',
                 adrenalDefense : 0,
                 adrenalDefenseDescription : '',
-                defensiveBonusMultiplier : 1.0,
+                defensiveBonusMultiplier : 1,
                 defensiveBonusMultiplierDescription : ''
             },
             totalWill : function() {
