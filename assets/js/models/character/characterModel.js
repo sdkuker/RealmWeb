@@ -109,12 +109,12 @@ define(['backbone', 'services/playerWarehouse'],
                         this.defensiveBonusSubtotal();
             },
             totalDefensiveBonus: function() {
-                return  this.defensiveBonusSubtotal() * this.get('defensiveBonusMultiplier');
+                return  Math.round(this.defensiveBonusSubtotal() * this.get('defensiveBonusMultiplier'));
             },
             totalDefensiveBonusDescription: function() {
                 return  "Defensive Bonus Subtotal(" + this.defensiveBonusSubtotalDescription() + ") * " +
                         "Defensive Bonus Multiplier(" + this.get('defensiveBonusMultiplier') + ") = " +
-                        this.totalDefensiveBonus()
+                        this.totalDefensiveBonus() + " (rounded to the nearest integer)"
             },
             totalDefensiveBonusPlusParry: function() {
                 return  this.totalDefensiveBonus() + this.get('weaponParry');
