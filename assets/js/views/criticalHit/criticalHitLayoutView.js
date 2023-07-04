@@ -2,7 +2,7 @@ define(['marionette',
         "tpl!templates/criticalHit/criticalHitLayoutTemplate.tpl"],
     function (Marionette, CriticalHitLayoutTemplate) {
 
-        var CriticalHitLayoutiew = Marionette.LayoutView.extend({
+        var CriticalHitLayoutView = Marionette.LayoutView.extend({
             template: CriticalHitLayoutTemplate,
             regions : {
                 criticalHitFilterRegion : '#criticalHitFilterRegion',
@@ -10,6 +10,6 @@ define(['marionette',
             }
         });
 
-        return CriticalHitLayoutiew;
+        return CriticalHitLayoutView;
 
     });
