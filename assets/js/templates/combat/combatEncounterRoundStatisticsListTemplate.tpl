@@ -2,6 +2,7 @@
 <thead>
 <tr>
     <th id="name" scope='col'>Name</th>
+    <th id="playerName" scope='col'>Player</th>
     <th id="initialNumberOfCharacterClones" scope='col'>Initial Number Instances In Combat</th>
     <th id="remainingNumberOfCharacterClones" scope='col'>Remaining Number Instances In Combat</th>
     <th id="initiative" scope='col'>Initiative</th>

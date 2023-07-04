@@ -2,8 +2,9 @@ define(['marionette',
     'realmApplication',
     "tpl!templates/combat/combatEncounterRoundStatisticItemTemplate.tpl",
     'models/combat/characterCombatRoundStatisticModel',
-    'services/characterWarehouse'],
-    function (Marionette, RealmApplication, StatisticsItemTemplate, StatisticsModel, CharacterWarehouse) {
+    'services/characterWarehouse',
+    'services/playerWarehouse'],
+    function (Marionette, RealmApplication, StatisticsItemTemplate, StatisticsModel, CharacterWarehouse, PlayerWarehouse) {
         var CombatEncounterRoundStatisticsItemView = Marionette.ItemView.extend({
             tagName : 'tr',
             model : StatisticsModel,
@@ -15,11 +16,14 @@ define(['marionette',
             templateHelpers : function() {
                     var myCharactersName = decodeURI(this.model.get('characterName'));
                     var myCharacter = CharacterWarehouse.getCharacterWithoutWaiting(this.model.get('characterID'));
+                    var myPlayer = PlayerWarehouse.getPlayerWithoutWaitingWithID(this.model.get('playerID'));
+                    var myPlayersName = myPlayer.getName();
                     var hitsRemaining = this.model.getHitsAtEndOfRound(myCharacter);
                     var remainingNumberOfCharacterClones = this.calculateRemainingNumberOfCharacterClones(hitsRemaining);
                     var allowEditing = this.isOpenRound;
                     return {
                         myCharactersName : myCharactersName,
+                        myPlayersName : myPlayersName,
                         hitsRemaining : hitsRemaining,
                         allowEditing : allowEditing,
                         remainingNumberOfCharacterClones : remainingNumberOfCharacterClones

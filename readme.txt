@@ -1,4 +1,16 @@
 Change log
+
+Version 2023-G (deployed 07/XX/23)
+1) Added the player associated with the characters on the combat round view.  Added a player drop
+down box so that only the characters for that player would be shown (along with an 'all players' 
+default value).
+
+Version 2023-F (deployed 06/05/23)
+1) Rounded the total defensive bonus value to the nearest integer.  
+
+Version 2023-E (deployed 06/01/23)
+1) Changed the defensive bonus mulitplier so you could have a non-integer (i.e. 4.5) value.
+
 Version 2023-D (deployed 05/31/23)
 1)  Changed several lables for character attributes.  Shield Choice was changed to Shield Bonus.  The skill bonuses were
 changed so they no longer had the numbers (1,2,3) and now include 'background' - so now all 3 of them are 'Skill or background
