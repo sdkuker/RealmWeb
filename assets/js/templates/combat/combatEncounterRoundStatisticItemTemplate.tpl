@@ -1,5 +1,5 @@
-<td headers="name"><%- myCharactersName %></td>
 <td headers="playerName"><%- myPlayersName %></td>
+<td headers="name"><%- myCharactersName %></td>
 <td headers="initialNumberOfCharacterClones"><%- initialNumberOfCharacterClones %></td>
 <td headers="remainingNumberOfCharacterClones"><%- remainingNumberOfCharacterClones %></td>
 <td headers="initiative"><%= initiative %></td>

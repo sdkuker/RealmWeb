@@ -1,9 +1,8 @@
 Change log
 
 Version 2023-G (deployed 07/XX/23)
-1) Added the player associated with the characters on the combat round view.  Added a player drop
-down box so that only the characters for that player would be shown (along with an 'all players' 
-default value).
+1) Added the player associated with the characters on the combat round view.  Also grouped
+the characters for each player together by changing the comparator on the collection.
 
 Version 2023-F (deployed 06/05/23)
 1) Rounded the total defensive bonus value to the nearest integer.  

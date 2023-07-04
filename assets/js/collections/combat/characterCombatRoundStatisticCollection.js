@@ -38,7 +38,7 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/characterCombatRoundS
                 }
             },
             comparator: function(combatRoundStatistic) {
-                return combatRoundStatistic.get('characterID');
+                return combatRoundStatistic.get('playerID') + combatRoundStatistic.get('characterID');
             },
             hasAnyStatistics : function() {
                 var self = this;
