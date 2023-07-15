@@ -24,10 +24,24 @@ define(['marionette',
             this.listenTo(RealmApplication.vent, 'characterListDeleteButton:clicked', function() {
                 self.triggerDeleteCharacterFunction();
             });
+            this.listenTo(RealmApplication.vent, 'initiativeRadioButton:clicked', function() {
+                this.triggerInitiativeRadioButtonFunction();
+            });
+            this.listenTo(RealmApplication.vent, 'playerRadioButton:clicked', function() {
+                this.triggerPlayerRadioButtonFunction();
+            });
             this.listenTo(RealmApplication.vent, 'characterListCharacterSelected', function(tableRow, model) {
                 self.characterSelected(tableRow, model);
             });
             this.listenTo(this.collection, 'add', this.render);
+        },
+        triggerInitiativeRadioButtonFunction : function() {
+            self = this;
+            this.collection.sortByInitiative();
+        },
+        triggerPlayerRadioButtonFunction : function() {
+            self = this;
+            this.collection.sortByPlayer();
         },
         triggerAddCharacterFunction : function() {
             RealmApplication.vent.trigger('characterListAddCharacter', new CharacterModel());

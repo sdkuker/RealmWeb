@@ -280,10 +280,12 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
             characterList: function () {
                 require(['views/character/characterListView', 'views/character/characterView',
                     'views/character/characterListLayoutView', 'views/character/characterListButtonView',
+                    'views/character/characterListSortView',
                     'services/characterWarehouse', 'services/playerWarehouse', 'utility/firebaseAuthUIUtilities',
                 ],
                     function (CharacterListView, CharacterView, CharacterListLayoutView,
-                        CharacterListButtonView, CharacterrWarehouse, PlayerWarehouse, AuthUIUtilities) {
+                        CharacterListButtonView, CharacterListSortView, CharacterrWarehouse, PlayerWarehouse, 
+                        AuthUIUtilities) {
                         if (AuthUIUtilities.isUserLoggedIn()) {
                             var characterListLayoutView = new CharacterListLayoutView();
                             RealmApplication.regions.mainRegion.show(characterListLayoutView);
@@ -291,7 +293,9 @@ define(['jquery', 'realmApplication', 'utility/viewUtilities'
                                 function (myCharacterCollection, myPlayerCollection) {
                                     // getting the players so the character list model can get them without waiting
                                     var characterListView = new CharacterListView({ collection: myCharacterCollection });
+                                    var characterListSortView = new CharacterListSortView();
                                     var characterListButtonView = new CharacterListButtonView();
+                                    characterListLayoutView.getRegion('characterTableSortRegion').show(characterListSortView);
                                     characterListLayoutView.getRegion('characterTableRegion').show(characterListView);
                                     characterListLayoutView.getRegion('buttonsRegion').show(characterListButtonView);
                                     ViewUtilities.currentNavSelection = 'characterList';

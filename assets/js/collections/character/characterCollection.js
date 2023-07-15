@@ -4,6 +4,8 @@ define(['backbone', 'firebase', 'backfire', 'models/character/characterModel',
 
         var CharacterCollection = Backbone.Firebase.Collection.extend({
             mode : null,
+            sortKey : 'initiative',
+            reverseSort : -1,
             initialize : function(options) {
                 if (options && options.mode)
                 {
@@ -25,8 +27,25 @@ define(['backbone', 'firebase', 'backfire', 'models/character/characterModel',
 
             },
             model: CharacterModel,
-            comparator: function(character) {
-                return character.get('name');
+            sortByInitiative: function() {
+                this.sortKey = 'initiative';
+                this.sort();
+            },
+            sortByPlayer: function() {
+                this.sortKey = 'playerID';
+                this.sort();
+            },
+            comparator: function(character1, character2) {
+                characterOneSortKey = character1.get(this.sortKey);
+                characterTwoSortKey = character2.get(this.sortKey);
+                if ('playerId' === this.sortKey) {
+                    characterOneSortKey += character1.get('initiative');
+                    characterTwoSortKey += character2.get('initiative');
+                }
+                let initialReturnValue  = characterOneSortKey > characterTwoSortKey ? 1
+                                        : characterOneSortKey < characterTwoSortKey ? -1
+                                        : 0;
+                return initialReturnValue * this.reverseSort;
             },
             parse : function(response, options) {
                 console.log("i'm here too.");
