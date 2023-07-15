@@ -68,7 +68,11 @@ define(['marionette',
             $(tableRow.el).siblings().removeClass('info');
             $(tableRow.el).addClass('info');
             selectedModel = model;
-            this.trigger('encounterSelected');
+            if (model.hasAnyRounds()) {
+                this.trigger('openedEncounterSelected');
+            } else {
+                this.trigger('unOpenedEncounterSelected');
+            }
         }
     });
 
