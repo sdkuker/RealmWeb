@@ -1,14 +1,16 @@
 define(['marionette',
+        'views/combat/combatEncounterListSortView',
         'views/combat/combatEncounterRoundStatisticsListView',
         'views/combat/combatEncounterButtonView',
         'tpl!templates/combat/combatEncounterLayoutTemplate.tpl',
         'services/combatRoundWarehouse', 'services/characterCombatRoundStatisticWarehouse'],
-    function (Marionette, StatisticsListView, ButtonView, CombatEncounterLayoutTemplate, CombatRoundWarehouse,
+    function (Marionette, StatisticsListSortView, StatisticsListView, ButtonView, CombatEncounterLayoutTemplate, CombatRoundWarehouse,
               ComatRoundStatisticsWarehouse) {
 
-        var CombatEncounterLayoutiew = Marionette.LayoutView.extend({
+        var CombatEncounterLayoutView = Marionette.LayoutView.extend({
             template: CombatEncounterLayoutTemplate,
             regions : {
+                combatRoundsTableSortRegion : '#combatRoundsTableSortRegion',
                 roundsTableRegion : '#roundsTableRegion',
                 roundsButtonsRegion : '#roundsButtonsRegion'
             },
@@ -29,11 +31,13 @@ define(['marionette',
             },
             onRender: function() {
                 var self = this;
+                var sortView = new StatisticsListSortView();
                 var listView = new StatisticsListView({model : this.encounter, roundNumber: self.roundIdentifierToShow, collection: self.roundStatistics});
                 var buttonsView = new ButtonView({model : this.encounter, roundIdentifierToShow : this.roundIdentifierToShow});
                 this.listenTo(buttonsView, 'combatEncounterNextRoundButton:clicked', this.createAndDisplayNextRound);
                 this.listenTo(buttonsView, 'combatEncounterDeleteRoundButton:clicked', this.deleteCurrentRound);
                 this.listenTo(buttonsView, 'combatEncounterRoundNumberToDisplay:selected', this.displayRoundNumber);
+                this.showChildView('combatRoundsTableSortRegion', sortView);
                 this.showChildView('roundsTableRegion', listView);
                 this.showChildView('roundsButtonsRegion', buttonsView);
             },
@@ -111,6 +115,6 @@ define(['marionette',
             }
         });
 
-        return CombatEncounterLayoutiew;
+        return CombatEncounterLayoutView;
 
     });

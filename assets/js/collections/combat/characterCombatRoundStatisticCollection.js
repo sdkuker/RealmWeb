@@ -7,6 +7,8 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/characterCombatRoundS
             myRoundID : null,
             myEncounterRoundID : null,
             autoSync : true,
+            sortKey : 'initiative',
+            reverseSort : -1,
             initialize: function(models, options) {
                 // return all the rounds if no encounter id was specified
                 // you cannot  add round to a collection generated with an orderByChild or equalTo clause
@@ -37,8 +39,23 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/characterCombatRoundS
                         '/combatRoundStatistics');
                 }
             },
-            comparator: function(combatRoundStatistic) {
-                return combatRoundStatistic.get('playerID') + combatRoundStatistic.get('characterID');
+            sortByInitiative: function() {
+                this.sortKey = 'initiative';
+                this.reverseSort = -1;
+                this.sort();
+            },
+            sortByCharacterName: function() {
+                this.sortKey = 'characterName';
+                this.reverseSort = +1;
+                this.sort();
+            },
+            comparator: function(statistics1, statistics2) {
+                statisticsOneSortKey = statistics1.get(this.sortKey);
+                statisticsTwoSortKey = statistics2.get(this.sortKey);
+                let initialReturnValue  = statisticsOneSortKey > statisticsTwoSortKey ? 1
+                                        : statisticsOneSortKey < statisticsTwoSortKey ? -1
+                                        : 0;
+                return initialReturnValue * this.reverseSort;
             },
             hasAnyStatistics : function() {
                 var self = this;

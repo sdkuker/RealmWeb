@@ -28,6 +28,20 @@ define(['marionette',
            // this.listenTo(this.collection, 'remove', this.render);
            // this.listenTo(this.collection, 'changed', this.render);
             this.collection.on('all', self.handleCollectionEvents(self));
+            this.listenTo(RealmApplication.vent, 'initiativeRadioButton:clicked', function() {
+                this.triggerInitiativeRadioButtonFunction();
+            });
+            this.listenTo(RealmApplication.vent, 'characterNameRadioButton:clicked', function() {
+                this.triggerCharacterNameRadioButtonFunction();
+            });
+        },
+        triggerInitiativeRadioButtonFunction : function() {
+            self = this;
+            this.collection.sortByInitiative();
+        },
+        triggerCharacterNameRadioButtonFunction : function() {
+            self = this;
+            this.collection.sortByCharacterName();
         },
         handleCollectionEvents : function(myView) {
             return function(event) {
