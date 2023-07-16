@@ -1,8 +1,9 @@
 define(['realmApplication',
         'models/modal/modalModel',
         'views/modal/modalView',
+        'views/modal/confirmationModalView',
         'views/modal/modalLoginView'],
-    function (RealmApplication, ModalModel, ModalView, ModalLoginView) {
+    function (RealmApplication, ModalModel, ModalView, ConfirmationModalView, ModalLoginView) {
 
         var Utility = function() {
             // private fields
@@ -34,6 +35,11 @@ define(['realmApplication',
                 var modalModel = new ModalModel();
                 var modalLoginView = new ModalLoginView({model : modalModel});
                 RealmApplication.modalRegion.show(modalLoginView);
+            };
+            this.showConfirmationModalView = function(aTitle, aMessage) {
+                var modalModel = new ModalModel({title: aTitle, message : aMessage});
+                var confirmationModalView = new ConfirmationModalView({model : modalModel});
+                RealmApplication.modalRegion.show(confirmationModalView);
             };
             this.setCookie = function(cookieName, cookieValue, expirationInDays){
                 var d = new Date();

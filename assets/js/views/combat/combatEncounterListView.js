@@ -32,6 +32,9 @@ define(['marionette',
             this.listenTo(RealmApplication.vent, 'combatEncounterListOpenButton:clicked', function() {
                 self.triggerOpenCombatEncounterFunction();
             });
+            this.listenTo(RealmApplication.vent, 'confirmationModalViewYesButton:clicked', function() {
+                self.triggerConfirmationModalViewYesButtonClickedFunction();
+            });
             this.listenTo(RealmApplication.vent, 'combatEncounterListEncounterSelected', function(tableRow, model) {
                 self.combatEncounterSelected(tableRow, model);
             });
@@ -49,9 +52,19 @@ define(['marionette',
             RealmApplication.vent.trigger('combatEncounterListChangeCombatEncounter', selectedModel);
         },
         triggerOpenCombatEncounterFunction : function() {
-           // var model = this.collection.at($(':selected', this.$el).index());
-            RealmApplication.vent.trigger('combatEncounterListOpenCombatEncounter', selectedModel);
+
+            if (selectedModel.hasAnyRounds()) {
+                RealmApplication.vent.trigger('combatEncounterListOpenCombatEncounter', selectedModel);
+            } else {
+                ViewUtilities.showConfirmationModalView('Warning', 
+                    'Opening the encounter will start combat.  No changes to the combat participants will be allowed' + 
+                    ' after combat has started.  Confirm you want to start combat by clicking the yes button, or' +
+                    ' cancel by clicking the no button.');
+            }
         },
+        triggerConfirmationModalViewYesButtonClickedFunction : function() {
+             RealmApplication.vent.trigger('combatEncounterListOpenCombatEncounter', selectedModel);
+         },
         triggerDeleteCombatEncounterFunction : function() {
             var self = this;
             $.when(CombatRoundWarehouse.deleteCombatRoundsForEncounter(selectedModel)).then(
