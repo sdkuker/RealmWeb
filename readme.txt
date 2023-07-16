@@ -1,6 +1,6 @@
 Change log
 
-Version 2023-G (deployed 07/XX/23)
+Version 2023-G (deployed 07/16/23)
 1) Added the player associated with the characters on the combat round view.  Also grouped
 the characters for each player together by changing the comparator on the collection.  Added the sort by
 initiative and sort by player-initiative feature on the character list view. Addded tooltip descriptions
