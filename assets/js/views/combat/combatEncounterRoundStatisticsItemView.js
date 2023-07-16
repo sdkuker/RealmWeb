@@ -33,12 +33,18 @@ define(['marionette',
                 'input' : 'tableCellUpdated'
             },
             calculateRemainingNumberOfCharacterClones : function(hitsRemaining) {
-                let instancesRemainingFloat = hitsRemaining / this.model.get('totalHitsPerClone');
-                let instancesRemainingInteger = Math.trunc(instancesRemainingFloat);
-                let instancesRemainingRemainder = hitsRemaining % this.model.get('totalHitsPerClone');
-                if ( instancesRemainingRemainder > 0 ) {
-                    instancesRemainingInteger = ++instancesRemainingInteger;
-                };
+
+                let instancesRemainingInteger = 0;
+
+                if ( hitsRemaining > 0  && this.model.get('totalHitsPerClone' > 0) ) {
+                    let instancesRemainingFloat = hitsRemaining / this.model.get('totalHitsPerClone');
+                    instancesRemainingInteger = Math.trunc(instancesRemainingFloat);
+                    let instancesRemainingRemainder = hitsRemaining % this.model.get('totalHitsPerClone');
+                    if ( instancesRemainingRemainder > 0 ) {
+                        instancesRemainingInteger = ++instancesRemainingInteger;
+                    };
+                }
+
                 return instancesRemainingInteger;
             },
             timeout: null,

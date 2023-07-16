@@ -8,7 +8,8 @@ for the 'open' and 'update' buttons on the combat encounter list view.  Also, di
 combat encounters that have already been opened.  They're considered open if they have any rounds in them at all.
 Also added the confirmational modal dialog and used it to display when someone tries to open a combat encounter that
 for the first time.  It'll describe what happens when you open an encounter and give them the chance to confirm or
-cancel it.
+cancel it. Fixed a display issue in the combat screen where the number of instances remaining would display NaN if
+some of the values were zero.  
 
 Version 2023-F (deployed 06/05/23)
 1) Rounded the total defensive bonus value to the nearest integer.  
