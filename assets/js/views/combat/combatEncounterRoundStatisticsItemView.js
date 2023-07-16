@@ -36,7 +36,7 @@ define(['marionette',
 
                 let instancesRemainingInteger = 0;
 
-                if ( hitsRemaining > 0  && this.model.get('totalHitsPerClone' > 0) ) {
+                if ( hitsRemaining > 0  && this.model.get('totalHitsPerClone') > 0 ) {
                     let instancesRemainingFloat = hitsRemaining / this.model.get('totalHitsPerClone');
                     instancesRemainingInteger = Math.trunc(instancesRemainingFloat);
                     let instancesRemainingRemainder = hitsRemaining % this.model.get('totalHitsPerClone');

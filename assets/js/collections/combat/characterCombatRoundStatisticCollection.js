@@ -52,6 +52,14 @@ define(['backbone', 'firebase', 'backfire', 'models/combat/characterCombatRoundS
             comparator: function(statistics1, statistics2) {
                 statisticsOneSortKey = statistics1.get(this.sortKey);
                 statisticsTwoSortKey = statistics2.get(this.sortKey);
+                if (this.sortKey === 'characterName') {
+                    statisticsOneSortKey = decodeURI(statisticsOneSortKey);
+                    statisticsOneSortKey = statisticsOneSortKey.trim();
+                    statisticsOneSortKey = statisticsOneSortKey.toLowerCase();
+                    statisticsTwoSortKey = decodeURI(statisticsTwoSortKey);
+                    statisticsTwoSortKey = statisticsTwoSortKey.trim();
+                    statisticsTwoSortKey = statisticsTwoSortKey.toLowerCase();
+                }
                 let initialReturnValue  = statisticsOneSortKey > statisticsTwoSortKey ? 1
                                         : statisticsOneSortKey < statisticsTwoSortKey ? -1
                                         : 0;
